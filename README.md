@@ -1,2 +1,10 @@
 # Duhok Forum
 Duhok Forum is a free script developed in PHP and MySQL. It can be installed in Linux servers or local servers by using Wamp, Xampp, etc...
+
+[![GitHub version](https://img.shields.io/github/v/tag/dilovanmatini/duhok-forum)](https://github.com/dilovanmatini/rtlcss/releases)
+
+[![editor](https://img.shields.io/badge/editor-vscode-blue)](https://code.visualstudio.com/)
+
+## Support
+
+Is Duhok Forum fitted your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)
