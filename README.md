@@ -5,6 +5,10 @@ Duhok Forum is a free script developed in PHP and MySQL. It can be installed in 
 
 [![editor](https://img.shields.io/badge/editor-vscode-blue)](https://code.visualstudio.com/)
 
+
+## Documentation
+Visit <https://www.startimes.com/f.aspx?mode=f&f=211>
+
 ## Support
 
 Is Duhok Forum fitted your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)
