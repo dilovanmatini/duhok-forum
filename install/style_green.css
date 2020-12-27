@@ -1,0 +1,44 @@
+BODY {
+	BACKGROUND: #CCFFCC; SCROLLBAR-HIGHLIGHT-COLOR: #aaddaa; SCROLLBAR-3DLIGHT-COLOR: #ddffdd; SCROLLBAR-ARROW-COLOR: white; SCROLLBAR-DARKSHADOW-COLOR: black; SCROLLBAR-BASE-COLOR: darkseagreen
+}
+
+A {
+	FONT-WEIGHT: bold; COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-WEIGHT: bold; COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-WEIGHT: bold; COLOR: red; TEXT-DECORATION: none
+}
+A.menu {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; COLOR: green; TEXT-DECORATION: none
+}
+
+INPUT {
+	FONT-WEIGHT: bold; FONT-SIZE: 15px; BACKGROUND: #ddffdd; COLOR: black; FONT-FAMILY: arial
+}
+
+TABLE.grid {
+	BACKGROUND: gray
+}
+
+TR.normal {
+	BACKGROUND-COLOR: #ffffcc
+}
+
+TD.userdetails_data {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; BACKGROUND: #ddffdd; VERTICAL-ALIGN: top; COLOR: black
+}
+
+TD.cat {
+	BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: buttonhighlight 1px solid; PADDING-LEFT: 2px; BACKGROUND: darkseagreen; BORDER-LEFT: buttonhighlight 1px solid; COLOR: white; BORDER-BOTTOM: buttonshadow 1px solid; TEXT-ALIGN: center
+}
+
+TD.list_center {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; COLOR: midnightblue; TEXT-ALIGN: center
+}
+
+TD {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: darkgreen; FONT-FAMILY: Helvetica,Arial
+}

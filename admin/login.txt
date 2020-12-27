@@ -1,0 +1,5 @@
+/aa/index.php?mode=.exe     ||      127.0.0.1        ||        05/11/08,17:43
+/aa/index.php?mode=/home/www     ||      127.0.0.1        ||        05/11/08,17:44
+/aa/index.php?mode=/home/www     ||      127.0.0.1        ||        05/11/08,17:44
+/aa/index.php?mode=/home/www     ||      127.0.0.1        ||        05/11/08,17:45
+/Aa/index.php?mode=p.config     ||      127.0.0.1        ||        06/11/08,15:45
