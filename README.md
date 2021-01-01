@@ -15,7 +15,7 @@ Duhok Forum is a free forum script developed in PHP and MySQL. It can be install
 Visit <https://www.startimes.com/f.aspx?mode=f&f=211>
 
 ## Bugs and Issues - مشاكل
-Have an issue or a bug? please feel free to [open a new issue](https://github.com/dilovanmatini/duhok-forum/issues/new).
+Have an issue or a bug? please feel free to [open a new issue](https://github.com/dilovanmatini/duhok-forum/issues/new).\
 هل توجد مشكلة في النسخة؟ أرجوا ان لا تتردد في ذكرها بفتح [مشكلة جديدة](https://github.com/dilovanmatini/duhok-forum/issues/new).
 
 
