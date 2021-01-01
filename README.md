@@ -23,4 +23,5 @@ Have an issue or a bug? please feel free to [open a new issue](https://github.co
 df@lelav.com
 
 ## Support - دعم
-Is Duhok Forum fitted your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)
+Is Duhok Forum fitted your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)\
+&#x202b;هل نسخة منتديات دهوك يناسب متطلباتك?  [اشتري لي فنجان قهوة ☕](https://www.paypal.me/DilovanMatini)
