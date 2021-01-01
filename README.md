@@ -1,4 +1,4 @@
-# Duhok Forum
+# Duhok Forum v3.0
 Duhok Forum is a free forum script developed in PHP and MySQL. It can be installed in Linux servers or local servers by using Wamp, Xampp, etc...\
 دهوك فوريوم هي نسخة منتديات مجانية مبرمجة بلغة&#x202b; PHP وقواعد بيانات MySQL. بإمكانك تثبيت على خوادم لينكس و خوادم المحلية مثل Wamp وXampp والى اخره...
 
