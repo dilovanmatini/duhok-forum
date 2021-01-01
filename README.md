@@ -12,7 +12,7 @@ Duhok Forum is a free forum script developed in PHP and MySQL. It can be install
 ![Preview](https://repository-images.githubusercontent.com/324770043/500d6e80-4c34-11eb-9563-967e32b1c16a)
 
 ## Documentation - الدليل
-Visit <https://www.startimes.com/f.aspx?mode=f&f=211>
+<https://www.startimes.com/f.aspx?mode=f&f=211>
 
 ## Bugs and Issues - مشاكل
 Have an issue or a bug? please feel free to [open a new issue](https://github.com/dilovanmatini/duhok-forum/issues/new).\
