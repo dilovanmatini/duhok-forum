@@ -6,7 +6,6 @@ Duhok Forum is a free forum script developed in PHP and MySQL. It can be install
 ### اصدار 3.0 الجديد سوف تاتي مع تطويرات مذهلة وتحسينات كبيرة في يناير 2021.
 
 [![GitHub Version](https://img.shields.io/github/v/tag/dilovanmatini/duhok-forum)](https://github.com/dilovanmatini/duhok-forum/releases)
-
 [![editor](https://img.shields.io/badge/editor-vscode-blue)](https://code.visualstudio.com/)
 
 ![Preview](https://repository-images.githubusercontent.com/324770043/500d6e80-4c34-11eb-9563-967e32b1c16a)
@@ -24,4 +23,4 @@ df@lelav.com
 
 ## Support - دعم
 Is Duhok Forum fitted your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)\
-&#x202b;هل نسخة منتديات دهوك يناسب متطلباتك?  [اشتري لي فنجان قهوة ☕](https://www.paypal.me/DilovanMatini)
+&#x202b;هل نسخة منتديات دهوك يناسب متطلباتك؟  [اشتري لي فنجان قهوة ☕](https://www.paypal.me/DilovanMatini)
