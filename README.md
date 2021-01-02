@@ -1,7 +1,7 @@
 # Duhok Forum v3.0
-Duhok Forum is a free, open-source script that can be installed on both Linux and localhost servers that support the Apache platform. The script supports all modern web browsers. It was programmed by PHP and MySQL databases. Also, the basic web languages have been used in it such as HTML, CSS, JavaScript, Ajax, jQuery library, and some javascript open source libraries.
+Duhok Forum is a free, open-source script that can be installed on both Linux and localhost servers that support the Apache platform. The script supports all modern web browsers. It programmed by PHP and MySQL databases. Also, the basic web languages have been used in it such as HTML, CSS, JavaScript, Ajax, jQuery library, and some javascript open source libraries.
 
-The first eight version had been released by [Dilovan Matini](http://dilovanmatini.com), then many developers worked on it and many versions have been released, the last one was 2.1 that contains many improvements and enhancements but due to growing technology so fast, the mentioned version does not work on modern servers and browsers, especially PHP version 7 and MySQL version 8 and due to these issues the version 3 of Duhok has been released with tremendous improvements, enhancements, and modern design.
+The first eight version had been released by [Dilovan Matini](http://dilovanmatini.com), then many developers worked on it and many versions have been released, the last one was 2.1 that contains many improvements and enhancements but due to growing technology so fast, the mentioned version does not work on modern servers and browsers, especially PHP version 7 and MySQL version 8 and due to these issues, version 3.0 of Duhok Forum has been released with tremendous improvements, enhancements, and modern design.
 
 # &#x202b;دهوك فوريوم v3.0
 &#x202b;نسخة منتديات Duhok Forum هي نسخة مجانية مفتوحة المصدر يمكنك تنصيب على خوادم لينكس وخوادم المحلية التي تحتوي على منصة Apache. يمكن تشغيل النسخة بواسطة جميع متصفحات الويب الحديثة. تم برمجة هذه النسخة بالغة البرمجة الشهيرة PHP وقواعد بيانات MySQL، بالإضافة الى استخدام لغات الأسياسية للويب مثل HTML و CSS و JavaScript و Ajax، أيضا تم استخدام مكتبة شهيرة jQuery والعديد من مكتبات الجافا سكريبت المفتوحة المصدر.
@@ -63,6 +63,13 @@ $df_config['database'] = [
 Have an issue or a bug? please feel free to [open a new issue](https://github.com/dilovanmatini/duhok-forum/issues/new).\
 هل توجد مشكلة في النسخة؟ أرجوا ان لا تتردد في ذكرها بفتح [مشكلة جديدة&#x202b;](https://github.com/dilovanmatini/duhok-forum/issues/new).
 
+## License
+
+
+## الرخصة
+&#x202b;Duhok Forum هي نسخة مجانية مفتوحة المصدر يمكنك إعادة توزيعه أو تعديله بموجب شروط رخصة [GNU](https://www.gnu.org/licenses) كما تم نشرها بواسطة مؤسسة البرمجيات الحرة ، إما الإصدار 3 من الترخيص ، أو أي إصدار لاحق.
+
+النسخة محمية وفقاً لجميع معايير الحماية ويتم توزيعها على أمل أن يكون مفيدًا، ولكن دون أي ضمان؛ حتى بدون الضمان الضمني للتسويق أو الملاءمة لغرض معين. انظر رخصة&#x202b; [GNU](https://www.gnu.org/licenses) العمومية لمزيد من التفاصيل.
 
 ## Contact - اتصل بنا
 df@lelav.com
