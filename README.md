@@ -24,10 +24,10 @@ $df_config['database'] = [
 ];
 ```
 2. Go to **`http://hostname/install`**.
-1. After reading license and agree it, click **`Next`**.
-1. Check the database connection and click **`Next`**.
-1. Type the nessesary forum's information, then create an `Admin`, and then click **`Begin Setting Up`**.
-1. Finally, you will see the congratulation message, then you can navigate your forum.
+3. After reading license and agree it, click **`Next`**.
+4. Check the database connection and click **`Next`**.
+5. Type the nessesary forum's information, then create an `Admin`, and then click **`Begin Setting Up`**.
+6. Finally, you will see the congratulation message, then you can navigate your forum.
 >Don't forget to remove **`install`** folder before you publishing in the Internet.
 
 ## التثبيت
@@ -44,11 +44,11 @@ $df_config['database'] = [
 ];
 ```
 &#x202b;2. اذهب الى **`http://hostname/install`**.\
-&#x202b;1. بعد قراءة الرخصة والموافقة عليها انقر فوق زر **`التالي`**.\
-&#x202b;1. تحقق من اتصال بقاعدة بيانات ثم انقر فوق زر **`التالي`**.\
-&#x202b;1. اكتب معلومات الاساسية للمنتدى ثم قم بإنشاء المدير للمنتدى ثم انقر فوق زر **`بدأ التثبيت`**.\
-&#x202b;1. في النهاية سوف يظهر لك رسالة بأن المنتدى تم تثبيته بنجاح، انت بإمكانك تصفحها كما شئت.\
-&#x202b;>لا تنسى بحذف مجلد **`install`** قبل استخدام ونشر المنتدى عبر الانترنت.\
+&#x202b;3. بعد قراءة الرخصة والموافقة عليها انقر فوق زر **`التالي`**.\
+&#x202b;4. تحقق من اتصال بقاعدة بيانات ثم انقر فوق زر **`التالي`**.\
+&#x202b;5. اكتب معلومات الاساسية للمنتدى ثم قم بإنشاء المدير للمنتدى ثم انقر فوق زر **`بدأ التثبيت`**.\
+&#x202b;6. في النهاية سوف يظهر لك رسالة بأن المنتدى تم تثبيته بنجاح، انت بإمكانك تصفحها كما شئت.\
+>&#x202b;لا تنسى بحذف مجلد **`install`** قبل استخدام ونشر المنتدى عبر الانترنت.
 
 ## Documentation - الدليل
 <https://www.startimes.com/f.aspx?mode=f&f=211>
