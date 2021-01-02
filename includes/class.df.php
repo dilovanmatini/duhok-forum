@@ -418,7 +418,7 @@ class DF{
 		}
 	}
 	function setImportantData(){
-		if(ulv > 0 and $this->getCookie('importantData') != 1){
+		if( ulv > 0 && ulv != 4 && $this->getCookie('importantData') != 1 ){
 			$error = false;
 			require_once _df_path."countries.php";
 			$cCode = array_keys($country);
@@ -493,6 +493,7 @@ class DF{
 			return false;
 		}
 		else{
+			return true; // fixing this issue is important
 			$domains = unserialize(site_domains);
 			if( !is_array($domains) ) $domains = [];
 			$url = explode("/", $refer );
