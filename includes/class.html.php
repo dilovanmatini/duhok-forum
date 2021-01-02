@@ -16,13 +16,13 @@ class Elements{
             'zoom' => 100
         ];
 
-        $params['inverse'] ??= false;
-        $params['color'] ??= $defaults['color'];
-        $params['inverse_color'] ??= $defaults['inverse_color'];
-        $params['zoom'] ??= $defaults['zoom'];
-        $params['classes'] ??= [];
-        $params['attrs'] ??= [];
-        $params['style'] ??= [];
+        $params['inverse'] = isset($params['inverse']) ? $params['inverse'] : false;
+        $params['color'] = isset($params['color']) ? $params['color'] : $defaults['color'];
+        $params['inverse_color'] = isset($params['inverse_color']) ? $params['inverse_color'] : $defaults['inverse_color'];
+        $params['zoom'] = isset($params['zoom']) ? $params['zoom'] : $defaults['zoom'];
+        $params['classes'] = isset($params['classes']) ? $params['classes'] : [];
+        $params['attrs'] = isset($params['attrs']) ? $params['attrs'] : [];
+        $params['style'] = isset($params['style']) ? $params['style'] : [];
 
         $selector_text = ( $selector == '' ) ? '' : " {$selector}";
 
