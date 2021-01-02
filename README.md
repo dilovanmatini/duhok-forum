@@ -56,6 +56,11 @@ $df_config['database'] = [
 &#x202b;6. في النهاية سوف يظهر لك رسالة بأن المنتدى تم تثبيته بنجاح، انت بإمكانك تصفحها كما شئت.
 >&#x202b;لا تنسى بحذف مجلد **`install`** قبل استخدام ونشر المنتدى عبر الانترنت.
 
+## Requirenments - المتطلبات
+- **PHP 5.5** or greater with `exif` and `mbstring` extensions.
+- **MySQL 5.6** or greater.
+- **Apache** with `mod_rewrite` module.
+
 ## Documentation - الدليل
 <https://www.startimes.com/f.aspx?mode=f&f=211>
 
