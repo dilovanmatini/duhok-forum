@@ -197,23 +197,26 @@ class DFPhotos{
 			], __FILE__, __LINE__);
 			$id = $this->mysql->get_lastid();
 
-			$exif = @exif_read_data($path_file);
-			$orientation = isset($exif['Orientation']) ? intval($exif['Orientation']) : 0;
-			if( $orientation == 3 || $orientation == 6 || $orientation == 8 ){
-				$image = imagecreatefromstring( file_get_contents($path_file) );
-				
-				if( $orientation == 3 ){
-					$image = imagerotate( $image, 180, 0);
+			// it needs php_exif and php_mbstring extensions
+			if( is_callable('exif_read_data') ){
+				$exif = @exif_read_data($path_file);
+				$orientation = isset($exif['Orientation']) ? intval($exif['Orientation']) : 0;
+				if( $orientation == 3 || $orientation == 6 || $orientation == 8 ){
+					$image = imagecreatefromstring( file_get_contents($path_file) );
+					
+					if( $orientation == 3 ){
+						$image = imagerotate( $image, 180, 0);
+					}
+					elseif( $orientation == 6 ){
+						$image = imagerotate( $image, -90, 0);
+					}
+					elseif( $orientation == 8 ){
+						$image = imagerotate( $image, 90, 0 );
+					}
+					
+					imagejpeg( $image, $path_file );
+					imagedestroy( $image );
 				}
-				elseif( $orientation == 6 ){
-					$image = imagerotate( $image, -90, 0);
-				}
-				elseif( $orientation == 8 ){
-					$image = imagerotate( $image, 90, 0 );
-				}
-				
-				imagejpeg( $image, $path_file );
-				imagedestroy( $image );
 			}
 
 			foreach( $sizes as $size => $size_data ){
