@@ -1,6 +1,10 @@
 # Duhok Forum v3.0
 Duhok Forum is a free forum script developed in PHP and MySQL. It can be installed in Linux servers or local servers by using Wamp, Xampp, etc...\
-دهوك فوريوم هي نسخة منتديات مجانية مبرمجة بلغة&#x202b; PHP وقواعد بيانات MySQL. بإمكانك تثبيت على خوادم لينكس و خوادم المحلية مثل Wamp وXampp والى اخره...
+
+# دهوك فوريوم v3.0
+&#x202b;نسخة منتديات Duhok Forum هي نسخة مجانية مفتوحة المصدر يمكنك تنصيب على خوادم لينكس وخوادم المحلية التي تحتوي على منصة Apache. يمكن تشغيل النسخة بواسطة جميع متصفحات الويب الحديثة. تم برمجة هذه النسخة بالغة البرمجة الشهيرة PHP وقواعد بيانات MySQL، بالإضافة الى استخدام لغات الأسياسية للويب مثل HTML و CSS و JavaScript و Ajax، أيضا تم استخدام مكتبة شهيرة jQuery والعديد من مكتبات الجافا سكريبت المفتوحة المصدر.
+
+تم إصدار أول ثمانية نسخ بواسطة Dilovan Matini، ثم بعدها تم تطوير النسخة من قبل العديد من المبرمجين وتم نزول العديد من النسخ، آخرها نسخة 2.1 التي تحتوي على كثير من التحسينات والتطويرات، لكن بسبب تحديثات الكثيرة في مجال التقنية وتحديث جميع لغات البرمجة المستخدمة في هذه النسخة مثل PHP7 و قواعد البيانات MySQL8، فلا يمكن استعمالها في سيرفرات الحديثة ولهذا السبب، تم إصدار نسخة 3.0 من قبل مبرمجها الأصلي لكي يتناسب مع جميع اصدارات المحدثة للغات المذكورة المستخدمة. أيضاً تم تحسين النسخة من جميع جوانب الأمنية والأداء والتصميم.
 
 [![GitHub Version](https://img.shields.io/github/v/tag/dilovanmatini/duhok-forum)](https://github.com/dilovanmatini/duhok-forum/releases)
 [![editor](https://img.shields.io/badge/editor-vscode-blue)](https://code.visualstudio.com/)
@@ -12,7 +16,7 @@ Duhok Forum is a free forum script developed in PHP and MySQL. It can be install
 
 ## Installation
 After you download the ZIP file, extract it, then put the script files into your server's runnable folder and do the below steps:
-1. Create a `MySQL` database and open **`includes/config.php`** file, then put the database information into below variable:
+1. Create a `MySQL` database and open **`includes/config.php`** file, then put the database information into below variables:
 ```php
 $df_config['database'] = [
     'host' => 'localhost',    // Server Host Name
@@ -23,12 +27,12 @@ $df_config['database'] = [
     'port' => 3306            // MySQL Server Port
 ];
 ```
-2. Go to **`http://hostname/install`**.
-3. After reading license and agree it, click **`Next`**.
+2. Go to **`http://hostname/install`**
+3. After reading license and agree on it, click **`Next`**.
 4. Check the database connection and click **`Next`**.
-5. Type the nessesary forum's information, then create an `Admin`, and then click **`Begin Setting Up`**.
-6. Finally, you will see the congratulation message, then you can navigate your forum.
->Don't forget to remove **`install`** folder before you publishing in the Internet.
+5. Type the nessesary forum's information, then create an `Admin` and click **`Begin Setting Up`**.
+6. Finally, you will see the congratulation message, then you can navigate your forum as you like.
+>Don't forget to remove **`install`** folder before you publishing it in the Internet.
 
 ## التثبيت
 &#x202b;بعد تنزيل النسخة، قم باستخراج ملفات من نسخة مضغوطة، ثم نقل ملفات الى مجلدك الرئيسي للخادم وقم بما يلي:\
@@ -43,7 +47,7 @@ $df_config['database'] = [
     'port' => 3306            // منفذ خادم MySQL
 ];
 ```
-&#x202b;2. اذهب الى **`http://hostname/install`**.\
+&#x202b;2. اذهب الى **`http://hostname/install`**\
 &#x202b;3. بعد قراءة الرخصة والموافقة عليها انقر فوق زر **`التالي`**.\
 &#x202b;4. تحقق من اتصال بقاعدة بيانات ثم انقر فوق زر **`التالي`**.\
 &#x202b;5. اكتب معلومات الاساسية للمنتدى ثم قم بإنشاء المدير للمنتدى ثم انقر فوق زر **`بدأ التثبيت`**.\
