@@ -64,7 +64,9 @@ Have an issue or a bug? please feel free to [open a new issue](https://github.co
 هل توجد مشكلة في النسخة؟ أرجوا ان لا تتردد في ذكرها بفتح [مشكلة جديدة&#x202b;](https://github.com/dilovanmatini/duhok-forum/issues/new).
 
 ## License
+This script is free and open-source: you can redistribute it and/or modify it under the terms of the [GNU](https://www.gnu.org/licenses) General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 
+This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [GNU](https://www.gnu.org/licenses)  General Public License for more details.
 
 ## الرخصة
 &#x202b;Duhok Forum هي نسخة مجانية مفتوحة المصدر يمكنك إعادة توزيعه أو تعديله بموجب شروط رخصة [GNU](https://www.gnu.org/licenses) كما تم نشرها بواسطة مؤسسة البرمجيات الحرة ، إما الإصدار 3 من الترخيص ، أو أي إصدار لاحق.
