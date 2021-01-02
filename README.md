@@ -23,7 +23,7 @@ $df_config['database'] = [
     'port' => 3306            // MySQL Server Port
 ];
 ```
-1. Go to `http://hostname/install`.
+2. Go to `http://hostname/install`.
 1. After reading license and agree it, click `Next`.
 1. Check the database connection and click `Next`.
 1. Type the nessesary forum's information, then create an `Admin`, and then click `Begin Setting Up`
