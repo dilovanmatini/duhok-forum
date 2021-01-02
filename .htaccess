@@ -1,0 +1,6 @@
+ErrorDocument 400 /errorpages.php?e=400
+ErrorDocument 401 /errorpages.php?e=401
+ErrorDocument 403 /errorpages.php?e=403
+ErrorDocument 404 /errorpages.php?e=404
+ErrorDocument 500 /errorpages.php?e=500
+ErrorDocument 503 /errorpages.php?e=503

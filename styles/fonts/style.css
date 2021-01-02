@@ -1,0 +1,25 @@
+/* 
+ * http://www.google.com/webfonts/earlyaccess
+ */
+
+@import url(lelav.css?x=cr7j);
+@font-face {
+	font-family: 'Droid Arabic Kufi';
+	font-style: normal;
+	font-weight: 400;
+	src: url(DroidKufi/DroidKufi-Regular/DroidKufi-Regular.eot);
+	src: url(DroidKufi/DroidKufi-Regular/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'),
+		url(DroidKufi/DroidKufi-Regular/DroidKufi-Regular.woff2) format('woff2'),
+		url(DroidKufi/DroidKufi-Regular/DroidKufi-Regular.woff) format('woff'),
+		url(DroidKufi/DroidKufi-Regular/DroidKufi-Regular.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Droid Arabic Kufi';
+	font-style: normal;
+	font-weight: 700;
+	src: url(DroidKufi/DroidKufi-Bold/DroidKufi-Bold.eot);
+	src: url(DroidKufi/DroidKufi-Bold/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'),
+		url(DroidKufi/DroidKufi-Bold/DroidKufi-Bold.woff2) format('woff2'),
+		url(DroidKufi/DroidKufi-Bold/DroidKufi-Bold.woff) format('woff'),
+		url(DroidKufi/DroidKufi-Bold/DroidKufi-Bold.ttf) format('truetype');
+}

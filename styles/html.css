@@ -1,0 +1,364 @@
+/* CSS Loader */
+.css-loader{
+	display: inline-block;
+}
+/* three-bounce */
+.css-loader.three-bounce{
+	margin: 0 auto;
+	width: 70px;
+	text-align: center;
+}
+.css-loader.three-bounce div{
+	width: 18px;
+	height: 18px;
+	background-color: #333;
+	border-radius: 100%;
+	display: inline-block;
+	-webkit-animation: threeBounceDelay 1.4s infinite ease-in-out;
+	animation: threeBounceDelay 1.4s infinite ease-in-out;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+.css-loader.three-bounce .bounce1{
+	-webkit-animation-delay: -0.32s;
+	animation-delay: -0.32s;
+}
+.css-loader.three-bounce .bounce2{
+	-webkit-animation-delay: -0.16s;
+	animation-delay: -0.16s;
+}
+@-webkit-keyframes threeBounceDelay{
+	0%, 80%, 100% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+	}
+	40% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+@keyframes threeBounceDelay{
+	0%, 80%, 100% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+	}
+	40% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+/* rotating-plane */
+.css-loader.rotating-plane{
+	width: 30px;
+	height: 30px;
+	background-color: #333;
+	margin: 0 auto;
+	-webkit-animation: rotatePlane 1.2s infinite ease-in-out;
+	animation: rotatePlane 1.2s infinite ease-in-out;
+}
+@-webkit-keyframes rotatePlane{
+	0% {
+	-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+	50% {
+	-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+	100% {
+	-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
+}
+@keyframes rotatePlane{
+	0% {
+	-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+	50% {
+	-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+	100% {
+	-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
+}
+/* double-bounce */
+.css-loader.double-bounce{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+}
+.css-loader.double-bounce .double-bounce1,
+.css-loader.double-bounce .double-bounce2{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #333;
+	opacity: 0.6;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-animation: doubleBounce 2s infinite ease-in-out;
+	animation: doubleBounce 2s infinite ease-in-out;
+}
+.css-loader.double-bounce .double-bounce2{
+	-webkit-animation-delay: -1s;
+	animation-delay: -1s;
+}
+@-webkit-keyframes doubleBounce{
+	0%, 100% {
+	-webkit-transform: scale(0);
+	transform: scale(0); }
+	50% {
+	-webkit-transform: scale(1);
+	transform: scale(1); }
+}
+@keyframes doubleBounce{
+	0%, 100% {
+	-webkit-transform: scale(0);
+	transform: scale(0); }
+	50% {
+	-webkit-transform: scale(1);
+	transform: scale(1); }
+}
+/* wave */
+.css-loader.wave{
+	margin: 0 auto;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	font-size: 10px;
+}
+.css-loader.wave div{
+	background-color: #333;
+	height: 100%;
+	width: 6px;
+	display: inline-block;
+	-webkit-animation: waveStretchDelay 1.2s infinite ease-in-out;
+	animation: waveStretchDelay 1.2s infinite ease-in-out;
+}
+.css-loader.wave .rect2{
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+.css-loader.wave .rect3{
+	-webkit-animation-delay: -1s;
+	animation-delay: -1s;
+}
+.css-loader.wave .rect4{
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+.css-loader.wave .rect5{
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+@-webkit-keyframes waveStretchDelay{
+	0%, 40%, 100% {
+	-webkit-transform: scaleY(0.4);
+	transform: scaleY(0.4); }
+	20% {
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1); }
+}
+@keyframes waveStretchDelay{
+	0%, 40%, 100% {
+	-webkit-transform: scaleY(0.4);
+	transform: scaleY(0.4); }
+	20% {
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1); }
+}
+/* chasing-dots */
+.css-loader.chasing-dots{
+	margin: 0 auto;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	text-align: center;
+	-webkit-animation: chasingDotsRotate 2s infinite linear;
+	animation: chasingDotsRotate 2s infinite linear;
+}
+.css-loader.chasing-dots .dot1,
+.css-loader.chasing-dots .dot2{
+	width: 60%;
+	height: 60%;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	background-color: #333;
+	border-radius: 100%;
+	-webkit-animation: chasingDotsBounce 2s infinite ease-in-out;
+	animation: chasingDotsBounce 2s infinite ease-in-out;
+}
+.css-loader.chasing-dots .dot2{
+	top: auto;
+	bottom: 0px;
+	-webkit-animation-delay: -1s;
+	animation-delay: -1s;
+}
+@-webkit-keyframes chasingDotsRotate{
+	100% {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg); }
+}
+@keyframes chasingDotsRotate{
+	100% {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg); }
+}
+@-webkit-keyframes chasingDotsBounce{
+	0%, 100% {
+	-webkit-transform: scale(0);
+	transform: scale(0); }
+	50% {
+	-webkit-transform: scale(1);
+	transform: scale(1); }
+}
+@keyframes chasingDotsBounce{
+	0%, 100% {
+	-webkit-transform: scale(0);
+	transform: scale(0); }
+	50% {
+	-webkit-transform: scale(1);
+	transform: scale(1); }
+}
+/* circle */
+.css-loader.circle{
+	margin: 0 auto;
+	width: 22px;
+	height: 22px;
+	position: relative;
+}
+.css-loader.circle .circle0{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.css-loader.circle .circle0:before{
+	content: '';
+	display: block;
+	margin: 0 auto;
+	width: 20%;
+	height: 20%;
+	background-color: #333;
+	border-radius: 100%;
+	-webkit-animation: circleBounceDelay 1.2s infinite ease-in-out;
+	animation: circleBounceDelay 1.2s infinite ease-in-out;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+.css-loader.circle .circle2{
+	-webkit-transform: rotate(30deg);
+	-ms-transform: rotate(30deg);
+	transform: rotate(30deg);
+}
+.css-loader.circle .circle3{
+	-webkit-transform: rotate(60deg);
+	-ms-transform: rotate(60deg);
+	transform: rotate(60deg);
+}
+.css-loader.circle .circle4{
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+.css-loader.circle .circle5{
+	-webkit-transform: rotate(120deg);
+	-ms-transform: rotate(120deg);
+	transform: rotate(120deg);
+}
+.css-loader.circle .circle6{
+	-webkit-transform: rotate(150deg);
+	-ms-transform: rotate(150deg);
+	transform: rotate(150deg);
+}
+.css-loader.circle .circle7{
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.css-loader.circle .circle8{
+	-webkit-transform: rotate(210deg);
+	-ms-transform: rotate(210deg);
+	transform: rotate(210deg);
+}
+.css-loader.circle .circle9{
+	-webkit-transform: rotate(240deg);
+	-ms-transform: rotate(240deg);
+	transform: rotate(240deg);
+}
+.css-loader.circle .circle10{
+	-webkit-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+.css-loader.circle .circle11{
+	-webkit-transform: rotate(300deg);
+	-ms-transform: rotate(300deg);
+	transform: rotate(300deg);
+}
+.css-loader.circle .circle12{
+	-webkit-transform: rotate(330deg);
+	-ms-transform: rotate(330deg);
+	transform: rotate(330deg);
+}
+.css-loader.circle .circle2:before{
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+.css-loader.circle .circle3:before{
+	-webkit-animation-delay: -1s;
+	animation-delay: -1s;
+}
+.css-loader.circle .circle4:before{
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+.css-loader.circle .circle5:before{
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+.css-loader.circle .circle6:before{
+	-webkit-animation-delay: -0.7s;
+	animation-delay: -0.7s;
+}
+.css-loader.circle .circle7:before{
+	-webkit-animation-delay: -0.6s;
+	animation-delay: -0.6s;
+}
+.css-loader.circle .circle8:before{
+	-webkit-animation-delay: -0.5s;
+	animation-delay: -0.5s;
+}
+.css-loader.circle .circle9:before{
+	-webkit-animation-delay: -0.4s;
+	animation-delay: -0.4s;
+}
+.css-loader.circle .circle10:before{
+	-webkit-animation-delay: -0.3s;
+	animation-delay: -0.3s;
+}
+.css-loader.circle .circle11:before{
+	-webkit-animation-delay: -0.2s;
+	animation-delay: -0.2s;
+}
+.css-loader.circle .circle12:before{
+	-webkit-animation-delay: -0.1s;
+	animation-delay: -0.1s;
+}
+@-webkit-keyframes circleBounceDelay{
+	0%, 80%, 100% {
+	-webkit-transform: scale(0);
+	transform: scale(0); }
+	40% {
+	-webkit-transform: scale(1);
+	transform: scale(1); }
+}
+@keyframes circleBounceDelay{
+	0%, 80%, 100% {
+	-webkit-transform: scale(0);
+	transform: scale(0); }
+	40% {
+	-webkit-transform: scale(1);
+	transform: scale(1); }
+}

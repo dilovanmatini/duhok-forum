@@ -1,0 +1,53 @@
+/**
+ * 
+ * Duhok Forum 3.0
+ * @author		Dilovan Matini (original founder)
+ * @copyright	2007 - 2021 Dilovan Matini
+ * @see			df.lelav.com
+ * @see			https://github.com/dilovanmatini/duhok-forum
+ * @license		http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @note		This program is distributed in the hope that it will be useful - WITHOUT ANY WARRANTY;
+ * 
+ */
+body,table,tr,td,input,button,textarea,select{font:normal 15px MS Sans Serif,arial,tahoma;}
+a,a:visited{font:normal 15px MS Sans Serif,arial,tahoma;}
+a:hover{font:normal 15px MS Sans Serif,arial,tahoma;}
+a.sec,a.sec:visited{font:normal 15px MS Sans Serif,arial,tahoma;}
+a.sec:hover{font:normal 15px MS Sans Serif,arial,tahoma;}
+a.sec2,a.sec2:visited{font:normal 11px MS Sans Serif,tahoma,arial;}
+a.sec2:hover{font:normal 11px MS Sans Serif,tahoma,arial;}
+.asTextFooter{font:normal 12px MS Sans Serif,tahoma,arial;}
+td.moMenu{font-size:14px;}
+.asAddress,.asAddress a,.asAddress a:hover,.asAddress a:visited{font-size:15px;}
+.asDark,.asDarkB,.asDarkDot{font-size:14px;}
+.asError,.asErrorB,.asErrorDot{font-size:14px;}
+.buttonOut,.buttonOver,.buttonDown{font-size:15px;}
+.asHeader{font-size:15px;}
+.asTopHeader{font-size:12px;}
+.asTopHeader2{font-size:12px;}
+.asBody{font-size:12px;}
+.asTitle{font-size:12px;}
+.asTitle2{font-size:12px;}
+.asText{font-size:12px;}
+.asText2{font-size:12px;}
+.asTextLink a:link,.asTextLink a:visited,.asTextLink a:active{font-size:12px;}
+.asTextLink2 a:link,.asTextLink2 a:visited,.asTextLink2 a:active{font-size:10px;}
+.asTextLink2 a:hover{}
+.asTHLink{font-size:12px;}
+.asTHLinkOver{font-size:12px;}
+.asTHLink a:link,.asTHLink a:visited,.asTHLink a:active,.asTHLink a:hover,.asTHLinkOver a:link,.asTHLinkOver a:visited,.asTHLinkOver a:active,.asTHLinkOver a:hover{font-size:12px;}
+.asPostIcon{font-size:12px;}
+input.asTextBox{font-size:14px;}
+input.asButton{font-size:12px;}
+select.asGoTo{font:bold 12px MS Sans Serif,arial,tahoma;}
+select.dark{font:bold 12px MS Sans Serif,arial,tahoma;}
+.asS11,.asAS11 a,.asAS11 a:hover,.asAS11 a:visited{font-size:11px;}
+.asS12,.asAS12 a,.asAS12 a:hover,.asAS12 a:visited{font-size:12px;}
+.asS15,.asAS15 a,.asAS15 a:hover,.asAS15 a:visited{font-size:15px;}
+.asS18,.asAS18 a,.asAS18 a:hover,.asAS18 a:visited{font-size:18px;}
+.asF1,.asAF1 a,.asAF1 a:hover,.asAF1 a:visited{font-family:arial,tahoma;}
+.asF2,.asAF2 a,.asAF2 a:hover,.asAF2 a:visited{font-family:tahoma,arial;}
+.asDesc{font-size:12px;}
+.smallHeader{font:normal 12px MS Sans Serif,arial,tahoma;}
+.smallTitle{font:normal 12px MS Sans Serif,arial,tahoma;}
+.smallText{font:normal 12px MS Sans Serif,arial,tahoma;}

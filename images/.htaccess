@@ -1,0 +1,2 @@
+Options -Indexes
+AddType text/plain .php .php4 .php3 .php5 .htm .html .htm .shtml .shtm .xhtml .asp .aspx .pl .py .jsp .sh .cgi

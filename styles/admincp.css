@@ -1,0 +1,43 @@
+/**
+ * 
+ * Duhok Forum 3.0
+ * @author		Dilovan Matini (original founder)
+ * @copyright	2007 - 2021 Dilovan Matini
+ * @see			df.lelav.com
+ * @see			https://github.com/dilovanmatini/duhok-forum
+ * @license		http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @note		This program is distributed in the hope that it will be useful - WITHOUT ANY WARRANTY;
+ * 
+ */
+body,table,tr,td{font-size:12px;font-family:tahoma,arial;color:#000;}
+input,button,textarea,select{font-weight:bold;font-size:11px;font-family:tahoma,arial;color:#000;}
+body{margin:0;background:#f6f6f6;}
+a,a:visited{font-size:11px;font-family:tahoma,arial;color:#000;text-decoration:none;}
+a:hover{font-size:11px;font-family:tahoma,arial;color:#808080;text-decoration:none;}
+td.chatSendDetails{background-color:#e5e5e5;}
+td.chatError{background-color:#f3baba;}
+select{background-color:#fff;}
+.admincp .headerbar{height:24px;padding:4px;color:#fff;background-color:#000;line-height:20px}
+.admincp .headerbar span{font-weight:bold;}
+.admincp .headerbar div{float:left;}
+.admincp .headerbar a,.admincp .headerbar a:visited,.admincp .headerbar a:hover{font-weight:bold;font-size:11px;color:#fff;text-decoration:none;}
+.admincp .body{height:38px;padding:12px;background-color:#f6f6f6;}
+.admincp .menubar{height:24px;padding:4px 6px;text-align:center;line-height:20px;border:#000 1px solid;border-bottom-width:0;-moz-border-radius:5px 5px 0 0;-webkit-border-radius:5px 5px 0 0;-khtml-border-radius:5px 5px 0 0;}
+.admincp .submenubar{height:47px;padding-bottom:8px;background:#f4f4f4 url(../images/admin/sub_menu_center.gif) repeat-x;}
+.admincp .submenubar td{padding:2px 10px;}
+.admincp .submenubar .out a,.admincp .submenubar .out a:visited,.admincp .submenubar .out a:hover{font-weight:bold;font-size:11px;color:#4465c4;text-decoration:none;}
+.admincp .submenubar .over a,.admincp .submenubar .over a:visited,.admincp .submenubar .over a:hover{font-weight:bold;font-size:11px;color:#000;text-decoration:none;}
+.admincp .blue-row{background:#3da2e8 url(../images/admin/menu_blue_center.gif) repeat-x 0 -1px;border-bottom-width:1px}
+.admincp .white-row{background:#fdfdfd url(../images/admin/menu_white_center.gif) repeat-x 0 -1px;}
+.admincp .blue-row a,.admincp .blue-row a:visited,.admincp .blue-row a:hover{font-weight:bold;font-size:11px;color:#fff;text-decoration:none;}
+.admincp .white-row a,.admincp .white-row a:visited,.admincp .white-row a:hover{font-weight:bold;font-size:11px;color:#000;text-decoration:none;}
+.admincp .box-panel td.title{padding:10px;border:#c0c0c0 1px solid;text-align:center;font-weight:bold;font-size:11px;background:#cacaca url(../images/admin/box_title_center.gif) repeat-x 0 -1px;-moz-border-radius:5px 5px 0 0;-webkit-border-radius:5px 5px 0 0;-khtml-border-radius:5px 5px 0 0;}
+.admincp .box-panel td.text{border:#c0c0c0 1px solid;text-align:right;border-top-width:0;background-color:#fff}
+.admincp .tools{padding-top:22px;width:142px;height:142px;text-align:center;font-weight:bold;font-size:11px;color:#5d5d5d;background:url(../images/admin/tools_back.gif) no-repeat;}
+.admincp .tools a,.admincp .tools a:visited{font-size:11px;font-family:tahoma,arial;color:#808080;text-decoration:none;}
+.admincp .tools a:hover{font-size:11px;font-family:tahoma,arial;color:#000;text-decoration:none;}
+.admincp input.input{height:18px;padding:3px;border:#c0c0c0 1px solid;background:#fff url(globals/input.gif?x=c4) repeat-x;}
+.admincp div.fieldBox{height:22px;padding:3px;border:#c0c0c0 1px solid;background-color:#fff;}
+.admincp textarea{padding:3px;border:#c0c0c0 1px solid;background:#fff url(globals/input.gif?x=c4) repeat-x;}
+.admincp input.input,.admincp div.fieldBox,.admincp textarea{-moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;}
+div.chatMessages{width:600px;height:400px;overflow-y:auto;scrollbar-highlight-color:#f5f5f5;scrollbar-3dlight-color:#cccccc;scrollbar-arrow-color:#cccccc;scrollbar-darkshadow-color:#f5f5f5;scrollbar-base-color:#f5f5f5;}

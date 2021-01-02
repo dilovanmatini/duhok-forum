@@ -1,0 +1,96 @@
+/**
+ * 
+ * Duhok Forum 3.0
+ * @author		Dilovan Matini (original founder)
+ * @copyright	2007 - 2021 Dilovan Matini
+ * @see			df.lelav.com
+ * @see			https://github.com/dilovanmatini/duhok-forum
+ * @license		http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @note		This program is distributed in the hope that it will be useful - WITHOUT ANY WARRANTY;
+ * 
+ */
+ 
+ body{background:#031630;}
+
+.asTextFooter{color:#6ad8f4;}
+
+.headerbar{ margin-bottom:5px; }
+.headerbar .right, .headerbar .center, .headerbar .ex, .headerbar .left{
+    background: #003c63;
+    background: linear-gradient(0deg, #003c63 0%, #0067aa 100%);
+}
+.headerbar .right{
+    width: 60%;
+    height: 106px;
+    border: #000 1px solid;
+    border-left-width: 0;
+    padding-right: 20px;
+}
+.headerbar .right > img{
+    width: 72px;
+    margin: 0 10px;
+}
+.headerbar .right > div{
+    display: inline-block;
+    font: bold 24px 'Droid Arabic Kufi',tahoma,arial;
+    color: #fff;
+    text-shadow: 1px 3px 7px rgba(0, 0, 0, 0.5);
+    vertical-align: middle;
+}
+.headerbar .left{ border-color:#000;border-width:1px 0 1px 1px;border-style:solid; }
+.headerbar .left img.left-img{width:334px;height:106px;}
+.headerbar .left div.left-div{float:left;display:inline;position:relative;}
+.headerbar .left div.toolsbar{position:absolute;left:6px;top:6px;}
+.headerbar .left div.toolsbar .searchPanel{position:relative;}
+.headerbar .left div.toolsbar .searchInput{width:200px;height:15px;border-width:0;background-color:#444;color:#fff;}
+.headerbar .left div.toolsbar .searchIcon{position:absolute;left:1px;top:2px;width:14px;height:14px;border-width:0;cursor:pointer;}
+.headerbar .left div.toolsbar .searchResult{position:absolute;left:-10px;top:21px;width:240px;z-index:1;}
+
+.asNormal,.asNormalB,.asNormalDot{background:#dbdcdd url(normal.png?x=s2) repeat-x;color:#000;}
+.asFixed,.asFixedB,.asFixedDot{background:#b8cbec url(fixed.png?x=s2) repeat-x;color:#000;}
+.asFirst,.asFirstB,.asFirstDot{background:#a1c7fd url(first.png?x=s2) repeat-x;color:#000;}
+.asHidden,.asHiddenB,.asHiddenDot{background:#7eb6e3 url(hidden.png?x=s2) repeat-x;color:#000;}
+.asDelete,.asDeleteB,.asDeleteDot{background:#7c7c7c url(delete.png?x=s2) repeat-x;color:#000;}
+.asSelect,.asSelectB,.asSelectDot{background:#f2b207 url(select.png?x=s2) repeat-x;color:#000;}
+.asDark,.asDarkB,.asDarkDot{background:#226890 url(dark.png?x=s2) repeat-x;color:#fff;text-align:center;}
+.asError,.asErrorB,.asErrorDot{background:#b12121 url(error.png?x=s2) repeat-x;color:#fff;text-align:center;}
+
+.buttonOut,.buttonOver,.buttonDown{border:#031630 1px solid;padding:1px 4px;color:#000;}
+.buttonOut{background:#dbdcdd url(normal.png?x=s2) repeat-x 0 -7px;}
+.buttonOver{background:#b8cbec url(hidden.png?x=s2) repeat-x 0 -7px;}
+.buttonDown{background:#226890 url(dark.png?x=s2) repeat-x 0 -7px;}
+
+.tabnav{border-width:0;}
+.tabnav,.tabnav li{margin:0;padding:0;list-style:none;}
+.tabnav li em{font-style:normal;}
+.tabnav li{display:inline-block;display:-moz-inline-stack;*display:inline;vertical-align:bottom;cursor:pointer;margin:0;}
+.tabnav li a{display:block;display:inline-block;vertical-align:bottom;}
+.tabnav li a em{display:block;}
+.tabnav a em{border:solid #a3a3a3;border-width:1px 0 0;cursor:pointer;padding:4px 10px;left:0;right:0;bottom:0;top:-1px;position:relative;}
+.tabnav a{background:#dbdcdd url(normal.png?x=s2) repeat-x;border:solid #a3a3a3;border-width:0 1px;color:#000;position:relative;text-decoration:none;}
+.tabnav a:hover,.tabnav a:focus{background:#b8cbec url(fixed.png?x=s2) repeat-x;color:#000;outline:0;}
+.tabnav .selected a,.tabnav .selected a:focus,.tabnav .selected a:hover{background:#226890 url(dark.png?x=s2) repeat-x;color:#fff;}
+
+.svcbar{margin:5px;}
+.svcbar,.svcbar li{padding:0;list-style:none;}
+.svcbar li em{font-style:normal;}
+.svcbar li{display:inline-block;display:-moz-inline-stack;*display:inline;vertical-align:bottom;cursor:pointer;margin:0;}
+.svcbar li a{display:block;display:inline-block;vertical-align:bottom;}
+.svcbar li a em{display:block;}
+.svcbar a em{border:solid #a3a3a3;border-width:1px 0 0;cursor:pointer;padding:4px 10px;top:-1px;left:0;right:0;bottom:0;position:relative;}
+.svcbar a{background:#dbdcdd url(normal.png?x=s2) repeat-x;border:solid #a3a3a3;border-width:0 1px 1px;color:#000;position:relative;text-decoration:none;}
+.svcbar a:hover,.svcbar a:focus{background:#b8cbec url(fixed.png?x=s2) repeat-x;color:#000;outline:0;}
+.svcbar .selected a,.svcbar .selected a:focus,.svcbar .selected a:hover{background:#226890 url(dark.png?x=s2) repeat-x;color:#fff;}
+.svcbar li em.one,.svcbar li em.selectedone{display:block;display:inline-block;vertical-align:bottom;margin:0 4px;}
+.svcbar em.one,.svcbar em.selectedone{background:#dbdcdd url(normal.png?x=s2) repeat-x;border:solid #a3a3a3;border-width:1px;color:#000;padding:2px 10px;position:relative;}
+.svcbar em.selectedone{background:#226890 url(dark.png?x=s2) repeat-x;color:#fff;}
+
+.asText2{border:#444 1px solid;padding:2px 4px;color:#2294dd;background-color:#333;}
+select.asGoTo{background-color:#226890;color:#fff;}
+
+.asC1,.asAC1 a,.asAC1 a:hover,.asAC1 a:visited{color:#fff;}
+.asC2,.asAC2 a,.asAC2 a:hover,.asAC2 a:visited{color:#2294dd;}
+.asC3,.asAC3 a,.asAC3 a:hover,.asAC3 a:visited{color:#808080;}
+.asC4,.asAC4 a,.asAC4 a:hover,.asAC4 a:visited{color:#ff0000;}
+.asC5,.asAC5 a,.asAC5 a:hover,.asAC5 a:visited{color:#004388;}
+.asDate,.asDate nobr{color:#004388;}

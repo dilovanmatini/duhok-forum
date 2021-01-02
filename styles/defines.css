@@ -1,0 +1,699 @@
+/*//////////////////////////////////////////////////////////////////////////////
+// ##########################################################################///
+// # DM System 1.0                                                          # //
+// ########################################################################## //
+// #                                                                        # //
+// #               --  DM SYSTEM IS NOT FREE SOFTWARE  --                   # //
+// #                                                                        # //
+// #  ============ Programming & Designing By Dilovan Matini =============  # //
+// #      Copyright c 2013 - 2014 Dilovan Matini. All Rights Reserved.      # //
+// #------------------------------------------------------------------------# //
+// #------------------------------------------------------------------------# //
+// # Website: www.qkurd.com                                                 # //
+// # Contact us: dilovan@lelav.com                                          # //
+// ########################################################################## //
+//////////////////////////////////////////////////////////////////////////////*/
+
+.dm-p0, .dm-vp0, .dm-pt0{
+	padding-top: 0  !important;
+}
+.dm-p1, .dm-vp1, .dm-pt1{
+	padding-top: 1px  !important;
+}
+.dm-p2, .dm-vp2, .dm-pt2{
+	padding-top: 2px  !important;
+}
+.dm-p3, .dm-vp3, .dm-pt3{
+	padding-top: 3px  !important;
+}
+.dm-p4, .dm-vp4, .dm-pt4{
+	padding-top: 4px  !important;
+}
+.dm-p5, .dm-vp5, .dm-pt5{
+	padding-top: 5px  !important;
+}
+.dm-p6, .dm-vp6, .dm-pt6{
+	padding-top: 6px  !important;
+}
+.dm-p8, .dm-vp8, .dm-pt8{
+	padding-top: 8px  !important;
+}
+.dm-p10, .dm-vp10, .dm-pt10{
+	padding-top: 10px  !important;
+}
+.dm-p0, .dm-hp0, .dm-pr0{
+	padding-right: 0  !important;
+}
+.dm-p1, .dm-hp1, .dm-pr1{
+	padding-right: 1px  !important;
+}
+.dm-p2, .dm-hp2, .dm-pr2{
+	padding-right: 2px  !important;
+}
+.dm-p3, .dm-hp3, .dm-pr3{
+	padding-right: 3px  !important;
+}
+.dm-p4, .dm-hp4, .dm-pr4{
+	padding-right: 4px  !important;
+}
+.dm-p5, .dm-hp5, .dm-pr5{
+	padding-right: 5px  !important;
+}
+.dm-p6, .dm-hp6, .dm-pr6{
+	padding-right: 6px  !important;
+}
+.dm-p8, .dm-hp8, .dm-pr8{
+	padding-right: 8px  !important;
+}
+.dm-p10, .dm-hp10, .dm-pr10{
+	padding-right: 10px  !important;
+}
+.dm-p0, .dm-vp0, .dm-pb0{
+	padding-bottom: 0  !important;
+}
+.dm-p1, .dm-vp1, .dm-pb1{
+	padding-bottom: 1px  !important;
+}
+.dm-p2, .dm-vp2, .dm-pb2{
+	padding-bottom: 2px  !important;
+}
+.dm-p3, .dm-vp3, .dm-pb3{
+	padding-bottom: 3px  !important;
+}
+.dm-p4, .dm-vp4, .dm-pb4{
+	padding-bottom: 4px  !important;
+}
+.dm-p5, .dm-vp5, .dm-pb5{
+	padding-bottom: 5px  !important;
+}
+.dm-p6, .dm-vp6, .dm-pb6{
+	padding-bottom: 6px  !important;
+}
+.dm-p8, .dm-vp8, .dm-pb8{
+	padding-bottom: 8px  !important;
+}
+.dm-p10, .dm-vp10, .dm-pb10{
+	padding-bottom: 10px  !important;
+}
+.dm-p0, .dm-hp0, .dm-pl0{
+	padding-left: 0  !important;
+}
+.dm-p1, .dm-hp1, .dm-pl1{
+	padding-left: 1px  !important;
+}
+.dm-p2, .dm-hp2, .dm-pl2{
+	padding-left: 2px  !important;
+}
+.dm-p3, .dm-hp3, .dm-pl3{
+	padding-left: 3px  !important;
+}
+.dm-p4, .dm-hp4, .dm-pl4{
+	padding-left: 4px  !important;
+}
+.dm-p5, .dm-hp5, .dm-pl5{
+	padding-left: 5px  !important;
+}
+.dm-p6, .dm-hp6, .dm-pl6{
+	padding-left: 6px  !important;
+}
+.dm-p8, .dm-hp8, .dm-pl8{
+	padding-left: 8px  !important;
+}
+.dm-p10, .dm-hp10, .dm-pl10{
+	padding-left: 10px  !important;
+}
+.dm-m0, .dm-vm0, .dm-mt0{
+	margin-top: 0  !important;
+}
+.dm-m1, .dm-vm1, .dm-mt1{
+	margin-top: 1px  !important;
+}
+.dm-m2, .dm-vm2, .dm-mt2{
+	margin-top: 2px  !important;
+}
+.dm-m3, .dm-vm3, .dm-mt3{
+	margin-top: 3px  !important;
+}
+.dm-m4, .dm-vm4, .dm-mt4{
+	margin-top: 4px  !important;
+}
+.dm-m5, .dm-vm5, .dm-mt5{
+	margin-top: 5px  !important;
+}
+.dm-m6, .dm-vm6, .dm-mt6{
+	margin-top: 6px  !important;
+}
+.dm-m8, .dm-vm8, .dm-mt8{
+	margin-top: 8px  !important;
+}
+.dm-m10, .dm-vm10, .dm-mt10{
+	margin-top: 10px  !important;
+}
+.dm-m0, .dm-hm0, .dm-mr0{
+	margin-right: 0  !important;
+}
+.dm-m1, .dm-hm1, .dm-mr1{
+	margin-right: 1px  !important;
+}
+.dm-m2, .dm-hm2, .dm-mr2{
+	margin-right: 2px  !important;
+}
+.dm-m3, .dm-hm3, .dm-mr3{
+	margin-right: 3px  !important;
+}
+.dm-m4, .dm-hm4, .dm-mr4{
+	margin-right: 4px  !important;
+}
+.dm-m5, .dm-hm5, .dm-mr5{
+	margin-right: 5px  !important;
+}
+.dm-m6, .dm-hm6, .dm-mr6{
+	margin-right: 6px  !important;
+}
+.dm-m8, .dm-hm8, .dm-mr8{
+	margin-right: 8px  !important;
+}
+.dm-m10, .dm-hm10, .dm-mr10{
+	margin-right: 10px  !important;
+}
+.dm-m0, .dm-vm0, .dm-mb0{
+	margin-bottom: 0  !important;
+}
+.dm-m1, .dm-vm1, .dm-mb1{
+	margin-bottom: 1px  !important;
+}
+.dm-m2, .dm-vm2, .dm-mb2{
+	margin-bottom: 2px  !important;
+}
+.dm-m3, .dm-vm3, .dm-mb3{
+	margin-bottom: 3px  !important;
+}
+.dm-m4, .dm-vm4, .dm-mb4{
+	margin-bottom: 4px  !important;
+}
+.dm-m5, .dm-vm5, .dm-mb5{
+	margin-bottom: 5px  !important;
+}
+.dm-m6, .dm-vm6, .dm-mb6{
+	margin-bottom: 6px  !important;
+}
+.dm-m8, .dm-vm8, .dm-mb8{
+	margin-bottom: 8px  !important;
+}
+.dm-m10, .dm-vm10, .dm-mb10{
+	margin-bottom: 10px  !important;
+}
+.dm-m0, .dm-hm0, .dm-ml0{
+	margin-left: 0  !important;
+}
+.dm-m1, .dm-hm1, .dm-ml1{
+	margin-left: 1px  !important;
+}
+.dm-m2, .dm-hm2, .dm-ml2{
+	margin-left: 2px  !important;
+}
+.dm-m3, .dm-hm3, .dm-ml3{
+	margin-left: 3px  !important;
+}
+.dm-m4, .dm-hm4, .dm-ml4{
+	margin-left: 4px  !important;
+}
+.dm-m5, .dm-hm5, .dm-ml5{
+	margin-left: 5px  !important;
+}
+.dm-m6, .dm-hm6, .dm-ml6{
+	margin-left: 6px  !important;
+}
+.dm-m8, .dm-hm8, .dm-ml8{
+	margin-left: 8px  !important;
+}
+.dm-m10, .dm-hm10, .dm-ml10{
+	margin-left: 10px  !important;
+}
+.dm-bgwhite, a.dm-abgwhite, a.dm-abgwhite:hover, a.dm-abgwhite:visited{
+	background-color: #ffffff  !important;
+}
+.dm-bgblack, a.dm-abgblack, a.dm-abgblack:hover, a.dm-abgblack:visited{
+	background-color: #000000  !important;
+}
+.dm-bgblue, a.dm-abgblue, a.dm-abgblue:hover, a.dm-abgblue:visited{
+	background-color: #0000ff  !important;
+}
+.dm-bggray, a.dm-abggray, a.dm-abggray:hover, a.dm-abggray:visited{
+	background-color: #cccccc  !important;
+}
+.dm-bggraydark, a.dm-abggraydark, a.dm-abggraydark:hover, a.dm-abggraydark:visited{
+	background-color: #888888  !important;
+}
+.dm-bgred, a.dm-abgred, a.dm-abgred:hover, a.dm-abgred:visited{
+	background-color: #ff0000  !important;
+}
+.dm-bgorange, a.dm-abgorange, a.dm-abgorange:hover, a.dm-abgorange:visited{
+	background-color: orange  !important;
+}
+.dm-bgpurple, a.dm-abgpurple, a.dm-abgpurple:hover, a.dm-abgpurple:visited{
+	background-color: #8c3f8c  !important;
+}
+.dm-bggreen, a.dm-abggreen, a.dm-abggreen:hover, a.dm-abggreen:visited{
+	background-color: #317231  !important;
+}
+.dm-bgmaroon, a.dm-abgmaroon, a.dm-abgmaroon:hover, a.dm-abgmaroon:visited{
+	background-color: #b94a48  !important;
+}
+.dm-bgskyblue, a.dm-abgskyblue, a.dm-abgskyblue:hover, a.dm-abgskyblue:visited{
+	background-color: #2e6e8c  !important;
+}
+.dm-bggold, a.dm-abggold, a.dm-abggold:hover, a.dm-abggold:visited{
+	background-color: #6b4700  !important;
+}
+.dm-bgdelete, a.dm-abgdelete, a.dm-abgdelete:hover, a.dm-abgdelete:visited{
+	background-color: #ccc  !important;
+}
+.dm-bgyellow, a.dm-abgyellow, a.dm-abgyellow:hover, a.dm-abgyellow:visited{
+	background-color: #ffffc4  !important;
+}
+.dm-bgtransparent, a.dm-abgtransparent, a.dm-abgtransparent:hover, a.dm-abgtransparent:visited{
+	background-color: transparent  !important;
+}
+.dm-cwhite, .dm-acwhite a, a.dm-acwhite, .dm-acwhite a:hover, a.dm-acwhite:hover, .dm-acwhite a:visited, a.dm-acwhite:visited{
+	color: #ffffff  !important;
+}
+.dm-cblack, .dm-acblack a, a.dm-acblack, .dm-acblack a:hover, a.dm-acblack:hover, .dm-acblack a:visited, a.dm-acblack:visited{
+	color: #000000  !important;
+}
+.dm-cblue, .dm-acblue a, a.dm-acblue, .dm-acblue a:hover, a.dm-acblue:hover, .dm-acblue a:visited, a.dm-acblue:visited{
+	color: #0000ff  !important;
+}
+.dm-cgray, .dm-acgray a, a.dm-acgray, .dm-acgray a:hover, a.dm-acgray:hover, .dm-acgray a:visited, a.dm-acgray:visited{
+	color: #cccccc  !important;
+}
+.dm-cgraydark, .dm-acgraydark a, a.dm-acgraydark, .dm-acgraydark a:hover, a.dm-acgraydark:hover, .dm-acgraydark a:visited, a.dm-acgraydark:visited{
+	color: #888888  !important;
+}
+.dm-cred, .dm-acred a, a.dm-acred, .dm-acred a:hover, a.dm-acred:hover, .dm-acred a:visited, a.dm-acred:visited{
+	color: #ff0000  !important;
+}
+.dm-corange, .dm-acorange a, a.dm-acorange, .dm-acorange a:hover, a.dm-acorange:hover, .dm-acorange a:visited, a.dm-acorange:visited{
+	color: orange  !important;
+}
+.dm-cpurple, .dm-acpurple a, a.dm-acpurple, .dm-acpurple a:hover, a.dm-acpurple:hover, .dm-acpurple a:visited, a.dm-acpurple:visited{
+	color: #8c3f8c  !important;
+}
+.dm-cgreen, .dm-acgreen a, a.dm-acgreen, .dm-acgreen a:hover, a.dm-acgreen:hover, .dm-acgreen a:visited, a.dm-acgreen:visited{
+	color: #317231  !important;
+}
+.dm-cmaroon, .dm-acmaroon a, a.dm-acmaroon, .dm-acmaroon a:hover, a.dm-acmaroon:hover, .dm-acmaroon a:visited, a.dm-acmaroon:visited{
+	color: #b94a48  !important;
+}
+.dm-cskyblue, .dm-acskyblue a, a.dm-acskyblue, .dm-acskyblue a:hover, a.dm-acskyblue:hover, .dm-acskyblue a:visited, a.dm-acskyblue:visited{
+	color: #2e6e8c  !important;
+}
+.dm-cgold, .dm-acgold a, a.dm-acgold, .dm-acgold a:hover, a.dm-acgold:hover, .dm-acgold a:visited, a.dm-acgold:visited{
+	color: #6b4700  !important;
+}
+.dm-cdelete, .dm-acdelete a, a.dm-acdelete, .dm-acdelete a:hover, a.dm-acdelete:hover, .dm-acdelete a:visited, a.dm-acdelete:visited{
+	color: #555  !important;
+}
+.dm-cyellow, .dm-acyellow a, a.dm-acyellow, .dm-acyellow a:hover, a.dm-acyellow:hover, .dm-acyellow a:visited, a.dm-acyellow:visited{
+	color: #6b4700  !important;
+}
+.dm-bold, .dm-abold a, a.dm-abold, .dm-abold a:hover, a.dm-abold:hover, .dm-abold a:visited, a.dm-abold:visited{
+	font-weight: bold  !important;
+}
+.dm-normal, .dm-anormal a, a.dm-anormal, .dm-anormal a:hover, a.dm-anormal:hover, .dm-anormal a:visited, a.dm-anormal:visited{
+	font-weight: normal  !important;
+}
+.dm-overline, .dm-aoverline a, a.dm-aoverline, .dm-aoverline a:hover, a.dm-aoverline:hover, .dm-aoverline a:visited, a.dm-aoverline:visited{
+	text-decoration: overline  !important;
+}
+.dm-throughline, .dm-athroughline a, a.dm-athroughline, .dm-athroughline a:hover, a.dm-athroughline:hover, .dm-athroughline a:visited, a.dm-athroughline:visited{
+	text-decoration: line-through  !important;
+}
+.dm-underline, .dm-aunderline a, a.dm-aunderline, .dm-aunderline a:hover, a.dm-aunderline:hover, .dm-aunderline a:visited, a.dm-aunderline:visited{
+	text-decoration: underline  !important;
+}
+.dm-italic, .dm-aitalic a, a.dm-aitalic, .dm-aitalic a:hover, a.dm-aitalic:hover, .dm-aitalic a:visited, a.dm-aitalic:visited{
+	font-style: italic  !important;
+}
+.dm-s9, .dm-as9 a, a.dm-as9, .dm-as9 a:hover, a.dm-as9:hover, .dm-as9 a:visited, a.dm-as9:visited{
+	font-size: 9px  !important;
+}
+.dm-s10, .dm-as10 a, a.dm-as10, .dm-as10 a:hover, a.dm-as10:hover, .dm-as10 a:visited, a.dm-as10:visited{
+	font-size: 10px  !important;
+}
+.dm-s11, .dm-as11 a, a.dm-as11, .dm-as11 a:hover, a.dm-as11:hover, .dm-as11 a:visited, a.dm-as11:visited{
+	font-size: 11px  !important;
+}
+.dm-s12, .dm-as12 a, a.dm-as12, .dm-as12 a:hover, a.dm-as12:hover, .dm-as12 a:visited, a.dm-as12:visited{
+	font-size: 12px  !important;
+}
+.dm-s13, .dm-as13 a, a.dm-as13, .dm-as13 a:hover, a.dm-as13:hover, .dm-as13 a:visited, a.dm-as13:visited{
+	font-size: 13px  !important;
+}
+.dm-s14, .dm-as14 a, a.dm-as14, .dm-as14 a:hover, a.dm-as14:hover, .dm-as14 a:visited, a.dm-as14:visited{
+	font-size: 14px  !important;
+}
+.dm-s15, .dm-as15 a, a.dm-as15, .dm-as15 a:hover, a.dm-as15:hover, .dm-as15 a:visited, a.dm-as15:visited{
+	font-size: 15px  !important;
+}
+.dm-s16, .dm-as16 a, a.dm-as16, .dm-as16 a:hover, a.dm-as16:hover, .dm-as16 a:visited, a.dm-as16:visited{
+	font-size: 16px  !important;
+}
+.dm-s17, .dm-as17 a, a.dm-as17, .dm-as17 a:hover, a.dm-as17:hover, .dm-as17 a:visited, a.dm-as17:visited{
+	font-size: 17px  !important;
+}
+.dm-s18, .dm-as18 a, a.dm-as18, .dm-as18 a:hover, a.dm-as18:hover, .dm-as18 a:visited, a.dm-as18:visited{
+	font-size: 18px  !important;
+}
+.dm-s19, .dm-as19 a, a.dm-as19, .dm-as19 a:hover, a.dm-as19:hover, .dm-as19 a:visited, a.dm-as19:visited{
+	font-size: 19px  !important;
+}
+.dm-s20, .dm-as20 a, a.dm-as20, .dm-as20 a:hover, a.dm-as20:hover, .dm-as20 a:visited, a.dm-as20:visited{
+	font-size: 20px  !important;
+}
+.dm-s21, .dm-as21 a, a.dm-as21, .dm-as21 a:hover, a.dm-as21:hover, .dm-as21 a:visited, a.dm-as21:visited{
+	font-size: 21px  !important;
+}
+.dm-s24, .dm-as24 a, a.dm-as24, .dm-as24 a:hover, a.dm-as24:hover, .dm-as24 a:visited, a.dm-as24:visited{
+	font-size: 24px  !important;
+}
+.dm-s30, .dm-as30 a, a.dm-as30, .dm-as30 a:hover, a.dm-as30:hover, .dm-as30 a:visited, a.dm-as30:visited{
+	font-size: 30px  !important;
+}
+.dm-s40, .dm-as40 a, a.dm-as40, .dm-as40 a:hover, a.dm-as40:hover, .dm-as40 a:visited, a.dm-as40:visited{
+	font-size: 40px  !important;
+}
+.dm-lh9, .dm-alh9 a, a.dm-alh9, .dm-alh9 a:hover, a.dm-alh9:hover, .dm-alh9 a:visited, a.dm-alh9:visited{
+	line-height: 10px  !important;
+}
+.dm-lh10, .dm-alh10 a, a.dm-alh10, .dm-alh10 a:hover, a.dm-alh10:hover, .dm-alh10 a:visited, a.dm-alh10:visited{
+	line-height: 10px  !important;
+}
+.dm-lh11, .dm-alh11 a, a.dm-alh11, .dm-alh11 a:hover, a.dm-alh11:hover, .dm-alh11 a:visited, a.dm-alh11:visited{
+	line-height: 11px  !important;
+}
+.dm-lh12, .dm-alh12 a, a.dm-alh12, .dm-alh12 a:hover, a.dm-alh12:hover, .dm-alh12 a:visited, a.dm-alh12:visited{
+	line-height: 12px  !important;
+}
+.dm-lh13, .dm-alh13 a, a.dm-alh13, .dm-alh13 a:hover, a.dm-alh13:hover, .dm-alh13 a:visited, a.dm-alh13:visited{
+	line-height: 13px  !important;
+}
+.dm-lh14, .dm-alh14 a, a.dm-alh14, .dm-alh14 a:hover, a.dm-alh14:hover, .dm-alh14 a:visited, a.dm-alh14:visited{
+	line-height: 14px  !important;
+}
+.dm-lh15, .dm-alh15 a, a.dm-alh15, .dm-alh15 a:hover, a.dm-alh15:hover, .dm-alh15 a:visited, a.dm-alh15:visited{
+	line-height: 15px  !important;
+}
+.dm-lh16, .dm-alh16 a, a.dm-alh16, .dm-alh16 a:hover, a.dm-alh16:hover, .dm-alh16 a:visited, a.dm-alh16:visited{
+	line-height: 16px  !important;
+}
+.dm-lh17, .dm-alh17 a, a.dm-alh17, .dm-alh17 a:hover, a.dm-alh17:hover, .dm-alh17 a:visited, a.dm-alh17:visited{
+	line-height: 17px  !important;
+}
+.dm-lh18, .dm-alh18 a, a.dm-alh18, .dm-alh18 a:hover, a.dm-alh18:hover, .dm-alh18 a:visited, a.dm-alh18:visited{
+	line-height: 18px  !important;
+}
+.dm-lh19, .dm-alh19 a, a.dm-alh19, .dm-alh19 a:hover, a.dm-alh19:hover, .dm-alh19 a:visited, a.dm-alh19:visited{
+	line-height: 19px  !important;
+}
+.dm-lh20, .dm-alh20 a, a.dm-alh20, .dm-alh20 a:hover, a.dm-alh20:hover, .dm-alh20 a:visited, a.dm-alh20:visited{
+	line-height: 20px  !important;
+}
+.dm-lh21, .dm-alh21 a, a.dm-alh21, .dm-alh21 a:hover, a.dm-alh21:hover, .dm-alh21 a:visited, a.dm-alh21:visited{
+	line-height: 21px  !important;
+}
+.dm-lh22, .dm-alh22 a, a.dm-alh22, .dm-alh22 a:hover, a.dm-alh22:hover, .dm-alh22 a:visited, a.dm-alh22:visited{
+	line-height: 22px  !important;
+}
+.dm-lh24, .dm-alh24 a, a.dm-alh24, .dm-alh24 a:hover, a.dm-alh24:hover, .dm-alh24 a:visited, a.dm-alh24:visited{
+	line-height: 24px  !important;
+}
+.dm-lh26, .dm-alh26 a, a.dm-alh26, .dm-alh26 a:hover, a.dm-alh26:hover, .dm-alh26 a:visited, a.dm-alh26:visited{
+	line-height: 26px  !important;
+}
+.dm-lh28, .dm-alh28 a, a.dm-alh28, .dm-alh28 a:hover, a.dm-alh28:hover, .dm-alh28 a:visited, a.dm-alh28:visited{
+	line-height: 28px  !important;
+}
+.dm-lh30, .dm-alh30 a, a.dm-alh30, .dm-alh30 a:hover, a.dm-alh30:hover, .dm-alh30 a:visited, a.dm-alh30:visited{
+	line-height: 30px  !important;
+}
+.dm-lh40, .dm-alh40 a, a.dm-alh40, .dm-alh40 a:hover, a.dm-alh40:hover, .dm-alh40 a:visited, a.dm-alh40:visited{
+	line-height: 40px  !important;
+}
+.dm-farial{
+	font-family: arial,tahoma  !important;
+}
+.dm-ftahoma{
+	font-family: tahoma,arial  !important;
+}
+.dm-fdroid{
+	font-family: 'Droid Arabic Kufi',arial,tahoma  !important;
+}
+.dm-flelav{
+	font-family: lelav,arial,tahoma  !important;
+}
+.dm-center{
+	text-align: center  !important;
+}
+.dm-left{
+	text-align: left !important;
+}
+.dm-right{
+	text-align: right !important;
+}
+.dm-middle{
+	vertical-align: middle  !important;
+}
+.dm-top{
+	vertical-align: top  !important;
+}
+.dm-bottom{
+	vertical-align: bottom  !important;
+}
+.dm-rtl{
+	direction: rtl !important;
+}
+.dm-ltr{
+	direction: ltr !important;
+}
+.dm-def-left{text-align: left!important;}
+.dm-def-right{text-align: right!important;}
+.float-left{
+	float: left !important;
+}
+.float-right{
+	float: right !important;
+}
+.centered{
+	width: 100%;
+	text-align: center;
+}
+.centered > *{
+	display: inline-block;
+}
+.righted{
+	width: 100%;
+	text-align: left;
+}
+.righted > *{
+	display: inline-block;
+}
+.lefted{
+	width: 100%;
+	text-align: right;
+}
+.lefted > *{
+	display: inline-block;
+}
+.pos-relative{
+	position: relative  !important;
+}
+.pos-absolute{
+	position: absolute  !important;
+}
+.dis-none{
+	display: none  !important;
+}
+.dis-block{
+	display: block  !important;
+}
+.dis-inline-block{
+	display: inline-block  !important;
+}
+.text-unselectable{
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+.scroll{
+	overflow: auto;
+}
+.scroll-x{
+	overflow-x: overlay;
+	overflow-y: auto;
+}
+.scroll-y{
+	overflow-y: overlay;
+	overflow-x: auto;
+}
+.dm-pointer{
+	cursor: pointer  !important;
+}
+.dm-nowrap{
+	white-space: nowrap;
+}
+.dm-text-upper{
+	text-transform: uppercase;
+}
+.dm-text-lower{
+	text-transform: lowercase;
+}
+.dm-text-upper-first{
+	text-transform: capitalize;
+}
+.no-white-space{
+	font-size: 0;
+}
+.width-p10{
+	width: 10%;
+}
+.width-p20{
+	width: 20%;
+}
+.width-p30{
+	width: 30%;
+}
+.width-p40{
+	width: 40%;
+}
+.width-p50{
+	width: 50%;
+}
+.width-p60{
+	width: 60%;
+}
+.width-p70{
+	width: 70%;
+}
+.width-p80{
+	width: 80%;
+}
+.width-p90{
+	width: 90%;
+}
+.width-p100{
+	width: 100%;
+}
+.dm-br0{
+	-webkit-border-radius: 0  !important;
+	-moz-border-radius: 0  !important;
+	border-radius: 0  !important;
+}
+.dm-br1{
+	-webkit-border-radius: 1px  !important;
+	-moz-border-radius: 1px  !important;
+	border-radius: 1px  !important;
+}
+.dm-br2{
+	-webkit-border-radius: 2px  !important;
+	-moz-border-radius: 2px  !important;
+	border-radius: 2px  !important;
+}
+.dm-br3{
+	-webkit-border-radius: 3px  !important;
+	-moz-border-radius: 3px  !important;
+	border-radius: 3px  !important;
+}
+.dm-br4{
+	-webkit-border-radius: 4px  !important;
+	-moz-border-radius: 4px  !important;
+	border-radius: 4px  !important;
+}
+.dm-br5{
+	-webkit-border-radius: 5px  !important;
+	-moz-border-radius: 5px  !important;
+	border-radius: 5px  !important;
+}
+.dm-br6{
+	-webkit-border-radius: 6px  !important;
+	-moz-border-radius: 6px  !important;
+	border-radius: 6px  !important;
+}
+.dm-br7{
+	-webkit-border-radius: 7px  !important;
+	-moz-border-radius: 7px  !important;
+	border-radius: 7px  !important;
+}
+.dm-br8{
+	-webkit-border-radius: 8px  !important;
+	-moz-border-radius: 8px  !important;
+	border-radius: 8px  !important;
+}
+.dm-br10{
+	-webkit-border-radius: 10px  !important;
+	-moz-border-radius: 10px  !important;
+	border-radius: 10px  !important;
+}
+.dm-bw0{
+	border-width: 0  !important;
+}
+.dm-bw1{
+	border-width: 1px  !important;
+}
+.dm-bw2{
+	border-width: 2px  !important;
+}
+.dm-bw3{
+	border-width: 3px  !important;
+}
+.dm-bw4{
+	border-width: 4px  !important;
+}
+.dm-bw5{
+	border-width: 5px  !important;
+}
+.dm-bw6{
+	border-width: 6px  !important;
+}
+.dm-bw7{
+	border-width: 7px  !important;
+}
+.dm-bw8{
+	border-width: 8px  !important;
+}
+.dm-bw10{
+	border-width: 10px  !important;
+}
+.no-border, .no-border-left, .no-border-hor{
+	border-left-width: 0  !important;
+}
+.no-border, .no-border-top, .no-border-ver{
+	border-top-width: 0  !important;
+}
+.no-border, .no-border-right, .no-border-hor{
+	border-right-width: 0  !important;
+}
+.no-border, .no-border-bottom, .no-border-ver{
+	border-bottom-width: 0  !important;
+}
+.no-border-radius{
+	-webkit-border-radius: 0  !important;
+	-moz-border-radius: 0  !important;
+	border-radius: 0  !important;
+}
+.no-border-radius > tbody > tr > td{
+	-webkit-border-radius: 0  !important;
+	-moz-border-radius: 0  !important;
+	border-radius: 0  !important;
+}
+.bs-border-box{
+	-webkit-box-sizing: border-box  !important;
+	-moz-box-sizing: border-box  !important;
+	box-sizing: border-box  !important;
+}
+.bs-content-box{
+	-webkit-box-sizing: content-box  !important;
+	-moz-box-sizing: content-box  !important;
+	box-sizing: content-box  !important;
+}

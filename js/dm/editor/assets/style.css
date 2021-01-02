@@ -1,0 +1,115 @@
+/**
+ * 
+ * Duhok Forum 3.0
+ * @author		Dilovan Matini (original founder)
+ * @copyright	2007 - 2021 Dilovan Matini
+ * @see			df.lelav.com
+ * @see			https://github.com/dilovanmatini/duhok-forum
+ * @license		http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @note		This program is distributed in the hope that it will be useful - WITHOUT ANY WARRANTY;
+ * 
+ */
+ /************************************************#
+* DM Editor v1.1
+* Work with below libraries
+* 1- JQuery Library 1.7.1 and later versions
+* 2- DM Library 1.0 and later versions
+* Copyright 2007 - 2021, Dilovan Matini
+*
+* Date: Wednesday, December 28, 2021
+#************************************************/
+.DMEditor{
+	padding:0;
+}
+.DMEditor td,
+.DMEditor th,
+.DMEditor div,
+.DMEditor span,
+.DMEditor ol,
+.DMEditor ul,
+.DMEditor li{
+	font: normal 11px tahoma,arial;
+	color: #000;
+}
+.DMEditor .toolbar{
+	height: 30px;
+	text-align: left;
+	background-color: #dbdcdd;
+}
+.DMEditor .body{
+	text-align: center;
+	background-color: #fff;
+}
+.DMEditor .tempBox{
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	visibility: hidden;
+}
+.DMEditor .buttonImg{
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	padding: 0;
+}
+.DMEditor .buttonCell{
+	width: 20px;
+	text-align: center;
+	cursor: pointer;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+}
+.DMEditor .buttonDiv{
+	position: relative;
+}
+.DMEditor .buttonTip{
+	position: absolute;
+	top: -24px;
+	left: 5px;
+	z-index: 1000;
+	padding: 4px;
+	background-color: #f1f0f0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+}
+.DMEditor .buttonText{
+	padding: 0 3px;
+}
+.DMEditor .buttonArrow{
+	width: 13px;
+	height: 4px;
+	background: url(bottom.gif?x=1.0) no-repeat -3px 0;
+}
+.DMEditorPHPCode{
+	border: #c3c3c3 1px solid;
+	margin: 0;
+	padding: 4px;
+	width: 560px;
+	height: 230px;
+	overflow: auto;
+	font-size: 13px;
+	font-family: "Courier New";
+	background: #fff;
+}
+.DMEditorTableMenu{
+	width: 180px;
+	border: gray 1px solid;
+	text-align: center;
+	font: bold 11px tahoma,arial;
+	color: #000;
+	cursor: pointer;
+}
+.DMEditorTableBody{
+	border: gray 1px solid;
+	border-width: 0 1px 1px;
+	padding:8px 3px 3px;
+}
+
+
+
+
+
