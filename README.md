@@ -10,7 +10,7 @@ Duhok Forum is a free forum script developed in PHP and MySQL. It can be install
 ## Download - تحميل
 [Download](https://github.com/dilovanmatini/duhok-forum/releases)
 
-## Installation - التثبيت
+## Installation
 After you download the ZIP file, extract it, then put the script files into your server's runnable folder and do the below steps:
 1. Create a `MySQL` database and open **`includes/config.php`** file, then put the database information into below variable:
 ```php
@@ -26,9 +26,29 @@ $df_config['database'] = [
 2. Go to **`http://hostname/install`**.
 1. After reading license and agree it, click **`Next`**.
 1. Check the database connection and click **`Next`**.
-1. Type the nessesary forum's information, then create an `Admin`, and then click **`Begin Setting Up`**
+1. Type the nessesary forum's information, then create an `Admin`, and then click **`Begin Setting Up`**.
 1. Finally, you will see the congratulation message, then you can navigate your forum.
 >Don't forget to remove **`install`** folder before you publishing in the Internet.
+
+## التثبيت
+#x202b;بعد تنزيل النسخة، قم باستخراج ملفات من نسخة مضغوطة، ثم نقل ملفات الى مجلدك الرئيسي للخادم وقم بما يلي:\
+1. قم بإنشاء قاعدة بيانات `MySQL` ثم فتح ملف **`includes/config.php`** ثم ضع معلومات قاعدة البيانات في متغييرات التالية:
+```php
+$df_config['database'] = [
+    'host' => 'localhost',    // اسم الخادم
+    'name' => 'df_db',        // اسم قاعدة بيانات
+    'user' => 'df_db',        // اسم مستخدم قاعدة بيانات
+    'pass' => '',             // الكلمة السرية لمستخدم قاعدة بيانات
+    'prefix' => 'df_',        // البادئة قبل اسم الجداول
+    'port' => 3306            // منفذ خادم MySQL
+];
+```
+2. اذهب الى **`http://hostname/install`**.
+1. بعد قراءة الرخصة والموافقة عليها انقر فوق زر **`التالي`**.
+1. تحقق من اتصال بقاعدة بيانات ثم انقر فوق زر **`التالي`**.
+1. اكتب معلومات الاساسية للمنتدى ثم قم بإنشاء المدير للمنتدى ثم انقر فوق زر **`بدأ التثبيت`**.
+1. في النهاية سوف يظهر لك رسالة بأن المنتدى تم تثبيته بنجاح، انت بإمكانك تصفحها كما شئت.
+>لا تنسى بحذف مجلد **`install`** قبل استخدام ونشر المنتدى عبر الانترنت.
 
 ## Documentation - الدليل
 <https://www.startimes.com/f.aspx?mode=f&f=211>
