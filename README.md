@@ -12,7 +12,7 @@ Duhok Forum is a free forum script developed in PHP and MySQL. It can be install
 
 ## Installation - التثبيت
 After you download the ZIP file, extract it, then put the script files into your server's runnable folder and do the below steps:
-1. Create a MySQL database and open includes/config.php file, then put the database information into below variable:
+1. Create a `MySQL` database and open `includes/config.php` file, then put the database information into below variable:
 ```php
 $df_config['database'] = [
     'host' => 'localhost',    // Server Host Name
@@ -23,6 +23,11 @@ $df_config['database'] = [
     'port' => 3306            // MySQL Server Port
 ];
 ```
+1. Go to `http://hostname/install`.
+1. After reading license and agree it, click `Next`.
+1. Check the database connection and click `Next`.
+1. Type the nessesary forum's information, then create an `Admin`, and then click `Begin Setting Up`
+1. Finally, you will see the congratulation message, then you can navigate your forum.
 
 ## Documentation - الدليل
 <https://www.startimes.com/f.aspx?mode=f&f=211>
