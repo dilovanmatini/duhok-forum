@@ -11,7 +11,7 @@
  */
 if(!DF) DF={};
 DF.share={
-	list:new Array('scriptandstyle','blinklist','delicious','digg','diigo','reddit','yahoobuzz','stumbleupon','technorati','mixx','myspace','designfloat','facebook','twitter','twittley','linkedin','newsvine','devmarks','google','misterwong','friendfeed','blogmarks','yahoo','livefavorites','pixelgroovy','simpy','propeller','yigg','linkarena','hatena'),
+	list:new Array('scriptandstyle','blinklist','delicious','digg','diigo','reddit','yahoobuzz','stumbleupon','technorati','mixx','myspace','designfloat','facebook','twitter','twittley','linkedin','newsvine','devmarks','misterwong','friendfeed','blogmarks','yahoo','livefavorites','pixelgroovy','simpy','propeller','yigg','linkarena','hatena'),
 	urlList:{
 		scriptandstyle:'http://scriptandstyle.com/submit?url=PERMALINK&amp;title=TITLE',
 		blinklist:'http://www.blinklist.com/index.php?Action=Blink/addblink.php&amp;Url=PERMALINK&amp;Title=TITLE',
@@ -31,7 +31,6 @@ DF.share={
 		linkedin:'http://www.linkedin.com/shareArticle?mini=true&amp;url=PERMALINK&amp;title=TITLE&amp;summary=DESC&amp;source=SITE_NAME',
 		newsvine:'http://www.newsvine.com/_tools/seed&amp;save?u=PERMALINK&amp;h=TITLE',
 		devmarks:'http://devmarks.com/index.php?posttext=DESC&amp;posturl=PERMALINK&amp;posttitle=TITLE',
-		google:'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINK&amp;title=TITLE&amp;labels=&amp;annotation=',
 		misterwong:'http://www.mister-wong.com/addurl/?bm_url=PERMALINK&amp;bm_description=TITLE&amp;plugin=',
 		friendfeed:'http://www.friendfeed.com/share?title=TITLE&amp;link=PERMALINK',
 		blogmarks:'http://blogmarks.net/my/new.php?mini=1&amp;simple=1&amp;url=PERMALINK&amp;title=TITLE',

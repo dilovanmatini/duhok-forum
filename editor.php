@@ -725,44 +725,47 @@ if(type=='sendpmtousers'){
 	echo"
 	<tr>
 		<td id=\"editorPlace\" class=\"asNormalB\" align=\"center\" colspan=\"2\">";
-				$editorSizes=array(
-					'topic'=>102400,
-					'pm'=>25600,
-					'signature'=>5120
+				$user_style = $Template->getUserStyle(true);
+				$editorSizes = array(
+					'topic' => 102400,
+					'pm' => 25600,
+					'signature' => 5120
 				);
 				function editorMaxSize(){
 					global $editorSizes;
-					$maxSize=0;
-					if(type=='newtopic'||type=='edittopic'||type=='newpost'||type=='quotepost'||type=='editpost'||type=='sendpmtousers') $maxSize=$editorSizes['topic'];
-					elseif(type=='sendpm'||type=='replypm') $maxSize=$editorSizes['pm'];
-					elseif(type=='signature') $maxSize=$editorSizes['signature'];
+					$maxSize = 0;
+					if( type== 'newtopic' || type == 'edittopic' || type == 'newpost' || type == 'quotepost' || type == 'editpost' || type == 'sendpmtousers' ) $maxSize = $editorSizes['topic'];
+					elseif( type=='sendpm' || type == 'replypm' ) $maxSize = $editorSizes['pm'];
+					elseif( type=='signature' ) $maxSize = $editorSizes['signature'];
 					return $maxSize;
 				}
 					echo"
 					<input style=\"display:none\" name=\"message\" type=\"hidden\" id=\"message\">
 					<textarea id=\"editorOldContent\" style=\"display:none\">{$msgContent}</textarea>";
-				$user_style = $Template->getUserStyle(true);
+				
   				?>
 				<script type="text/javascript">
-				var type='<?=type?>',exitPage=false,maxSize=<?=intval(editorMaxSize())?>;
-				DMEditor.run({
-					setting:{
-						width:'900',
-						height:'400',
-						previewText:'<?=forum_title?>',
-						userCSS:{
-							textAlign:'<?=$user_style['align']?>',
-							fontWeight:'<?=$user_style['weight']?>',
-							fontFamily:'<?=$user_style['family']?>',
-							fontSize:'<?=$user_style['size']?>',
-							color:'<?=$user_style['color']?>'
+				var type = '<?=type?>', exitPage = false, maxSize = <?=intval(editorMaxSize())?>;
+				$(function(){
+					DMEditor.run({
+						setting: {
+							width: '900',
+							height: '400',
+							previewText: '<?=forum_title?>',
+							userCSS: {
+								textAlign: '<?=$user_style['align']?>',
+								fontWeight: '<?=$user_style['weight']?>',
+								fontFamily: '<?=$user_style['family']?>',
+								fontSize: '<?=$user_style['size']?>',
+								color: '<?=$user_style['color']?>'
+							}
+						},
+						use:{
+							editorMode: <?=( ulv == 4 ? 'true' : 'false' )?>
 						}
-					},
-					use:{
-						editorMode:<?=( ulv==4 ? 'true' : 'false' )?>
-					}
+					});
+					DMEditor.setContent( $('#editorOldContent').val() );
 				});
-				DMEditor.setContent($('#editorOldContent').val());
 				</script>
 				<?php
 				echo"

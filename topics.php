@@ -138,7 +138,6 @@ $mysql->update("topic SET views = views + 1 $lockTopicByMaxPosts WHERE id = '$t'
 <?php if($isModerator){ ?>
 <script type="text/javascript" src="js/topics_mod.js<?=x?>"></script>
 <?php } ?>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js<?=x?>"></script>
 <script type="text/javascript" src="js/share.js<?=x?>"></script>
 <script type="text/javascript">
 $(function(){
@@ -240,7 +239,6 @@ echo"
 				<td>".($topicFolder=topicFolder($topic['trash'],$topic['moderate'],$topic['status']))."</td>
 				<td class=\"asC1 asAddress asCenter\" width=\"100%\"><nobr>{$topic['subject']}</nobr></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoSharingList(1);\"><img src=\"images/share/share.gif\" border=\"0\"></a></td>
-				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('google');\"><img src=\"images/share/google2.gif\" border=\"0\"></a></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('yahoo');\"><img src=\"images/share/yahoo2.gif\" border=\"0\"></a></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('twitter');\"><img src=\"images/share/twitter2.gif\" border=\"0\"></a></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('facebook');\"><img src=\"images/share/facebook2.gif\" border=\"0\"></a></td>";
@@ -1176,7 +1174,6 @@ if($topic['posts'] < topic_max_posts && (ulv > 0 && $topic['status'] == 1 || $is
 				<td>$topicFolder</td>
 				<td class=\"asC1 asCenter\" width=\"100%\">{$topic['subject']}</td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoSharingList(2);\"><img src=\"images/share/share.gif\" border=\"0\"></a></td>
-				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('google');\"><img src=\"images/share/google2.gif\" border=\"0\"></a></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('yahoo');\"><img src=\"images/share/yahoo2.gif\" border=\"0\"></a></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('twitter');\"><img src=\"images/share/twitter2.gif\" border=\"0\"></a></td>
 				<td class=\"asHP2\"><a href=\"javascript:DF.share.gotoShare('facebook');\"><img src=\"images/share/facebook2.gif\" border=\"0\"></a></td>";

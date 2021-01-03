@@ -49,6 +49,7 @@ $.DM.editor = {
 	path: '',
 	toolbox: '',
 	userCSSText: '',
+	loaded: false,
 	setting: {
 		outPlace: 'editorPlace',
 		width: '900',
@@ -142,32 +143,30 @@ $.DM.editor = {
 		};
 	},
 	resize: function(){
-		$(function(){
-			var editor = DMEditor, setting = editor.setting, width = setting.width+'', height = setting.height+'', iw = parseInt(width),ih = parseInt(height),
-			w = h = 0, outPlace = $I('#'+setting.outPlace), margin = (parseInt(setting.margin) || 0) * 2;
-			if(isNaN(iw) || iw < 1){
-				iw = 900;
+		var editor = DMEditor, setting = editor.setting, width = setting.width+'', height = setting.height+'', iw = parseInt(width),ih = parseInt(height),
+		w = h = 0, outPlace = $I('#'+setting.outPlace), margin = (parseInt(setting.margin) || 0) * 2;
+		if(isNaN(iw) || iw < 1){
+			iw = 900;
+		}
+		if(isNaN(ih) || ih < 1){
+			ih = 400;
+		}
+		if(outPlace){
+			w = $(outPlace).width() - margin - 25;
+			h = $(outPlace).height() - margin - 5;
+			if(width.indexOf('%') >= 0 && w > 0){
+				iw = (iw >= 100) ? w : (w / 100) * iw;
 			}
-			if(isNaN(ih) || ih < 1){
-				ih = 400;
+			if(height.indexOf('%') >= 0 && h > 0){
+				ih = (ih >= 100) ? h : (h / 100) * ih;
 			}
-			if(outPlace){
-				w = $(outPlace).width() - margin - 25;
-				h = $(outPlace).height() - margin - 5;
-				if(width.indexOf('%') >= 0 && w > 0){
-					iw = (iw >= 100) ? w : (w / 100) * iw;
-				}
-				if(height.indexOf('%') >= 0 && h > 0){
-					ih = (ih >= 100) ? h : (h / 100) * ih;
-				}
-			}
-			setting.width = iw;
-			setting.height = ih;
-			editor.place.css({'width': iw+'px', 'height': ih+'px'});
-			editor.toolbarPlace.css({'width': iw+'px'});
-			editor.bodyPlace.css({'width': iw+'px', 'height': (ih - 30)+'px'});
-			$(editor.box).css({'width': iw+'px', 'height': (ih - 32)+'px'});
-		});
+		}
+		setting.width = iw;
+		setting.height = ih;
+		editor.place.css({'width': iw+'px', 'height': ih+'px'});
+		editor.toolbarPlace.css({'width': iw+'px'});
+		editor.bodyPlace.css({'width': iw+'px', 'height': (ih - 30)+'px'});
+		$(editor.box).css({'width': iw+'px', 'height': (ih - 32)+'px'});
 	},
 	setDefault: function( options ){
 		var editor = this;
@@ -193,16 +192,16 @@ $.DM.editor = {
 			document.write('<center><nobr>متصفحك غير ملائم لتقنية هذا المحرر<br>يجب عليك تحميل أحد متصفحات الداعمة لتقنية هذا المحرر<br>المتصفحات الداعمة لهذا المحرر:-<br>Internet Explorer v6 to latest versions<br>Mozilla v2 to latest versions<br>Opera v8 to latest versions<br>Safari v3 to latest versions<br>Google chrome all versions.</nobr></center>');
 			return;
 		}
-		document.write(''+
+		$('#'+setting.outPlace).append(
 		'<link rel="stylesheet" type="text/css" href="'+editor.path+'assets/'+setting.cssFile+xload+'" />'+
-		'<div id="editorPlace'+rand+'" class="DMEditor" style="margin:'+setting.margin+';border:'+setting.outBorder+' 1px solid;" dir="'+setting.dir+'">'+
+		'<div id="editorContainer'+rand+'" class="DMEditor" style="margin:'+setting.margin+';border:'+setting.outBorder+' 1px solid;" dir="'+setting.dir+'">'+
 		'	<div id="toolbarPlace'+rand+'" class="toolbar" style="border-bottom:'+setting.outBorder+' 1px solid;" dir="ltr"></div>'+
 		'	<div id="editorBody'+rand+'" class="body" style="border-bottom:'+setting.outBorder+' 1px solid;">'+
 		'		<iframe id="contentPlace'+rand+'" name="contentPlace'+rand+'" contentEditable="true" noborder></iframe>'+
 		'	</div>'+
 		'	<iframe id="contentTempPlace'+rand+'" name="contentTempPlace'+rand+'" class="tempBox" contentEditable="true"></iframe>'+
 		'</div>');
-		editor.place = $('#editorPlace'+rand);
+		editor.place = $('#editorContainer'+rand);
 		editor.place.hide();
 		editor.toolbarPlace = $('#toolbarPlace'+rand);
 		editor.bodyPlace = $('#editorBody'+rand);
@@ -211,12 +210,11 @@ $.DM.editor = {
 		editor.toolbar.create();
 		editor.setContent(setting.basicHTML);
 		editor.resize();
-		$(function(){
-			editor.place.show();
-			if(editor.type == 'advanced'){
-				editor.focus();
-			}
-		});
+		editor.place.show();
+		if( editor.type == 'advanced' ){
+			editor.box.focus();
+		}
+		editor.loaded = true;
 	},
 	eBox: function(obj){
 		return eval(obj);

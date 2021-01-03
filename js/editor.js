@@ -9,39 +9,36 @@
  * @note		This program is distributed in the hope that it will be useful - WITHOUT ANY WARRANTY;
  * 
  */
-if(!DF){
-	var DF={};
+if( !DF ){
+	var DF = {};
 }
 function editorSizeStatus(){
-	if(DMEditor){
+	if( DMEditor.loaded === true ){
 		var timer = 500, place = $I('#sizeDetailsPlace'), curSize = parseInt(DMEditor.getContent(true));
-		$(place).html((curSize < 1000) ? curSize+" بايت" : DM.round(curSize / 1024, 2)+" كيلو بايت");
+		$(place).html( curSize < 1000 ? curSize+" بايت" : DM.round( curSize / 1024, 2 )+" كيلو بايت" );
 		$(place).css('color', (curSize > maxSize && userLevel < 4) ? 'red' : 'green');
-		if(curSize > 2000 && curSize < 5000){
+		if( curSize > 2000 && curSize < 5000 ){
 			timer = 750;
 		}
-		else if(curSize >= 5000 && curSize < 10000){
+		else if( curSize >= 5000 && curSize < 10000 ){
 			timer = 1000;
 		}
-		else if(curSize >= 10000 && curSize < 25000){
+		else if( curSize >= 10000 && curSize < 25000 ){
 			timer = 2000;
 		}
-		else if(curSize >= 25000 && curSize < 50000){
+		else if( curSize >= 25000 && curSize < 50000 ){
 			timer = 3000;
 		}
-		else if(curSize >= 50000){
+		else if( curSize >= 50000 ){
 			timer = 5000;
 		}
-		setTimeout("editorSizeStatus()", timer);
 	}
+	setTimeout("editorSizeStatus()", timer);
 }
-$(function(){
-	editorSizeStatus();
-});
 function setContent(frm){
- 	if(DMEditor){
+ 	if( DMEditor.loaded === true ){
 		var message = DMEditor.getContent(), types = ['newtopic', 'edittopic', 'sendmsg', 'replymsg', 'sendpmtousers'];
-		if(DMEditor.setting.editorMode == "HTML"){
+		if( DMEditor.setting.editorMode == "HTML" ){
 			alert("HTML الرجاء الغاء خاصية اظهار");
 		}
 		else if(types.inArray(type) && frm.subject.value.trim().length == 0){
@@ -62,15 +59,18 @@ function setContent(frm){
 		}
 	}
 }
-function beforeUnload(e){
+function beforeUnload( e ){
  	e = e || window.event;
-	if(!exitPage && DMEditor && DMEditor.getContent().length > 0){
+	if( !exitPage && DMEditor && DMEditor.getContent().length > 0 ){
 		e.returnValue="الذهاب الى صفحة أخرى سيخسر النص الجديد الذي ادخلته\r\n\r\n هل أنت متأكد من رغبتك في الذهاب الى صفحة أخرى ؟";
 	}
 }
-function chkReset(url){
-	if(confirm("هل أنت متأكد أنك تريد إعادة النص الأصلي ؟")){
+function chkReset( url ){
+	if( confirm("هل أنت متأكد أنك تريد إعادة النص الأصلي ؟") ){
 		exitPage = true;
 		window.location=url;
 	}
 }
+$(function(){
+	editorSizeStatus();
+});
