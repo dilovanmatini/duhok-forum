@@ -1235,11 +1235,12 @@ class DF{
 		$name=str_replace(array("\r","\t","\n","\xA0","\0","\x0B"," ","&nbsp;"),"",$name);
 		return $name;
 	}
-	function findBadWords($str,$bads2=array()){
-		$bads=array("\"","@","'","|","\\",".","ـ","[","]","{","}","(",")","<",">","?","؟",",","~","!","#","$","%","^","&","*","=","+","_","-","`","/",":",";","،","‘","÷","×","؛","’");
-		$bads=array_merge($bads,$bads2);
-		foreach($bads as $val){
-			if($this->indexOf($str,$val)>=0){
+	function findBadWords( $str, $bads2 = [] ){
+		$bads = ["\"","@","'","|","\\",".","ـ","[","]","{","}","(",")","<",">","?","؟",",","~","!","#","$","%","^","&","*","=","+","_","-","`","/",":",";","،","‘","÷","×","؛","’"];
+		if( !is_array($bads2) ) $bads2 = [];
+		$bads = array_merge( $bads, $bads2 );
+		foreach( $bads as $val ){
+			if( $this->indexOf( $str, $val ) >= 0 ){
 				return $val;
 			}
 		}

@@ -177,7 +177,7 @@ DF.doRegister=function(frm){
 		$I('#userEmailMsg').innerHTML=this.msgBox('نرجوا ان تكتب بريد الكتروني خاص بك','red',1,0,true).code;
 		foundError=true;
 	}
-	if(frm.regUserCountry.value.length==0){
+	if( $('.regUserCountry').sval() == '' ){
 		$I('#userCountryMsg').innerHTML=this.msgBox('نرجوا ان تختار دولة من قائمة الدول','red',1,0,true).code;
 		foundError=true;
 	}
@@ -185,7 +185,7 @@ DF.doRegister=function(frm){
 		$I('#userBrithDayMsg').innerHTML=this.msgBox('نرجوا أن تختار تاريخ ولادتك الصحيحة.','red',1,0,true).code;
 		foundError=true;
 	}
-	if(!this.getChoosedRadio(frm.regUserSex)){
+	if( dm.parseInt( $('.regUserSex').rval() ) == 0 ){
 		$I('#userSexMsg').innerHTML=this.msgBox('يجب ان تختار الجنس','red',1,0,true).code;
 		foundError=true;
 	}

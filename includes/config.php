@@ -21,8 +21,8 @@ $df_config = [];
 $df_config['database'] = [
     'host' => 'localhost',                      // database host name or host IP address
     'name' => 'df_db',                          // datebase name
-    'user' => 'root',                          // database user name
-    'pass' => '0000',                               // datebase user's password
+    'user' => 'root',                           // database user name
+    'pass' => '0000',                           // datebase user's password
     'prefix' => 'df_',                          // prefix of database's tables
     'port' => 3306                              // datebase port. don't change the port if have not changed the datebase port in your server.
 ];
@@ -31,7 +31,7 @@ $df_config['database'] = [
 $df_config['global'] = [
     'local' => true,                            // defining the script environment, whether it is running online or in localhost. TRUE means localhost, FALSE means online.
     'timezone' => 'GMT',                        // defining timezone. the supported timezones are listed here: https://www.php.net/manual/en/timezones.php
-    'xcode' => 'dm27'                           // refreshing JS, CSS, and catch files.
+    'xcode' => 'dm30'                           // refreshing JS, CSS, and catch files.
 ];
 
 // Cookie Configuration

@@ -1050,16 +1050,16 @@ class Template{
 		if($ret) return $code;
 		else echo $code;
 	}
-	function input($size=200, $att=array(), $ret=true){
+	function input( $size = 200, $att = [], $ret = true ){
 		$input = '';
-		if(!in_array('type', array_keys($att))){
+		if( !key_exists('type', $att) ){
 			$att['type'] = 'text';
 		}
-		foreach($att as $tag => $value){
+		foreach( $att as $tag => $value ){
 			$input .= " {$tag}=\"{$value}\"";
 		}
 		$code = "<input{$input} class=\"input\" style=\"width:{$size}px;\">";
-		if($ret){
+		if( $ret ){
 			return $code;
 		}
 		else{
@@ -1379,9 +1379,9 @@ class Template{
 		$link="<a{$setId}{$class} href=\"topics.php?t=$tid$get\">$subject</a>";
 		return $link;
 	}
-	function button($value,$events='',$ret=true){
+	function button( $value, $events = '', $ret = true ){
 		$button="<input type=\"button\" class=\"button\" {$events} value=\"{$value}\">";
-		if($ret) return $button;
+		if( $ret ) return $button;
 		else echo $button;
 	}
 	function nbsp($text){

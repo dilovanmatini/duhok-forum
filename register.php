@@ -86,7 +86,7 @@ if(type==''){
 }
 elseif(type=='details'){
 	echo"
-	<script type=\"text/javascript\" src=\"./js/register.js\"></script>
+	<script type=\"text/javascript\" src=\"js/register.js".x."\"></script>
 	<table width=\"55%\" cellSpacing=\"0\" cellPadding=\"4\" align=\"center\">
 	<form method=\"post\" action=\"register.php?type=doregister\">
 	<input name=\"redeclare\" type=\"hidden\" value=\"".md5(ip2.time.ip2)."\">
@@ -102,28 +102,28 @@ elseif(type=='details'){
 					<td colspan=\"2\">الإسم الذي يعرفك في المنتديات:&nbsp;&nbsp;<a href=\"javascript:DF.checkInfo('basicTable','userName');\" title=\"تعليمات حول اسم العضوية\"><img src=\"{$DFImage->i['info']}\" border=\"0\"></a></td>
 				</tr>
 				<tr id=\"userNameRow\">
-					<td>{$Template->input(300,array('name'=>'regUserName','onblur'=>'DF.checkUserName(this)'))}</td>
+					<td>{$Template->input( 300, array( 'name' => 'regUserName', 'onblur' => 'DF.checkUserName(this)', 'tabindex' => 1 ) )}</td>
 					<td id=\"userNameMsg\"></td>
 				</tr>
 				<tr>
 					<td colspan=\"2\">الكلمة السرية:&nbsp;&nbsp;<a href=\"javascript:DF.checkInfo('basicTable','userPass1');\" title=\"تعليمات حول كلمة السرية\"><img src=\"{$DFImage->i['info']}\" border=\"0\"></a></td>
 				</tr>
 				<tr id=\"userPass1Row\">
-					<td>{$Template->input(300,array('type'=>'password','name'=>'regUserPass1','onblur'=>'DF.checkUserPass1(this)'))}</td>
+					<td>{$Template->input(300,array('type'=>'password','name'=>'regUserPass1','onblur'=>'DF.checkUserPass1(this)', 'tabindex' => 2 ))}</td>
 					<td id=\"userPass1Msg\"></td>
 				</tr>
 				<tr>
 					<td colspan=\"2\">إعادة الكلمة السرية للتأكيد:&nbsp;&nbsp;<a href=\"javascript:DF.checkInfo('basicTable','userPass2');\" title=\"تعليمات حول إعادة الكلمة السرية للتأكيد\"><img src=\"{$DFImage->i['info']}\" border=\"0\"></a></td>
 				</tr>
 				<tr id=\"userPass2Row\">
-					<td>{$Template->input(300,array('type'=>'password','name'=>'regUserPass2','onblur'=>'DF.checkUserPass2(this)'))}</td>
+					<td>{$Template->input(300,array('type'=>'password','name'=>'regUserPass2','onblur'=>'DF.checkUserPass2(this)', 'tabindex' => 3 ))}</td>
 					<td id=\"userPass2Msg\"></td>
 				</tr>
 				<tr>
 					<td colspan=\"2\">البريد الإلكتروني:&nbsp;&nbsp;<a href=\"javascript:DF.checkInfo('basicTable','userEmail');\" title=\"تعليمات حول بريد الالكتروني\"><img src=\"{$DFImage->i['info']}\" border=\"0\"></a></td>
 				</tr>
 				<tr id=\"userEmailRow\">
-					<td>{$Template->input(300,array('name'=>'regUserEmail','dir'=>'ltr','onblur'=>'DF.checkUserEmail(this)'))}</td>
+					<td>{$Template->input(300,array('name'=>'regUserEmail','dir'=>'ltr','onblur'=>'DF.checkUserEmail(this)', 'tabindex' => 4 ))}</td>
 					<td id=\"userEmailMsg\"></td>
 				</tr>
 			</table>
@@ -135,19 +135,17 @@ elseif(type=='details'){
 					<td colspan=\"2\">الدولة:</td>
 				</tr>
 				<tr id=\"userCountryRow\">
-					<td>";
-			$countries=array(''=>'-- اختر دولة --');
-			require_once _df_path."countries.php";
-			foreach($country as $code=>$val){
-				$countries["{$code}"]=$val['name'];
-			}
-			$Template->selectMenu(array(
-				'name'=>'regUserCountry',
-				'options'=>$countries,
-				'onchange'=>'$I(\'#userCountryMsg\').innerHTML=\'\';',
-				'width'=>'200'
-			));
-					echo"
+					<td>
+						<select class=\"white regUserCountry\" style=\"width:202px\" name=\"regUserCountry\" tabindex=\"5\" onchange=\"\$I('#userCountryMsg').innerHTML='';\">
+							<option value=\"\">-- اختر دولة --</option>";
+						require_once _df_path."countries.php";
+						foreach($country as $code=>$val){
+							$countries["{$code}"]=$val['name'];
+							echo"
+							<option value=\"{$code}\">{$val['name']}</option>";
+						}
+						echo"
+						</select>
 					</td>
 					<td id=\"userCountryMsg\"></td>
 				</tr>
@@ -156,25 +154,27 @@ elseif(type=='details'){
 				</tr>
 				<tr id=\"userBrithDayRow\">
 					<td>
-					<select class=\"white\" style=\"width:50px\" name=\"regUserBrithDayDay\" onchange=\"\$I('#userBrithDayMsg').innerHTML='';\">";
-					for($x=1;$x<=31;$x++){
+					<select class=\"white\" style=\"width:50px\" name=\"regUserBrithDayDay\" tabindex=\"6\" onchange=\"\$I('#userBrithDayMsg').innerHTML='';\">
+						<option value=\"\">--</option>";
+					for( $x = 1; $x <= 31; $x++ ){
 						echo"
 						<option value=\"$x\">$x</option>";
 					}
 					echo"
 					</select>&nbsp;
-					<select class=\"white\" style=\"width:50px\" name=\"regUserBrithDayMonth\" onchange=\"\$I('#userBrithDayMsg').innerHTML='';\">";
-					for($x=1;$x<=12;$x++){
+					<select class=\"white\" style=\"width:50px\" name=\"regUserBrithDayMonth\" tabindex=\"7\" onchange=\"\$I('#userBrithDayMsg').innerHTML='';\">
+						<option value=\"\">--</option>";
+					for( $x = 1; $x <= 12; $x++ ){
 						echo"
 						<option value=\"$x\">$x</option>";
 					}
 					echo"
 					</select>&nbsp;
-					<select class=\"white\" style=\"width:85px\" name=\"regUserBrithDayYear\" onchange=\"\$I('#userBrithDayMsg').innerHTML='';\">";
-					$curY=(int)date("Y",time);
-					$firstY=$curY-100;
-					$lastY=$curY-12;
-					for($x=$firstY;$x<=$lastY;$x++){
+					<select class=\"white\" style=\"width:85px\" name=\"regUserBrithDayYear\" tabindex=\"8\" onchange=\"\$I('#userBrithDayMsg').innerHTML='';\">
+						<option value=\"\">----</option>";
+					$first_year =_this_year - 100;
+					$last_year = _this_year - 12;
+					for( $x = $last_year; $x >= $first_year; $x-- ){
 						echo"
 						<option value=\"$x\">$x</option>";
 					}
@@ -188,8 +188,8 @@ elseif(type=='details'){
 				</tr>
 				<tr id=\"userSexRow\">
 					<td>&nbsp;&nbsp;&nbsp;
-						<input type=\"radio\" class=\"none\" value=\"1\" name=\"regUserSex\" onclick=\"\$I('#userSexMsg').innerHTML='';\">ذكر&nbsp;&nbsp;&nbsp;
-						<input type=\"radio\" class=\"none\" value=\"2\" name=\"regUserSex\" onclick=\"\$I('#userSexMsg').innerHTML='';\">أنثى
+						<input type=\"radio\" class=\"none regUserSex\" value=\"1\" name=\"regUserSex\" tabindex=\"9\" onclick=\"\$I('#userSexMsg').innerHTML='';\">ذكر&nbsp;&nbsp;&nbsp;
+						<input type=\"radio\" class=\"none regUserSex\" value=\"2\" name=\"regUserSex\" tabindex=\"9\" onclick=\"\$I('#userSexMsg').innerHTML='';\">أنثى
 					</td>
 					<td id=\"userSexMsg\"></td>
 				</tr>
@@ -202,29 +202,29 @@ elseif(type=='details'){
 					<td>المدينة:</td>
 				</tr>
 				<tr>
-					<td>{$Template->input(200,array('name'=>'regUserCity'))}</td>
+					<td>{$Template->input(200,array('name'=>'regUserCity', 'tabindex' => 10))}</td>
 				</tr>
 				<tr>
 					<td>المنطقة:</td>
 				</tr>
 				<tr>
-					<td>{$Template->input(200,array('name'=>'regUserState'))}</td>
+					<td>{$Template->input(200,array('name'=>'regUserState', 'tabindex' => 11))}</td>
 				</tr>
 				<tr>
 					<td>إستقبال رسائل خاصة:</td>
 				</tr>
 				<tr>
-					<td><input type=\"checkbox\" class=\"none\" name=\"receivePM\" value=\"1\" checked> بإختيار هذا المربع ستستقبل رسائل خاصة من قبل أعضاء.</td>
+					<td><input type=\"checkbox\" class=\"none\" name=\"receivePM\" tabindex=\"12\" value=\"1\" checked> بإختيار هذا المربع ستستقبل رسائل خاصة من قبل أعضاء.</td>
 				</tr>
 				<tr>
 					<td>إستقبال رسائل بريد الالكتروني:</td>
 				</tr>
 				<tr>
-					<td><input type=\"checkbox\" class=\"none\" name=\"receiveEmail\" value=\"1\"> بإختيار هذا المربع ستستقبل رسائل بريد الالكتروني من قبل أعضاء.</td>
+					<td><input type=\"checkbox\" class=\"none\" name=\"receiveEmail\" tabindex=\"13\" value=\"1\"> بإختيار هذا المربع ستستقبل رسائل بريد الالكتروني من قبل أعضاء.</td>
 				</tr>
 			</table>
 			</fieldset><br>
-			<div align=\"center\">{$Template->button("أرسل طلب التسجيل"," onClick=\"DF.doRegister(this.form)\"")}</div>
+			<div align=\"center\">{$Template->button("أرسل طلب التسجيل"," onClick=\"DF.doRegister(this.form)\" tabindex=\"14\"")}</div>
 			</td>
 		</tr>
 	</form>
@@ -259,7 +259,7 @@ elseif(type=='doregister'){
 	$userNameClean=$DF->cleanCharacters($userName);
 	$userEmailClean=$DF->cleanCharacters($userEmail);
 	//Check Bad Words
-	$findBadWords=$DF->findBadWords($userName,unserialize(blocked_names));
+	$findBadWords = $DF->findBadWords( $userName, unserialize(blocked_names) );
 	
 	$Y=(int)date("Y",time);
 	$fY=$Y-100;
