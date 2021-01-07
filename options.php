@@ -124,7 +124,7 @@ elseif(type=="edituserfolders"){
 	$list5=$DF->cleanText($_POST['list5']);
 	$lists=array(1=>$list1,2=>$list2,3=>$list3,4=>$list4,5=>$list5);
 	
-	if($fid<0&&$isModerator){
+	if($fid<0&&$is_moderator){
 		$uid=$fid;
 	}
 	elseif($auth>0&&ulv==4){
@@ -187,7 +187,7 @@ elseif(type=="movepms"){
 	}
 }
 elseif(type=="movepm"){
-	if(f<0&&$isModerator){
+	if(f<0&&$is_moderator){
 		$uid=f;
 	}
 	elseif(auth>0&&ulv==4){
@@ -209,7 +209,7 @@ elseif(type=="movepm"){
 	}
 }
 elseif(type=="restorepm"){
-	if(f<0&&$isModerator){
+	if(f<0&&$is_moderator){
 		$uid=f;
 	}
 	elseif(auth>0&&ulv==4){
@@ -230,7 +230,7 @@ elseif(type=="restorepm"){
 	}
 }
 elseif(type=="topicusers"){
- 	if(!$isModerator){
+ 	if(!$is_moderator){
 		$DF->goTo();
 		exit();
 	}
@@ -524,9 +524,9 @@ elseif(type=='topicstats'){
 		}
 		return $link;
 	}
-	$checkSql=($isMonitor ? "" : "AND trash = 0");
+	$checkSql=($is_monitor ? "" : "AND trash = 0");
 	$topic=$mysql->queryRow("SELECT subject FROM ".prefix."topic WHERE id = '".t."' $checkSql", __FILE__, __LINE__);
-	if($topic&&$isModerator){
+	if($topic&&$is_moderator){
 		echo"
 		<table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\">
 			<tr>
@@ -596,7 +596,7 @@ elseif(type=='topicstats'){
 			$arr[$u]['count']++;
 		}
 		$count=0;
-		$showTrash=($isMonitor ? true : false);
+		$showTrash=($is_monitor ? true : false);
 		$postRows=array('normal'=>0,'trash'=>0,'hidden'=>0,'moderate'=>0,'hold'=>0,'count'=>0);
 		$arr=$DF->sort($arr,array(array('count','desc')));
 		foreach($arr as $val){

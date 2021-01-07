@@ -42,7 +42,7 @@ function forumModerators($f){
 
 $checkSqlField="";
 $checkSqlTable="";
-if(ulv<4&&!$isModerator){
+if(ulv<4&&!$is_moderator){
 	$checkSqlField=",IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum";
 	$checkSqlTable="LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = '".uid."')";
 }

@@ -212,7 +212,7 @@ $.DM.editor = {
 		editor.resize();
 		editor.place.show();
 		if( editor.type == 'advanced' ){
-			editor.box.focus();
+			editor.focus();
 		}
 		editor.loaded = true;
 	},
@@ -915,9 +915,10 @@ $.DM.editor = {
 	setCommand: function(cmd, user, value, type){
 		var editor = this;
 		editor.hideBoxes();
-		if(ie8){
- 			var obj = editor.eBox(editor.boxName), cache = (type != null && type == 2);
-			if(cache){
+		
+		if( ie8 ){
+ 			var obj = editor.eBox(editor.boxName), cache = ( type != null && type == 2 );
+			if( cache ){
 				var sel = editor.tempSel;
 				var type = editor.tempSelType;
 			}
@@ -926,18 +927,18 @@ $.DM.editor = {
 			}
 			sel = editor.fixSel(sel);
 			type = editor.fixSelType(sel, type);
-			var target = (type == 'None') ? obj.document : sel;
-			if(cache){
+			var target = ( type == 'None' ) ? obj.document : sel;
+			if( cache ){
 				sel.select();
 			}
-			target.execCommand(cmd, false, value);
+			target.execCommand( cmd, false, value );
 		}
 		else{
-			if(cmd == 'BackColor'){
+			if( cmd == 'BackColor' ){
 				cmd = 'hilitecolor';
 			}
 			editor.focus();
-			editor.getDoc().execCommand(cmd, user || false, value || null);
+			editor.getDoc().execCommand( cmd, user || false, value || null );
 		}
 	},
 	fixSel: function(sel){
@@ -1127,7 +1128,7 @@ $.DM.editor = {
 	},
 	doInsertSymbol: function(){
 		var editor = this;
-		if(editor.use.symbol === true){
+		if( editor.use.symbol === true ){
 			editor.hideBoxes();
 			editor.msieSelection();
 			var symbols = [

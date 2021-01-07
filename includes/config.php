@@ -31,7 +31,7 @@ $df_config['database'] = [
 $df_config['global'] = [
     'local' => true,                            // defining the script environment, whether it is running online or in localhost. TRUE means localhost, FALSE means online.
     'timezone' => 'GMT',                        // defining timezone. the supported timezones are listed here: https://www.php.net/manual/en/timezones.php
-    'xcode' => 'dm30'                           // refreshing JS, CSS, and catch files.
+    'xcode' => 'dm34'                           // refreshing JS, CSS, and catch files.
 ];
 
 // Cookie Configuration

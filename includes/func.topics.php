@@ -13,8 +13,8 @@
  */
 
 function modOptions($num){
-	global $isModerator,$isMonitor,$Template;
-	if($isModerator){
+	global $is_moderator,$is_monitor,$Template;
+	if($is_moderator){
 					//<td>{$Template->button("إختيار كامل"," onClick=\"DF.selectPosts(true)\"",true," asS12")}</td>
 			//	<td>{$Template->button("مسح الإختيار"," onClick=\"DF.selectPosts(false)\"",true," asS12")}</td>
 		echo"
@@ -29,7 +29,7 @@ function modOptions($num){
 					<option value=\"ho\">تجميد ردود المختارة</option>
 					<option value=\"hd\">إخفاء ردود المختارة</option>
 					<option value=\"vs\">إظهار ردود المختارة</option>";
-				if($isMonitor){
+				if($is_monitor){
 					echo"
 					<option value=\"dl\">حذف ردود المختارة</option>
 					<option value=\"re\">إرجاع ردود المختارة</option>";
@@ -116,7 +116,7 @@ function userAllTitles($uid, $ulv, $posts, $title, $sex, $oldlevel, $submonitor)
 		return $DF->catch['userAllTitles'][$uid];
 	}
 	$all_titles = array();
-	$f = intval($DF->catch['thisForum']);
+	$f = intval($DF->catch['_this_forum']);
 	if($f < 1){
 		return;
 	}
@@ -164,7 +164,7 @@ if(vote>0){
 			$mysql->delete("surveyvotes WHERE optionid = '{$rs['oldvote']}' AND userid = ".uid." AND surveyid = {$rs['id']}", __FILE__, __LINE__);
 			$mysql->update("surveyoptions SET votes = votes - 1 WHERE id = '{$rs['oldvote']}'", __FILE__, __LINE__);
 		}
-		else $DFOutput->setUserActivity('vote',$DF->catch['thisForum'],(int)$mysql->get("topic","author",t));
+		else $DFOutput->setUserActivity('vote',$DF->catch['_this_forum'],(int)$mysql->get("topic","author",t));
 		$mysql->insert("surveyvotes (surveyid,optionid,topicid,userid,date) VALUES ('{$rs['id']}','$oid','".t."','".uid."','".time."')", __FILE__, __LINE__);
 		$mysql->update("surveyoptions SET votes = '".($rs['count']+1)."' WHERE id = '$oid'", __FILE__, __LINE__);
 		$DF->quick("topics.php?t=".t);

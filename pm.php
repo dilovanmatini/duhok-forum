@@ -21,7 +21,7 @@ if(ulv > 0){
 //***************** start page ***************************
 
 if(mail == 'read' && pm != '' && auth == 0){
-	if(f < 0 && $isModerator){
+	if(f < 0 && $is_moderator){
 		$readid = f;
 	}
 	else{
@@ -30,7 +30,7 @@ if(mail == 'read' && pm != '' && auth == 0){
 	$mysql->update("pm SET pmread = 1 WHERE id = '{$DF->hashToNum(pm)}' AND author = '$readid'", __FILE__, __LINE__);
 }
 
-if(f<0&&$isModerator){
+if(f<0&&$is_moderator){
 	$uid=f;
 	$uid2=abs(f);
 	$sql=$mysql->query("SELECT f.subject,ff.pmlists,COUNT(pm.id) AS newpm

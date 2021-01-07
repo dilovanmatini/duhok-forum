@@ -21,7 +21,7 @@ $Template->header();
 //************************** Start Page *****************************
 $checkSqlTable="";
 $checkSqlWhere="";
-if(!$isModerator){
+if(!$is_moderator){
 	$checkSqlWhere="
 		AND (f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id))
 		AND (t.trash = 0 AND (t.moderate = 0 OR t.author = ".uid.") AND (t.hidden = 0 OR t.author = ".uid." OR NOT ISNULL(tu.id)))
@@ -32,7 +32,7 @@ if(!$isModerator){
 	";
 }
 else{
-	if(!$isMonitor){
+	if(!$is_monitor){
 		$checkSqlWhere="AND t.trash = 0";
 	}
 }
@@ -88,7 +88,7 @@ elseif(type=='send'){
 	$subject="رسالة من ".forum_title."";
 	$message = "هذه رسالة لك من : ".uname."\nوهو عضو في ".forum_title." ويود ان يلفت انتابهك الى موضوع قد يثير اهتمامك على الوصلة التالية:\nhttp://".site_address."/topics.php?t=".t;
 	if(mail($friendemail,$subject,$message,"From: ".forum_title." <".forum_email.">")){
-		$DFOutput->setUserActivity('topicsend',$DF->catch['thisForum'],(int)$mysql->get("topic","author",t));
+		$DFOutput->setUserActivity('topicsend',$DF->catch['_this_forum'],(int)$mysql->get("topic","author",t));
 		$Template->msg("تم إرسال بريد الكتروني الى صديقك حسب العنوان الذي ادخلته.","topics.php?t=".t);
 	}
 	else{

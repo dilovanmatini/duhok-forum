@@ -44,7 +44,7 @@ elseif(type=='signature'){
 }
 elseif(type=='sendpm'){
 	$editorTitle=$DF->catch['editorTypeTitle']="إرسال رسالة";
-	$editorIcon=(f<0&&$isModerator?$DFImage->i['message_forum']:$DFImage->i['message']);
+	$editorIcon=(f<0&&$is_moderator?$DFImage->i['message_forum']:$DFImage->i['message']);
 	$errTitle="لا يمكن إرسال رسالة";
 }
 elseif(type=='replypm'){
@@ -80,7 +80,7 @@ if(type=='newtopic'){
 	$checkSqlField="";
 	$checkSqlTable="";
 	
-	if(ulv<4&&!$isModerator){
+	if(ulv<4&&!$is_moderator){
 		$checkSqlField="
 			,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
 			,ff.totaltopics,f.sex,uf.sex AS usex,COUNT(t.id) AS todaytopics
@@ -112,13 +112,13 @@ if(type=='newtopic'){
 	elseif($DF->getMonStatus('forbidforum',$f)==1){
 		$errmsg="$errTitle<br>بسبب لقد تم منعك من المشاركة في هذا المنتدى.<br>تفاصيل السبب ستجدها في رسالة خاصة أرسلت لك بهذا الخصوص.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['status']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['status']==0){
 		$errtype="theforumislocked";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['sex']>0&&$rs['sex']!=$rs['usex']){
+	elseif(ulv<4&&!$is_moderator&&$rs['sex']>0&&$rs['sex']!=$rs['usex']){
 		$errtype="errorinforumsex{$rs['sex']}";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['todaytopics']>=$rs['totaltopics']){
+	elseif(ulv<4&&!$is_moderator&&$rs['todaytopics']>=$rs['totaltopics']){
 		$errmsg="لا يمكنك المشاركة بأكثر من {$rs['totaltopics']} مواضيع في هذا المنتدى في فترة 24 ساعة.<br>الرجاء المحاولة بعد قليل.";
 	}
 	else{
@@ -134,13 +134,13 @@ if(type=='newtopic'){
 	}
 }
 elseif(type=='edittopic'){
-	$f=$thisForum;
+	$f=$_this_forum;
 	$t=t;
 	
 	$checkSqlField="";
 	$checkSqlTable="";
 	
-	if(ulv<3&&!$isModerator){
+	if(ulv<3&&!$is_moderator){
 		$checkSqlField="
 			,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
 			,IF(t.trash = 1 OR t.moderate > 0 OR t.author <> ".uid.",0,1) AS allowtopic
@@ -169,7 +169,7 @@ elseif(type=='edittopic'){
 	if(!$rs||$rs['allowforum']==0||$rs['allowtopic']==0){
 		$errmsg="$errTitle<br>قد يكون هناك عدة إسباب لهذا منها:<br><br><table><tr><td>* رقم الموضوع المطلوب غير صحيح. </td></tr><tr><td>* الموضوع لم تتم الموافقة عليه للآن من قبل طاقم الإشراف. </td></tr><tr><td>* الموضوع تم تجميده أو حذفه أو إخفاؤه. </td></tr><tr><td>* المنتدى الذي فيه الموضوع لا يسمح لك بالدخول اليه. </td></tr></table>";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['fstatus']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['fstatus']==0){
 		$errtype="theforumislocked";
 	}
 	elseif(ustopaddpost==1){
@@ -178,7 +178,7 @@ elseif(type=='edittopic'){
 	elseif($DF->getMonStatus('forbidforum',$f)==1){
 		$errmsg="$errTitle<br>بسبب لقد تم منعك من المشاركة في هذا المنتدى.<br>تفاصيل السبب ستجدها في رسالة خاصة أرسلت لك بهذا الخصوص.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['status']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['status']==0){
 		$errmsg="$errTitle<br>لأن الموضوع تم قفله بواسطة المشرف.";
 	}
 	else{
@@ -194,13 +194,13 @@ elseif(type=='edittopic'){
 	}
 }
 elseif(type=='newpost'||type=='quotepost'){
-	$f=$thisForum;
+	$f=$_this_forum;
 	$t=t;
 	
 	$checkSqlField="";
 	$checkSqlTable="";
 	
-	if(ulv<4&&!$isModerator){
+	if(ulv<4&&!$is_moderator){
 		$checkSqlField="
 			,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
 			,IF(ISNULL(tu.id),0,1) AS allowtopic
@@ -236,7 +236,7 @@ elseif(type=='newpost'||type=='quotepost'){
 	if(!$rs||$rs['allowforum']==0){
 		$errmsg="$errTitle<br>بسبب لا يسمح لك بإضافة ردود في هذا المنتدى";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['fstatus']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['fstatus']==0){
 		$errtype="theforumislocked";
 	}
 	elseif(ustopaddpost==1){
@@ -245,7 +245,7 @@ elseif(type=='newpost'||type=='quotepost'){
 	elseif($DF->getMonStatus('forbidforum',$f)==1){
 		$errmsg="$errTitle<br>بسبب لقد تم منعك من المشاركة في هذا المنتدى.<br>تفاصيل السبب ستجدها في رسالة خاصة أرسلت لك بهذا الخصوص.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['trash']==1){
+	elseif(ulv<4&&!$is_moderator&&$rs['trash']==1){
 		$errmsg="$errTitle<br>لأن الموضوع تم حذفه بواسطة المشرف.";
 	}
 	elseif($rs['posts']>=topic_max_posts){
@@ -254,22 +254,22 @@ elseif(type=='newpost'||type=='quotepost'){
 			$mysql->update("topic SET status = 0 WHERE id = '$t'", __FILE__, __LINE__);
 		}
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['status']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['status']==0){
 		$errmsg="$errTitle<br>لأن الموضوع تم قفله بواسطة المشرف.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['moderate']==1){
+	elseif(ulv<4&&!$is_moderator&&$rs['moderate']==1){
 		$errmsg="$errTitle<br>لأن الموضوع لم تتم الموافقة عليه للآن.<br><br>الرجاء المحاولة في وقت لاحق.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['moderate']==2){
+	elseif(ulv<4&&!$is_moderator&&$rs['moderate']==2){
 		$errmsg="$errTitle<br>لأن الموضوع تم تجميده بواسطة المشرف.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['hidden']==1&&$rs['allowtopic']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['hidden']==1&&$rs['allowtopic']==0){
 		$errmsg="$errTitle<br>لأن الموضوع تم إخفائه بواسطة المشرف.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['sex']>0&&$rs['sex']!=$rs['usex']){
+	elseif(ulv<4&&!$is_moderator&&$rs['sex']>0&&$rs['sex']!=$rs['usex']){
 		$errtype="errorinforumsex{$rs['sex']}";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['todayposts']>=$rs['totalposts']){
+	elseif(ulv<4&&!$is_moderator&&$rs['todayposts']>=$rs['totalposts']){
 		$errmsg="لا يمكنك المشاركة بأكثر من {$rs['totalposts']} رد في هذا المنتدى في فترة 24 ساعة.<br>الرجاء المحاولة بعد قليل.";
 	}
 	else{
@@ -317,13 +317,13 @@ elseif(type=='newpost'||type=='quotepost'){
 	}
 }
 elseif(type=='editpost'){
-	$f=$thisForum;
+	$f=$_this_forum;
 	$p=p;
 	
 	$checkSqlField="";
 	$checkSqlTable="";
 	
-	if(ulv<4&&!$isModerator){
+	if(ulv<4&&!$is_moderator){
 		$checkSqlField="
 			,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
 			,IF(ISNULL(tu.id),0,1) AS allowtopic
@@ -362,25 +362,25 @@ elseif(type=='editpost'){
 	elseif($DF->getMonStatus('forbidforum',$f)==1){
 		$errmsg="$errTitle<br>بسبب لقد تم منعك من المشاركة في هذا المنتدى.<br>تفاصيل السبب ستجدها في رسالة خاصة أرسلت لك بهذا الخصوص.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['allowpost']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['allowpost']==0){
 		$errmsg="$errTitle<br>بسبب لا عندك تصريح بتغيير نص هذا الرد";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['fstatus']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['fstatus']==0){
 		$errtype="theforumislocked";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['trash']==1){
+	elseif(ulv<4&&!$is_moderator&&$rs['trash']==1){
 		$errmsg="$errTitle<br>لأن الموضوع تم حذفه بواسطة المشرف.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['status']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['status']==0){
 		$errmsg="$errTitle<br>لأن الموضوع تم قفله بواسطة المشرف.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['moderate']==1){
+	elseif(ulv<4&&!$is_moderator&&$rs['moderate']==1){
 		$errmsg="$errTitle<br>لأن الموضوع لم تتم الموافقة عليه للآن.<br><br>الرجاء المحاولة في وقت لاحق.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['moderate']==2){
+	elseif(ulv<4&&!$is_moderator&&$rs['moderate']==2){
 		$errmsg="$errTitle<br>لأن الموضوع تم تجميده بواسطة المشرف.";
 	}
-	elseif(ulv<4&&!$isModerator&&$rs['hidden']==1&&$rs['allowtopic']==0){
+	elseif(ulv<4&&!$is_moderator&&$rs['hidden']==1&&$rs['allowtopic']==0){
 		$errmsg="$errTitle<br>لأن الموضوع تم إخفائه بواسطة المشرف.";
 	}
 	else{
@@ -421,7 +421,7 @@ elseif(type=='sendpm'){
 	$f=f;
 	$u=abs(u);
 	
-	if(f<0&&$isModerator){
+	if(f<0&&$is_moderator){
 		$fromid=f;
 		$fromname="إشراف {$mysql->get("forum","subject",abs(f))}";
 	}
@@ -431,16 +431,16 @@ elseif(type=='sendpm'){
 	}
 	
 	if(u<0){
-		$isModerator2=false;
-		$isMonitor2=false;
+		$is_moderator2=false;
+		$is_monitor2=false;
 		if($u>0){
-			$showTools2=$DF->showTools($u);
-			if($showTools2==2){
-				$isModerator2=true;
-				$isMonitor2=true;
+			$show_tools2=$DF->showTools($u);
+			if($show_tools2==2){
+				$is_moderator2=true;
+				$is_monitor2=true;
 			}
-			elseif($showTools2==1){
-				$isModerator2=true;
+			elseif($show_tools2==1){
+				$is_moderator2=true;
 			}
 		}
 	}
@@ -460,7 +460,7 @@ elseif(type=='sendpm'){
 		";
 		$checkSqlWhere="AND u.status = 1";
 	}
-	elseif(u<0&&$isModerator2){
+	elseif(u<0&&$is_moderator2){
 		$checkSqlField=",IF(f.id = 0,0,1) AS accept";
 	}
 	elseif(u<0){
@@ -550,7 +550,7 @@ elseif(type=='sendpm'){
 	}
 }
 elseif(type=='replypm'){
-	if(f<0&&$isModerator){
+	if(f<0&&$is_moderator){
 		$pmfrom=f;
 	}
 	else{
@@ -691,7 +691,7 @@ if(type!='signature'){
 		</td>
 	</tr>";
 }
-if(type == 'newtopic' && $isModerator){
+if(type == 'newtopic' && $is_moderator){
 	echo"
 	<tr>
 		<td class=\"asFixedB\"><nobr>خيارات الموضوع</nobr></td>

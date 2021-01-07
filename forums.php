@@ -20,7 +20,7 @@ require_once _df_path."globals.php";
 $checkSqlField="";
 $checkSqlTable="";
 $checkSqlWhere="";
-if(ulv<4&&!$isModerator){
+if(ulv<4&&!$is_moderator){
 	$checkSqlWhere.="AND (f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id))";
 	$checkSqlTable.="LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = ".uid.")";
 }
@@ -43,7 +43,7 @@ $DF->catch['checkLoginForum'] = $checkLoginForum;
 $DF->catch['forumSubject'] = $rs['subject'];
 $DF->catch['forumOnlines'] = $rs['fonline'];
 
-if($checkLoginForum&&$isModerator){
+if($checkLoginForum&&$is_moderator){
 	require_once _df_path."forumsoperations.php";
 }
 //<td class=\"asTitle\">متواجدون الآن في المنتدى</td><td class=\"asText2 asAC2 asAS12\"><a href=\"foruminfo.php?f=$f\">{$rs['fonline']}</a></td>
@@ -60,7 +60,7 @@ $authUrl=(auth>0 ? "&auth=".auth : "");
 $optionUrl=(option!='' ? "&option=".option : "");
 $pagingLink="forums.php?f={$f}{$authUrl}{$optionUrl}&";
 ?>
-<?php if($isModerator){ ?>
+<?php if($is_moderator){ ?>
 <script type="text/javascript" src="js/forums_mod.js<?=x?>"></script>
 <?php } ?>
 <script type="text/javascript">
@@ -83,7 +83,7 @@ $checkTopicSqlField="";
 $checkTopicSqlTable="";
 $checkTopicSqlWhere="";
 
-if($isModerator){
+if($is_moderator){
 	switch(option){
 		case'mo':
 			$sqlOptions="AND t.moderate = 1";
@@ -134,7 +134,7 @@ if($isModerator){
 			$optionsMessage="مواضيع لا تنتقل للأرشيف";
 		break;
 		case'dl':
-			$sqlOptions=($isMonitor ? "AND t.trash = 1" : "");
+			$sqlOptions=($is_monitor ? "AND t.trash = 1" : "");
 			$optionsMessage="مواضيع محذوفة";
 		break;
 		default:
@@ -144,9 +144,9 @@ if($isModerator){
 }
 if(ulv>0){
 	$sqlAuth=(auth>0 ? "AND t.author = ".auth."" : "");
-	$sqlDelete=($isMonitor ? "" : "AND t.trash = 0");
-	$sqlModerate=($isModerator ? "" : "AND t.moderate < IF(t.author = ".uid.",3,1)");
-	$sqlHidden=($isModerator ? "" : "AND (t.hidden = 0 OR t.author = ".uid.")");
+	$sqlDelete=($is_monitor ? "" : "AND t.trash = 0");
+	$sqlModerate=($is_moderator ? "" : "AND t.moderate < IF(t.author = ".uid.",3,1)");
+	$sqlHidden=($is_moderator ? "" : "AND (t.hidden = 0 OR t.author = ".uid.")");
 	$sqlApprove="$sqlOptions $sqlAuth $sqlDelete $sqlModerate $sqlHidden";
 }
 else{
@@ -190,7 +190,7 @@ echo"
 				</td>
 				<th class=\"asTHLink\"><nobr><a href=\"foruminfo.php?f={$f}\">متواجدون الآن<br>في هذا المنتدى<br>عدد أعضاء: <span class=\"asC2\">{$rs['fonline']}</span></a></nobr></td>
 				<th class=\"asTHLink\"><nobr><a href=\"editor.php?type=newtopic&f={$f}&src=".urlencode(self)."\"><img src=\"{$DFImage->f['folder']}\" border=\"0\"><br>موضوع جديد</a></nobr></td>";
-			if(ulv>0&&$rs['hidepm']==0||$isModerator){	
+			if(ulv>0&&$rs['hidepm']==0||$is_moderator){	
 				echo"
 				<th class=\"asTHLink\"><nobr><a href=\"editor.php?type=sendpm&u=-{$f}&src=".urlencode(self)."\">أرسل رسالة<br>لمشرفي<br>هذا المنتدى</a></nobr></td>";
 			}
@@ -221,7 +221,7 @@ if($mysql->numRows($sql)>0){
 			<table cellSpacing=\"3\" cellPadding=\"3\">
 				<tr>";
 				while($lrs=$mysql->fetchRow($sql)){
-					if($isModerator){
+					if($is_moderator){
 						$fLinkTools="<td><a href=\"javascript:DF.command($lrs[0],'ul');\"><img src=\"{$DFImage->i['close']}\" alt=\"إزالة هذا الموضوع من وصلات منتدى\" hspace=\"2\" border=\"0\"></a></td>";
 					}
 					echo"
@@ -237,7 +237,7 @@ if($mysql->numRows($sql)>0){
 }
 echo"
 <table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\">";
-if($isModerator){
+if($is_moderator){
 	echo"
 	<tr>
 		<td class=\"asHeader\">
@@ -266,7 +266,7 @@ if($isModerator){
 					<option value=\"t2\">منح ميدالية لمواضيع المختارة</option>
 					<option value=\"ln\">يجعل مواضيع المختارة كوصلات منتدى</option>
 					<option value=\"mv\">نقل مواضيع المختارة</option>";
-				if($isMonitor){
+				if($is_monitor){
 					echo"
 					<option value=\"dl\">حذف مواضيع المختارة</option>
 					<option value=\"re\">إرجاع مواضيع المختارة</option>
@@ -295,7 +295,7 @@ if($isModerator){
 					<option value=\"t1\" {$DF->choose(option,'t1','s')}>خيارات الإشراف: مواضيع متميز بالنجمة</option>
 					<option value=\"t2\" {$DF->choose(option,'t2','s')}>خيارات الإشراف: مواضيع متميز بالميدالية</option>
 					<option value=\"ua\" {$DF->choose(option,'ua','s')}>خيارات الإشراف: مواضيع لا تنتقل للأرشيف</option>";
-				if($isMonitor){
+				if($is_monitor){
 					echo"
 					<option value=\"dl\" {$DF->choose(option,'d','s')}>خيارات الإشراف: مواضيع محذوفة</option>";
 				}
@@ -318,7 +318,7 @@ else{
 		<td class=\"asBody\">
 		<table width=\"100%\" cellSpacing=\"0\" cellPadding=\"4\">
 			<tr>";
-	if($isModerator){
+	if($is_moderator){
 		echo"
 		<td class=\"asDark asLeftBorder\" width=\"1%\"><input type=\"checkbox\" class=\"none\" name=\"chkAll\" title=\"تحديد الكل\" onClick=\"DF.chkBox(this.form,this);\"></td>";
 	}
@@ -406,12 +406,12 @@ while($topics=$mysql->fetchAssoc($sql)){
 		$topLogo['alt']="هذا الموضوع متميز";
 	}
 	
-	if($isModerator){
+	if($is_moderator){
 		$jsTopics.="topics[$t]=[{$topics['status']},{$topics['sticky']},{$topics['hidden']},{$topics['moderate']},{$topics['trash']},{$topics['archive']},{$topics['top']},0,{$topics['link']},{$topics['author']},{$topics['viewforusers']}];";
 	}
 	echo"
 	<tr id=\"tr$t\">";
-	if($isModerator){
+	if($is_moderator){
 		echo"
 		<td class=\"$trClass asLeftBorder asCenter\"><nobr><input type=\"checkbox\" onClick=\"DF.chkFrmTrClass(this,$t);\" class=\"none\" name=\"topics[]\" value=\"$t\"></nobr></td>";
 	}
@@ -448,7 +448,7 @@ while($topics=$mysql->fetchAssoc($sql)){
 	if(ulv>0){
 		echo"
 		<td class=\"$trClass asRightBorder asCenter\"><nobr>";
-	if($isModerator){
+	if($is_moderator){
 		if(option=='rmo'){
 			echo"
 			<a href=\"topics.php?t=$t&option=mo\"><img src=\"{$DFImage->i['approve']}\" alt=\"إذهب الى ردود ينتظر الموافقة وعددها {$topics['postwait']}\" hspace=\"2\" border=\"0\"></a>";
@@ -490,19 +490,19 @@ while($topics=$mysql->fetchAssoc($sql)){
 			<a href=\"javascript:DF.command($t,'vs');\"><img src=\"{$DFImage->f['visible']}\" alt=\"إظهار الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
 	}
-		if($isModerator||$topics['status']==1&&$topics['author']==uid){
+		if($is_moderator||$topics['status']==1&&$topics['author']==uid){
 			echo"
 			<a href=\"editor.php?type=edittopic&t=$t&src=".urlencode(self)."\"><img src=\"{$DFImage->f['edit']}\" alt=\"تعديل الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($isMonitor&&$topics['trash']==0){
+		if($is_monitor&&$topics['trash']==0){
 			echo"
 			<a href=\"javascript:DF.command($t,'dl');\"><img src=\"{$DFImage->f['delete']}\" alt=\"حذف الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($isMonitor&&$topics['trash']==1){
+		if($is_monitor&&$topics['trash']==1){
 			echo"
 			<a href=\"javascript:DF.command($t,'re');\"><img src=\"{$DFImage->f['restore_delete']}\" alt=\"إرجاع الموضوع من الحذف\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if(ulv>0&&$topics['status']==1||$isModerator){
+		if(ulv>0&&$topics['status']==1||$is_moderator){
 			echo"
 			<a href=\"editor.php?type=newpost&t=$t&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
@@ -532,12 +532,12 @@ if($count==0){
 		<td class=\"asBody\">
 		<table cellSpacing=\"2\" cellPadding=\"3\">
 			<tr>";
-		if($isModerator){
+		if($is_moderator){
 				echo"
 				<td class=\"asNormal asCenter asS12\">موضوع<br>عادي</td>
 				<td class=\"asFixed asCenter asS12\">موضوع<br>مثبت</td>
 				<td class=\"asHidden asCenter asS12\">موضوع<br>مخفي</td>";
-			if($isMonitor){
+			if($is_monitor){
 				echo"
 				<td class=\"asDelete asCenter asS12\">موضوع<br>محذوف</td>";
 			}
@@ -553,7 +553,7 @@ if($count==0){
 	</tr>
 </form>
 </table>";
-if($isModerator){
+if($is_moderator){
 	echo"<script type=\"text/javascript\">var topics=new Array();$jsTopics</script>";
 }
 $Template->footer();

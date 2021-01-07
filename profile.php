@@ -2109,11 +2109,11 @@ elseif(type=='hiddentopics'){
 	$count=0;
 	while($rs=$mysql->fetchAssoc($sql)){
 		if($rs['ismon']==1){
-			$isModerator=true;
-			$isMonitor=true;
+			$is_moderator=true;
+			$is_monitor=true;
 		}
 		elseif($rs['ismod']==1){
-			$isModerator=true;
+			$is_moderator=true;
 		}
 		$topicFolder=explode("|",$rs['topicfolder']);
 		$author = $Template->userColorLink($rs['author'], array($rs['aname'], $rs['astatus'], $rs['alevel'], $rs['asubmonitor']));
@@ -2139,11 +2139,11 @@ elseif(type=='hiddentopics'){
 			else{echo"&nbsp;";}
 			echo"</td>
 			<td class=\"asNormal asCenter\"><nobr>";
-			if($isModerator||$rs['status']==1&&$rs['author']==$uid){
+			if($is_moderator||$rs['status']==1&&$rs['author']==$uid){
 				echo"
 				<a href=\"editor.php?type=edittopic&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->f['edit']}\" alt=\"تعديل الموضوع\" hspace=\"2\" border=\"0\"></a>";
 			}
-			if($rs['status']==1||$isModerator){
+			if($rs['status']==1||$is_moderator){
 				echo"
 				<a href=\"editor.php?type=newpost&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 			}

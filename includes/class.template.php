@@ -123,7 +123,7 @@ class Template{
 		<![endif]-->
 		{$this->jsGlobalVariables()}{$otherHead}
 		</head>
-		<body class=\"yui-skin-sam\" onClick=\"DF.menu.click(event)\"{$bodyEvents}{$eventOnLoad}>\n<img src=\"styles/".choosed_style."/header_right.jpg".x."\" style=\"display:none;\">");
+		<body class=\"yui-skin-sam\" onClick=\"DF.menu.click(event)\"{$bodyEvents}{$eventOnLoad}>");
 		if(shut_down_status and ulv < 4){
 			echo"<br><br>
 			<table width=\"50%\" cellSpacing=\"0\" cellPadding=\"6\" align=\"center\">
@@ -225,22 +225,22 @@ class Template{
 		}
 		$menuText = "[{$this->DF->striplines($menuText,true)}[0,['','']]]";
 		$variables = "<script type=\"text/javascript\">
-		var dir=\"rtl\",
-		xcode=\"".x."\",
-		userId=".uid.",
-		userLevel=".ulv.",
-		isModerator=".($isModerator ? "true" : "false").",
-		isMonitor=".($isMonitor ? "true" : "false").",
-		self=\"".self."\",
-		thisFile=\""._df_filename."\","
-		.(ulv==4?"adAjaxFile=\"ajax_admin.php\",":"")."
-		menubarHighlight=\"".menubar_highlight."\",
-		loadingUrl=\"{$this->DFImage->i['loading']}\",
-		progressUrl=\"{$this->DFImage->i['progress']}\",
-		succeedUrl=\"{$this->DFImage->i['succeed']}\",
-		errorUrl=\"{$this->DFImage->i['error']}\",
-		nophotoUrl=\"{$this->DFImage->i['nophoto']}\";
-		$(document).ready(function(){
+		var dir = \"rtl\",
+		xcode = \"".x."\",
+		userId = ".uid.",
+		userLevel = ".ulv.",
+		is_moderator = ".($is_moderator ? "true" : "false").",
+		is_monitor = ".($is_monitor ? "true" : "false").",
+		self = \"".self."\",
+		thisFile = \""._df_filename."\","
+		.( ulv == 4 ? 'adAjaxFile = "ajax_admin.php",' : '' )."
+		menubarHighlight = \"".menubar_highlight."\",
+		loadingUrl = \"{$this->DFImage->i['loading']}\",
+		progressUrl = \"{$this->DFImage->i['progress']}\",
+		succeedUrl = \"{$this->DFImage->i['succeed']}\",
+		errorUrl = \"{$this->DFImage->i['error']}\",
+		nophotoUrl = \"{$this->DFImage->i['nophoto']}\";
+		$(function(){
 			DF.menu.load({$menuText});
 			DF.menu.checkElements();
 			DF.checkTHLink();
@@ -561,8 +561,8 @@ class Template{
 										<td width=\"2%\"><nobr><img src=\"images/icons/twitter.gif\" border=\"0\">&nbsp;</nobr></td>
 										<td class=\"asACSilverLight asFoText2 asAFoText2\"><a class=\"dm-middle\" href=\"".( twitter_account != '' ? twitter_account : '#' )."\" target=\"_blank\"><nobr>تابعونا على Twitter</nobr></a></td>
 									</tr>";
-									if((_df_script=='forums'||_df_script=='topics')&&$this->DF->catch['thisForum']>0&&!empty($this->DF->catch['forumSubject'])){
-										$fid="?f={$this->DF->catch['thisForum']}";
+									if((_df_script=='forums'||_df_script=='topics')&&$this->DF->catch['_this_forum']>0&&!empty($this->DF->catch['forumSubject'])){
+										$fid="?f={$this->DF->catch['_this_forum']}";
 										$fsubject=" ({$this->DF->catch['forumSubject']})";
 									}
 									$code.="
@@ -583,7 +583,7 @@ class Template{
 					$.ajax({
 						type: 'POST',
 						url: 'ajax.php?x='+Math.random(),
-						data: 'type=set_data_to_database&method=setUserActivity_online&f=<?=$this->DF->catch['thisForum']?>&mod=<?=( ($this->DF->catch['isModerator'] === true) ? '1' : '0' )?>'
+						data: 'type=set_data_to_database&method=setUserActivity_online&f=<?=$this->DF->catch['_this_forum']?>&mod=<?=( ($this->DF->catch['is_moderator'] === true) ? '1' : '0' )?>'
 					});
 					var afterLoadOperations = function(){
 						$.ajax({
@@ -604,11 +604,11 @@ class Template{
 			echo str_replace("\t" , "", $footer);
 		}
  		if( _df_script != 'ajax_admin' && _df_script != 'ajax' ){
-			if( $this->DF->catch['isModerator'] === true ){
-				$this->DFOutput->setModActivity('online', $this->DF->catch['thisForum'], true);
+			if( $this->DF->catch['is_moderator'] === true ){
+				$this->DFOutput->setModActivity('online', $this->DF->catch['_this_forum'], true);
 			}
 			if( ulv > 0 && ulv < 4 ){
-				$this->DFOutput->setUserActivity('online', $this->DF->catch['thisForum']);
+				$this->DFOutput->setUserActivity('online', $this->DF->catch['_this_forum']);
 			}
 		}
 		$this->mysql->close();
@@ -630,8 +630,8 @@ class Template{
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=surveys\"><nobr>استفتاءات</nobr></a></td>";
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=useractivity\"><nobr>نشاط أعضاء</nobr></a></td>";
 		if(ulv>2) $mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=modactivity\"><nobr>نشاط مشرفين</nobr></a></td>";
-		if($this->DF->catch['isModerator']&&(_df_script=='forums'||_df_script=='topics')){
-			$f=$this->DF->catch['thisForum'];
+		if($this->DF->catch['is_moderator']&&(_df_script=='forums'||_df_script=='topics')){
+			$f=$this->DF->catch['_this_forum'];
 			$forumPM=$this->DFOutput->count("pm WHERE author = '-{$f}' AND pmout = 0 AND pmread = 0 AND status = 1 AND pmlist = 0");
 			$forumPost=$this->DFOutput->count("post WHERE forumid = '{$f}' AND moderate = 1 ");
 			$pmUrl="pm.php?mail=".($forumPM>0 ? 'new' : 'in')."&f=-{$f}";

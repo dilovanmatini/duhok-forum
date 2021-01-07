@@ -11,7 +11,7 @@
  * 
  */
 
-if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$isModerator){
+if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 	$id=trim($_POST['id']);
 	$type=trim($_POST['type']);
 	$other=trim($_POST['other']);
@@ -24,7 +24,7 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$isModerator){
 		$AllowForumId=implode(",",$DF->getAllowForumId(true));
 		$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في خيارات مشرفين بداخل الموضوع");
 		if($type=='mo'){
-			$DFOutput->setModActivity('allow',$DF->catch['thisForum'],true);
+			$DFOutput->setModActivity('allow',$DF->catch['_this_forum'],true);
 		}
 		$opType=array(
 			'mo'=>array('field'=>'moderate','value'=>'0','type'=>'mo'),
@@ -43,7 +43,7 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$isModerator){
 			're'=>array('field'=>'trash','value'=>'0','type'=>'dl')
 		);
 		if($cmd==1){
-			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$isMonitor)){
+			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$is_monitor)){
 				$mysql->update("post SET {$oprs['field']} = '{$oprs['value']}' WHERE id IN({$id}) AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				$ids=explode(",",$id);
 				if($type=='mo') $ntype='apr';
@@ -75,7 +75,7 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$isModerator){
 			}
 		}
 		elseif($cmd==2){
-			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$isMonitor)){
+			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$is_monitor)){
 				$checkPostType=($posttype==1 ? 'post' : 'topic');
 				$mysql->update("$checkPostType SET {$oprs['field']} = '{$oprs['value']}' WHERE id = '{$id}' AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				if($oprs['type']!=''){
@@ -106,7 +106,7 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$isModerator){
 		}
 	}
 }
-if(method=='hidepost'&&ulv>1&&!$isModerator){
+if(method=='hidepost'&&ulv>1&&!$is_moderator){
 	$sql=$mysql->query("SELECT p.id,p.author,p.topicid
 	FROM ".prefix."post AS p 
 	LEFT JOIN ".prefix."topic AS t ON(t.id = p.topicid)

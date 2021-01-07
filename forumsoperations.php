@@ -11,7 +11,7 @@
  * 
  */
 
-if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$isModerator){
+if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 	$id=trim($_POST['id']);
 	$type=trim($_POST['type']);
 	$other = trim($_POST['other']);
@@ -62,7 +62,7 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$isModerator){
 				$newid[] = intval($id[$x]);
 			}
 			$id = implode(",", $newid);
-			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'&&$type!='ar'&&$type!='ur'||$isMonitor)){
+			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'&&$type!='ar'&&$type!='ur'||$is_monitor)){
 				if($type=='mv'){
 					$mysql->update("topic SET sticky = 0 WHERE id IN({$id}) AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				}
@@ -126,7 +126,7 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$isModerator){
 		}
 		elseif($cmd==2){
 			$id = intval($id);
-			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$isMonitor)){
+			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$is_monitor)){
 				if($type!='mv'){
 					$mysql->update("topic SET {$oprs['field']} = '{$oprs['value']}' WHERE id = '{$id}' AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				}

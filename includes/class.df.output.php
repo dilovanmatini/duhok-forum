@@ -106,7 +106,7 @@ class DFOutput{
 			$f = f;
 		}
 		else{
-			$f = (_df_script == 'topics') ? intval($this->DF->catch['thisForum']) : 0;
+			$f = (_df_script == 'topics') ? intval($this->DF->catch['_this_forum']) : 0;
 		}
 		if(ulv > 0){
 			$url = basename( str_replace("'", "", self) );

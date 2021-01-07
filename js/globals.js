@@ -970,12 +970,12 @@ DF.headerIcons = {
 	openedName: '',
 	create: function(){
 		var headerIcons = this, items = headerIcons.items, name, icon, el, place;
-		for(var x = 0; x < items.length; x++){
+		for( var x = 0; x < items.length; x++ ){
 			name = items[x];
 			el = $I('#hd-icons-'+name);
-			if(el){
+			if( el ){
 				place = $('#'+el.id+' > div')[0];
-				if(place){
+				if( place ){
 					icon = {
 						name: name,
 						el: el,
@@ -994,7 +994,7 @@ DF.headerIcons = {
 						'name': name,
 						'parent': name
 					});
-					$(place).html('<div id="border'+name+'" class="border dis-none"></div><div id="panel'+name+'" class="panel dis-none"><table width="100%" cellpadding="4" cellspacing="1" dir="'+dir+'"><tr><td id="content'+name+'" class="smallText" align="center"><img src="images/icons/loading3.gif" width="28" height="20"></td></tr></table></div><img id="arrow'+name+'" class="arrow dis-none" src="images/icons/header-arrow-bottom.gif"><div id="box'+name+'" class="box dis-none"></div>'+$(place).html());
+					$(place).html('<div id="border'+name+'" class="border" style="display:none;"></div><div id="panel'+name+'" class="panel" style="display:none;"><table width="100%" cellpadding="4" cellspacing="1" dir="'+dir+'"><tr><td id="content'+name+'" class="smallText" align="center"><img src="images/icons/loading3.gif" width="28" height="20"></td></tr></table></div><img id="arrow'+name+'" class="arrow" style="display:none;" src="images/icons/header-arrow-bottom.gif"><div id="box'+name+'" class="box" style="display:none;"></div>'+$(place).html());
 					icon.place = place;
 					headerIcons.setChilds(icon, name);
 					headerIcons.icons[name] = icon;
@@ -1036,9 +1036,9 @@ DF.headerIcons = {
 			}
 		}
 		$(document).click(function(e){
-			if(e.target && headerIcons.openedName != ''){
+			if( e.target && headerIcons.openedName != '' ){
 				var parentName = $(e.target).attr('parent') || '';
-				if(parentName != headerIcons.openedName){
+				if( parentName != headerIcons.openedName ){
 					headerIcons.cleanIcons();
 					headerIcons.openedName = '';
 				}
@@ -1051,23 +1051,23 @@ DF.headerIcons = {
 			type: 'POST',
 			url: 'ajax.php?x='+Math.random(),
 			data: 'type=get_header_details',
-			success: function(res){
+			success: function( res ){
 				var res = res.split('|');
-				if(res.length == 5){
+				if( res.length == 5 ){
 					var arr = [], count, hide;
 					arr['messages'] = [$PI(res[0]), 0];
 					arr['friends'] = [$PI(res[1]), 0];
 					arr['notifies'] = [$PI(res[2]), 0];
 					arr['newusers'] = [$PI(res[3]), 1];
 					arr['changenames'] = [$PI(res[4]), 1];
-					$.each(icons, function(name, icon){
+					$.each( icons, function( name, icon ){
 						count = arr[name][0];
 						hide = arr[name][1];
-						if(count > 0){
+						if( count > 0 ){
 							$(icon.box).html(count);
-							$(icon.box).fadeIn('slow').show();
-							$(icon.arrow).fadeIn('slow').show();
-							if(hide == 1){
+							$(icon.box).fadeIn(500);
+							$(icon.arrow).fadeIn(500);
+							if( hide == 1 ){
 								$(icon.place).show();
 								$(icon.el).show();
 							}
@@ -1075,7 +1075,7 @@ DF.headerIcons = {
 						else{
 							$(icon.box).hide();
 							$(icon.arrow).hide();
-							if(hide == 1){
+							if( hide == 1 ){
 								$(icon.place).hide();
 								$(icon.el).hide();
 							}
@@ -1084,10 +1084,10 @@ DF.headerIcons = {
 				}
 			}
 		});
-		setTimeout('DF.headerIcons.setCount();', 5000);
+		setTimeout('DF.headerIcons.setCount();', 10000);
 	},
 	load: function(){
-		if(userLevel > 0){
+		if( userLevel > 0 ){
 			this.create();
 			this.setCount();
 		}

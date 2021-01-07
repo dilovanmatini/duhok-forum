@@ -98,15 +98,15 @@ elseif($type == 'set_user_style'){
 elseif($type=='getForumMedalsPhoto'){
 	$DF->charset();
 	echo ac;
-	$showTools=$DF->showTools($id);
-	if($showTools==2){
-		$isModerator=true;
-		$isMonitor=true;
+	$show_tools=$DF->showTools($id);
+	if($show_tools==2){
+		$is_moderator=true;
+		$is_monitor=true;
 	}
-	elseif($showTools==1){
-		$isModerator=true;
+	elseif($show_tools==1){
+		$is_moderator=true;
 	}
-	if($isModerator){
+	if($is_moderator){
 		$sql=$mysql->query("SELECT filename FROM ".prefix."medalphotos WHERE forumid = '$id' ORDER BY date DESC", __FILE__, __LINE__);
 		while($rs=$mysql->fetchRow($sql)){
 			echo"{$DFPhotos->getsrc($rs[0])}[>:r:<]";
@@ -118,7 +118,7 @@ elseif($type=='getForumMedalsPhoto'){
 	}
 }
 elseif($type=='deleteUserFromTopic'){
-	if($isModerator){
+	if($is_moderator){
 		$mysql->delete("topicusers WHERE id = '$id'", __FILE__, __LINE__);
 		echo '1';
 	}
@@ -217,26 +217,26 @@ elseif($type=='menubarContents'){
 			echo "[{$details}]";
 		}
 		if($method=='f'){
-			$isModerator=false;
-			$isMonitor=false;
+			$is_moderator=false;
+			$is_monitor=false;
 			if($id>0){
-				$showTools=$DF->showTools($id);
-				if($showTools==2){
-					$isModerator=true;
-					$isMonitor=true;
+				$show_tools=$DF->showTools($id);
+				if($show_tools==2){
+					$is_moderator=true;
+					$is_monitor=true;
 				}
-				elseif($showTools==1){
-					$isModerator=true;
+				elseif($show_tools==1){
+					$is_moderator=true;
 				}
 			}
 			$rs=$mysql->queryAssoc("SELECT status,hidden FROM ".prefix."forum WHERE id = {$id}", __FILE__, __LINE__);
-			$status=($rs['status']==1 ? 0 : (ulv==4||$isModerator ? 0 : 1));
+			$status=($rs['status']==1 ? 0 : (ulv==4||$is_moderator ? 0 : 1));
 			$details="
 			[10,'',1,0],
 			[20,'',1,{$status}],
 			[21,'',1,{$status}],
 			[22,'',1,0],";
-			if($isModerator){
+			if($is_moderator){
 				$details.="[-1],
 				[69,{$DFOutput->count("topic WHERE moderate = 1 AND forumid = $id")},1,0],
 				[68,{$DFOutput->count("topic WHERE moderate = 2 AND forumid = $id")},1,0],
@@ -262,20 +262,20 @@ elseif($type=='menubarContents'){
 			FROM ".prefix."topic AS t
 			LEFT JOIN ".prefix."forum AS f ON(f.id = t.forumid)
 			WHERE t.id = $id", __FILE__, __LINE__);
-			$isModerator=false;
-			$isMonitor=false;
+			$is_moderator=false;
+			$is_monitor=false;
 			if($rs['fid']>0){
-				$showTools=$DF->showTools($rs['fid']);
-				if($showTools==2){
-					$isModerator=true;
-					$isMonitor=true;
+				$show_tools=$DF->showTools($rs['fid']);
+				if($show_tools==2){
+					$is_moderator=true;
+					$is_monitor=true;
 				}
-				elseif($showTools==1){
-					$isModerator=true;
+				elseif($show_tools==1){
+					$is_moderator=true;
 				}
 			}
-			$status=($rs['status']==1&&$rs['fstatus']==1||$isModerator ? 0 : 1);
-			$editstatus=($rs['status']==1&&$rs['author']==uid||$isModerator ? 0 : 1);
+			$status=($rs['status']==1&&$rs['fstatus']==1||$is_moderator ? 0 : 1);
+			$editstatus=($rs['status']==1&&$rs['author']==uid||$is_moderator ? 0 : 1);
 			$details="
 			[11,'',1,0],
 			[30,'',1,{$status}],
@@ -286,7 +286,7 @@ elseif($type=='menubarContents'){
 			[34,'',1,0],
 			[35,'',1,0],
 			[36,'',1,0,{$rs['author']}],";
-			if($isModerator){
+			if($is_moderator){
 				$details.="[-1],
 				[79,{$DFOutput->count("post WHERE moderate = 1 AND topicid = $id")},1,0],
 				[78,{$DFOutput->count("post WHERE moderate = 2 AND topicid = $id")},1,0],

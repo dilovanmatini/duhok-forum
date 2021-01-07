@@ -22,7 +22,7 @@ $Template->header(false);
 
 $checkSqlTable="";
 $checkSqlWhere="";
-if(!$isModerator){
+if(!$is_moderator){
 	$checkSqlWhere="
 		AND (f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id))
 		AND (t.trash = 0 AND (t.moderate = 0 OR t.author = ".uid.") AND (t.hidden = 0 OR t.author = ".uid." OR NOT ISNULL(tu.id)))
@@ -33,7 +33,7 @@ if(!$isModerator){
 	";
 }
 else{
-	if(!$isMonitor){
+	if(!$is_monitor){
 		$checkSqlWhere="AND t.trash = 0";
 	}
 }
@@ -49,7 +49,7 @@ if(!$topic){
 	$DF->goTo();
 }
 
-$DFOutput->setUserActivity('topicprint',$DF->catch['thisForum'],$topic['author']);
+$DFOutput->setUserActivity('topicprint',$DF->catch['_this_forum'],$topic['author']);
 
 echo"
 <table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\" align=\"center\">
@@ -81,11 +81,11 @@ echo"
 	</tr>";
 
 $checkSqlWhere="";
-if(!$isModerator){
+if(!$is_moderator){
 	$checkSqlWhere="AND (p.trash = 0 AND (p.moderate = 0 OR p.author = ".uid.") AND (p.hidden = 0 OR p.author = ".uid."))";
 }
 else{
-	if(!$isMonitor){
+	if(!$is_monitor){
 		$checkSqlWhere="AND p.trash = 0";
 	}
 }

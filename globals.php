@@ -199,93 +199,93 @@ if(ulv > 0){
 $DF->setImportantData();
 
 // Check show status tools for moderators and monitors and administration
-$thisForum=0;
-switch(_df_script){
+$_this_forum = 0;
+switch( _df_script ){
 	case 'forums':
-		$thisForum=f;
+		$_this_forum = f;
 	break;
 	case 'foruminfo':
-		$thisForum=f;
+		$_this_forum = f;
 	break;
 	case 'options':	
-		if(type == 'topicusers'){
-			$thisForum=(int)$mysql->get("topic","forumid",t);
+		if( type == 'topicusers' ){
+			$_this_forum = (int)$mysql->get( "topic", "forumid", t );
 		}
-		elseif(type == 'topicstats'){
-			$thisForum=(int)$mysql->get("topic","forumid",t);
+		elseif( type == 'topicstats'){
+			$_this_forum = (int)$mysql->get( "topic", "forumid", t );
 		}
-		elseif(type == 'edituserfolders'){
-			$thisForum=abs($_POST['fid']);
+		elseif( type == 'edituserfolders' ){
+			$_this_forum=abs($_POST['fid']);
 		}
-		elseif(type == 'movepm'){
-			$thisForum=abs(f);
+		elseif( type == 'movepm' ){
+			$_this_forum = abs(f);
 		}
-		elseif(type == 'restorepm'){
-			$thisForum=abs(f);
+		elseif( type == 'restorepm' ){
+			$_this_forum = abs(f);
 		}
 
 	break;
 	case 'pm':
-		$thisForum=abs(f);
+		$_this_forum = abs(f);
 	break;
 	case 'ajax':
-		if($_POST['type'] == 'deleteUserFromTopic'){
-			$thisForum=$_POST['forumid'];
+		if( $_POST['type'] == 'deleteUserFromTopic' ){
+			$_this_forum = $_POST['forumid'];
 		}
 	break;
 	case 'editor':
-		if(type == 'newtopic'){
-			$thisForum=f;
+		if( type == 'newtopic' ){
+			$_this_forum = f;
 		}
-		elseif(type == 'edittopic'||type == 'newpost'||type == 'quotepost'){
-			$thisForum=(int)$mysql->get("topic","forumid",t);
+		elseif( type == 'edittopic' || type == 'newpost' || type == 'quotepost' ){
+			$_this_forum = (int)$mysql->get( "topic", "forumid",t );
 		}
-		elseif(type == 'editpost'){
-			$thisForum=(int)$mysql->get("post","forumid",p);
+		elseif( type == 'editpost'){
+			$_this_forum = (int)$mysql->get( "post", "forumid",p );
 		}
-		elseif(type == 'sendpm'||type == 'replypm'){
-			$thisForum=abs(f);
+		elseif( type == 'sendpm' || type == 'replypm'){
+			$_this_forum = abs(f);
 		}
 	break;
 	case 'setpost':
-		if($_POST['type'] == 'newtopic'){
-			$thisForum=(int)$_POST['forumid'];
+		if( $_POST['type'] == 'newtopic' ){
+			$_this_forum = (int)$_POST['forumid'];
 		}
-		elseif($_POST['type'] == 'edittopic'||$_POST['type'] == 'newpost'||$_POST['type'] == 'quotepost'){
-			$thisForum=(int)$mysql->get("topic","forumid",(int)$_POST['topicid']);
+		elseif( $_POST['type'] == 'edittopic' || $_POST['type'] == 'newpost' || $_POST['type'] == 'quotepost' ){
+			$_this_forum = (int)$mysql->get( "topic", "forumid", (int)$_POST['topicid'] );
 		}
-		elseif($_POST['type'] == 'editpost'){
-			$thisForum=(int)$mysql->get("post","forumid",(int)$_POST['postid']);
+		elseif( $_POST['type'] == 'editpost' ){
+			$_this_forum = (int)$mysql->get( "post", "forumid", (int)$_POST['postid'] );
 		}
-		elseif($_POST['type'] == 'sendpm'){
-			$thisForum=abs((int)$_POST['forumid']);
+		elseif( $_POST['type'] == 'sendpm' ){
+			$_this_forum = abs((int)$_POST['forumid']);
 		}
 	break;
 	case 'topics':
-		$thisForum=(int)$mysql->get("topic","forumid",t);
+		$_this_forum = (int)$mysql->get( "topic", "forumid", t );
 	break;
 	case 'print':
 	case 'sendtopic':
-		$thisForum=(int)$mysql->get("topic","forumid",t);
+		$_this_forum = (int)$mysql->get( "topic", "forumid", t );
 	break;
 	default:
-		$thisForum=0;
+		$_this_forum = 0;
 }
-$isModerator=false;
-$isMonitor=false;
-if($thisForum>0){
-	$showTools=$DF->showTools($thisForum);
-	if($showTools == 2){
-		$isModerator=true;
-		$isMonitor=true;
+$is_moderator = false;
+$is_monitor = false;
+if( $_this_forum > 0 ){
+	$show_tools = $DF->showTools($_this_forum);
+	if( $show_tools == 2 ){
+		$is_moderator = true;
+		$is_monitor = true;
 	}
-	elseif($showTools == 1){
-		$isModerator=true;
+	elseif( $show_tools == 1 ){
+		$is_moderator = true;
 	}
 }
-$DF->catch['isModerator'] = $isModerator;
-$DF->catch['isMonitor'] = $isMonitor;
-$DF->catch['thisForum'] = $thisForum;
+$DF->catch['is_moderator'] = $is_moderator;
+$DF->catch['is_monitor'] = $is_monitor;
+$DF->catch['_this_forum'] = $_this_forum;
 
 // Check operations
 $DF->checkOperation();
