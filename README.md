@@ -1,12 +1,12 @@
-# Duhok Forum v3.0
+# Duhok Forum 3
 Duhok Forum is a free, open-source script that can be installed on both Linux and localhost servers that support the Apache platform. The script supports all modern web browsers. It programmed by PHP and MySQL databases. Also, the basic web languages have been used in it such as HTML, CSS, JavaScript, Ajax, jQuery library, and some javascript open source libraries.
 
-The first eight version had been released by [Dilovan Matini](http://dilovanmatini.com), then many developers worked on it and many versions have been released, the last one was 2.1 that contains many improvements and enhancements but due to growing technology so fast, the mentioned version does not work on modern servers and browsers, especially PHP version 7 and MySQL version 8 and due to these issues, version 3.0 of Duhok Forum has been released with tremendous improvements, enhancements, and modern design.
+The first eight version had been released by [Dilovan Matini](http://dilovanmatini.com), then many developers worked on it and many versions have been released, the last one was 2.1 that contains many improvements and enhancements but due to growing technology so fast, the mentioned version does not work on modern servers and browsers, especially PHP version 7 and MySQL version 8 and due to these issues, version 3 of Duhok Forum has been released with tremendous improvements, enhancements, and modern design.
 
-# &#x202b;دهوك فوريوم v3.0
+# &#x202b;دهوك فوريوم 3
 &#x202b;نسخة منتديات Duhok Forum هي نسخة مجانية مفتوحة المصدر يمكنك تنصيب على خوادم لينكس وخوادم المحلية التي تحتوي على منصة Apache. يمكن تشغيل النسخة بواسطة جميع متصفحات الويب الحديثة. تم برمجة هذه النسخة بالغة البرمجة الشهيرة PHP وقواعد بيانات MySQL، بالإضافة الى استخدام لغات الأسياسية للويب مثل HTML و CSS و JavaScript و Ajax، أيضا تم استخدام مكتبة شهيرة jQuery والعديد من مكتبات الجافا سكريبت المفتوحة المصدر.
 
-تم إصدار أول ثمانية نسخ بواسطة&#x202b; [Dilovan Matini](http://dilovanmatini.com)، ثم بعدها تم تطوير النسخة من قبل العديد من المبرمجين وتم نزول العديد من النسخ، آخرها نسخة 2.1 التي تحتوي على كثير من التحسينات والتطويرات، لكن بسبب تحديثات الكثيرة في مجال التقنية وتحديث جميع لغات البرمجة المستخدمة في هذه النسخة مثل PHP7 و قواعد البيانات MySQL8، فلا يمكن استعمالها في سيرفرات الحديثة ولهذا السبب، تم إصدار نسخة 3.0 من قبل مبرمجها الأصلي لكي يتناسب مع جميع اصدارات المحدثة للغات المذكورة المستخدمة. أيضاً تم تحسين النسخة من جميع جوانب الأمنية والأداء والتصميم.
+تم إصدار أول ثمانية نسخ بواسطة&#x202b; [Dilovan Matini](http://dilovanmatini.com)، ثم بعدها تم تطوير النسخة من قبل العديد من المبرمجين وتم نزول العديد من النسخ، آخرها نسخة 2.1 التي تحتوي على كثير من التحسينات والتطويرات، لكن بسبب تحديثات الكثيرة في مجال التقنية وتحديث جميع لغات البرمجة المستخدمة في هذه النسخة مثل PHP7 و قواعد البيانات MySQL8، فلا يمكن استعمالها في سيرفرات الحديثة ولهذا السبب، تم إصدار نسخة 3 من قبل مبرمجها الأصلي لكي يتناسب مع جميع اصدارات المحدثة للغات المذكورة المستخدمة. أيضاً تم تحسين النسخة من جميع جوانب الأمنية والأداء والتصميم.
 
 [![GitHub Version](https://img.shields.io/github/v/tag/dilovanmatini/duhok-forum)](https://github.com/dilovanmatini/duhok-forum/releases)
 [![editor](https://img.shields.io/badge/editor-vscode-blue)](https://code.visualstudio.com/)
