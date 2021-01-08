@@ -18,25 +18,25 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv>0){
+if( ulv > 0 ){
 //************** start page ********************
-if(type=="deleteuserlist"&&u>0){
-	if(auth>0&&ulv==4){
-		$uid=auth;
+if( type == "deleteuserlist" && u > 0 ){
+	if( auth > 0 && ulv == 4 ){
+		$uid = auth;
 	}
 	else{
-		$uid=uid;
+		$uid = uid;
 	}
-	$sql=$mysql->query("SELECT rows FROM ".prefix."listsrows WHERE id = '$uid'", __FILE__, __LINE__);
-	$rs=$mysql->fetchRow($sql);
-	$rows=unserialize($rs[0]);
-	$newArray=array();
-	foreach($rows as $key=>$val){
-		if($key!=u){
-			$newArray[$key]=$val;
+	$sql = $mysql->query("SELECT items FROM ".prefix."listsrows WHERE id = {$uid}", __FILE__, __LINE__);
+	$rs = $mysql->fetchRow($sql);
+	$items = unserialize($rs[0]);
+	$newArray = array();
+	foreach( $items as $key => $val ){
+		if( $key != u ){
+			$newArray[$key] = $val;
 		}
 	}
-	$mysql->update("listsrows SET rows = '".serialize($newArray)."' WHERE id = '$uid'", __FILE__, __LINE__);
+	$mysql->update("listsrows SET items = '".serialize($newArray)."' WHERE id = '$uid'", __FILE__, __LINE__);
 	$Template->msg("تم حذف العضوية من القائمة بنجاح");
 }
 elseif(type=="adduserlist"){
@@ -54,20 +54,20 @@ elseif(type=="adduserlist"){
 	else{
 		$uid=uid;
 	}
-	$sql=$mysql->query("SELECT rows FROM ".prefix."listsrows WHERE id = '$uid'", __FILE__, __LINE__);
+	$sql=$mysql->query("SELECT items FROM ".prefix."listsrows WHERE id = '$uid'", __FILE__, __LINE__);
 	$rs=$mysql->fetchRow($sql);
-	$rows=unserialize($rs[0]);
+	$items=unserialize($rs[0]);
 	if(!$rs){
-		$rows=array();
-		$mysql->insert("listsrows (id,rows) VALUES ('$uid','".serialize($rows)."')", __FILE__, __LINE__);
+		$items=array();
+		$mysql->insert("listsrows (id,items) VALUES ('$uid','".serialize($items)."')", __FILE__, __LINE__);
 	}
-	$keys=array_keys($rows);
-	if(in_array($u,$keys)&&$rows[$u]==$list){
+	$keys=array_keys($items);
+	if(in_array($u,$keys)&&$items[$u]==$list){
 		$Template->errMsg("لا يمكنك إضافة هذا العضو لقوائم خاصة بك<br>بسبب ان هذا العضو هو مضاف لقوائمك مسبقاً");
 	}
 	else{
-		$rows[$u]=$list;
-		$mysql->update("listsrows SET rows = '".serialize($rows)."' WHERE id = '$uid'", __FILE__, __LINE__);
+		$items[$u]=$list;
+		$mysql->update("listsrows SET items = '".serialize($items)."' WHERE id = '$uid'", __FILE__, __LINE__);
 		$Template->msg("تم إضافة عضو لقوائم خاصة بك بنجاح","profile.php?type=lists&l=$list".($auth>0?"&auth=$auth":""));
 	}
 }
@@ -90,21 +90,21 @@ elseif(type=="edituserlists"){
 	else{
 		$uid=uid;
 	}
-	$sql=$mysql->query("SELECT rows FROM ".prefix."listsrows WHERE id = '$uid'", __FILE__, __LINE__);
-	$rs=$mysql->fetchRow($sql);
-	$rows=unserialize($rs[0]);
-	if(!$rs){
-		$newRows=array();
-		$mysql->insert("listsrows (id,rows) VALUES ('$uid','".serialize($newRows)."')", __FILE__, __LINE__);
+	$sql = $mysql->query("SELECT items FROM ".prefix."listsrows WHERE id = '$uid'", __FILE__, __LINE__);
+	$rs = $mysql->fetchRow($sql);
+	$items = unserialize($rs[0]);
+	if( !$rs ){
+		$new_items = [];
+		$mysql->insert("listsrows (id,items) VALUES ('$uid','".serialize($new_items)."')", __FILE__, __LINE__);
 	}
 	else{
-		$newRows=array();
-		foreach($rows as $key=>$val){
-			if($val==-1||$val==-2||$val>=1&&$val<=5&&!empty($lists[$val])){
-				$newRows[$key]=$val;
+		$new_items = [];
+		foreach( $items as $key => $val ){
+			if( $val == -1 || $val == -2 || $val >= 1 && $val <= 5 && !empty($lists[$val]) ){
+				$new_items[$key]=$val;
 			}
 		}
-		$mysql->update("listsrows SET rows = '".serialize($newRows)."' WHERE id = '$uid'", __FILE__, __LINE__);
+		$mysql->update("listsrows SET items = '".serialize($new_items)."' WHERE id = '$uid'", __FILE__, __LINE__);
 	}
 	$mysql->update("userflag SET lists = '".serialize($lists)."' WHERE id = '$uid'", __FILE__, __LINE__);
 	$Template->msg("تم تعديل قوائم خاصة بك بنجاح");

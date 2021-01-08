@@ -208,7 +208,7 @@ CREATE TABLE _prfx_language (
 DROP TABLE IF EXISTS _prfx_listsrows;
 CREATE TABLE _prfx_listsrows (
   id int(10) UNSIGNED NOT NULL,
-  rows text NOT NULL
+  items text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_loginip;

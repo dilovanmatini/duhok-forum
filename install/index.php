@@ -253,12 +253,21 @@ elseif( $_step == 'logininfo' ){
                 cache: false,
                 success: function( json ){
                     if( $.type(json) === 'object' ){
+                        var sql_error = '';
+                        if( $.type(json.sql_error) === 'string' ){
+                            sql_error = ' <a class="sec in_sql_error" href="#" sql-error="'+json.sql_error+'">[نسخ وعرض تفاصيل الخطأ]</a>';
+                        }
                         if( json.status == 'success' ){
-                            place.html('');
-                            dm.goTo('index.php?step=done');
+                            if( sql_error != '' ){
+                                place.addClass('dm-cred').html('حدث خطأ'+sql_error);
+                            }
+                            else{
+                                place.html('');
+                                dm.goTo('index.php?step=done');
+                            }
                         }
                         else{
-                            place.addClass('dm-cred').html(json.status);
+                            place.addClass('dm-cred').html(json.status+sql_error);
                         }
                     }
                     else{
@@ -273,8 +282,24 @@ elseif( $_step == 'logininfo' ){
                 }
             });
         });
+        $('.in_sql_error').livequery(function(){
+            $(this).on('click', function(){
+                var button = $(this), error = button.attr('sql-error') || '', textarea = $('.in-sqlerror');
+                textarea.val(error).show().select();
+                try{
+                    document.execCommand('copy');
+                }
+                catch( e ){
+                    console.log('Oops, unable to copy');
+                }
+                textarea.val('').hide();
+                alert(error);
+                return false;
+            });
+        });
     });
     </script>
+    <textarea class="in-sqlerror" style="display:none;"></textarea>
     <table width="1000" cellSpacing="0" cellPadding="0" align="center">
         <tr>
             <td class="asHeader" colspan="2">معلومات الرئيسية</td>
