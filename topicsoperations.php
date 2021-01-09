@@ -11,7 +11,7 @@
  * 
  */
 
-if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
+if(_df_script == 'topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 	$id=trim($_POST['id']);
 	$type=trim($_POST['type']);
 	$other=trim($_POST['other']);
@@ -23,7 +23,7 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 		$DF->setCookie('checkTopicOpsString',$checkTopicOpsString);
 		$AllowForumId=implode(",",$DF->getAllowForumId(true));
 		$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في خيارات مشرفين بداخل الموضوع");
-		if($type=='mo'){
+		if($type == 'mo'){
 			$DFOutput->setModActivity('allow',$DF->catch['_this_forum'],true);
 		}
 		$opType=array(
@@ -42,14 +42,14 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 			'dl'=>array('field'=>'trash','value'=>'1','type'=>'dl'),
 			're'=>array('field'=>'trash','value'=>'0','type'=>'dl')
 		);
-		if($cmd==1){
+		if($cmd == 1){
 			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$is_monitor)){
 				$mysql->update("post SET {$oprs['field']} = '{$oprs['value']}' WHERE id IN({$id}) AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				$ids=explode(",",$id);
-				if($type=='mo') $ntype='apr';
-				elseif($type=='ho') $ntype='hor';
-				elseif($type=='hd') $ntype='hir';
-				elseif($type=='vs') $ntype='shr';
+				if($type == 'mo') $ntype='apr';
+				elseif($type == 'ho') $ntype='hor';
+				elseif($type == 'hd') $ntype='hir';
+				elseif($type == 'vs') $ntype='shr';
 				else $ntype='';
 				if(!empty($ntype)){
 					$posts=array();
@@ -74,24 +74,24 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 				$DF->quick(self);
 			}
 		}
-		elseif($cmd==2){
+		elseif($cmd == 2){
 			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$is_monitor)){
-				$checkPostType=($posttype==1 ? 'post' : 'topic');
+				$checkPostType=($posttype == 1 ? 'post' : 'topic');
 				$mysql->update("$checkPostType SET {$oprs['field']} = '{$oprs['value']}' WHERE id = '{$id}' AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				if($oprs['type']!=''){
 					$operations=unserialize($mysql->get("{$checkPostType}message","operations",$id));
 					if(!is_array($operations)) $operations=array();
 					$operations[]=time."::{$oprs['type']}::{$oprs['value']}::".uid."::".uname;
 					$mysql->update("{$checkPostType}message SET operations = '".serialize($operations)."' WHERE id = '{$id}' AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
-					if($type=='mo') $ntype=($posttype==1 ? 'apr' : 'apt');
-					elseif($type=='ho') $ntype=($posttype==1 ? 'hor' : 'hot');
-					elseif($type=='hd') $ntype=($posttype==1 ? 'hir' : 'hit');
-					elseif($type=='vs') $ntype=($posttype==1 ? 'shr' : 'sht');
-					elseif($type=='lk'&&$posttype==0) $ntype='lot';
-					elseif($type=='op'&&$posttype==0) $ntype='opt';
+					if($type == 'mo') $ntype=($posttype == 1 ? 'apr' : 'apt');
+					elseif($type == 'ho') $ntype=($posttype == 1 ? 'hor' : 'hot');
+					elseif($type == 'hd') $ntype=($posttype == 1 ? 'hir' : 'hit');
+					elseif($type == 'vs') $ntype=($posttype == 1 ? 'shr' : 'sht');
+					elseif($type == 'lk'&&$posttype == 0) $ntype='lot';
+					elseif($type == 'op'&&$posttype == 0) $ntype='opt';
 					else $ntype='';
 					if(!empty($ntype)){
-						if($posttype==1) $DFOutput->setNotification($ntype,$other[0],$id,$other[1]);
+						if($posttype == 1) $DFOutput->setNotification($ntype,$other[0],$id,$other[1]);
 						else $DFOutput->setNotification($ntype,$other[0],0,$id);
 					}
 				}
@@ -106,7 +106,7 @@ if(_df_script=='topics'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 		}
 	}
 }
-if(method=='hidepost'&&ulv>1&&!$is_moderator){
+if(method == 'hidepost'&&ulv > 1&&!$is_moderator){
 	$sql=$mysql->query("SELECT p.id,p.author,p.topicid
 	FROM ".prefix."post AS p 
 	LEFT JOIN ".prefix."topic AS t ON(t.id = p.topicid)

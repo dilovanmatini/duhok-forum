@@ -79,32 +79,32 @@ if(type == ""){
 	$rs=$mysql->fetchAssoc($sql);
 	$u=(int)$rs['id'];
 	$hideusersprofile=$mysql->get("userperm","hideusersprofile",uid);
-	if($u==0){
+	if($u == 0){
 		unset($rs);
 		$Template->errMsg("لم يتم العثو على أي عضوية.");
 		exit();
 	}
-	elseif(ulv==0){
+	elseif(ulv == 0){
 		unset($rs);
 		$Template->errMsg("لا يمكنك مشاهدة بيانات العضويات لأن انت ليس مسجل عندنا<br>لتسجيل في منتديات <a href=\"register.php\">انقر هنا</a>");
 		exit();
 	}
-	elseif($rs['status']==0&&ulv<2){
+	elseif($rs['status'] == 0&&ulv < 2){
 		unset($rs);
 		$Template->errMsg("لا يمكنك مشاهدة هذه العضوية<br>بسبب ان هذه العضوية هي مقفولة من قبل الإدارة.");
 		exit();
 	}
-	elseif($rs['status']>1&&ulv!=4){
+	elseif($rs['status']>1&&ulv != 4){
 		unset($rs);
 		$Template->errMsg("لا يمكنك مشاهدة هذه العضوية<br>بسبب لم يتم موافقة عليها من قبل الإدارة.");
 		exit();
 	}
-	elseif($rs['hideselfprofile']==1&&$u!=uid&&ulv<2){
+	elseif($rs['hideselfprofile'] == 1&&$u!=uid&&ulv < 2){
 		unset($rs);
 		$Template->errMsg("لا يمكنك مشاهدة هذه العضوية<br>بسبب إخفاء بيانات هذه العضوية لأعضاء الآخرين من قبل الإدارة.");
 		exit();
 	}
-	elseif($hideusersprofile==1&&$u!=uid&&ulv<2){
+	elseif($hideusersprofile == 1&&$u!=uid&&ulv < 2){
 		unset($rs);
 		$Template->errMsg("لا يمكنك مشاهدة هذه العضوية<br>بسبب تم منعك من مشاهدة بيانات الأعضاء من قبل الإدارة.");
 		exit();
@@ -113,16 +113,16 @@ if(type == ""){
 		$mysql->update("userflag SET views = views + 1 WHERE id = '$u'", __FILE__, __LINE__);
 	}
 
-	if($rs['status']==0){
+	if($rs['status'] == 0){
 		$profileStatus="العضوية مقفولة";
 	}
-	elseif($rs['status']==2){
+	elseif($rs['status'] == 2){
 		$profileStatus="لم يتم الموافقة على العضوية حتى الآن";
 	}
-	elseif($rs['status']==3){
+	elseif($rs['status'] == 3){
 		$profileStatus="تم رفض هذه العضوية من قبل الإدارة";
 	}
-	$canViewLastVisit=($rs['hidebrowse']==0&&$rs['level']<2||$rs['level']<3&&ulv>1||$rs['level']==3&&$u==uid||ulv==4 ? true : false);
+	$canViewLastVisit=($rs['hidebrowse'] == 0&&$rs['level']<2||$rs['level']<3&&ulv > 1||$rs['level'] == 3&&$u == uid||ulv == 4 ? true : false);
 	if($canViewLastVisit){
 		$sql=$mysql->query("SELECT COUNT(ip) FROM ".prefix."useronline WHERE userid = {$u}", __FILE__, __LINE__);
 		$count=$mysql->fetchRow($sql);
@@ -143,7 +143,7 @@ if(type == ""){
 	}
 	</script>
 	<?php
-	if($rs['hideselfprofile']==1){
+	if($rs['hideselfprofile'] == 1){
 		echo"
 		<table width=\"100%\" cellSpacing=\"2\" cellPadding=\"4\">
 			<tr>
@@ -166,8 +166,8 @@ if(type == ""){
 					<td class=\"asFixedB asP4 asCenter\"><img src=\"{$DFPhotos->getsrc($rs['picture'], 200)}\"{$DF->picError(100)} width=\"100\" height=\"100\" class=\"asBBlack\"></td>
 					<td class=\"asFixedB asP0\" rowspan=\"2\">
 					<table width=\"100%\" cellpadding=\"3\" cellspacing=\"0\" border=\"0\">";
-					if($rs['receivepm']==1||ulv>1){
-						$msgUrl=($rs['level']==4 ? "profile.php?type=sendadmin" : "editor.php?type=sendpm");
+					if($rs['receivepm'] == 1||ulv > 1){
+						$msgUrl=($rs['level'] == 4 ? "profile.php?type=sendadmin" : "editor.php?type=sendpm");
 						echo"
 						<tr>
 							<td class=\"asNormalB asLeftBorder asBottomBorder asCenter\" style=\"padding-top:1px\"><img src=\"images/icons/sendmsg.gif\" border=\"0\"></td>
@@ -203,9 +203,9 @@ if(type == ""){
 							<td class=\"asNormalB asLeftBorder asBottomBorder asCenter\" style=\"padding-top:0px\" width=\"5%\"><img src=\"styles/folders/folder.png\" border=\"0\"></td>
 							<td class=\"asNormalB asBottomBorder asAS12\"><a href=\"yourtopics.php?auth={$u}\"><nobr>مواضيع العضو</nobr></a></td>
 						</tr>";
-					if(ulv>2&&$rs['level']==2){
+					if(ulv > 2&&$rs['level'] == 2){
 					$mod_bloc=$mysql->get("moderator","block",$u,"userid");
-					if($mod_bloc==0){
+					if($mod_bloc == 0){
 					echo"
 						<tr>
 							<td class=\"asNormalB asLeftBorder asBottomBorder asCenter\" style=\"padding-top:0px\"><img src=\"images/icons/remove.png\" border=\"0\"></td>
@@ -220,7 +220,7 @@ if(type == ""){
 					}
 					}
 				
-					if(ulv>1){
+					if(ulv > 1){
 						echo"
 						<tr>
 							<td class=\"asNormalB asLeftBorder asBottomBorder asCenter\" style=\"padding-top:0px\" width=\"5%\"><img src=\"images/icons/sitting.gif\" border=\"0\"></td>
@@ -286,8 +286,8 @@ if(type == ""){
 				$m=(int)$ex[1];
 				$m=$Template->monthName["{$m}"];
 				$d=(int)$ex[2];
-				if($rs['showbirthday']==2||ulv>$rs['level']) $birthday="{$d} {$m} {$y}";
-				elseif($rs['showbirthday']==1) $birthday="{$d} {$m}";
+				if($rs['showbirthday'] == 2||ulv>$rs['level']) $birthday="{$d} {$m} {$y}";
+				elseif($rs['showbirthday'] == 1) $birthday="{$d} {$m}";
 				else $birthday="";
 				echo"
 				<tr>
@@ -355,7 +355,7 @@ if(type == ""){
 					<td class=\"asFixedB asS12\" width=\"1%\"><nobr>تاريخ التسجيل</nobr></td>
 					<td class=\"asNormalB asDate asS12\">{$DF->date($rs['date'])}</td>
 				</tr>";
-			if($rs['level']<3||ulv==4){
+			if($rs['level']<3||ulv == 4){
 				echo"
 				<tr>
 					<td class=\"asFixedB asS12\"><nobr>آخر مشاركة</nobr></td>
@@ -443,7 +443,7 @@ if(type == ""){
 				</tr>";
 				$count++;
 			}
-			if($count==0){
+			if($count == 0){
 				echo"
 				<tr>
 					<td class=\"asNormalB asCenter asS12\" colspan=\"2\">لا توجد أي مواضيع للعضوية</td>
@@ -467,7 +467,7 @@ if(type == ""){
 				</tr>";
 				$count++;
 			}
-			if($count==0){
+			if($count == 0){
 				echo"
 				<tr>
 					<td class=\"asNormalB asCenter asS12\" colspan=\"2\">لا توجد أية مشاركات للعضوية</td>
@@ -513,7 +513,7 @@ if(type == ""){
 				<tr>
 					<td class=\"asHeader\" colspan=\"3\">التوقيع</td>
 				</tr>";
-			if($rs['hidesignature']==1){
+			if($rs['hidesignature'] == 1){
 				echo"
 				<tr>
 					<td class=\"asErrorB\" colspan=\"3\">** تم إخفاء توقيع هذه العضوية بواسطة الإدارة **</td>
@@ -522,7 +522,7 @@ if(type == ""){
 				echo"
 				<tr>
 					<td class=\"asNormalB asCenter\" colspan=\"3\">";
-					if($rs['hidesignature']==0||$u==uid||ulv>1) echo $rs['signature'];
+					if($rs['hidesignature'] == 0||$u == uid||ulv > 1) echo $rs['signature'];
 					echo"
 					</td>
 				</tr>
@@ -534,8 +534,8 @@ if(type == ""){
 	</table>";
 	unset($rs);
 }
-elseif(type=="details"){
-	if(ulv==0){
+elseif(type == "details"){
+	if(ulv == 0){
 		$DF->goTo();
 		exit();
 	}
@@ -604,14 +604,14 @@ elseif(type=="details"){
 			'disc'=>'لتقديم طلب تغيير اسم العضوية الخاصة بك الى اسم آخر'
 		),
 		array(
-			'status'=>(ulv>1),
+			'status'=>(ulv > 1),
 			'url'=>'profile.php?type=loginbar',
 			'iconname'=>'loginbar',
 			'subject'=>'تفاصيل الاتصال لعضويتك',
 			'disc'=>'لمعرفة جميع معلومات عن إتصال او دخول لعضويتك'
 		),
 		array(
-			'status'=>(ulv>1),
+			'status'=>(ulv > 1),
 			'url'=>'profile.php?type=trylogin',
 			'iconname'=>'trylogin',
 			'subject'=>'محاولات الدخول لعضويتك',
@@ -649,7 +649,7 @@ elseif(type=="details"){
 				</table>
 				</td>";
 				$count++;
-				if($count==4){
+				if($count == 4){
 					echo"
 					</tr><tr>";
 					$count=0;
@@ -849,7 +849,7 @@ elseif(type == 'editpicture' && ulv > 0){
 		</tr>
 	</table>";
 }
-elseif(type=='editpass'&&ulv>0){
+elseif(type == 'editpass'&&ulv > 0){
 	$rs=$mysql->queryRow("SELECT uf.email,u.password,u.code,u.entername
 	FROM ".prefix."user AS u
 	LEFT JOIN ".prefix."userflag AS uf ON(u.id = uf.id)
@@ -860,14 +860,14 @@ elseif(type=='editpass'&&ulv>0){
 	var yourPass="<?=$rs[1]?>";
 	var yourCode="<?=$rs[2]?>";
 	DF.chkSubmitPass=function(frm){
-		if(frm.proEmail.value.length==0){
+		if(frm.proEmail.value.length == 0){
 			alert("يجب عليك ان تكتب عنوان بريد الالكتروني");
 		}
 		else if(!this.checkEmail(frm.proEmail.value)){
 			alert("عنوان بريد الالكتروني الذي دخلت هو خاطيء");
 		}
-		<?php if(ulv==4){ ?>
-		else if(frm.proEnterName.value.length==0){
+		<?php if(ulv == 4){ ?>
+		else if(frm.proEnterName.value.length == 0){
 			alert("يجب عليك ان تكتب اسم دخولك في منتديات");
 		}
 		else if(frm.proEnterName.value.length<3){
@@ -882,7 +882,7 @@ elseif(type=='editpass'&&ulv>0){
 			if(oldPass!=yourPass){
 				alert("كلمة السرية الذي دخلت غير مطابق لكلمة السرية الاصلية لك");
 			}
-			else if(frm.proNewPass1.value.length==0){
+			else if(frm.proNewPass1.value.length == 0){
 				alert("يجب عليك ان تكتب كلمة السرية الجديدة");
 			}
 			else if(frm.proNewPass1.value.length<6){
@@ -891,7 +891,7 @@ elseif(type=='editpass'&&ulv>0){
 			else if(frm.proNewPass1.value.length>24){
 				alert("لا يمكنك كتابة كلمة السرية اكثر من 24 حرف");
 			}
-			else if(frm.proNewPass2.value.length==0){
+			else if(frm.proNewPass2.value.length == 0){
 				alert("يجب عليك ان تكتب تأكيد كلمة السرية");
 			}
 			else if(frm.proNewPass1.value!=frm.proNewPass2.value){
@@ -916,7 +916,7 @@ elseif(type=='editpass'&&ulv>0){
 		<tr>
 			<td class=\"asDarkB\" colspan=\"2\">الرجاء منك تحديث بياناتك من وقت لآخر</td>
 		</tr>";
-	if(ulv==4){
+	if(ulv == 4){
 		echo"
 		<tr>
 			<td class=\"asFixedB\" id=\"cellProEnterName\"><nobr>اسم دخولك الى المنتديات</nobr></td>
@@ -946,7 +946,7 @@ elseif(type=='editpass'&&ulv>0){
 	</form>
 	</table>";
 }
-elseif(type=='updatepass'&&ulv>0){
+elseif(type == 'updatepass'&&ulv > 0){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في تعديل كلمة مرور والبريد الالكتروني");
 	$setSql=array();
 	$proEmail=$DF->cleanText($_POST['proEmail']);
@@ -961,13 +961,13 @@ elseif(type=='updatepass'&&ulv>0){
 	elseif(!preg_match("/^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/",$proEmail)){
 		$errMsg="عنوان بريد الالكتروني الذي دخلت هو خاطيء";
 	}
-	elseif(ulv==4&&empty($proEnterName)){
+	elseif(ulv == 4&&empty($proEnterName)){
 		$errMsg="يجب عليك ان تكتب اسم دخولك في منتديات";
 	}
-	elseif(ulv==4&&strlen($proEnterName)<3){
+	elseif(ulv == 4&&strlen($proEnterName)<3){
 		$errMsg="لا يمكنك بكتابة اسم اقل من ثلاثة حروف";
 	}
-	elseif(ulv==4&&strlen($proEnterName)>30){
+	elseif(ulv == 4&&strlen($proEnterName)>30){
 		$errMsg="لا يمكنك بكتابة اسم اكبر من 30 حروف";
 	}
 	elseif(!empty($proOldPass)){
@@ -1001,13 +1001,13 @@ elseif(type=='updatepass'&&ulv>0){
 			$newPass=md5("{$rs[1]}{$proNewPass1}");
 			$setSql[]="password = '{$newPass}'";
 		}
-		if(ulv==4) $setSql[]="entername = '{$proEnterName}'";
+		if(ulv == 4) $setSql[]="entername = '{$proEnterName}'";
 		if(count($setSql)>0) $mysql->update("user SET ".implode(",",$setSql)." WHERE id = ".uid."", __FILE__, __LINE__);
 		$mysql->update("userflag SET email = '{$proEmail}' WHERE id = ".uid."", __FILE__, __LINE__);
 		$Template->msg("تم حفظ التغيرات بنجاح");	
 	}
 }
-elseif(type=='editdetails'&&ulv>0){
+elseif(type == 'editdetails'&&ulv > 0){
 	$rs=$mysql->queryAssoc("SELECT uf.city,uf.state,uf.country,uf.occupation,uf.marstatus,uf.brithday,uf.sex,
 		up.receivepm,up.hidebrowse,uf.title,uf.biography,up.allowfriendship,up.showbirthday,up.showfriends
 	FROM ".prefix."userflag AS uf
@@ -1038,7 +1038,7 @@ elseif(type=='editdetails'&&ulv>0){
 			require_once _df_path."countries.php";
 			foreach($country as $code=>$val){
 				$countries["{$code}"]=$val['name'];
-				if($defCountry==$code) $cites=$val['city'];
+				if($defCountry == $code) $cites=$val['city'];
 			}
 			$Template->selectMenu(array(
 				'name'=>'proCountry',
@@ -1196,7 +1196,7 @@ elseif(type=='editdetails'&&ulv>0){
 			<td class=\"asFixedB\"><nobr>المهنة</nobr></td>
 			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:350px\" name=\"proOccupation\" value=\"{$rs['occupation']}\"></td>
 		</tr>";
-	if(ulv>1){
+	if(ulv > 1){
 		echo"
 		<tr>
 			<td class=\"asFixedB\"><nobr>وصفك</nobr></td>
@@ -1214,7 +1214,7 @@ elseif(type=='editdetails'&&ulv>0){
 	</form>
 	</table>";
 }
-elseif(type=='updatedetails'&&ulv>0){
+elseif(type == 'updatedetails'&&ulv > 0){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في تعديل خيارات العضوية");
 	$proCountry=$DF->cleanText($_POST['proCountry']);
 	$proReceivePM=(int)$_POST['proReceivePM'];
@@ -1241,7 +1241,7 @@ elseif(type=='updatedetails'&&ulv>0){
 	$ufArr[]="marstatus = '{$proMarstatus}'";
 	$ufArr[]="sex = {$proSex}";
 	$ufArr[]="occupation = '{$proOccupation}'";
-	if(ulv>1) $ufArr[]="title = '{$proTitle}'";
+	if(ulv > 1) $ufArr[]="title = '{$proTitle}'";
 	$ufArr[]="biography = '{$proBiography}'";
 	$mysql->update("userflag SET ".implode(",",$ufArr)." WHERE id = ".uid."", __FILE__, __LINE__);
 	$upArr=array();
@@ -1253,14 +1253,14 @@ elseif(type=='updatedetails'&&ulv>0){
 	$mysql->update("userperm SET ".implode(",",$upArr)." WHERE id = ".uid."", __FILE__, __LINE__);
 	$Template->msg("تم حفظ التغيرات بنجاح");
 }
-elseif(type=='changename'&&ulv>0){
+elseif(type == 'changename'&&ulv > 0){
 	$rs=$mysql->queryAssoc("SELECT u.name,up.changename,COUNT(ch.id) AS chCount,ch.status,ch.date
 	FROM ".prefix."user AS u
 	LEFT JOIN ".prefix."userperm AS up ON(u.id = up.id)
 	LEFT JOIN ".prefix."changename AS ch ON(u.id = ch.userid AND ch.status = 1)
 	WHERE u.id = '".uid."' GROUP BY u.id ORDER BY ch.date DESC LIMIT 1", __FILE__, __LINE__);
 	
-	if($rs['changename']==0){
+	if($rs['changename'] == 0){
 		$Template->errMsg("تم منعك من تغير اسم العضوية بواسطة الإدارة");
 	}
 	
@@ -1316,7 +1316,7 @@ elseif(type=='changename'&&ulv>0){
 		else if(unApproved>0){
 			this.getMsg("لا يمكنك التغيير اسم عضويتك<br>لأن آخر طلب تغيير اسم عضويتك مازال تحت الانتظار القبول من طرف الادارة");
 		}
-		else if(frm.proName.value.length==0){
+		else if(frm.proName.value.length == 0){
 			this.getMsg("يجب عليك أن تكتب اسم العضوية.");
 		}
 		else if(frm.proName.value.length<3){
@@ -1325,13 +1325,13 @@ elseif(type=='changename'&&ulv>0){
 		else if(frm.proName.value.length>30){
 			this.getMsg("يجب أن يكون الإسم لا أكثر من 30 حرفاً.");
 		}
-		else if(frm.proName.value==parseInt(frm.proName.value)){
+		else if(frm.proName.value == parseInt(frm.proName.value)){
 			this.getMsg("لا يمكن استخدام اسماء تحتوي على أرقام فقط.");
 		}
 		else if(this.checkSymbols(frm.proName.value)!=1){
 			this.getMsg("لا يمكن استخدام هذا الرمز "+this.checkSymbols(frm.proName.value)+" في اسم العضوية.");
 		}
-		else if(frm.proName.value==nowUserName){
+		else if(frm.proName.value == nowUserName){
 			this.getMsg("اسم الذي اخترت هو نفس الأسم الحالي لك<br>مرجو أن تختار اسم آخر.");
 		}
 		else{
@@ -1379,26 +1379,26 @@ elseif(type=='changename'&&ulv>0){
 	$sql=$mysql->query("SELECT * FROM ".prefix."changename WHERE userid = '".uid."' ORDER BY date ASC", __FILE__, __LINE__);
 	$reqCount=0;
 	while($rs=$mysql->fetchAssoc($sql)){
-		if($rs['status']==1){
+		if($rs['status'] == 1){
 			$reqCount++;
 			$number=$reqCount;
 		}
 		else{
 			$number='-';
 		}
-		if($rs['status']==0){
+		if($rs['status'] == 0){
 			$status="<font color=\"#ff9900\">تتنظر الموافقة</font>";
 		}
-		elseif($rs['status']==1){
+		elseif($rs['status'] == 1){
 			$status="<font color=\"#009933\">تمت موافقة عليها</font>";
 		}
-		elseif($rs['status']==2){
+		elseif($rs['status'] == 2){
 			$status="<font color=\"#ff3300\">تم رفض الطلب</font>";
 		}
-		elseif($rs['status']==3){
+		elseif($rs['status'] == 3){
 			$status="تم إلغاء الطلب";
 		}
-		$options=($rs['status']==0?"<a href=\"profile.php?type=deletereqchangename&id={$rs['id']}\"><img src=\"{$DFImage->i['delete']}\" alt=\"انقر هنا لإلغاء هذا الطلب\" border=\"0\"></a>":"-");
+		$options=($rs['status'] == 0?"<a href=\"profile.php?type=deletereqchangename&id={$rs['id']}\"><img src=\"{$DFImage->i['delete']}\" alt=\"انقر هنا لإلغاء هذا الطلب\" border=\"0\"></a>":"-");
 		$jsContent.="{number:\"$number\",newname:\"{$rs['newname']}\",oldname:\"{$rs['oldname']}\",status:\"".addslashes($status)."\",date:\"".addslashes($DF->date($rs['date']))."\",options:\"".addslashes($options)."\"},\n\t\t";
 	}
 ?>
@@ -1447,7 +1447,7 @@ YAHOO.util.Event.addListener(window,"load",function(){
 	<div class=\"asCenter asC1\">عدد مرات تغيير اسم عضويتك حتى الآن: <span class=\"asC2\">$countChangeName</span><br>
 	عدد مرات المسموح لك بتغيير اسم عضويتك: <span class=\"asC2\">$maxChangeName</span></div><br><br>";
 }
-elseif(type=='deletereqchangename'){
+elseif(type == 'deletereqchangename'){
 	$sql=$mysql->query("SELECT status,userid FROM ".prefix."changename WHERE id = '".id."'", __FILE__, __LINE__);
 	$rs=$mysql->fetchRow($sql);
 	if($rs[1]!=uid||$rs[0]!=0){
@@ -1457,8 +1457,8 @@ elseif(type=='deletereqchangename'){
 	$mysql->update("changename SET status = 3 WHERE id = '".id."'", __FILE__, __LINE__);
 	$Template->msg("تم إلغاء طلب تغير اسم العضوية بنجاح");
 }
-elseif(type=='insertchangename'){
-	if(ulv==0||uid!=u){
+elseif(type == 'insertchangename'){
+	if(ulv == 0||uid!=u){
 		$DF->goTo();
 		exit();
 	}
@@ -1564,7 +1564,7 @@ elseif(type == 'loginbar'){
 	</table>{$paging}
 	</center><br>";
 }
-elseif(type=='trylogin'){
+elseif(type == 'trylogin'){
 	if(ulv < 2){
 		$DF->goTo();
 		exit();
@@ -1631,7 +1631,7 @@ elseif(type=='trylogin'){
 	</table>{$paging}
 	</center><br>";
 }
-elseif(type=='loginsessions' && ulv > 0){
+elseif(type == 'loginsessions' && ulv > 0){
 	@require_once('countries.php');
 	
 	function browser_details($useragent){
@@ -1757,9 +1757,9 @@ elseif(type=='loginsessions' && ulv > 0){
 		<tr>
 			<td class=\"asTopHeader asCenter\" colspan=\"6\">
 			<ul class=\"svcbar asAS12\">
-				<li".($session_type=='active'?' class="selected"':'')."><a href=\"profile.php?type=loginsessions&sesstype=active{$user_url}\"><em>جلسات نشطة</em></a></li>
-				<li".($session_type=='logout'?' class="selected"':'')."><a href=\"profile.php?type=loginsessions&sesstype=logout{$user_url}\"><em>جلسات تمت  خروج منها</em></a></li>
-				<li".($session_type=='stopped'?' class="selected"':'')."><a href=\"profile.php?type=loginsessions&sesstype=stopped{$user_url}\"><em>جلسات تمت إيقافها</em></a></li>
+				<li".($session_type == 'active'?' class="selected"':'')."><a href=\"profile.php?type=loginsessions&sesstype=active{$user_url}\"><em>جلسات نشطة</em></a></li>
+				<li".($session_type == 'logout'?' class="selected"':'')."><a href=\"profile.php?type=loginsessions&sesstype=logout{$user_url}\"><em>جلسات تمت  خروج منها</em></a></li>
+				<li".($session_type == 'stopped'?' class="selected"':'')."><a href=\"profile.php?type=loginsessions&sesstype=stopped{$user_url}\"><em>جلسات تمت إيقافها</em></a></li>
 			</ul>
 			</td>
 		</tr>
@@ -1772,7 +1772,7 @@ elseif(type=='loginsessions' && ulv > 0){
 			<td class=\"asDarkB\">تاريخ إنشاء الجلسة</td>
 			<td class=\"asDarkB\">الدولة</td>
 			<td class=\"asDarkB\"><nobr>تفاصيل الجلسة</nobr></td>
-			<td class=\"asDarkB\">".($session_type=='active' ? 'الخيارات' : 'الحالة')."</td>
+			<td class=\"asDarkB\">".($session_type == 'active' ? 'الخيارات' : 'الحالة')."</td>
 		</tr>";
 	$current_hash = addslashes($_COOKIE['login_user_hash']);
 	$sql = $mysql->query("SELECT id, status, hash, ip, useragent, lastdate, date FROM ".prefix."loginsession WHERE userid = {$uid} AND status = {$sql_status} ORDER BY date DESC LIMIT {$DF->pgLimit(num_pages)},".num_pages, __FILE__, __LINE__);
@@ -1920,7 +1920,7 @@ elseif(type=='loginsessions' && ulv > 0){
 	</script>
 	<?php
 }
-elseif(type=='medals'&&ulv>0){
+elseif(type == 'medals'&&ulv > 0){
 	?>
 	<script type="text/javascript">
 	var link="profile.php?type=medals&";
@@ -1960,7 +1960,7 @@ elseif(type=='medals'&&ulv>0){
 			<td class=\"asDarkB\"><nobr>الشعار الممنوح</nobr></td>
 			<td class=\"asDarkB\"><nobr>مشاهدة<br>الصورة</nobr></td>
 			<td class=\"asDarkB\"><nobr>المنتدى</nobr></td>";
-		if(ulv>1){
+		if(ulv > 1){
 			echo"
 			<td class=\"asDarkB\"><nobr>منح الشعار</nobr></td>";
 		}
@@ -1990,7 +1990,7 @@ elseif(type=='medals'&&ulv>0){
 			<td class=\"asNormalB\"><nobr>{$rs['subject']}</nobr></td>
 			<td class=\"asNormalB asCenter\"><img src=\"{$DFImage->i['camera']}\" onclick=\"DF.doPreviewImage('{$DFPhotos->getsrc($rs['filename'])}');\" border=\"0\"></td>
 			<td class=\"asNormalB asAS12 asCenter\"><nobr>{$Template->forumLink($rs['forumid'],$rs['fsubject'])}</nobr></td>";
-		if(ulv>1){
+		if(ulv > 1){
 			echo"
 			<td class=\"asNormalB asAS12 asCenter\"><nobr>$added</nobr></td>";
 		}
@@ -2005,7 +2005,7 @@ elseif(type=='medals'&&ulv>0){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colSpan=\"7\"><br>لا توجد أي أوسمة لك<br><br></td>
@@ -2017,20 +2017,20 @@ elseif(type=='medals'&&ulv>0){
 		</tr>
 	</table>";
 }
-elseif(type=='hiddentopics'){
-	if(ulv==0){
+elseif(type == 'hiddentopics'){
+	if(ulv == 0){
 		$DF->goTo();
 		exit();
 	}
-	$uid=(auth>0&&ulv==4?auth:uid);
-	$ulv=($uid==uid ? ulv : $mysql->get("user","level",$uid));
+	$uid=(auth>0&&ulv == 4?auth:uid);
+	$ulv=($uid == uid ? ulv : $mysql->get("user","level",$uid));
 	echo"
 	<table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\">
 		<tr>
 			<td class=\"asTopHeader2\">
 			<table cellSpacing=\"3\" cellPadding=\"3\">
 				<tr>
-					<td class=\"asC1\" width=\"1200\">مواضيع مخفية ومفتوحة ".($uid==uid ? "لك" : "للعضو: <span class=\"asC2\">{$mysql->get("user","name",$uid)}</span>")."</td>";
+					<td class=\"asC1\" width=\"1200\">مواضيع مخفية ومفتوحة ".($uid == uid ? "لك" : "للعضو: <span class=\"asC2\">{$mysql->get("user","name",$uid)}</span>")."</td>";
 					$Template->refreshPage();
 					$Template->goToForum();
 				echo"
@@ -2054,7 +2054,7 @@ elseif(type=='hiddentopics'){
 					<td class=\"asDark\">الردود</td>
 					<td class=\"asDark\">قرأت</td>
 					<td class=\"asDark\" width=\"15%\">آخر رد</td>";
-				if(ulv>0){
+				if( ulv > 0 ){
 					echo"
 					<td class=\"asDark\" width=\"1%\">الخيارات</td>";
 				}
@@ -2078,7 +2078,7 @@ elseif(type=='hiddentopics'){
 	$checkSqlField="";
 	$checkSqlTable="";
 	$checkSqlWhere="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlWhere="AND (f.hidden = 0 AND '$ulv' >= f.level OR NOT ISNULL(fu.id) OR ($ulv > 1 AND NOT ISNULL(m.id)) OR ($ulv = 3 AND NOT ISNULL(c.id)))";
 		$checkSqlField="
 			,IF(ISNULL(m.id),0,1) AS ismod
@@ -2108,11 +2108,11 @@ elseif(type=='hiddentopics'){
 	WHERE tu.userid = {$uid} AND t.trash = 0 AND t.moderate = 0 {$checkSqlWhere} ORDER BY t.lpdate DESC", __FILE__, __LINE__);
 	$count=0;
 	while($rs=$mysql->fetchAssoc($sql)){
-		if($rs['ismon']==1){
+		if($rs['ismon'] == 1){
 			$is_moderator=true;
 			$is_monitor=true;
 		}
-		elseif($rs['ismod']==1){
+		elseif($rs['ismod'] == 1){
 			$is_moderator=true;
 		}
 		$topicFolder=explode("|",$rs['topicfolder']);
@@ -2139,11 +2139,11 @@ elseif(type=='hiddentopics'){
 			else{echo"&nbsp;";}
 			echo"</td>
 			<td class=\"asNormal asCenter\"><nobr>";
-			if($is_moderator||$rs['status']==1&&$rs['author']==$uid){
+			if($is_moderator||$rs['status'] == 1&&$rs['author'] == $uid){
 				echo"
 				<a href=\"editor.php?type=edittopic&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->f['edit']}\" alt=\"تعديل الموضوع\" hspace=\"2\" border=\"0\"></a>";
 			}
-			if($rs['status']==1||$is_moderator){
+			if($rs['status'] == 1||$is_moderator){
 				echo"
 				<a href=\"editor.php?type=newpost&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 			}
@@ -2152,7 +2152,7 @@ elseif(type=='hiddentopics'){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormal asCenter\" colspan=\"8\"><br>لا توجد أي موضوع مخفي ومفتوح لك<br><br></td>
@@ -2164,8 +2164,8 @@ elseif(type=='hiddentopics'){
 	</tr>
 	</table>";
 }
-elseif(type=='sendadmin'){
-	if(ulv==0){
+elseif(type == 'sendadmin'){
+	if(ulv == 0){
 		$DF->goTo();
 		exit();
 	}
@@ -2220,14 +2220,14 @@ elseif(type=='sendadmin'){
 		</tr>
 	</table>";
 }
-elseif(type=='activity'){
-	if(ulv==0){
+elseif(type == 'activity'){
+	if(ulv == 0){
 		$DF->goTo();
 		exit();
 	}
-	$uid=(auth>0&&ulv==4 ? auth : uid);
-	$ulv=($uid==uid ? ulv : $mysql->get("user","level",$uid));
-	$uname=($uid==uid ? uname : $mysql->get("user","name",$uid));
+	$uid=(auth>0&&ulv == 4 ? auth : uid);
+	$ulv=($uid == uid ? ulv : $mysql->get("user","level",$uid));
+	$uname=($uid == uid ? uname : $mysql->get("user","name",$uid));
 	echo"
 	<table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\">
 		<tr>
@@ -2235,7 +2235,7 @@ elseif(type=='activity'){
 			<table cellSpacing=\"3\" cellPadding=\"3\">
 				<tr>
 					<td><img src=\"{$DFImage->h['activity']}\" border=\"0\"></td>
-					<td class=\"asC1\" width=\"1200\">".($uid==uid ? "نشاطك في المنتدى" : "نشاط عضوية <span class=\"asC2\">{$uname}</span> في المنتدى")."</td>";
+					<td class=\"asC1\" width=\"1200\">".($uid == uid ? "نشاطك في المنتدى" : "نشاط عضوية <span class=\"asC2\">{$uname}</span> في المنتدى")."</td>";
 					$Template->goToForum();
 				echo"
 				</tr>
@@ -2243,7 +2243,7 @@ elseif(type=='activity'){
 			</td>
 		</tr>
 	</table><br>";
-	if($ulv<4){
+	if($ulv < 4){
 	// Do content
 	define('startYear',2011);
 	define('startMonth',1);
@@ -2257,14 +2257,14 @@ elseif(type=='activity'){
 	$xYear2=$thisYear;
 	$year=($DF->between(y,$xYear1,$xYear2) ? y : $thisYear);
 	// check month
-	if($scope=='monthly'){
-		$xMonth1=($year==startYear ? startMonth : 1);
-		$xMonth2=($year==$thisYear ? $thisMonth : 12);
+	if($scope == 'monthly'){
+		$xMonth1=($year == startYear ? startMonth : 1);
+		$xMonth2=($year == $thisYear ? $thisMonth : 12);
 		if($DF->between(m,$xMonth1,$xMonth2)){
 			$month=m;
 		}
 		else{
-			$month=($year==$thisYear ? $thisMonth : $xMonth1);
+			$month=($year == $thisYear ? $thisMonth : $xMonth1);
 		}
 	}
 	$linkArr=array(
@@ -2285,7 +2285,7 @@ elseif(type=='activity'){
 	};
 	</script>
 	<?php
-	if($scope=='yearly'){
+	if($scope == 'yearly'){
 		$scopeTitle="نشاط سنوي";
 	}
 	else{
@@ -2296,11 +2296,11 @@ elseif(type=='activity'){
 		<tr>
 			<td class=\"asBody2 asCenter\" colspan=\"5\">
 			<ul class=\"svcbar asAS12\">
-				<li".($scope=='monthly'?' class="selected"':'')."><a href=\"{$DF->checkLink('profile.php?type=activity',$linkArr,array('scope'=>'monthly','y'=>'','m'=>''))}\"><em>شهري</em></a></li>
-				<li".($scope=='yearly'?' class="selected"':'')."><a href=\"{$DF->checkLink('profile.php?type=activity',$linkArr,array('scope'=>'yearly','y'=>'','m'=>''))}\"><em>سنوي</em></a></li>
+				<li".($scope == 'monthly'?' class="selected"':'')."><a href=\"{$DF->checkLink('profile.php?type=activity',$linkArr,array('scope'=>'monthly','y'=>'','m'=>''))}\"><em>شهري</em></a></li>
+				<li".($scope == 'yearly'?' class="selected"':'')."><a href=\"{$DF->checkLink('profile.php?type=activity',$linkArr,array('scope'=>'yearly','y'=>'','m'=>''))}\"><em>سنوي</em></a></li>
 			</ul>
 			<ul class=\"svcbar asAS12\">";
-				if($scope=='monthly'){
+				if($scope == 'monthly'){
 					echo"
 					<li><em class=\"one\"><nobr>الشهر: 
 					<select class=\"asGoTo\" onChange=\"DF.goToLink(['m',this.options[this.selectedIndex].value])\">";
@@ -2328,14 +2328,14 @@ elseif(type=='activity'){
 		<tr>
 			<td class=\"asHeader\" colspan=\"5\">عدد نقاط - <span class=\"asC2\">$scopeTitle</span></td>
 		</tr>";
-	if($scope=='monthly'){
+	if($scope == 'monthly'){
 		$scopeName="هذا الشهر غير مكتمل";
 		$timeWF=mktime(0,0,0,$month,1,$year);
 		$timeWT=mktime(0,0,0,($month == 12 ? 1 : ($month+1)),1,$year)-1;
 		$dateWF=explode("-",date("Y-m-d-w",$timeWF));
 		$dateWT=explode("-",date("Y-m-d-w",$timeWT));
 	}
-	elseif($scope=='yearly'){
+	elseif($scope == 'yearly'){
 		$scopeName="هذه السنة غير مكتملة";
 		$timeWF=mktime(0,0,0,1,1,$year);
 		$timeWT=mktime(0,0,0,1,1,$year+1)-1;

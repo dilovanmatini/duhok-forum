@@ -19,7 +19,7 @@ require_once _df_path."globals.php";
 
 $Template->header();
 
-if( type=='userdetails' && $DF->getCookie('importantData') != 1 && ulv > 0 ){
+if( type == 'userdetails' && $DF->getCookie('importantData') != 1 && ulv > 0 ){
 	$country = [];
 	require('countries.php');
 	$cCode = array_keys($country);
@@ -161,7 +161,7 @@ if( type=='userdetails' && $DF->getCookie('importantData') != 1 && ulv > 0 ){
 	</form>
 	</table><br>";
 }
-elseif(type=='updateuserdetails'&&$DF->getCookie('importantData')!=1&&ulv>0){
+elseif(type == 'updateuserdetails'&&$DF->getCookie('importantData')!=1&&ulv > 0){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في املاء بيانات الضرورية");
 	$userCountry=$DF->cleanText($_POST['userCountry']);
 	$userDay=(int)$_POST['userBirthdayDay'];
@@ -181,7 +181,7 @@ elseif(type=='updateuserdetails'&&$DF->getCookie('importantData')!=1&&ulv>0){
 	elseif(isset($_POST['userBirthdayYear'])&&($userYear<=$fY||$userYear>$lY)){
 		$Template->errMsg("نرجوا أن تختار تاريخ ولادتك الصحيحة.");
 	}
-	elseif(isset($_POST['userSex'])&&$userSex==0){
+	elseif(isset($_POST['userSex'])&&$userSex == 0){
 		$Template->errMsg("يجب ان تختار الجنس");
 	}
 	else{

@@ -11,7 +11,7 @@
  * 
  */
 
-if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
+if(_df_script == 'forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 	$id=trim($_POST['id']);
 	$type=trim($_POST['type']);
 	$other = trim($_POST['other']);
@@ -21,7 +21,7 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 		$DF->setCookie('checkForumOperations',$checkForumOpsString);
 		$AllowForumId=implode(",",$DF->getAllowForumId(true));
 		$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في خيارات مشرفين بداخل المنتدى");
-		if($type=='mo'){
+		if($type == 'mo'){
 			$DFOutput->setModActivity('allow',f,true);
 		}
 		$opType=array(
@@ -55,7 +55,7 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 			'ar'=>array('field'=>'archive','value'=>'1','type'=>''),
 			'ua'=>array('field'=>'archive','value'=>'0','type'=>'')
 		);
-		if($cmd==1){
+		if($cmd == 1){
 			$id = explode(",", $id);
 			$newid = array();
 			for($x = 0; $x < count($id); $x++){
@@ -63,23 +63,23 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 			}
 			$id = implode(",", $newid);
 			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'&&$type!='ar'&&$type!='ur'||$is_monitor)){
-				if($type=='mv'){
+				if($type == 'mv'){
 					$mysql->update("topic SET sticky = 0 WHERE id IN({$id}) AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				}
 				else{
 					$mysql->update("topic SET {$oprs['field']} = '{$oprs['value']}' WHERE id IN({$id}) AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
 				}
-				if($type=='mo') $ntype='apt';
-				elseif($type=='ho') $ntype='hot';
-				elseif($type=='hd') $ntype='hit';
-				elseif($type=='vs') $ntype='sht';
-				elseif($type=='lk') $ntype='lot';
-				elseif($type=='op') $ntype='opt';
-				elseif($type=='st') $ntype='stt';
-				elseif($type=='us') $ntype='ust';
-				elseif($type=='t1') $ntype='srt';
-				elseif($type=='t2') $ntype='met';
-				elseif($type=='mv') $ntype='mot';
+				if($type == 'mo') $ntype='apt';
+				elseif($type == 'ho') $ntype='hot';
+				elseif($type == 'hd') $ntype='hit';
+				elseif($type == 'vs') $ntype='sht';
+				elseif($type == 'lk') $ntype='lot';
+				elseif($type == 'op') $ntype='opt';
+				elseif($type == 'st') $ntype='stt';
+				elseif($type == 'us') $ntype='ust';
+				elseif($type == 't1') $ntype='srt';
+				elseif($type == 't2') $ntype='met';
+				elseif($type == 'mv') $ntype='mot';
 				else $ntype='';
 				if(!empty($ntype)){
 					$other = explode("|", $other);
@@ -104,7 +104,7 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 						if(!empty($ntype)) $DFOutput->setNotification($ntype,$topics[$tid],0,$tid);
 					}
 				}
-				if($type=='mv'){
+				if($type == 'mv'){
 					if(($fid=(int)$_POST['definedForumList'])>0){
 						$cid=$mysql->get("forum","catid",$fid);
 						$sql=$mysql->query("SELECT SUM(posts) FROM ".prefix."topic WHERE id IN({$id})", __FILE__, __LINE__);
@@ -124,7 +124,7 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 				$DF->quick(self);
 			}
 		}
-		elseif($cmd==2){
+		elseif($cmd == 2){
 			$id = intval($id);
 			if(is_array($oprs=$opType[$type])&&($type!='dl'&&$type!='re'||$is_monitor)){
 				if($type!='mv'){
@@ -135,14 +135,14 @@ if(_df_script=='forums'&&is_object($mysql)&&is_object($DF)&&$is_moderator){
 					if(!is_array($operations)) $operations=array();
 					$operations[]=time."::{$oprs['type']}::{$oprs['value']}::".uid."::".uname;
 					$mysql->update("topicmessage SET operations = '".serialize($operations)."' WHERE id = '{$id}' AND (".ulv." = 4 OR forumid IN ({$AllowForumId}))", __FILE__, __LINE__);
-					if($type=='mo') $ntype='apt';
-					elseif($type=='ho') $ntype='hot';
-					elseif($type=='hd') $ntype='hit';
-					elseif($type=='vs') $ntype='sht';
-					elseif($type=='lk') $ntype='lot';
-					elseif($type=='op') $ntype='opt';
-					elseif($type=='st') $ntype='stt';
-					elseif($type=='us') $ntype='ust';
+					if($type == 'mo') $ntype='apt';
+					elseif($type == 'ho') $ntype='hot';
+					elseif($type == 'hd') $ntype='hit';
+					elseif($type == 'vs') $ntype='sht';
+					elseif($type == 'lk') $ntype='lot';
+					elseif($type == 'op') $ntype='opt';
+					elseif($type == 'st') $ntype='stt';
+					elseif($type == 'us') $ntype='ust';
 					else $ntype='';
 					$author=(int)$other;
 					if(!empty($ntype)&&$author>0) $DFOutput->setNotification($ntype,$author,0,$id);

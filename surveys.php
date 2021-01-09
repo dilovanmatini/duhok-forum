@@ -11,7 +11,7 @@
  * 
  */
 
-if(_df_script=='svc'&&this_svc=='surveys'&&ulv>1){
+if(_df_script == 'svc'&&this_svc == 'surveys'&&ulv > 1){
 // ************ start page ****************
 
 $secretType=array(
@@ -19,13 +19,13 @@ $secretType=array(
 	1=>'سري'
 );
 
-if(type==''){
-	$thisLink="svc.php?svc=surveys".(app==''?'':'&app='.app)."&";
+if(type == ''){
+	$thisLink="svc.php?svc=surveys".(app == ''?'':'&app='.app)."&";
 	$app=(app!=''?app:'all');
-	if($app=='open'){
+	if($app == 'open'){
 		$appTitle="استفتاءات مفتوحة";
 	}
-	elseif($app=='close'){
+	elseif($app == 'close'){
 		$appTitle="استفتاءات مغلقة";
 	}
 	else{
@@ -40,9 +40,9 @@ if(type==''){
 		<li class=\"selected\"><a href=\"svc.php?svc=surveys&type=add\"><em>أضف إستفتاء جديد</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($app=='open'?' class="selected"':'')."><a href=\"svc.php?svc=surveys&app=open\"><em>استفتاءات مفتوحة</em></a></li>
-		<li".($app=='close'?' class="selected"':'')."><a href=\"svc.php?svc=surveys&app=close\"><em>استفتاءات مغلقة</em></a></li>
-		<li".($app=='all'?' class="selected"':'')."><a href=\"svc.php?svc=surveys&app=all\"><em>جميع استفتاءات</em></a></li>
+		<li".($app == 'open'?' class="selected"':'')."><a href=\"svc.php?svc=surveys&app=open\"><em>استفتاءات مفتوحة</em></a></li>
+		<li".($app == 'close'?' class="selected"':'')."><a href=\"svc.php?svc=surveys&app=close\"><em>استفتاءات مغلقة</em></a></li>
+		<li".($app == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=surveys&app=all\"><em>جميع استفتاءات</em></a></li>
 	</ul>
 	</tr>
 	<form method=\"post\" action=\"svc.php?svc=medals&type=appdistribute\">
@@ -87,7 +87,7 @@ if(type==''){
 			<td class=\"asNormalB asS12 asCenter\"><nobr>{$rs['days']}</nobr></td>
 			<td class=\"asNormalB asAS12 asCenter\"><nobr>$added</nobr></td>
 			<td class=\"asNormalB asCenter\"><nobr>";
-			if($rs['secret']==0){
+			if($rs['secret'] == 0){
 				echo"
 				<a href=\"svc.php?svc=surveys&type=secret&id={$rs['id']}\" {$DF->confirm('هل أنت متأكد بأن تريد تغير وضعية هذا الاستفتاء من غير سري الى سري ؟')}><img src=\"{$DFImage->i['hidden']}\" alt=\"جعل هذا الاستفتاء سري\" hspace=\"2\" border=\"0\"></a>";
 			}
@@ -95,7 +95,7 @@ if(type==''){
 				echo"
 				<a href=\"svc.php?svc=surveys&type=unsecret&id={$rs['id']}\" {$DF->confirm('هل أنت متأكد بأن تريد تغير وضعية هذا الاستفتاء من سري الى غير سري ؟')}><img src=\"{$DFImage->i['visible']}\" alt=\"جعل هذا الاستفتاء غير سري\" hspace=\"2\" border=\"0\"></a>";
 			}
-			if($rs['status']==1){
+			if($rs['status'] == 1){
 				echo"
 				<a href=\"svc.php?svc=surveys&type=lock&id={$rs['id']}\" {$DF->confirm('هل أنت متأكد بأن تريد قفل هذا الاستفتاء ؟')}><img src=\"{$DFImage->i['lock']}\" alt=\"قفل استفتاء\" hspace=\"2\" border=\"0\"></a>";
 			}
@@ -110,7 +110,7 @@ if(type==''){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"11\"><br>-- لا توجد أيه إستفتاءات بهذه المواصفات --<br><br></td>
@@ -121,7 +121,7 @@ if(type==''){
 	</table>
 	</center><br>";
 }
-elseif(type=='add'){
+elseif(type == 'add'){
 	?>
 	<script type="text/javascript">
 	DF.checkSubmit=function(frm){
@@ -130,7 +130,7 @@ elseif(type=='add'){
 			confirm("يجب إدخال سؤال للإستفتاء وأن يكون أطول من 10 أحرف.");
 			return;
 		}
-		else if(frm.forumid.options[frm.forumid.selectedIndex].value==0){
+		else if(frm.forumid.options[frm.forumid.selectedIndex].value == 0){
 			confirm("يجب عليك أن تختار منتدى من القائمة.");
 			return;
 		}
@@ -211,10 +211,10 @@ elseif(type=='add'){
 	</form>
 	</table><br>";
 }
-elseif(type=='edit'){
+elseif(type == 'edit'){
 	$rs=$mysql->queryAssoc("SELECT question,forumid,status,secret,days,posts FROM ".prefix."survey WHERE id = ".id."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs['forumid'],$forums)){
+	if(ulv == 4||in_array($rs['forumid'],$forums)){
 	//**********************************
 	?>
 	<script type="text/javascript">
@@ -236,7 +236,7 @@ elseif(type=='edit'){
 		for(var x=1;x<=num;x++){
 			var voteCount=eval("frm.voteCount"+x);
 			var val=eval("frm.value"+x);
-			if(typeof voteCount!="undefined"&&voteCount.value>0&&val.value==""){
+			if(typeof voteCount!="undefined"&&voteCount.value>0&&val.value == ""){
 				confirm("لا يمكنك ان تفرغ خيارات التي تملك أكثر من صوت");
 				return;
 			}
@@ -322,7 +322,7 @@ elseif(type=='edit'){
 				<td class=\"asFixedB\"><nobr>خيار رقم ".($count+1)."</nobr></td>
 				<td class=\"asNormalB asS12\" colspan=\"2\"><nobr>
 					<input type=\"hidden\" name=\"voteCount".($count+1)."\" value=\"$voteCount\">
-					<input type=\"text\" style=\"width:500px\" name=\"value".($count+1)."\" value=\"{$rs['value']}\">&nbsp;(هذا الخيار ".($voteCount>1 ? "يملك <font color=\"red\">$voteCount</font>  أصوات" : ($voteCount==1 ? "يملك <font color=\"red\">$voteCount</font>  صوت" : "لا يملك أي صوت")).")</nobr><br><nobr>
+					<input type=\"text\" style=\"width:500px\" name=\"value".($count+1)."\" value=\"{$rs['value']}\">&nbsp;(هذا الخيار ".($voteCount>1 ? "يملك <font color=\"red\">$voteCount</font>  أصوات" : ($voteCount == 1 ? "يملك <font color=\"red\">$voteCount</font>  صوت" : "لا يملك أي صوت")).")</nobr><br><nobr>
 					<input type=\"text\" style=\"width:400px\" name=\"other".($count+1)."\" value=\"{$rs['other']}\">&nbsp;(نص إضافي إو عنوان صورة)</nobr>
 				</td>
 			</tr>";
@@ -347,7 +347,7 @@ elseif(type=='edit'){
 		$DF->goTo();
 	}
 }
-elseif(type=='insert'){
+elseif(type == 'insert'){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في اضافة استفتاء");
 	function checkOptions($arr){
 		$count=0;
@@ -374,7 +374,7 @@ elseif(type=='insert'){
 	if($redeclare!=checkredeclare){
 		$Template->errMsg("كان هناك خلل أثناء تخزين العملية!<br>يبدو أنه تم محاولة إدخال البيانات عدة مرات لسبب فني أو لخلل في الشبكة.<br>الرجاء التأكد من أن العملية انتهت بنجاح... نأسف على هذا.");
 	}
-	if(ulv==4||in_array($forumid,$forums)){
+	if(ulv == 4||in_array($forumid,$forums)){
 		if(!checkOptions($value)){
 			$Template->errMsg("يجب إدخال على الأقل خيارين للإستفتاء.");
 		}
@@ -395,12 +395,12 @@ elseif(type=='insert'){
 		$DF->goTo();
 	}
 }
-elseif(type=='update'){
+elseif(type == 'update'){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في تعديل استفتاء");
 	$id=(int)$_POST['id'];
 	$rs=$mysql->queryRow("SELECT forumid FROM ".prefix."survey WHERE id = $id", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		function chkOptionsNum($value,$num){
 			$y=0;
 			for($x=0;$x<count($value);$x++){
@@ -435,7 +435,7 @@ elseif(type=='update'){
 				$other1=$rs['other'];
 				$value2=$DF->cleanText($_POST["value".($x+1)]);
 				$other2=$DF->cleanText($_POST["other".($x+1)]);
-				if($value2==""){
+				if($value2 == ""){
 					$mysql->delete("surveyoptions WHERE id = '{$rs['id']}'", __FILE__, __LINE__);
 				}
 				else{
@@ -455,7 +455,7 @@ elseif(type=='update'){
 			days = '$days',
 			posts = '$posts',
 			status = '$status',
-			{$DF->iff($status==0&&$status!=$oldStatus,"end = '".time."',","")}
+			{$DF->iff($status == 0&&$status!=$oldStatus,"end = '".time."',","")}
 			secret = '$secret'
 			WHERE id = $id", __FILE__, __LINE__);
 			$Template->msg("تم تعديل الإستفتاء بنجاح","svc.php?svc=surveys");
@@ -465,10 +465,10 @@ elseif(type=='update'){
 		$DF->goTo();
 	}
 }
-elseif(type=='options'){
+elseif(type == 'options'){
 	$rs=$mysql->queryRow("SELECT forumid,question FROM ".prefix."survey WHERE id = ".id."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		function chkOptionsOther($other){
 			if(strstr(strtolower($other),".gif")!=""||strstr(strtolower($other),".jpg")!=""){
 				$text="<img src=\"$other\" border=\"0\">";
@@ -504,7 +504,7 @@ elseif(type=='options'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			echo"
 			<tr>
 				<td class=\"asNormalB asCenter\" colspan=\"4\"><br>لا توجد أي خيارات لهذا الإستفتاء<br><br></td>
@@ -518,13 +518,13 @@ elseif(type=='options'){
 		$DF->goTo();
 	}
 }
-elseif(type=='votes'){
+elseif(type == 'votes'){
 	$rs=$mysql->queryRow("SELECT s.forumid,s.question,so.value
 	FROM ".prefix."surveyoptions AS so
 	LEFT JOIN ".prefix."survey AS s ON(s.id = so.surveyid)
 	WHERE so.id = ".id." GROUP BY so.id", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		echo"
 		<table cellspacing=\"1\" cellpadding=\"4\" align=\"center\">
 			<tr>
@@ -550,7 +550,7 @@ elseif(type=='votes'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			echo"
 			<tr>
 				<td class=\"asNormalB asCenter\" colspan=\"4\"><br>لا توجد أي تصويتات على هذا الخيار<br><br></td>
@@ -564,10 +564,10 @@ elseif(type=='votes'){
 		$DF->goTo();
 	}
 }
-elseif(type=='secret'){
+elseif(type == 'secret'){
 	$rs=$mysql->queryRow("SELECT forumid FROM ".prefix."survey WHERE id = ".id."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		$mysql->update("survey SET secret = 1 WHERE id = ".id."", __FILE__, __LINE__);
 		$Template->msg("تم تغير وضعية استفتاء من غير سري الى سري");
 	}
@@ -575,10 +575,10 @@ elseif(type=='secret'){
 		$DF->goTo();
 	}
 }
-elseif(type=='unsecret'){
+elseif(type == 'unsecret'){
 	$rs=$mysql->queryRow("SELECT forumid FROM ".prefix."survey WHERE id = ".id."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		$mysql->update("survey SET secret = 0 WHERE id = ".id."", __FILE__, __LINE__);
 		$Template->msg("تم تغير وضعية استفتاء من سري الى غير سري");
 	}
@@ -586,10 +586,10 @@ elseif(type=='unsecret'){
 		$DF->goTo();
 	}
 }
-elseif(type=='lock'){
+elseif(type == 'lock'){
 	$rs=$mysql->queryRow("SELECT forumid FROM ".prefix."survey WHERE id = ".id."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		$mysql->update("survey SET status = 0, end = '".time."' WHERE id = ".id."", __FILE__, __LINE__);
 		$Template->msg("تم قفل استفتاء بنجاح");
 	}
@@ -597,10 +597,10 @@ elseif(type=='lock'){
 		$DF->goTo();
 	}
 }
-elseif(type=='unlock'){
+elseif(type == 'unlock'){
 	$rs=$mysql->queryRow("SELECT forumid FROM ".prefix."survey WHERE id = ".id."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		$mysql->update("survey SET status = 1, end = 0 WHERE id = ".id."", __FILE__, __LINE__);
 		$Template->msg("تم فتح استفتاء بنجاح");
 	}

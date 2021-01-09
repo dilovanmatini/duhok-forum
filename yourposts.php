@@ -18,7 +18,7 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv>0){
+if( ulv > 0 ){
 //********** Start Page **********************
 
 $uid=uid;
@@ -28,7 +28,7 @@ if(auth>0){
 	$urs=$mysql->queryRow("SELECT u.level,u.name,up.hideselfposts
 	FROM ".prefix."user AS u
 	LEFT JOIN ".prefix."userperm AS up ON(up.id = u.id)
-	WHERE u.id = '".auth."' AND status IN ({$DF->iff(ulv>1,"0,1","1")})", __FILE__, __LINE__);
+	WHERE u.id = '".auth."' AND status IN ({$DF->iff(ulv > 1,"0,1","1")})", __FILE__, __LINE__);
 	if($urs){
 		$uid=auth;
 		$uname=$urs[1];
@@ -36,20 +36,20 @@ if(auth>0){
 	}
 }
 
-if($uid!=uid&&$uhideselfposts==1&&ulv<2){
+if($uid!=uid&&$uhideselfposts == 1&&ulv < 2){
 	$Template->errMsg("لا يمكنك مشاهدة مشاركات هذا العضو لأسباب أمنية");
 	exit();
 }
-if($uid!=uid&&uhideusersposts==1&&ulv<2){
+if($uid!=uid&&uhideusersposts == 1&&ulv < 2){
 	$Template->errMsg("تم منعك من مشاهدة مشاركات الأعضاء من قبل الإدارة");
 	exit();
 }
 
-if($uid==uid){
-	$menuTitle=(posts_sort_type=='topics' ? "المواضيع التي كتبتها مؤخرا" : "المواضيع التي شاركت فيها مؤخرا");
+if($uid == uid){
+	$menuTitle=(posts_sort_type == 'topics' ? "المواضيع التي كتبتها مؤخرا" : "المواضيع التي شاركت فيها مؤخرا");
 }
 else{
-	$menuTitle=(posts_sort_type=='topics' ? "المواضيع التي كتبها مؤخرا" : "المواضيع التي شارك فيها مؤخرا");
+	$menuTitle=(posts_sort_type == 'topics' ? "المواضيع التي كتبها مؤخرا" : "المواضيع التي شارك فيها مؤخرا");
 }
 $authStr=($uid!=uid ? ": <span class=\"asC2\">$uname</span>" : "");
 $goToForum=$Template->goToForum(true);
@@ -113,10 +113,10 @@ echo"
 				<td class=\"asDark\" width=\"10%\"><nobr>آخر رد</nobr></td>
 				<td class=\"asDark\" width=\"1%\">الخيارات</td>
 			</tr>";
-if($uid==uid&&uhideselfposts==1||$uid!=uid&&$uhideselfposts==1){
+if($uid == uid&&uhideselfposts == 1||$uid!=uid&&$uhideselfposts == 1){
 	echo"
 	<tr>
-		<td class=\"asError asCenter\" colspan=\"8\">لا يمكن للأعضاء بمشاهدة {$DF->iff($uid==uid,'مشاركاتك','مشاركات هذا العضو')} بسبب تم إخفائها من قبل الإدارة</td>
+		<td class=\"asError asCenter\" colspan=\"8\">لا يمكن للأعضاء بمشاهدة {$DF->iff($uid == uid,'مشاركاتك','مشاركات هذا العضو')} بسبب تم إخفائها من قبل الإدارة</td>
 	</tr>";
 }
 $topicFolderSql="
@@ -136,7 +136,7 @@ $checkSqlField="";
 $checkSqlTable="";
 $checkSqlOrder="";
 $checkSqlWhere="";
-if(ulv==4){
+if(ulv == 4){
 	$checkSqlField="
 		,IF(NOT ISNULL(t.id),1,0) AS ismod
 		,IF(NOT ISNULL(t.id),1,0) AS ismon
@@ -162,7 +162,7 @@ $postsSortForum=(int)posts_sort_forum;
 if($postsSortForum>0){
 	$checkSqlWhere.="AND t.forumid = $postsSortForum ";
 }
-if(posts_sort_type=='topics'){
+if(posts_sort_type == 'topics'){
 	$checkSqlFromTable="topic AS t";
 	$checkSqlWhere.="AND t.author = $uid ";
 }
@@ -179,13 +179,13 @@ LEFT JOIN ".prefix."forum AS f ON(f.id = t.forumid)
 LEFT JOIN ".prefix."user AS u ON(u.id = t.author)
 LEFT JOIN ".prefix."user AS uu ON(uu.id = t.lpauthor) {$checkSqlTable}
 WHERE t.trash = 0 AND t.moderate = 0 {$checkSqlWhere} GROUP BY t.id
-ORDER BY {$DF->iff(posts_sort_last=='topics','t.date','t.lpdate')} DESC LIMIT 50", __FILE__, __LINE__);
+ORDER BY {$DF->iff(posts_sort_last == 'topics','t.date','t.lpdate')} DESC LIMIT 50", __FILE__, __LINE__);
 $count=0;
 while($rs=$mysql->fetchAssoc($sql)){
 	$topicFolder=explode("|",$rs['topicfolder']);
 	$author = $Template->userColorLink($rs['author'], array($rs['aname'], $rs['astatus'], $rs['alevel'], $rs['asubmonitor']));
 	$lpauthor = $Template->userColorLink($rs['lpauthor'], array($rs['lpname'], $rs['lpstatus'], $rs['lplevel'], $rs['lpsubmonitor']));
-	$cellClass=($rs['lpauthor']==$uid||$rs['posts']==0 ? 'asNormal':'asFixed');
+	$cellClass=($rs['lpauthor'] == $uid||$rs['posts'] == 0 ? 'asNormal':'asFixed');
 	echo"
 	<tr>
 		<td class=\"$cellClass asAS12 asCenter\"><b>{$Template->forumLink($rs['forumid'],$rs['fsubject'])}</b></td>
@@ -207,11 +207,11 @@ while($rs=$mysql->fetchAssoc($sql)){
 		else{echo"&nbsp;";}
 		echo"</td>
 		<td class=\"$cellClass asCenter\"><nobr>";
-		if($rs['ismod']==1||$rs['status']==1&&$rs['author']==uid){
+		if($rs['ismod'] == 1||$rs['status'] == 1&&$rs['author'] == uid){
 			echo"
 			<a href=\"editor.php?type=edittopic&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->f['edit']}\" alt=\"تعديل الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($rs['status']==1||$rs['ismod']==1){
+		if($rs['status'] == 1||$rs['ismod'] == 1){
 			echo"
 			<a href=\"editor.php?type=newpost&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
@@ -220,9 +220,9 @@ while($rs=$mysql->fetchAssoc($sql)){
 	</tr>";
 	$count++;
 }
-if($count==0){
-	$sortTypeStr=(posts_sort_type=='topics' ? "مواضيع" : "مشاركات");
-	$authorStr=($uid==uid ? "لك" : "لهذا العضو");
+if($count == 0){
+	$sortTypeStr=(posts_sort_type == 'topics' ? "مواضيع" : "مشاركات");
+	$authorStr=($uid == uid ? "لك" : "لهذا العضو");
 	$forumStr=(posts_sort_forum>0 ? "في المنتدى المختار أعلاه." : "في جميع منتديات.");
 	$notFoundText="لا توجد أي $sortTypeStr $authorStr $forumStr";
 	echo"
@@ -242,7 +242,7 @@ if($count>0){
 			<tr>
 				<td class=\"asTitle\">المواضيع التي تظهر باللون التالي</td>
 				<td class=\"asFixedB\"><nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</nobr></td>
-				<td class=\"asTitle\"><nobr>تحتوي على مشاركات جديد بعد آخر مشاركة {$DF->iff($uid==uid,'لك','للعضو')} فيها.</nobr></td>
+				<td class=\"asTitle\"><nobr>تحتوي على مشاركات جديد بعد آخر مشاركة {$DF->iff($uid == uid,'لك','للعضو')} فيها.</nobr></td>
 			</tr>
 		</table>
 		</td>

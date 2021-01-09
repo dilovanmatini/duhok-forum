@@ -11,22 +11,22 @@
  * 
  */
 
-if(_df_script=='svc'&&this_svc=='medals'&&ulv>1){
+if(_df_script == 'svc'&&this_svc == 'medals'&&ulv > 1){
 // ************ start page ****************
 
-if(type=='distribute'){
-	$thisLink="svc.php?svc=medals&type=distribute".(app==''?'':'&app='.app).(scope==''?'':'&scope='.scope).(days==0?'':'&days='.days)."&";
+if(type == 'distribute'){
+	$thisLink="svc.php?svc=medals&type=distribute".(app == ''?'':'&app='.app).(scope == ''?'':'&scope='.scope).(days == 0?'':'&days='.days)."&";
 	?>
 	<script type="text/javascript">
 	var link="<?=$thisLink?>";
 	DF.medalCmd=function(s,type){
 		var frm=s.form,el=frm.elements,msg=new Array();
 		for(x=0,y=0;x<el.length;x++){
-			if(el[x].type=='checkbox'&&el[x].checked){
+			if(el[x].type == 'checkbox'&&el[x].checked){
 				y++;
 			}
 		}
-		if(y==0){
+		if(y == 0){
 			alert("يجب عليك ان تختار على الأقل وسام واحد");
 		}
 		else{
@@ -40,7 +40,7 @@ if(type=='distribute'){
 	};
 	DF.chooseForumId=function(s,app,days){
 		fid=s.options[s.selectedIndex].value;
-		if(fid==0) url="svc.php?svc=medals&type=distribute&app="+app+"&scope=mod&days="+days;
+		if(fid == 0) url="svc.php?svc=medals&type=distribute&app="+app+"&scope=mod&days="+days;
 		else url="svc.php?svc=medals&type=distribute&app="+app+"&scope=forum&days="+days+"&f="+fid;
 		document.location=url;
 	};
@@ -50,13 +50,13 @@ if(type=='distribute'){
 	$scope=(scope!=''?scope:'mod');
 	$days=(days!=0?days:30);
 	$furl=(f>0?"&f=".f:"");
-	if($app=='wait'){
+	if($app == 'wait'){
 		$appTitle="أوسمة تنتظر الموافقة";
 	}
-	elseif($app=='ok'){
+	elseif($app == 'ok'){
 		$appTitle="أوسمة تمت الموافقة عليها";
 	}
-	elseif($app=='ref'){
+	elseif($app == 'ref'){
 		$appTitle="أوسمة تم رفضها";
 	}
 	else{
@@ -68,7 +68,7 @@ if(type=='distribute'){
 		<tr>
 			<td class=\"asTopHeader asCenter\" colspan=\"11\">
 	<ul class=\"svcbar asAS12\">
-		<li><em class=\"".($scope=='forum'?'selectedone':'one')."\">
+		<li><em class=\"".($scope == 'forum'?'selectedone':'one')."\">
 		<select class=\"asGoTo\" style=\"width:160px\" onChange=\"DF.chooseForumId(this,'$app',$days)\">
 			<option value=\"0\">&nbsp;&nbsp;&nbsp;-- عرض أوسمة منتدى --</option>";
 		foreach($Template->forumsList as $key=>$val){
@@ -78,22 +78,22 @@ if(type=='distribute'){
 		echo"
 		</select>
 		</em></li>
-		<li".($scope=='mod'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=mod&app=$app&days=$days\"><em>المنتديات التي تشرف عليها</em></a></li>
-		<li".($scope=='own'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=own&app=$app&days=$days\"><em>الأوسمة التي منحتها أنت</em></a></li>
-		<li".($scope=='all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=all&app=$app&days=$days\"><em>جميع الأوسمة</em></a></li>
+		<li".($scope == 'mod'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=mod&app=$app&days=$days\"><em>المنتديات التي تشرف عليها</em></a></li>
+		<li".($scope == 'own'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=own&app=$app&days=$days\"><em>الأوسمة التي منحتها أنت</em></a></li>
+		<li".($scope == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=all&app=$app&days=$days\"><em>جميع الأوسمة</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($app=='wait'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=wait&days=$days$furl\"><em>أوسمة تنتظر الموافقة</em></a></li>
-		<li".($app=='ok'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=ok&days=$days$furl\"><em>أوسمة تمت الموافقة عليها</em></a></li>
-		<li".($app=='ref'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=ref&days=$days$furl\"><em>أوسمة تم رفضها</em></a></li>
-		<li".($app=='all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=all&days=$days$furl\"><em>جميع الأوسمة</em></a></li>
+		<li".($app == 'wait'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=wait&days=$days$furl\"><em>أوسمة تنتظر الموافقة</em></a></li>
+		<li".($app == 'ok'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=ok&days=$days$furl\"><em>أوسمة تمت الموافقة عليها</em></a></li>
+		<li".($app == 'ref'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=ref&days=$days$furl\"><em>أوسمة تم رفضها</em></a></li>
+		<li".($app == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=all&days=$days$furl\"><em>جميع الأوسمة</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($days==30?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=30$furl\"><em>آخر 30 يوم</em></a></li>
-		<li".($days==60?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=60$furl\"><em>آخر 60 يوم</em></a></li>
-		<li".($days==180?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=180$furl\"><em>آخر 6 أشهر</em></a></li>
-		<li".($days==365?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=365$furl\"><em>آخر سنة</em></a></li>
-		<li".($days==-1?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=-1$furl\"><em>جميع الأوسمة</em></a></li>
+		<li".($days == 30?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=30$furl\"><em>آخر 30 يوم</em></a></li>
+		<li".($days == 60?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=60$furl\"><em>آخر 60 يوم</em></a></li>
+		<li".($days == 180?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=180$furl\"><em>آخر 6 أشهر</em></a></li>
+		<li".($days == 365?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=365$furl\"><em>آخر سنة</em></a></li>
+		<li".($days == -1?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=distribute&scope=$scope&app=$app&days=-1$furl\"><em>جميع الأوسمة</em></a></li>
 	</ul>
 	</tr>
 	<form method=\"post\" action=\"svc.php?svc=medals&type=appdistribute\">
@@ -121,7 +121,7 @@ if(u>0){
 	}
 		echo"
 		<tr>";
-		if(ulv>2){
+		if(ulv > 2){
 			echo"
 			<td class=\"asDarkB\"><nobr>&nbsp;</nobr></td>";
 		}
@@ -140,10 +140,10 @@ if(u>0){
 		
 	$checkSqlField="";
 	$checkSqlTable="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlField=",IF(ISNULL(mm.id),0,1) AS ismod";
 		$checkSqlTable="LEFT JOIN ".prefix."moderator AS mm ON(mm.forumid = ml.forumid AND mm.userid = '".uid."')";
-		if(ulv==3){
+		if(ulv == 3){
 			$checkSqlField.=",IF(ISNULL(c.id),0,1) AS ismon";
 			$checkSqlTable.="LEFT JOIN ".prefix."category AS c ON(c.id = f.catid AND c.monitor = '".uid."')";
 		}
@@ -168,14 +168,14 @@ if(u>0){
 	$count=0;
 	$checkCount=0;
 	while($rs=$mysql->fetchAssoc($sql)){
-		if($rs['ismod']==1||$rs['ismon']==1){
+		if($rs['ismod'] == 1||$rs['ismon'] == 1){
 			$options="<a href=\"svc.php?svc=medals&type=distribute&app=all&scope=all&days=-1&m={$rs['listid']}\"><img src=\"{$DFImage->i['question']}\" alt=\"استعمال الوسام\" hspace=\"3\" border=\"0\"></a>";
 		}
 		else{
 			$options=" - ";
 		}
 		
-		if($rs['ismon']==1&&$app!='all'){
+		if($rs['ismon'] == 1&&$app!='all'){
 			$checkBox="<input onClick=\"DF.checkRowClass(this,{$rs['id']});\" type=\"checkbox\" class=\"none\" name=\"medals[]\" value=\"{$rs['id']}|{$rs['points']}|{$rs['userid']}|{$rs['forumid']}\">";
 			$checkCount++;
 		}
@@ -186,13 +186,13 @@ if(u>0){
 		$user = $Template->userColorLink($rs['userid'], array($rs['uname'], $rs['ustatus'], $rs['ulevel'], $rs['usubmonitor']));
 		$added = $Template->userColorLink($rs['added'], array($rs['aname'], $rs['astatus'], $rs['alevel'], $rs['asubmonitor']));
 		
-		if($rs['status']==0){
+		if($rs['status'] == 0){
 			$medalApprove="<font color=\"blue\">تنتظر</font>";
 		}
-		elseif($rs['status']==1){
+		elseif($rs['status'] == 1){
 			$medalApprove="نعم";
 		}
-		elseif($rs['status']==2){
+		elseif($rs['status'] == 2){
 			$medalApprove="<font color=\"red\">رفض</font>";
 		}
 		
@@ -201,7 +201,7 @@ if(u>0){
 		
 		echo"
 		<tr id=\"row{$rs['id']}\">";
-		if(ulv>2){
+		if(ulv > 2){
 			echo"
 			<td class=\"asNormalB asCenter\" style=\"padding:1px\">$checkBox</td>";
 		}
@@ -219,7 +219,7 @@ if(u>0){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"11\"><br>-- لا توجد أيه أوسمة بهذه المواصفات --<br><br></td>
@@ -246,7 +246,7 @@ if(u>0){
 	</form>
 	</table><br>";
 }
-elseif(type=='appdistribute'&&ulv>2){
+elseif(type == 'appdistribute'&&ulv > 2){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في موافقة ورفض الأوسمة");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -261,30 +261,30 @@ elseif(type=='appdistribute'&&ulv>2){
 		if($redeclare!=checkredeclare){
 			$Template->errMsg("كان هناك خلل أثناء تخزين العملية!<br>يبدو أنه تم محاولة إدخال البيانات عدة مرات لسبب فني أو لخلل في الشبكة.<br>الرجاء التأكد من أن العملية انتهت بنجاح... نأسف على هذا.");
 		}
-		elseif($type=='app'){
+		elseif($type == 'app'){
 			for($x=0;$x<count($medals);$x++){
 				$exp=explode("|",$medals[$x]);
 				$medalid=(int)$exp[0];
 				$points=(int)$exp[1];
 				$userid=(int)$exp[2];
 				$forumid=(int)$exp[3];
-				if(ulv==4||in_array($forumid,$allowforums)){
+				if(ulv == 4||in_array($forumid,$allowforums)){
 					$mysql->update("medal SET status = 1 WHERE id = '$medalid'", __FILE__, __LINE__);
 					$mysql->update("userflag SET points = points + $points WHERE id = '$userid'", __FILE__, __LINE__);
 				}
 			}
 			$Template->msg("تمت موافقة على الأوسمة المختارة بنجاح");
 		}
-		elseif($type=='ref'){
+		elseif($type == 'ref'){
 			for($x=0;$x<count($medals);$x++){
 				$exp=explode("|",$medals[$x]);
 				$medalid=(int)$exp[0];
 				$points=(int)$exp[1];
 				$userid=(int)$exp[2];
 				$forumid=(int)$exp[3];
-				if(ulv==4||in_array($forumid,$allowforums)){
+				if(ulv == 4||in_array($forumid,$allowforums)){
 					$mysql->update("medal SET status = 2 WHERE id = '$medalid'", __FILE__, __LINE__);
-					if($app=='ok'){
+					if($app == 'ok'){
 						$mysql->update("userflag SET points = points - $points WHERE id = '$userid'", __FILE__, __LINE__);
 					}
 				}
@@ -299,19 +299,19 @@ elseif(type=='appdistribute'&&ulv>2){
 		$Template->errMsg("لم يتم تخزين العملية لسبب فني.<br><br>الرجاء إخبار الإدارة لتصحيح المشكلة.");
 	}
 }
-elseif(type=='lists'){
-	$thisLink="svc.php?svc=medals&type=lists".(app==''?'':'&app='.app).(scope==''?'':'&scope='.scope)."&";
+elseif(type == 'lists'){
+	$thisLink="svc.php?svc=medals&type=lists".(app == ''?'':'&app='.app).(scope == ''?'':'&scope='.scope)."&";
 	?>
 	<script type="text/javascript">
 	var link="<?=$thisLink?>";
 	DF.medalCmd=function(s,type){
 		var frm=s.form,el=frm.elements,msg=new Array();
 		for(x=0,y=0;x<el.length;x++){
-			if(el[x].type=='checkbox'&&el[x].checked){
+			if(el[x].type == 'checkbox'&&el[x].checked){
 				y++;
 			}
 		}
-		if(y==0){
+		if(y == 0){
 			alert("يجب عليك ان تختار على الأقل وسام واحد");
 		}
 		else{
@@ -326,7 +326,7 @@ elseif(type=='lists'){
 	};
 	DF.chooseForumId=function(s,app){
 		fid=s.options[s.selectedIndex].value;
-		if(fid==0) url="svc.php?svc=medals&type=lists&app="+app+"&scope=mod";
+		if(fid == 0) url="svc.php?svc=medals&type=lists&app="+app+"&scope=mod";
 		else url="svc.php?svc=medals&type=lists&app="+app+"&scope=forum&f="+fid;
 		document.location=url;
 	};
@@ -335,16 +335,16 @@ elseif(type=='lists'){
 	$app=(app!=''?app:'ok');
 	$scope=(scope!=''?scope:'mod');
 	$furl=(f>0?"&f=".f:"");
-	if($app=='design'){
+	if($app == 'design'){
 		$appTitle="تحت التصميم";
 	}
-	elseif($app=='wait'){
+	elseif($app == 'wait'){
 		$appTitle="تنتظر الموافقة";
 	}
-	elseif($app=='ok'){
+	elseif($app == 'ok'){
 		$appTitle="مفتوحة";
 	}
-	elseif($app=='closed'){
+	elseif($app == 'closed'){
 		$appTitle="مقفولة";
 	}
 	else{
@@ -358,7 +358,7 @@ elseif(type=='lists'){
 		<li class=\"selected\"><a href=\"svc.php?svc=medals&type=addlists\"><em>أضف وسام جديد</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li><em class=\"".($scope=='forum'?'selectedone':'one')."\">
+		<li><em class=\"".($scope == 'forum'?'selectedone':'one')."\">
 		<select class=\"asGoTo\" style=\"width:160px\" onChange=\"DF.chooseForumId(this,'$app')\">
 			<option value=\"0\">&nbsp;&nbsp;&nbsp;-- عرض أوسمة منتدى --</option>";
 		foreach($Template->forumsList as $key=>$val){
@@ -368,16 +368,16 @@ elseif(type=='lists'){
 		echo"
 		</select>
 		</em></li>
-		<li".($scope=='mod'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=$app&scope=mod\"><em>المنتديات التي تشرف عليها</em></a></li>
-		<li".($scope=='own'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=$app&scope=own\"><em>الأوسمة التي إضفتها أنت</em></a></li>
-		<li".($scope=='all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=$app&scope=all\"><em>جميع الأوسمة</em></a></li>
+		<li".($scope == 'mod'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=$app&scope=mod\"><em>المنتديات التي تشرف عليها</em></a></li>
+		<li".($scope == 'own'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=$app&scope=own\"><em>الأوسمة التي إضفتها أنت</em></a></li>
+		<li".($scope == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=$app&scope=all\"><em>جميع الأوسمة</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($app=='design'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=design&scope=$scope$furl\"><em>أوسمة تحت التصميم</em></a></li>
-		<li".($app=='wait'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=wait&scope=$scope$furl\"><em>أوسمة تنتظر الموافقة</em></a></li>
-		<li".($app=='ok'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=ok&scope=$scope$furl\"><em>أوسمة مفتوحة</em></a></li>
-		<li".($app=='closed'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=closed&scope=$scope$furl\"><em>أوسمة مقفولة</em></a></li>
-		<li".($app=='all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=all&scope=$scope$furl\"><em>جميع الأوسمة</em></a></li>
+		<li".($app == 'design'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=design&scope=$scope$furl\"><em>أوسمة تحت التصميم</em></a></li>
+		<li".($app == 'wait'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=wait&scope=$scope$furl\"><em>أوسمة تنتظر الموافقة</em></a></li>
+		<li".($app == 'ok'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=ok&scope=$scope$furl\"><em>أوسمة مفتوحة</em></a></li>
+		<li".($app == 'closed'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=closed&scope=$scope$furl\"><em>أوسمة مقفولة</em></a></li>
+		<li".($app == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=medals&type=lists&app=all&scope=$scope$furl\"><em>جميع الأوسمة</em></a></li>
 	</ul>
 	</tr>
 	<form method=\"post\" action=\"svc.php?svc=medals&type=applists\">
@@ -386,7 +386,7 @@ elseif(type=='lists'){
 			<td class=\"asHeader\" colspan=\"10\">أوسمة التميز - <span class=\"asC2\">$appTitle</span></td>
 		</tr>
 		<tr>";
-		if(ulv>2){
+		if(ulv > 2){
 			echo"
 			<td class=\"asDarkB\"><nobr>&nbsp;</nobr></td>";
 		}
@@ -404,10 +404,10 @@ elseif(type=='lists'){
 		
 	$checkSqlField="";
 	$checkSqlTable="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlField=",IF(ISNULL(m.id),0,1) AS ismod";
 		$checkSqlTable="LEFT JOIN ".prefix."moderator AS m ON(m.forumid = ml.forumid AND m.userid = '".uid."')";
-		if(ulv==3){
+		if(ulv == 3){
 			$checkSqlField.=",IF(ISNULL(c.id),0,1) AS ismon";
 			$checkSqlTable.="LEFT JOIN ".prefix."category AS c ON(c.id = f.catid AND c.monitor = '".uid."')";
 		}
@@ -429,11 +429,11 @@ elseif(type=='lists'){
 	$count=0;
 	$checkCount=0;
 	while($rs=$mysql->fetchAssoc($sql)){
-		if($rs['ismod']==1||$rs['ismon']==1){
+		if($rs['ismod'] == 1||$rs['ismon'] == 1){
 			$options="
 			<a href=\"svc.php?svc=medals&type=editlists&m={$rs['id']}\"><img src=\"{$DFImage->i['edit']}\" alt=\"تعديل الوسام\" hspace=\"2\" border=\"0\"></a>
 			<a href=\"svc.php?svc=medals&type=distribute&app=all&scope=all&days=-1&m={$rs['id']}\"><img src=\"{$DFImage->i['question']}\" alt=\"استعمال الوسام\" hspace=\"2\" border=\"0\"></a>";
-			if($rs['status']==1&&$rs['close']==0){
+			if($rs['status'] == 1&&$rs['close'] == 0){
 				$options.="
 				<a href=\"svc.php?svc=medals&type=moreaward&m={$rs['id']}\"><img src=\"{$DFImage->i['users']}\" alt=\"امنح هذا الوسام لمجموعة من الأعضاء\" hspace=\"2\" border=\"0\"></a>";
 			}
@@ -442,7 +442,7 @@ elseif(type=='lists'){
 			$options="-";
 		}
 
-		if($rs['ismon']==1&&$app!='all'){
+		if($rs['ismon'] == 1&&$app!='all'){
 			$checkBox="<input onClick=\"DF.checkRowClass(this,{$rs['id']});\" type=\"checkbox\" class=\"none\" name=\"medals[]\" value=\"{$rs['id']}\">";
 			$checkCount++;
 		}
@@ -454,7 +454,7 @@ elseif(type=='lists'){
 		
 		echo"
 		<tr id=\"row{$rs['id']}\">";
-		if(ulv>2){
+		if(ulv > 2){
 			echo"
 			<td class=\"asNormalB asCenter\">$checkBox</td>";
 		}
@@ -463,7 +463,7 @@ elseif(type=='lists'){
 			<td class=\"asNormalB asS12\"><nobr>{$rs['subject']}</nobr></td>
 			<td class=\"asNormalB asCenter\"><img src=\"{$DFPhotos->getsrc($rs['filename'])}\" onError=\"this.src='{$DFImage->i['nophoto']}';\" onclick=\"DF.doPreviewImage('{$DFPhotos->getsrc($rs['filename'])}');\" width=\"33\" height=\"33\" border=\"0\"></td>
 			<td class=\"asNormalB asS12 asCenter\"><nobr>{$rs['points']}</nobr></td>
-			<td class=\"asNormalB asS12 asCenter\"><nobr>".($rs['status']==1 ? "نعم" : "<font color=\"red\">لا</font>")."</nobr></td>
+			<td class=\"asNormalB asS12 asCenter\"><nobr>".($rs['status'] == 1 ? "نعم" : "<font color=\"red\">لا</font>")."</nobr></td>
 			<td class=\"asNormalB asAS12 asCenter\"><nobr><b>{$Template->forumLink($rs['forumid'],$rs['fsubject'])}</b></nobr></td>
 			<td class=\"asNormalB asS12 asCenter\"><nobr>{$rs['days']}</nobr></td>
 			<td class=\"asNormalB asAS12 asCenter\"><nobr>$added</nobr></td>
@@ -471,7 +471,7 @@ elseif(type=='lists'){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"10\"><br>-- لا توجد أيه أوسمة بهذه المواصفات --<br><br></td>
@@ -490,7 +490,7 @@ elseif(type=='lists'){
 				echo"
 				{$Template->button('قفل أوسمة المختارة'," onClick=\"DF.medalCmd(this,'close')\"")}";
 			}
-			if($app=='closed'){
+			if($app == 'closed'){
 				echo"
 				{$Template->button('فتح أوسمة المختارة'," onClick=\"DF.medalCmd(this,'open')\"")}";
 			}
@@ -503,7 +503,7 @@ elseif(type=='lists'){
 	</table>
 	</center><br>";
 }
-elseif(type=='applists'&&ulv>2){
+elseif(type == 'applists'&&ulv > 2){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في موافقة والقفل قوائم الأوسمة");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -512,22 +512,22 @@ elseif(type=='applists'&&ulv>2){
 	$type=$_POST['type'];
 	$medals=$_POST['medals'];
 	if(is_array($medals)){
-		if($type=='app'){
+		if($type == 'app'){
 			$checkField="status = 1";
 			$msg="تمت موافقة على الأوسمة المختارة بنجاح";
 		}
-		elseif($type=='close'){
+		elseif($type == 'close'){
 			$checkField="close = 1";
 			$msg="تم قفل اوسمة المختارة بنجاح";
 		}
-		elseif($type=='open'){
+		elseif($type == 'open'){
 			$checkField="close = 0";
 			$msg="تم فتح اوسمة المختارة بنجاح";
 		}
 		else{
 			$Template->errMsg("لم يتم تخزين العملية لسبب فني.<br><br>الرجاء إخبار الإدارة لتصحيح المشكلة.");
 		}
-		$checkForum=(ulv==4 ? "" : "AND forumid IN (".implode(",",$DF->getAllowForumId(true)).")");
+		$checkForum=(ulv == 4 ? "" : "AND forumid IN (".implode(",",$DF->getAllowForumId(true)).")");
 		$mysql->update("medallists SET $checkField WHERE id IN (0,".implode(",",$medals).") $checkForum", __FILE__, __LINE__);
 		$Template->msg($msg);
 	}
@@ -535,7 +535,7 @@ elseif(type=='applists'&&ulv>2){
 		$Template->errMsg("لم يتم تخزين العملية لسبب فني.<br><br>الرجاء إخبار الإدارة لتصحيح المشكلة.");
 	}
 }
-elseif(type=='awardforums'){
+elseif(type == 'awardforums'){
 	$sql=$mysql->query("SELECT name FROM ".prefix."user WHERE id = '".u."' AND status IN (0,1)", __FILE__, __LINE__);
 	$rs=$mysql->fetchRow($sql);
 	if(!$rs){
@@ -552,7 +552,7 @@ elseif(type=='awardforums'){
 			<td class=\"asDarkB\"><nobr>اسم المنتدى</nobr></td>
 			<td class=\"asDarkB\" width=\"1%\">عدد<br>اللأوسمة</td>
 		</tr>";
-	$checkForum=(ulv==4 ? "" : "AND f.id IN (".implode(",",$DF->getAllowForumId(true)).")");
+	$checkForum=(ulv == 4 ? "" : "AND f.id IN (".implode(",",$DF->getAllowForumId(true)).")");
 	$sql=$mysql->query("SELECT f.id,f.subject,COUNT(ml.id) AS medals 
 	FROM ".prefix."forum AS f
 	LEFT JOIN ".prefix."medallists AS ml ON(ml.forumid = f.id AND ml.status = 1 AND ml.close = 0)
@@ -568,7 +568,7 @@ elseif(type=='awardforums'){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"3\"><br>لا توجد أي منتدى<br><br></td>
@@ -577,7 +577,7 @@ elseif(type=='awardforums'){
 	echo"
 	</table>";
 }
-elseif(type=='award'){
+elseif(type == 'award'){
 	$sql=$mysql->query("SELECT name FROM ".prefix."user WHERE id = '".u."' AND status IN (0,1)", __FILE__, __LINE__);
 	$rs=$mysql->fetchRow($sql);
 	if(!$rs){
@@ -586,7 +586,7 @@ elseif(type=='award'){
 	}
 	
 	$forums=$DF->getAllowForumId();
-	if(ulv<4&&!in_array(f,$forums)){
+	if(ulv < 4&&!in_array(f,$forums)){
 		$DF->goTo();
 		exit();
 	}
@@ -623,7 +623,7 @@ elseif(type=='award'){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asS12 asCenter\" colspan=\"7\"><br>لا توجد أي أوسمة لهذا المنتدى<br><br></td>
@@ -632,7 +632,7 @@ elseif(type=='award'){
 	echo"
 	</table>";
 }
-elseif(type=='insertaward'){
+elseif(type == 'insertaward'){
 	$sql=$mysql->query("SELECT id FROM ".prefix."user WHERE id = '".u."' AND status IN (0,1)", __FILE__, __LINE__);
 	$rs=$mysql->fetchRow($sql);
 	if(!$rs){
@@ -654,16 +654,16 @@ elseif(type=='insertaward'){
 	$gotoUrl="svc.php?svc=medals&type=distribute&app=all&scope=all&days=-1&u=".u;
 
 	$forums=$DF->getAllowForumId();
-	if(ulv<4&&!in_array(f,$forums)){
+	if(ulv < 4&&!in_array(f,$forums)){
 		$DF->goTo();
 		exit();
 	}
 	
-	$mysql->insert("medal (listid,userid,status,added,date) VALUES ('".m."','".u."','".(ulv>2?1:0)."','".uid."','".time."')", __FILE__, __LINE__);
+	$mysql->insert("medal (listid,userid,status,added,date) VALUES ('".m."','".u."','".(ulv > 2?1:0)."','".uid."','".time."')", __FILE__, __LINE__);
 	$DFOutput->setModActivity('medal',f,true);
 	$DFOutput->setUserActivity('medal',f,u,ceil($points/2));
 	
-	if(ulv>2){
+	if(ulv > 2){
 		$mysql->update("userflag SET points = points + $points WHERE id = '".u."'", __FILE__, __LINE__);
 		$Template->msg("تم منح وسام التميز للعضو بنجاح",$gotoUrl);
 	}
@@ -671,8 +671,8 @@ elseif(type=='insertaward'){
 		$Template->msg("تم منح وسام التميز للعضو لكن بحاجة الى موافقة مراقب",$gotoUrl);
 	}
 }
-elseif(type=='moreaward'){
-	$checkForum=(ulv==4 ? "" : "AND ml.forumid IN (".implode(",",$DF->getAllowForumId(true)).")");
+elseif(type == 'moreaward'){
+	$checkForum=(ulv == 4 ? "" : "AND ml.forumid IN (".implode(",",$DF->getAllowForumId(true)).")");
 	$sql=$mysql->query("SELECT ml.subject,ml.filename,ml.points,ml.forumid,ml.days,f.subject AS fsubject
 	FROM ".prefix."medallists AS ml
 	LEFT JOIN ".prefix."forum AS f ON(f.id = ml.forumid)
@@ -690,7 +690,7 @@ elseif(type=='moreaward'){
 		if(parseInt(frm.usersNum.value)>0){
 			alert("توجد أرقام عضويات الذي تريد منح لهم هذا الوسام في خانة رقم العضوية\nلذا يجب عليك إضافتها الى القائمة حتى لا تخسر منها\nاو امسحها اذا لا تريد منح لهم هذا الوسام");
 		}
-		else if(usersIds.length==0){
+		else if(usersIds.length == 0){
 			alert("أنت لم أضفت أي رقم للقائمة ليتم منح لهم وسام التميز");
 		}
 		else{
@@ -702,7 +702,7 @@ elseif(type=='moreaward'){
 		var tab=$I('#'+type+'Table'),tr=$I('#'+type+'Row'+id),index=tr.rowIndex,dbArr=eval("document.body."+type+"Id");
 		tab.deleteRow(index);
 		dbArr.deleteVal(id);
-		if(tab.rows.length==1){
+		if(tab.rows.length == 1){
 			var tr=tab.insertRow(1);
 			var td=tr.insertCell(0);
 			td.innerHTML='<br>لم يتم إضافة أي رقم للقائمة.<br><br>';
@@ -713,7 +713,7 @@ elseif(type=='moreaward'){
 	};
 	DF.addRowsToList=function(id){
 		var type=document.body.opType,tab=$I('#'+type+'Table'),dbArr=eval("document.body."+type+"Id");
-		if(dbArr.length==0){
+		if(dbArr.length == 0){
 			tab.deleteRow(1);
 		}
 		var tr=tab.insertRow(tab.rows.length);
@@ -799,7 +799,7 @@ elseif(type=='moreaward'){
 		</form>
 	</table>";
 }
-elseif(type=='insertmoreaward'){
+elseif(type == 'insertmoreaward'){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في منح وسام التميز لمجموعة من الأعضاء");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -815,7 +815,7 @@ elseif(type=='insertmoreaward'){
 	$forumid=$mrs[0];
 	
 	$forums=$DF->getAllowForumId();
-	if(ulv<4&&!in_array($forumid,$forums)){
+	if(ulv < 4&&!in_array($forumid,$forums)){
 		$DF->goTo();
 		exit();
 	}
@@ -827,10 +827,10 @@ elseif(type=='insertmoreaward'){
 	if(!empty($users)){
 		$sql=$mysql->query("SELECT id FROM ".prefix."user WHERE id IN ($users) AND status = 1", __FILE__, __LINE__);
 		while($rs=$mysql->fetchRow($sql)){
-			$mysql->insert("medal (listid,userid,status,added,date) VALUES ('$medalid','$rs[0]','".(ulv>2?1:0)."','".uid."','".time."')", __FILE__, __LINE__);
+			$mysql->insert("medal (listid,userid,status,added,date) VALUES ('$medalid','$rs[0]','".(ulv > 2?1:0)."','".uid."','".time."')", __FILE__, __LINE__);
 			$DFOutput->setModActivity('medal',$forumid,true);
 			$DFOutput->setUserActivity('medal',(int)$forumid,(int)$rs[0],ceil($points/2));
-			if(ulv>2){
+			if(ulv > 2){
 				$mysql->update("userflag SET points = points + $points WHERE id = '$rs[0]'", __FILE__, __LINE__);
 			}
 		}
@@ -838,14 +838,14 @@ elseif(type=='insertmoreaward'){
 	
 	$gotoUrl="svc.php?svc=medals&type=distribute&app=all&scope=all&days=-1&m=$medalid";
 	
-	if(ulv>2){
+	if(ulv > 2){
 		$Template->msg("تم منح وسام التميز للأعضاء المختارة بنجاح",$gotoUrl);
 	}
 	else{
 		$Template->msg("تم منح وسام التميز للأعضاء المختارة لكن بحاجة الى موافقة مراقب",$gotoUrl);
 	}
 }
-elseif(type=='addlists'){
+elseif(type == 'addlists'){
 	?>
 	<script type="text/javascript">
 	var f=<?=f?>;
@@ -854,11 +854,11 @@ elseif(type=='addlists'){
 		document.location="svc.php?svc=medals&type=addlists&f="+fid;
 	};
 	DF.addSubject=function(frm,type){
-		if(type=='delete'){
+		if(type == 'delete'){
 			frm.medalsubject.value='';
 		}
 		else{
-			if(frm.medalforumid.selectedIndex==0){
+			if(frm.medalforumid.selectedIndex == 0){
 				alert("يجب عليك أن تختار منتدى من القائمة ثم إدخال عنوان الوسام.");
 			}
 			else{
@@ -876,7 +876,7 @@ elseif(type=='addlists'){
 		}
 	};
 	DF.loadMedalList=function(){
-		if(f==0){
+		if(f == 0){
 			alert("يجب عليك أن تختار منتدى من القائمة ثم تختار ثم فتح قائمة الصور.");
 		}
 		else{
@@ -885,17 +885,17 @@ elseif(type=='addlists'){
 				'send':'type=getForumMedalsPhoto&id='+f,
 				'func':function(){
 					var obj=DF.ajax.oName,ac=DF.ajax.ac,text;
-					if(obj.readyState==1||obj.readyState==2||obj.readyState==3){
+					if(obj.readyState == 1||obj.readyState == 2||obj.readyState == 3){
 						cellPlace.innerHTML='<br><img src="'+progressUrl+'" border="0"><br><br>رجاءاً أنتظر ليتم تحميل الصور...<br><br>';
 					}
-					else if(obj.readyState==4){
+					else if(obj.readyState == 4){
 						var get=obj.responseText.split(ac);
 						if(get[1]&&get[1]!=''){
 							var photos=get[1].split('[>:r:<]');
 							text="<table width='100%' cellspacing='5' cellpadding='5' border='0'><tr>";
 							for(var x=0,y=1;x<photos.length-1;x++){
 								text+="<td align='center'><a href=\"javascript:DF.choosePhoto('"+escape(photos[x])+"');\" id=\""+photos[x]+"\"><img src=\""+photos[x]+"\" onError=\"this.src='"+nophotoUrl+"';\" alt=\"اضغط هنا لإختيار الصورة\" width=\"50\" height=\"50\" border=\"0\"></a></td>";
-								if(y==8){
+								if(y == 8){
 									text+="</tr><tr>";
 									y=0;
 								}
@@ -923,10 +923,10 @@ elseif(type=='addlists'){
 		if(frm.medalsubject.value.length<10||frm.medalsubject.value.indexOf("[")>=0||frm.medalsubject.value.indexOf("]")>=0){
 			alert("يجب إدخال عنوان للوسام وأن يكون أطول من 10 أحرف.");
 		}
-		else if(frm.medalforumid.selectedIndex==0){
+		else if(frm.medalforumid.selectedIndex == 0){
 			alert("يجب عليك أن تختار منتدى من القائمة.");
 		}
-		else if(frm.medal_filename.value.length==0){
+		else if(frm.medal_filename.value.length == 0){
 			alert("يجب عليك أن تختار صورة للوسام.");
 		}
 		else{
@@ -956,7 +956,7 @@ elseif(type=='addlists'){
 			<td class=\"asNormalB\" colspan=\"3\">
 			<select class=\"asGoTo\" name=\"medalforumid\" onChange=\"DF.chooseForumId(this)\">
 				<option value=\"0\">-- اختر منتدى --</option>";
-			$forumSql=(ulv==4 ? "" : "WHERE f.id IN (".implode(",",$DF->getAllowForumId(true)).")");
+			$forumSql=(ulv == 4 ? "" : "WHERE f.id IN (".implode(",",$DF->getAllowForumId(true)).")");
 			$sql=$mysql->query("SELECT f.id,f.subject FROM ".prefix."forum AS f LEFT JOIN ".prefix."category AS c ON(c.id = f.catid)
 			$forumSql GROUP BY f.id ORDER BY c.sort,f.sort ASC", __FILE__, __LINE__);
 			while($rs=$mysql->fetchRow($sql)){
@@ -1001,9 +1001,9 @@ elseif(type=='addlists'){
 		</tr>
 		<tr>
 			<td class=\"asFixedB\"><nobr>وضعية الوسام</nobr></td>
-			<td class=\"asNormalB asS12\"><nobr><input type=\"radio\" value=\"0\" name=\"medalstatus\"".(ulv==2?'checked':'').">الوسام ينتظر موافقة المراقب</nobr></td>
-			<td class=\"asNormalB asS12\"".(ulv==2?' colspan=\"2\"':'')."><nobr><input type=\"radio\" value=\"2\" name=\"medalstatus\">الوسام تحت التصميم</nobr></td>";
-		if(ulv>2){
+			<td class=\"asNormalB asS12\"><nobr><input type=\"radio\" value=\"0\" name=\"medalstatus\"".(ulv == 2?'checked':'').">الوسام ينتظر موافقة المراقب</nobr></td>
+			<td class=\"asNormalB asS12\"".(ulv == 2?' colspan=\"2\"':'')."><nobr><input type=\"radio\" value=\"2\" name=\"medalstatus\">الوسام تحت التصميم</nobr></td>";
+		if(ulv > 2){
 			echo"
 			<td class=\"asNormalB asS12\"><nobr><input type=\"radio\" value=\"1\" name=\"medalstatus\" checked>الوسام حي</nobr></td>";
 		}
@@ -1023,7 +1023,7 @@ elseif(type=='addlists'){
 	</form>
 	</table>";
 }
-elseif(type=='insertlists'){
+elseif(type == 'insertlists'){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في إضافة وسام جديد للمنتدى");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -1040,13 +1040,13 @@ elseif(type=='insertlists'){
 	if(empty($subject)){
 		$Template->errMsg("يجب إدخال عنوان للوسام وأن يكون أطول من 10 أحرف.");
 	}
-	elseif($forumid==0){
+	elseif($forumid == 0){
 		$Template->errMsg("يجب عليك أن تختار منتدى من القائمة.");
 	}
 	elseif(empty($medal_filename)){
 		$Template->errMsg("يجب عليك أن تختار صورة للوسام.");
 	}
-	elseif(ulv<4&&!in_array($forumid,$forums)){
+	elseif(ulv < 4&&!in_array($forumid,$forums)){
 		$Template->errMsg("منتدى الذي اخترت لا يسمح لك بإضافة وسام لها.");
 	}
 	else{
@@ -1054,17 +1054,17 @@ elseif(type=='insertlists'){
 		('$forumid','$status','$subject','$days','$points','".$DFPhotos->getname($medal_filename)."','$close','".uid."','".time."')", __FILE__, __LINE__);
 		$DFOutput->setModActivity('medal',$forumid,true);
 		$link=array('wait','ok','design');
-		$Template->msg((ulv>2 ? "تم إضافة وسام للمنتدى بنجاح" : "تم إضافة وسام للمنتدى لكن بحاجة لموافقة مراقب"),"svc.php?svc=medals&type=lists&app=$link[$status]&scope=mod");
+		$Template->msg((ulv > 2 ? "تم إضافة وسام للمنتدى بنجاح" : "تم إضافة وسام للمنتدى لكن بحاجة لموافقة مراقب"),"svc.php?svc=medals&type=lists&app=$link[$status]&scope=mod");
 	}
 }
-elseif(type=='editlists'){
+elseif(type == 'editlists'){
 	$sql=$mysql->query("SELECT ml.forumid,ml.status,ml.subject,ml.days,ml.points,ml.filename,ml.close,f.subject AS fsubject
 	FROM ".prefix."medallists AS ml
 	LEFT JOIN ".prefix."forum AS f ON(f.id = ml.forumid)
 	WHERE ml.id = '".m."'", __FILE__, __LINE__);
 	$rs=$mysql->fetchAssoc($sql);
 	$forums=$DF->getAllowForumId();
-	if(!$rs||ulv<4&&!in_array($rs['forumid'],$forums)){
+	if(!$rs||ulv < 4&&!in_array($rs['forumid'],$forums)){
 		$DF->goTo();
 		exit();
 	}
@@ -1081,7 +1081,7 @@ elseif(type=='editlists'){
 		}
 	};
 	DF.loadMedalList=function(){
-		if(f==0){
+		if(f == 0){
 			alert("يجب عليك أن تختار منتدى من القائمة ثم تختار ثم فتح قائمة الصور.");
 		}
 		else{
@@ -1090,17 +1090,17 @@ elseif(type=='editlists'){
 				'send':'type=getForumMedalsPhoto&id='+f,
 				'func':function(){
 					var obj=DF.ajax.oName,ac=DF.ajax.ac,text;
-					if(obj.readyState==1||obj.readyState==2||obj.readyState==3){
+					if(obj.readyState == 1||obj.readyState == 2||obj.readyState == 3){
 						cellPlace.innerHTML='<br><img src="'+progressUrl+'" border="0"><br><br>رجاءاً أنتظر ليتم تحميل الصور...<br><br>';
 					}
-					else if(obj.readyState==4){
+					else if(obj.readyState == 4){
 						var get=obj.responseText.split(ac);
 						if(get[1]&&get[1]!=''){
 							var photos=get[1].split('[>:r:<]');
 							text="<table width='100%' cellspacing='5' cellpadding='5' border='0'><tr>";
 							for(var x=0,y=1;x<photos.length-1;x++){
 								text+="<td align='center'><a href=\"javascript:DF.choosePhoto('"+escape(photos[x])+"');\" id=\""+photos[x]+"\"><img src='"+photos[x]+"' onError='this.src=\""+nophotoUrl+"\";' alt='اضغط هنا لإختيار الصورة' width='50' height='50' border='0'></a></td>";
-								if(y==8){
+								if(y == 8){
 									text+="</tr><tr>";
 									y=0;
 								}
@@ -1128,7 +1128,7 @@ elseif(type=='editlists'){
 		if(frm.medalsubject.value.length<10||frm.medalsubject.value.indexOf("[")>=0||frm.medalsubject.value.indexOf("]")>=0){
 			alert("يجب إدخال عنوان للوسام وأن يكون أطول من 10 أحرف.");
 		}
-		else if(frm.medal_filename.value.length==0){
+		else if(frm.medal_filename.value.length == 0){
 			alert("يجب عليك أن تختار صورة للوسام.");
 		}
 		else{
@@ -1164,7 +1164,7 @@ elseif(type=='editlists'){
 		<tr>
 			<td class=\"asFixedB\"><nobr>عدد الأيام</nobr></td>
 			<td class=\"asNormalB asS12\" colspan=\"3\">";
-		if(ulv>2){
+		if(ulv > 2){
 			echo"
 			<select class=\"asGoTo\" name=\"medaldays\">";
 			for($x=1;$x<=30;$x++){
@@ -1184,7 +1184,7 @@ elseif(type=='editlists'){
 		<tr>
 			<td class=\"asFixedB\"><nobr>نقاط التميز</nobr></td>
 			<td class=\"asNormalB asS12\" colspan=\"3\">";
-		if(ulv>2){
+		if(ulv > 2){
 			echo"
 			<select class=\"asGoTo\" name=\"medalpoints\">";
 			for($x=1;$x<=20;$x++){
@@ -1201,7 +1201,7 @@ elseif(type=='editlists'){
 			&nbsp;&nbsp;&nbsp;عدد نقاط التميز التي تضاف للعضو عند منحه الوسام
 			</td>
 		</tr>";
-	if(ulv>2){
+	if(ulv > 2){
 		echo"
 		<tr>
 			<td class=\"asFixedB\"><nobr>وضعية الوسام</nobr></td>
@@ -1224,7 +1224,7 @@ elseif(type=='editlists'){
 	</form>
 	</table>";
 }
-elseif(type=='updatelists'){
+elseif(type == 'updatelists'){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في إضافة وسام جديد للمنتدى");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -1246,20 +1246,20 @@ elseif(type=='updatelists'){
 	elseif(empty($medal_filename)){
 		$Template->errMsg("يجب عليك أن تختار صورة للوسام.");
 	}
-	elseif(ulv<4&&!in_array($forumid,$forums)){
+	elseif(ulv < 4&&!in_array($forumid,$forums)){
 		$Template->errMsg("لا يسمح لك بتعديل هذا الوسام");
 	}
 	else{
 		$mysql->update("medallists SET
-			".(ulv>2 ? "status = '$status',days = '$days',points = '$points'," : "")."
+			".(ulv > 2 ? "status = '$status',days = '$days',points = '$points'," : "")."
 			subject = '$subject',filename = '".$DFPhotos->getname($medal_filename)."',close = '$close'
 		WHERE id = '$m'", __FILE__, __LINE__);
 		$Template->msg("تم تعديل الوسام بنجاح");
 	}
 }
-elseif(type=='upphotos'){
+elseif(type == 'upphotos'){
 	$forums=$DF->getAllowForumId();
-	if(ulv<4&&!in_array(f,$forums)){
+	if(ulv < 4&&!in_array(f,$forums)){
 		$DF->goTo();
 		exit();
 	}
@@ -1279,7 +1279,7 @@ elseif(type=='upphotos'){
 		}
 	}
 	DF.checkFile=function(frm){
-		if(frm.upfile.value==""){
+		if(frm.upfile.value == ""){
 			alert("يجب عليك أن تختار صورة من جهازك");
 		}
 		else if(frm.upfile.value.toLowerCase().indexOf(".gif")<0){
@@ -1362,17 +1362,17 @@ elseif(type=='upphotos'){
 		$addedName = (($aname = $Template->userColorLink($rs['added'], array($rs['aname'], $rs['astatus'], $rs['alevel'], $rs['asubmonitor']))) ? $aname : '--');
 		$usePhoto = $rs['isuse'] == 1 ? "نعم" : "<font color=\"red\">لا</font>";
 		$photoTools="";
-		if($rs['isuse']==0||ulv==4){
+		if($rs['isuse'] == 0||ulv == 4){
 			$photoTools="<a href=\"javascript:DF.deleteFile({$rs['id']});\"><img src=\"{$DFImage->i['delete']}\" alt=\"إحذف هذه الصورة من قائمة صور الاوسمة هذا المنتدى\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($fileSize==0){
+		if($fileSize == 0){
 			$photoTools.="<a href=\"javascript:DF.upFileOverThisFile({$rs['id']});\"><img src=\"{$DFImage->i['reupload']}\" alt=\"رفع ملف جديد على هذا الملف المعطل\" hspace=\"2\" border=\"0\"></a>";
 		}
 		echo"
 		<tr>
 			<td class=\"asNormalB asS12 asCenter\"><nobr>{$rs['id']}</nobr></td>
 			<td class=\"asNormalB asAS12 asCenter\" dir=\"ltr\"><a href=\"#\" onclick=\"DF.doPreviewImage('{$DFPhotos->getsrc($rs['filename'])}');return false\">{$rs['filename']}</a></td>
-			<td class=\"asNormalB asS12 asCenter\" dir=\"ltr\"><nobr>".($fileSize==0 ? "--" : round($fileSize/1024,2)." kb")."</nobr></td>
+			<td class=\"asNormalB asS12 asCenter\" dir=\"ltr\"><nobr>".($fileSize == 0 ? "--" : round($fileSize/1024,2)." kb")."</nobr></td>
 			<td class=\"asNormalB asS12 asCenter\"><nobr>$usePhoto</nobr></td>
 			<td class=\"asNormalB asAS12 asCenter\"><nobr>$addedName</nobr></td>
 			<td class=\"asNormalB asS12 asDate asCenter\"><nobr>{$DF->date($rs['date'])}</nobr></td>
@@ -1381,7 +1381,7 @@ elseif(type=='upphotos'){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"8\"><br>لا توجد أي صورة لهذا المنتدى<br><br></td>

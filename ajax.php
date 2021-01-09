@@ -62,7 +62,7 @@ if($type == 'set_data_to_database'){
 	}
 }
 elseif($type == 'afterLoadOperations'){
-	if(ulv > 0){
+	if( ulv > 0 ){
 		$user_hash = addslashes($_COOKIE['login_user_hash']);
 		if(strlen($user_hash) == 32){
 			$mysql->update("loginsession SET lastdate = ".time." WHERE hash = '{$user_hash}' AND userid = ".uid."", __FILE__, __LINE__);
@@ -95,15 +95,15 @@ elseif($type == 'set_user_style'){
 	$mysql->update("userflag SET style = '{$style}' WHERE id = ".uid."", __FILE__, __LINE__);
 	echo '1';
 }
-elseif($type=='getForumMedalsPhoto'){
+elseif($type == 'getForumMedalsPhoto'){
 	$DF->charset();
 	echo ac;
 	$show_tools=$DF->showTools($id);
-	if($show_tools==2){
+	if($show_tools == 2){
 		$is_moderator=true;
 		$is_monitor=true;
 	}
-	elseif($show_tools==1){
+	elseif($show_tools == 1){
 		$is_moderator=true;
 	}
 	if($is_moderator){
@@ -117,7 +117,7 @@ elseif($type=='getForumMedalsPhoto'){
 		echo ac;
 	}
 }
-elseif($type=='deleteUserFromTopic'){
+elseif($type == 'deleteUserFromTopic'){
 	if($is_moderator){
 		$mysql->delete("topicusers WHERE id = '$id'", __FILE__, __LINE__);
 		echo '1';
@@ -127,14 +127,14 @@ elseif($type=='deleteUserFromTopic'){
 	}
 	echo ac;
 }
-elseif($type=='getMonDetails'){
+elseif($type == 'getMonDetails'){
 	$DF->charset();
 	$rs=$mysql->queryRow("SELECT mf.postid,mf.posttype,mf.usernote,mf.monnote,IF(mf.posttype = 1,p.topicid,0)
 	FROM ".prefix."monflag as mf
 	LEFT JOIN ".prefix."post AS p ON(mf.posttype = 1 AND p.id = mf.postid)
 	WHERE mf.id = '$id'", __FILE__, __LINE__);
 	if($rs){
-		echo ($rs[1]==3 ? $DF->numToHash($rs[0]) : $rs[0]).ac;
+		echo ($rs[1] == 3 ? $DF->numToHash($rs[0]) : $rs[0]).ac;
 		echo $rs[1].ac;
 		echo nl2br($rs[2]).ac;
 		echo nl2br($rs[3]).ac;
@@ -165,19 +165,19 @@ elseif($type == 'process_phpcode'){
 	}
 	echo '@@DM@@';
 }
-elseif($type=='menubarContents'){
-	if(ulv>0){
+elseif($type == 'menubarContents'){
+	if( ulv > 0 ){
 		//textId, otherText, highlight, disabled
-		if($method=='u'){
+		if($method == 'u'){
 			$rs=$mysql->queryAssoc("SELECT u.status,u.level,uf.posts,uf.points,uf.ip
 			FROM ".prefix."user AS u
 			LEFT JOIN ".prefix."userflag AS uf ON(uf.id = u.id)
 			WHERE u.id = $id", __FILE__, __LINE__);
-			$status=($rs['status']==1 ? 0 : (ulv>1 ? 0 : 1));
-			$modStatus=($rs['status']==1 ? 0 : 1);
+			$status=($rs['status'] == 1 ? 0 : (ulv > 1 ? 0 : 1));
+			$modStatus=($rs['status'] == 1 ? 0 : 1);
 			$details="
 			[9,'',1,0],
-			".(ulv>1 ? "[1,$id,0,0]," : "")."
+			".(ulv > 1 ? "[1,$id,0,0]," : "")."
 			[2,{$rs['posts']},0,0],
 			".($rs['points']>0&&$rs['level']<4?"[3,{$rs['points']},0,0],":"")."
 			[-1],
@@ -187,7 +187,7 @@ elseif($type=='menubarContents'){
 			[4,'',1,0],
 			[5,'',1,{$status}],
 			[6,'',1,{$status}],";
- 			if(ulv>1){
+ 			if(ulv > 1){
 				$details .= "[-1],
 				[59,'',1,{$modStatus}],
 				[58,'',1,0],
@@ -216,21 +216,21 @@ elseif($type=='menubarContents'){
 			$details=substr($details,0,strlen($details)-1);
 			echo "[{$details}]";
 		}
-		if($method=='f'){
+		if($method == 'f'){
 			$is_moderator=false;
 			$is_monitor=false;
 			if($id>0){
 				$show_tools=$DF->showTools($id);
-				if($show_tools==2){
+				if($show_tools == 2){
 					$is_moderator=true;
 					$is_monitor=true;
 				}
-				elseif($show_tools==1){
+				elseif($show_tools == 1){
 					$is_moderator=true;
 				}
 			}
 			$rs=$mysql->queryAssoc("SELECT status,hidden FROM ".prefix."forum WHERE id = {$id}", __FILE__, __LINE__);
-			$status=($rs['status']==1 ? 0 : (ulv==4||$is_moderator ? 0 : 1));
+			$status=($rs['status'] == 1 ? 0 : (ulv == 4||$is_moderator ? 0 : 1));
 			$details="
 			[10,'',1,0],
 			[20,'',1,{$status}],
@@ -245,19 +245,19 @@ elseif($type=='menubarContents'){
 				[65,{$DFOutput->count("pm WHERE author = (-$id) AND pmout = 0 AND pmread = 0 AND status = 1 AND pmlist = 0")},1,0],
 				[64,{$DFOutput->count("complain WHERE status = 3 AND forumid = $id")},1,0],";
 			}
-			if(ulv==4){
+			if(ulv == 4){
 				$details.="[-1],
 				[89,'',1,0],
-				{$DF->iff($rs['hidden']==0,"[88,'',1,0],","")}
-				{$DF->iff($rs['hidden']==1,"[87,'',1,0],","")}
-				{$DF->iff($rs['status']==1,"[86,'',1,0],","")}
-				{$DF->iff($rs['status']==0,"[85,'',1,0],","")}";
+				{$DF->iff($rs['hidden'] == 0,"[88,'',1,0],","")}
+				{$DF->iff($rs['hidden'] == 1,"[87,'',1,0],","")}
+				{$DF->iff($rs['status'] == 1,"[86,'',1,0],","")}
+				{$DF->iff($rs['status'] == 0,"[85,'',1,0],","")}";
 			}
 			$details=$DF->striplines($details,true);
 			$details=substr($details,0,strlen($details)-1);
 			echo "[{$details}]";
 		}
-		if($method=='t'){
+		if($method == 't'){
 			$rs=$mysql->queryAssoc("SELECT t.status,t.author,f.id AS fid,f.status AS fstatus
 			FROM ".prefix."topic AS t
 			LEFT JOIN ".prefix."forum AS f ON(f.id = t.forumid)
@@ -266,16 +266,16 @@ elseif($type=='menubarContents'){
 			$is_monitor=false;
 			if($rs['fid']>0){
 				$show_tools=$DF->showTools($rs['fid']);
-				if($show_tools==2){
+				if($show_tools == 2){
 					$is_moderator=true;
 					$is_monitor=true;
 				}
-				elseif($show_tools==1){
+				elseif($show_tools == 1){
 					$is_moderator=true;
 				}
 			}
-			$status=($rs['status']==1&&$rs['fstatus']==1||$is_moderator ? 0 : 1);
-			$editstatus=($rs['status']==1&&$rs['author']==uid||$is_moderator ? 0 : 1);
+			$status=($rs['status'] == 1&&$rs['fstatus'] == 1||$is_moderator ? 0 : 1);
+			$editstatus=($rs['status'] == 1&&$rs['author'] == uid||$is_moderator ? 0 : 1);
 			$details="
 			[11,'',1,0],
 			[30,'',1,{$status}],
@@ -310,7 +310,7 @@ elseif($type == 'checkUseUserName'){
 		echo'none'.ac;
 	}
 }
-elseif($type=='checkUseUserEmail'){
+elseif($type == 'checkUseUserEmail'){
 	$userEmail=$DF->cleanText($_POST['email']);
 	$userid=(int)$mysql->get("userflag","id",$userEmail,"email");
 	if($userid>0){
@@ -320,7 +320,7 @@ elseif($type=='checkUseUserEmail'){
 		echo'none'.ac;
 	}
 }
-elseif($type=='doLoadMods'){
+elseif($type == 'doLoadMods'){
 	$DF->charset("utf-8");
  	$sql=$mysql->query("SELECT m.userid,u.name FROM ".prefix."moderator AS m LEFT JOIN ".prefix."user AS u ON(u.id = m.userid) WHERE m.forumid = '$id'", __FILE__, __LINE__);
 	if($mysql->numRows($sql)>0){
@@ -334,7 +334,7 @@ elseif($type=='doLoadMods'){
 		echo"<div class=\"mods\"><nobr>لا يوجد أي مشرف</nobr></div>".ac;
 	}
 }
-elseif($type=='onlineinforums'){
+elseif($type == 'onlineinforums'){
 	$forums = $DF->cleanText($_POST['forums'], true);
 	$forums = str_replace("|", ",", $forums);
 	$sql = $mysql->query("SELECT f.id, IF(".ulv." > 0, COUNT(DISTINCT uo.ip)+COUNT(DISTINCT v.ip), 0)
@@ -348,7 +348,7 @@ elseif($type=='onlineinforums'){
 	}
 	echo implode("|", $gets);
 }
-elseif($type=='getModerateContetns'){
+elseif($type == 'getModerateContetns'){
 	$rs=$mysql->queryRow("SELECT COUNT(CASE WHEN moderate = 1 THEN 1 ELSE NULL END),COUNT(CASE WHEN moderate = 2 THEN 1 ELSE NULL END) FROM ".prefix."topic WHERE moderate > 0 AND forumid = {$id} GROUP BY forumid", __FILE__, __LINE__);
 	$tModerate=(int)$rs[0];
 	$tHold=(int)$rs[1];
@@ -429,29 +429,29 @@ elseif($type == 'getAddFriend' && ulv > 0){
 	$user=($rs[0]>0 ? $Template->userColorLink($rs[0], array($rs[1], $rs[2], $rs[3], $rs[4])) : '');
 	echo"['{$user}','{$rs[5]}',{$DFOutput->friendStatus($id)}]";
 }
-elseif($type=='setAddFriend'&&ulv>0){
-	if($DFOutput->friendStatus($id)==0){
+elseif($type == 'setAddFriend'&&ulv > 0){
+	if($DFOutput->friendStatus($id) == 0){
 		$mysql->insert("friends (userid,friendid,date) VALUES (".uid.",{$id},".time.")", __FILE__, __LINE__);
 		echo ac.'1'.ac;
 	}
 }
-elseif($type=='checkFriends'&&ulv>0){
+elseif($type == 'checkFriends'&&ulv > 0){
 	$uid=uid;
 	$auth=(int)$_POST['auth'];
-	if(ulv==4&&$auth>0&&$auth!=uid) $uid=$auth;
+	if(ulv == 4&&$auth>0&&$auth!=uid) $uid=$auth;
 	if($id>0&&$uid>0){
-		if($method=='accept'){
+		if($method == 'accept'){
 			$mysql->update("friends SET status = 1 WHERE friendid = {$uid} AND id = {$id}", __FILE__, __LINE__);
 			$author=$mysql->get("friends","userid",$id);
 			$DFOutput->setNotification('acf',$author,$author,0,$uid);
 		}
-		if($method=='refuse') $mysql->update("friends SET status = 2 WHERE (userid = {$uid} OR friendid = {$uid}) AND id = {$id}", __FILE__, __LINE__);
-		if($method=='delete') $mysql->delete("friends WHERE userid = {$uid} AND id = {$id}", __FILE__, __LINE__);
-		if($method=='deleteblock') $mysql->delete("blocks WHERE userid = {$uid} AND id = {$id}", __FILE__, __LINE__);
+		if($method == 'refuse') $mysql->update("friends SET status = 2 WHERE (userid = {$uid} OR friendid = {$uid}) AND id = {$id}", __FILE__, __LINE__);
+		if($method == 'delete') $mysql->delete("friends WHERE userid = {$uid} AND id = {$id}", __FILE__, __LINE__);
+		if($method == 'deleteblock') $mysql->delete("blocks WHERE userid = {$uid} AND id = {$id}", __FILE__, __LINE__);
 		echo ac.'1'.ac;
 	}
 }
-elseif($type=='blockUser' && ulv > 0){
+elseif($type == 'blockUser' && ulv > 0){
 	if($id > 0){
 		$rs = $mysql->queryRow("SELECT id FROM ".prefix."blocks WHERE userid = ".uid." AND blockid = {$id}", __FILE__, __LINE__);
 		$bid = (int)$rs[0];

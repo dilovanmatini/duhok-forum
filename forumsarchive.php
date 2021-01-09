@@ -18,7 +18,7 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(type==""){
+if(type == ""){
 	$Template->errMsg("<font color=\"black\">الصفحة تحت الصيانة<br>قريباً سنفتح لكم</font>");
 }
 else{

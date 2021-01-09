@@ -34,7 +34,7 @@ DF.command = function(id, type, post){
 DF.getNumSel=function(frm){
 	var el=frm.elements;
 	for(var x=0,y=0;x<el.length;x++){
-		if(el[x].type=='checkbox'&&el[x].checked){
+		if(el[x].type == 'checkbox'&&el[x].checked){
 			y++;
 		}
 	}
@@ -52,12 +52,12 @@ DF.getNumSelPosts=function(frm,type){
 		arr["re"]=[1,2];
 		var status=arr[type][0],index=arr[type][1];
 		for(var x=0,y=0;x<el.length;x++){
-			if(el[x].type=='checkbox'&&el[x].checked){
+			if(el[x].type == 'checkbox'&&el[x].checked){
 				post=posts[parseInt(el[x].value)];
-				if(post[index]==status||type=='mo'&&post[1]==2){
+				if(post[index] == status||type == 'mo'&&post[1] == 2){
 					y++;
-					frm.id.value+=(y==0 ? '' : ',')+el[x].value;
-					frm.other.value+=(y==0 ? '' : '|')+el[x].value+"-"+post[3]+"-"+topicid;
+					frm.id.value+=(y == 0 ? '' : ',')+el[x].value;
+					frm.other.value+=(y == 0 ? '' : '|')+el[x].value+"-"+post[3]+"-"+topicid;
 				}
 			}
 		}
@@ -78,7 +78,7 @@ DF.checkGetType=function(obj){
 DF.checkChoose=function(s){
 	var frm=$I('#optionsFrm'),type=this.checkGetType(s),numPosts=this.getNumSelPosts(frm,type),acceptVal="تطبيق",
 	numSel=this.getNumSel(frm),frm1=$I('#frmBar1'),frm2=$I('#frmBar2');
-	if(type!=''&&numSel==0){
+	if(type!=''&&numSel == 0){
 		if(s){
 			alert("أنت لم حددت أي موضوع");
 		}
@@ -114,7 +114,7 @@ DF.checkClick=function(){
 		}
 	}
 	else{
-		if(type==''){
+		if(type == ''){
 			confirm("أنت لم حددت أي خيار من قائمة خيارات الردود");
 		}
 		else{
@@ -123,7 +123,7 @@ DF.checkClick=function(){
 	}
 };
 DF.doSelectRow=function(s,id,o){
-	var cls=(s.checked==true ? 'asSelect' : o),c1=$I('#p1Cell'+id),c2=$I('#p2Cell'+id);
+	var cls=(s.checked == true ? 'asSelect' : o),c1=$I('#p1Cell'+id),c2=$I('#p2Cell'+id);
 	if(c1&&c2){
 		c1.className=cls;
 		c2.className=cls;
@@ -132,9 +132,9 @@ DF.doSelectRow=function(s,id,o){
 DF.selectUserPosts=function(userid,name){
 	var frm=$I('#optionsFrm'),el=frm.elements,id,author;
 	for(var x=0,y=0;x<el.length;x++){
-		if(el[x].type=='checkbox'){
+		if(el[x].type == 'checkbox'){
 			id=el[x].value,author=parseInt(el[x].attributes['author'].value);
-			if(author==userid){
+			if(author == userid){
 				el[x].checked=true;
 				this.doSelectRow(el[x],id,el[x].attributes['defclass'].value);
 				y++;
@@ -145,9 +145,9 @@ DF.selectUserPosts=function(userid,name){
 	alert("تم تحديد جميع ردود العضوية \""+name+"\" وعدد ردودها: "+y);
 };
 DF.selectPosts=function(s){
-	var frm=$I('#optionsFrm'),el=frm.elements,status=(s.checked==true ? true : false);
+	var frm=$I('#optionsFrm'),el=frm.elements,status=(s.checked == true ? true : false);
 	for(var x=0;x<el.length;x++){
-		if(el[x].type=='checkbox'){
+		if(el[x].type == 'checkbox'){
 			el[x].checked=status;
 			this.doSelectRow(el[x],el[x].value,el[x].attributes['defclass'].value);
 		}
@@ -159,7 +159,7 @@ DF.selectPosts=function(s){
 DF.checkChooseMove=function(frm){
 	var otheroptions=frm.otheroptions.options[frm.otheroptions.selectedIndex].value,place=$I('#moveForumList');
 	if(frm.otheroptions.selectedIndex>0){
-		if(otheroptions=='mv'){
+		if(otheroptions == 'mv'){
 			DF.getMoveForumList();
 		}
 		else{

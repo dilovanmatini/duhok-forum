@@ -17,7 +17,7 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv>1){
+if(ulv > 1){
 //********** Start Page **********************
 $showTitleBar=false;
 if(
@@ -94,28 +94,28 @@ if($showTitleBar){
 					<th class=\"asTHLink\"><nobr><a href=\"svc.php?svc=complain\">شكاوي</a></nobr></th>
 					<th class=\"asTHLink\"><nobr><a href=\"svc.php?svc=surveys\">الإستفتاءات</a></nobr></th>
 					<th class=\"asTHLink\"><nobr><a href=\"svc.php?svc=useractivity\">نشاط<br>أعضاء</a></nobr></th>";
-				if(ulv>2){
+				if(ulv > 2){
 					echo"
 					<th class=\"asTHLink\"><nobr><a href=\"svc.php?svc=modactivity\">نشاط<br>مشرفين</a></nobr></th>
 					<th class=\"asTHLink\"><nobr><a href=\"svc.php?svc=modblock&type=list\">المشرفين<br>المجمدين</a></nobr></th>";
 				}
-					if(svc=='medals'){
-						if(type=='lists'){
+					if(svc == 'medals'){
+						if(type == 'lists'){
 							$Template->basicPaging("medallists AS ml WHERE ml.id > 0 ".checkMedalListsSql()."","ml.id");
 						}
-						elseif(type=='distribute'){
+						elseif(type == 'distribute'){
 							$Template->basicPaging("medal AS m
 							LEFT JOIN ".prefix."medallists AS ml ON(ml.id = m.listid)
 							WHERE m.id > 0 ".checkMedalDistributeSql()."","m.id");
 						}
 					}
-					if(svc=='titles'){
-						if(type=='lists'){
+					if(svc == 'titles'){
+						if(type == 'lists'){
 							$Template->basicPaging("titlelists AS tl WHERE 1 = 1 ".checkTitleListsSql()."","tl.id");
 						}
 					}
-					if(svc=='complain'){
-						if(type=='global'){
+					if(svc == 'complain'){
+						if(type == 'global'){
 							$Template->basicPaging("complain AS com
 							LEFT JOIN ".prefix."forum AS f ON(f.id = com.forumid)
 							LEFT JOIN ".prefix."moderator AS m ON(NOT ISNULL(f.id) AND m.forumid = f.id AND m.userid = ".uid.")
@@ -123,8 +123,8 @@ if($showTitleBar){
 							WHERE 1 = 1 ".checkComplainGlobalSql()."","com.id");
 						}
 					}
-					if(svc=='survey'){
-						if(type==''){
+					if(svc == 'survey'){
+						if(type == ''){
 							$Template->basicPaging("survey AS s
 							LEFT JOIN ".prefix."forum AS f ON(f.id = s.forumid)
 							LEFT JOIN ".prefix."moderator AS m ON(NOT ISNULL(f.id) AND m.forumid = f.id AND m.userid = ".uid.")
@@ -141,43 +141,43 @@ if($showTitleBar){
 	</table><br>";
 }
 
-if(svc=='medals'){
+if(svc == 'medals'){
 	define('this_svc','medals');
 	require_once _df_path."medals.php";
 }
-elseif(svc=='titles'){
+elseif(svc == 'titles'){
 	define('this_svc','titles');
 	require_once _df_path."titles.php";
 }
-elseif(svc=='moderate'){
+elseif(svc == 'moderate'){
 	define('this_svc','moderate');
 	require_once _df_path."moderate.php";
 }
-elseif(svc=='mons'){
+elseif(svc == 'mons'){
 	define('this_svc','mons');
 	require_once _df_path."mons.php";
 }
-elseif(svc=='complain'){
+elseif(svc == 'complain'){
 	define('this_svc','complain');
 	require_once _df_path."complain.php";
 }
-elseif(svc=='surveys'){
+elseif(svc == 'surveys'){
 	define('this_svc','surveys');
 	require_once _df_path."surveys.php";
 }
-elseif(svc=='forumbrowse'){
+elseif(svc == 'forumbrowse'){
 	define('this_svc','forumbrowse');
 	require_once _df_path."countries.php";
 }
-elseif(svc=='modactivity'){
+elseif(svc == 'modactivity'){
 	define('this_svc','modactivity');
 	require_once _df_path."modactivity.php";
 }
-elseif(svc=='useractivity'){
+elseif(svc == 'useractivity'){
 	define('this_svc','useractivity');
 	require_once _df_path."useractivity.php";
 }
-elseif(svc=='modblock'){
+elseif(svc == 'modblock'){
 	define('this_svc','modblock');
 	require_once _df_path."modblock.php";
 }

@@ -17,7 +17,7 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv<2) $DF->quick();
+if(ulv < 2) $DF->quick();
 $is_moderator=$DF->showTools(f,uid);
 $f=f;
 $ForumSubject=$mysql->get("forum","subject",f);
@@ -25,7 +25,7 @@ $ForumLogo=$mysql->get("forum","logo",f);
 require_once _df_path."includes/func.post.php";
 require_once _df_path."topicsoperations.php";
 $Template->header();
-if($is_moderator==0){
+if($is_moderator == 0){
 $Template->errMsg("المنتدى المطلوب غير متوفر.<br>");
 exit();
 }
@@ -96,7 +96,7 @@ $sql=$mysql->query("SELECT p.id,p.forumid,p.topicid,p.hidden,p.moderate,p.trash,
 	u.name AS aname,u.status AS astatus,u.level AS alevel,u.submonitor AS asubmonitor,uf.posts AS aposts,uf.points AS apoints,uf.sex AS asex,
 	uf.title AS atitle,uf.oldlevel AS aoldlevel,uf.picture AS apicture,up.hidesignature AS ahidesignature,
 	up.hidephoto AS ahidephoto,up.hideposts AS ahideposts,ic.name AS acountry,
-	u.date AS adate,uu.name AS editbyname,".(topics_signature=='visible'?"uf.signature,":"")." pm.message,
+	u.date AS adate,uu.name AS editbyname,".(topics_signature == 'visible'?"uf.signature,":"")." pm.message,
 	pm.operations,IF(NOT ISNULL(uo.userid),1,0) AS isonline
 FROM ".prefix."post AS p
 LEFT JOIN ".prefix."postmessage AS pm ON(pm.id = p.id)
@@ -112,23 +112,23 @@ while($post=$mysql->fetchAssoc($sql)){
 	//******* start post *************
 	$p=$post['id'];
 	$t=$post['topicid'];
-	if($post['trash']==1){
+	if($post['trash'] == 1){
 		$rowClass="asDelete";
 		$postErrorMsg="** هذه المشاركة محذوفة **";
 	}
-	elseif($post['ahideposts']==1){
+	elseif($post['ahideposts'] == 1){
 		$rowClass="asFirst";
 		$postErrorMsg="** تم إخفاء نص هذه المشاركة بواسطة الإدارة **";
 	}
-	elseif($post['moderate']==1){
+	elseif($post['moderate'] == 1){
 		$rowClass="asFirst";
 		$postErrorMsg="** هذه المشاركة لم يتم مراجعتها والموافقة عليها بواسطة مشرف المنتدى حتى الآن **";
 	}
-	elseif($post['moderate']==2){
+	elseif($post['moderate'] == 2){
 		$rowClass="asFirst";
 		$postErrorMsg="** هذه المشاركة مجمدة حتى إشعار آخر -- للإستفسار عن سبب الرجاء الإتصال بمشرف المنتدى **";
 	}
-	elseif($post['hidden']==1){
+	elseif($post['hidden'] == 1){
 		$rowClass="asHidden";
 		$postErrorMsg="** تم اخفاء هذه المشاركة -- للإستفسار عن السبب الرجاء الإتصال بمشرف المنتدى **";
 	}
@@ -145,7 +145,7 @@ while($post=$mysql->fetchAssoc($sql)){
 	<tr>
 		<td id=\"p1Cell{$p}\" class=\"{$rowClass}\" width=\"17%\" align=\"center\" vAlign=\"top\">";
 		
-	if($post['alevel']==4){
+	if($post['alevel'] == 4){
 		echo"
 		<table width=\"100%\" cellspacing=\"0\" cellpadding=\"4\">
 			<tr>
@@ -162,15 +162,15 @@ while($post=$mysql->fetchAssoc($sql)){
 			<tr>
 				<td class=\"asDarkDot asAC1\" colspan=\"2\">{$Template->userNormalLink($post['author'],$post['aname'])}</td>
 			</tr>";
-		if(ulv>0&&$post['astatus']==0){
+		if(ulv > 0&&$post['astatus'] == 0){
 			echo"
 			<tr>
 				<td class=\"asNormalDot asS12 asCenter\" colspan=\"2\"><font color=\"red\">عضوية مقفولة</font></td>
 			</tr>";
 		}
-		if(ulv>0&&($post['astatus']==1||$is_moderator)&&($topic['hideprofile']==0||$is_moderator)){
+		if(ulv > 0&&($post['astatus'] == 1||$is_moderator)&&($topic['hideprofile'] == 0||$is_moderator)){
 		/******************* Start user details ********************/
-		if($post['ahidephoto']==0||$is_moderator){
+		if($post['ahidephoto'] == 0||$is_moderator){
 			echo"
 			<tr>
 				<td class=\"asNormalDot asCenter\" colspan=\"2\"><img src=\"{$DFPhotos->getsrc($post['apicture'], 200)}\"{$DF->picError(100)} width=\"100\" height=\"100\" class=\"asBGray\" border=\"0\"></td>
@@ -187,7 +187,7 @@ while($post=$mysql->fetchAssoc($sql)){
 				<td class=\"asNormalDot asS12\"><nobr>المشاركات</nobr></td>
 				<td class=\"asNormalDot asS12 asCenter\"><nobr>{$post['aposts']}</nobr></td>
 			</tr>";
-		if($post['alevel']==1&&$post['apoints']>0){
+		if($post['alevel'] == 1&&$post['apoints']>0){
 			echo"
 			<tr>
 				<td class=\"asNormalDot asS12\"><nobr><font color=\"red\">نقاط التميز</font></nobr></td>
@@ -210,7 +210,7 @@ while($post=$mysql->fetchAssoc($sql)){
 				<td class=\"asNormalDot asS12\"><nobr>معدل مشاركات</nobr></td>
 				<td class=\"asNormalDot asS12 asCenter\"><nobr>".(($userMiddlePosts=$DF->catch['userMiddlePosts'][$post['author']]) ? $userMiddlePosts : ($DF->catch['userMiddlePosts'][$post['author']]=userMiddlePosts($post['aposts'],$post['adate'])))."</nobr></td>
 			</tr>";
-		if($post['isonline']==1){
+		if($post['isonline'] == 1){
 			echo"
 			<tr>
 				<td class=\"asNormalDot asS12 asCenter\" colspan=\"2\"><img src=\"{$DFImage->i['online']}\" border=\"0\"><br>متصل الآن</td>
@@ -230,18 +230,18 @@ while($post=$mysql->fetchAssoc($sql)){
 					<tr>
 						<td class=\"asPostIcon\"><nobr>{$DF->date($post['date'])}</nobr></td>
 						<td class=\"asPostIcon\"><a href=\"profile.php?u={$post['author']}\"><img src=\"{$DFImage->i['user_profile']}\" alt=\"معلومات عن العضو\" border=\"0\"></a></td>";
-			if(ulv>0){
+			if( ulv > 0 ){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"editor.php?type=sendpm&u={$post['author']}&t=$t&p=$p&src=".urlencode(self)."\"><img src=\"{$DFImage->i['message']}\" alt=\"أرسل رسالة خاصة لهذا العضو\" border=\"0\"></a></td>";
 					if($is_moderator){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"editor.php?type=sendpm&u={$post['author']}&f=-$f&t=$t&p=$p&src=".urlencode(self)."\"><img src=\"{$DFImage->i['message_forum']}\" alt=\"أرسل رسالة خاصة من الأشراف إلى هذا العضو\" border=\"0\"></a></td>";
 					}
-					if($topic['status']==1||$is_moderator){
+					if($topic['status'] == 1||$is_moderator){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"editor.php?type=quotepost&t=$t&p=$p&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على المشاركة بإضافة نص هذه المشاركة\" border=\"0\"></a></td>";
 					}
-					if($topic['status']==1&&$post['author']==uid||$is_moderator){
+					if($topic['status'] == 1&&$post['author'] == uid||$is_moderator){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"editor.php?type=editpost&p=$p&src=".urlencode(self)."\"><img src=\"{$DFImage->i['post_edit']}\" alt=\"تعديل المشاركة\" border=\"0\"></a></td>";
 					}
@@ -254,11 +254,11 @@ while($post=$mysql->fetchAssoc($sql)){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"javascript:DF.command($p,'mo',1);\"><img src=\"{$DFImage->i['approve']}\" alt=\"موافقة على المشاركة\" border=\"0\"></a></td>";
 					}
-					if($post['moderate']==1){
+					if($post['moderate'] == 1){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"javascript:DF.command($p,'ho',1);\"><img src=\"{$DFImage->i['hold']}\" alt=\"تجميد المشاركة\" border=\"0\"></a></td>";
 					}
-					if($post['hidden']==0){
+					if($post['hidden'] == 0){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"javascript:DF.command($p,'hd',1);\"><img src=\"{$DFImage->i['hidden']}\" alt=\"إخفاء المشاركة\" border=\"0\"></a></td>";
 					}
@@ -266,11 +266,11 @@ while($post=$mysql->fetchAssoc($sql)){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"javascript:DF.command($p,'vs',1);\"><img src=\"{$DFImage->i['visible']}\" alt=\"إظهار المشاركة\" border=\"0\"></a></td>";
 					}
-					if($post['trash']==0&&$is_monitor){
+					if($post['trash'] == 0&&$is_monitor){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"javascript:DF.command($p,'dl',1);\"><img src=\"{$DFImage->i['post_delete']}\" alt=\"حذف المشاركة\" border=\"0\"></a></td>";
 					}
-					elseif($post['trash']==1&&$is_monitor){
+					elseif($post['trash'] == 1&&$is_monitor){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"javascript:DF.command($p,'re',1);\"><img src=\"{$DFImage->i['post_up']}\" alt=\"إرجاع المشاركة\" border=\"0\"></a></td>";
 					}
@@ -280,7 +280,7 @@ while($post=$mysql->fetchAssoc($sql)){
 					}
 				}
 				else{
-					if(ulv>1&&$topic['hidden']==0&&$topic['moderate']==0&&$topic['trash']==0&&$topic['status']==1&&$post['trash']==0&&$post['hidden']==0&&$post['moderate']==0){
+					if(ulv > 1&&$topic['hidden'] == 0&&$topic['moderate'] == 0&&$topic['trash'] == 0&&$topic['status'] == 1&&$post['trash'] == 0&&$post['hidden'] == 0&&$post['moderate'] == 0){
 						echo"
 						<td class=\"asPostIcon\"><a href=\"topics.php?t=$t&method=hidepost&id=$p&src=".urlencode(self)."\"{$DF->confirm('هل أنت متأكد بأن تريد إخفاء هذه المشاركة')}><img src=\"{$DFImage->i['hidden']}\" alt=\"إخفاء المشاركة\" border=\"0\"></a></td>";
 					}
@@ -313,15 +313,15 @@ while($post=$mysql->fetchAssoc($sql)){
 		<table style=\"table-layout:fixed\" align=\"center\">
 			<tr>
 				<td>";
-				if($post['ahideposts']==0||$post['author']==uid||$is_moderator){
+				if($post['ahideposts'] == 0||$post['author'] == uid||$is_moderator){
 					echo str_replace("\\\"","",$post['message'])."<br>";
 				}
-				if(topics_signature=='visible'&&!empty($post['signature'])){
+				if(topics_signature == 'visible'&&!empty($post['signature'])){
 					echo"
 					<fieldset class=\"gray\">
 						<legend>&nbsp;التوقيع</legend>";
-					if($post['ahidesignature']==1) echo"<br><div class=\"asTitle asCenter asWDot asP5\">** تم إخفاء توقيع هذه العضوية بواسطة الإدارة **</div><br>";
-					if($post['ahidesignature']==0||$post['author']==uid||$is_moderator) echo $post['signature'];
+					if($post['ahidesignature'] == 1) echo"<br><div class=\"asTitle asCenter asWDot asP5\">** تم إخفاء توقيع هذه العضوية بواسطة الإدارة **</div><br>";
+					if($post['ahidesignature'] == 0||$post['author'] == uid||$is_moderator) echo $post['signature'];
 					echo"
 					</fieldset><br><br>";
 				}
@@ -329,7 +329,7 @@ while($post=$mysql->fetchAssoc($sql)){
 				</td>
 			</tr>
 		</table>";
-if(ulv>0){
+if( ulv > 0 ){
 		$operMsg=array();
 		$operMsg['hd'][1]="تم إخفاء المشاركة بواسطة";
 		$operMsg['hd'][0]="تم إظهار المشاركة بواسطة";
@@ -345,7 +345,7 @@ if(ulv>0){
 			$operations=array_reverse($operations);
 			foreach($operations as $val){
 				$exp=explode("::",$val);
-				$opMessage=$operMsg["{$exp[1]}"][$exp[1]=='mv'?0:$exp[2]];
+				$opMessage=$operMsg["{$exp[1]}"][$exp[1] == 'mv'?0:$exp[2]];
 				echo"
 				<tr>
 					<td class=\"asTitle asWDot asAC2 asAS12\"><nobr>{$DF->date($exp[0],'',true)} - $opMessage {$Template->userNormalLink($exp[3],$exp[4])}</nobr></td>
@@ -372,7 +372,7 @@ if(ulv>0){
 	$count++;
 	//********* end post ************
 }
-if($count==0){
+if($count == 0){
 print $Template->errMsg('لا توجد ردود تنتظر الموافقة',0,true,true,'عفوا');
 }
 if($is_moderator){

@@ -4031,7 +4031,7 @@ class PHPMailer
             }
             foreach ($images[2] as $imgindex => $url){
                 // Convert data URIs into embedded images
-                //e.g. "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                //e.g. "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw == "
                 $match = [];
                 if(preg_match('#^data:(image/(?:jpe?g|gif|png));?(base64)?,(.+)#', $url, $match)){
                     if(count($match) === 4 && static::ENCODING_BASE64 === $match[2]){

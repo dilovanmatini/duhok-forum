@@ -54,7 +54,7 @@ DF.checkInfo=function(table,type){
 DF.checkUserName=function(s){
 	var msg=$I('#userNameMsg');
 	userNameError=true;
- 	if(s.value.length==0){
+ 	if(s.value.length == 0){
 		msg.innerHTML=this.msgBox('يجب عليك أن تكتب اسم العضوية.','red',1,0,true).code;
 	}
 	else if(s.value.length<3){
@@ -63,7 +63,7 @@ DF.checkUserName=function(s){
 	else if(s.value.length>30){
 		msg.innerHTML=this.msgBox('يجب أن يكون الإسم لا أكثر من 30 حرفاً.','red',1,0,true).code;
 	}
-	else if(s.value==parseInt(s.value)){
+	else if(s.value == parseInt(s.value)){
 		msg.innerHTML=this.msgBox('لا يمكن استخدام اسماء تحتوي على أرقام فقط.','red',1,0,true).code;
 	}
 	else if(this.checkSymbols(s.value)!=1){
@@ -74,16 +74,16 @@ DF.checkUserName=function(s){
 			'send':'type=checkUseUserName&name='+s.value,
 			'func':function(){
 				var obj=DF.ajax.oName,ac=DF.ajax.ac;
-				if(obj.readyState==1){
+				if(obj.readyState == 1){
 					msg.innerHTML=DF.loadIcon();
 				}
-				else if(obj.readyState==4){
+				else if(obj.readyState == 4){
 					var get=obj.responseText.split(ac);
-					if(get&&get[0]=='none'){
+					if(get&&get[0] == 'none'){
 						msg.innerHTML=DF.msgBox('اسم غير مستخدم ومتاح للتسجيل.','green',1,0,true).code;
 						userNameError=false;
 					}
-					else if(get&&get[0]=='found'){
+					else if(get&&get[0] == 'found'){
 						msg.innerHTML=DF.msgBox('اسم الذي اخترت غير متاح, يجب ان تختار اسم آخر.','red',1,0,true).code;
 					}
 					else{
@@ -97,7 +97,7 @@ DF.checkUserName=function(s){
 DF.checkUserPass1=function(s){
 	var msg=$I('#userPass1Msg');
 	userPass1Error=true;
-	if(s.value.length==0){
+	if(s.value.length == 0){
 		msg.innerHTML=this.msgBox('يجب عليك ان تكتب كلمة السرية.','red',1,0,true).code;
 	}
 	else if(s.value.length<6){
@@ -114,7 +114,7 @@ DF.checkUserPass1=function(s){
 DF.checkUserPass2=function(s){
 	var msg=$I('#userPass2Msg');
 	userPass2Error=true;
-	if(s.value.length==0){
+	if(s.value.length == 0){
 		msg.innerHTML=this.msgBox('يجب عليك ان تكتب تأكيد كلمة السرية.','red',1,0,true).code;
 	}
 	else if(s.form.regUserPass1.value!=s.value){
@@ -128,7 +128,7 @@ DF.checkUserPass2=function(s){
 DF.checkUserEmail=function(s){
 	var msg=$I('#userEmailMsg');
 	userEmailError=true;
-	if(s.value.length==0){
+	if(s.value.length == 0){
 		msg.innerHTML=this.msgBox('يجب عليك ان تكتب عنوان بريد الالكتروني.','red',1,0,true).code;
 	}
 	else if(!this.checkEmail(s.value)){
@@ -139,16 +139,16 @@ DF.checkUserEmail=function(s){
 			'send':'type=checkUseUserEmail&email='+s.value,
 			'func':function(){
 				var obj=DF.ajax.oName,ac=DF.ajax.ac;
-				if(obj.readyState==1){
+				if(obj.readyState == 1){
 					msg.innerHTML=DF.loadIcon();
 				}
-				else if(obj.readyState==4){
+				else if(obj.readyState == 4){
 					var get=obj.responseText.split(ac);
-					if(get&&get[0]=='none'){
+					if(get&&get[0] == 'none'){
 						msg.innerHTML=DF.msgBox('بريد الكتروني صالح للتسجيل.','green',1,0,true).code;
 						userEmailError=false;
 					}
-					else if(get&&get[0]=='found'){
+					else if(get&&get[0] == 'found'){
 						msg.innerHTML=DF.msgBox('بريد الالكتروني الذي اخترت موجود مسبقاً, نرجوا ان تختار واحد آخر.','red',1,0,true).code;
 					}
 					else{
@@ -181,7 +181,7 @@ DF.doRegister=function(frm){
 		$I('#userCountryMsg').innerHTML=this.msgBox('نرجوا ان تختار دولة من قائمة الدول','red',1,0,true).code;
 		foundError=true;
 	}
-	if(frm.regUserBrithDayYear.selectedIndex==0){
+	if(frm.regUserBrithDayYear.selectedIndex == 0){
 		$I('#userBrithDayMsg').innerHTML=this.msgBox('نرجوا أن تختار تاريخ ولادتك الصحيحة.','red',1,0,true).code;
 		foundError=true;
 	}

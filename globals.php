@@ -192,7 +192,7 @@ $DFImage->setArrays();
 $DFOutput->setOnline();
 
 // Set user login details
-if(ulv > 0){
+if( ulv > 0 ){
 	$DFOutput->setLoginDetails();
 }
 

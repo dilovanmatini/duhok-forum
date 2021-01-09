@@ -90,7 +90,7 @@ if(type == ''){
 					</table>
 					<table width=\"100%\" cellSpacing=\"2\" cellPadding=\"2\">
 						<tr>
-							<td width=\"20%\"><textarea style=\"width:530px;height:70px;font-weight:bold;font-family:arial;font-size:15px;color:#000000\" id=\"messageBox\" onkeypress=\"if(event.keyCode==13){DF.chatSendMsg();return false}\"></textarea></td>
+							<td width=\"20%\"><textarea style=\"width:530px;height:70px;font-weight:bold;font-family:arial;font-size:15px;color:#000000\" id=\"messageBox\" onkeypress=\"if(event.keyCode == 13){DF.chatSendMsg();return false}\"></textarea></td>
 							<td>
 							<table>";
 							$smiles=array(array('icon','cool','big'),array('angry','blackeye','dissapprove'),array('crying','eyebrows','hearteyes'));

@@ -18,10 +18,10 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv==4){
+if(ulv == 4){
 //*********** start page ****************************************
 
-if(type==""){
+if(type == ""){
 echo'
 	
 	<table class="border" width="80%" cellSpacing="1" cellPadding="4" align="center" border="0">
@@ -111,7 +111,7 @@ echo'
 		</table>';
 
 }
-elseif(type=="show"){
+elseif(type == "show"){
 	$step=$_POST['step'];
 	$frm= intval($_POST['frm']);
 	$types=$_POST['type'];
@@ -133,7 +133,7 @@ elseif(type=="show"){
 	}
 	
 	
-	if($step=="forums"){
+	if($step == "forums"){
 	if($frm <= 0){
 	$Template->errMsg("يجب أن تدخل رقما صحيحا للمنتدى");
 	}
@@ -148,7 +148,7 @@ elseif(type=="show"){
 	}
 	
 	
-		if($step=="all"){
+		if($step == "all"){
 	$title_first = "إحصائيات المنتدى";	
 	$type_show = "الردود";
 	$sql =$mysql->query("SELECT COUNT(post.id) AS counts, member.name,member.id FROM ".prefix."user AS member LEFT JOIN ".prefix."post  AS post ON (post.author = member.id)  WHERE  post.date > $thetime  GROUP BY post.author ORDER BY counts DESC LIMIT $max", __FILE__, __LINE__);	

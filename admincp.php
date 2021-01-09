@@ -20,7 +20,7 @@ require_once _df_path."globals.php";
 if(ulv == 4 && cplogin === true){
 $Template->adminHeader();
 // Start Admin Control Panel
-if($Template->adminType=='index'){
+if($Template->adminType == 'index'){
 	echo"
 	<table>
 		<tr>
@@ -64,9 +64,9 @@ if($Template->adminType=='index'){
 	<?php
 	}
 }
-elseif($Template->adminType=='setting'){
-	if($Template->adminMethod=='mainsetting'){
-		if(scope=='change'){
+elseif($Template->adminType == 'setting'){
+	if($Template->adminMethod == 'mainsetting'){
+		if(scope == 'change'){
 			$DFOutput->setCnf('forum_title',$_POST['forum_title']);
 			$DFOutput->setCnf('site_address',$_POST['site_address']);
 			$DFOutput->setCnf('forum_logo',$_POST['forum_logo']);
@@ -89,7 +89,7 @@ elseif($Template->adminType=='setting'){
 			
 			$DF->goTo("admincp.php?type=setting&method=mainsetting&change=1");
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('تم حفظ تغيرات بنجاح','green',15,25,true,false);
 		}
 		$text="
@@ -196,8 +196,8 @@ elseif($Template->adminType=='setting'){
 		</table>";
 		$Template->adminBox("خيارات أساسية",$text,50,4);
 	}
-	elseif($Template->adminMethod=='othersetting'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'othersetting'){
+		if(scope == 'change'){
 			$DFOutput->setCnf('register_status',$_POST['register_status']);
 			$DFOutput->setCnf('visitor_can_show_forums',$_POST['visitor_can_show_forums']);
 			$DFOutput->setCnf('visitor_can_show_topics',$_POST['visitor_can_show_topics']);
@@ -211,7 +211,7 @@ elseif($Template->adminType=='setting'){
 			$DFOutput->setCnf('new_user_can_send_pm',$_POST['new_user_can_send_pm']);
 			$DF->goTo("admincp.php?type=setting&method=othersetting&change=1");
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('تم حفظ تغيرات بنجاح','green',15,25,true,false);
 		}
 		$text="
@@ -610,8 +610,8 @@ elseif($Template->adminType=='setting'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='stats'){
-	if($Template->adminMethod=='userstats'){
+elseif($Template->adminType == 'stats'){
+	if($Template->adminMethod == 'userstats'){
 		echo"<br><br><br>
 		<div align=\"center\"><a href=\"admin_stats.php\"><b>انقر هنا للذهاب الى صفحة إحصائيات أعضاء</b></a></div>";
 	}
@@ -619,9 +619,9 @@ elseif($Template->adminType=='stats'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='templates'){
-	if($Template->adminMethod=='edit'){
-		if(scope=='change'){
+elseif($Template->adminType == 'templates'){
+	if($Template->adminMethod == 'edit'){
+		if(scope == 'change'){
 			$tempid=(int)$_POST['tempid'];
 			$tempname=trim($_POST['tempname']);
 			$temptext=trim($_POST['temptext']);
@@ -639,7 +639,7 @@ elseif($Template->adminType=='templates'){
 				$DF->goTo("admincp.php?type=templates&method=edit&id=$tempid&change=1");
 			}
 		}
-		elseif(scope=='delete'){
+		elseif(scope == 'delete'){
 			$mysql->delete("template WHERE id = ".id."", __FILE__, __LINE__);
 			$DF->goTo("admincp.php?type=templates&method=edit&change=2");
 		}
@@ -708,8 +708,8 @@ elseif($Template->adminType=='templates'){
 		</table>";
 		$Template->adminBox("تعديل قالب",$text,80,4);
 	}
-	elseif($Template->adminMethod=='add'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'add'){
+		if(scope == 'change'){
 			$tempname=trim($_POST['tempname']);
 			$temptext=trim($_POST['temptext']);
 			$findName=$mysql->get("template","name",$tempname,"name");
@@ -757,8 +757,8 @@ elseif($Template->adminType=='templates'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='groupmessages'){
-	if($Template->adminMethod=='sendemailtousers'){
+elseif($Template->adminType == 'groupmessages'){
+	if($Template->adminMethod == 'sendemailtousers'){
 		$text="
 		<table width=\"100%\" cellSpacing=\"1\" cellPadding=\"4\" align=\"center\" border=\"0\">
 		<form method=\"post\" action=\"admincp.php?type=groupmessages&method=changesendemailtousers\">
@@ -803,7 +803,7 @@ elseif($Template->adminType=='groupmessages'){
 		</table>";
 		$Template->adminBox("إرسال رسالة جماعية للأعضاء عبر بريد الالكتروني",$text,50,4);
 	}
-	elseif($Template->adminMethod=='changesendemailtousers'){
+	elseif($Template->adminMethod == 'changesendemailtousers'){
 		$waitEnd=true;
 		if(isset($_POST['post'])){
 			$subject=$_POST['subject'];
@@ -836,12 +836,12 @@ elseif($Template->adminType=='groupmessages'){
 		}
 		
 		$tousersstatus=array();
-		if($tousers==1) $tousersstatus[]=1;
-		if($tomoderators==1) $tousersstatus[]=2;
-		if($tomonitors==1) $tousersstatus[]=3;
-		if($toadmins==1) $tousersstatus[]=4;
+		if($tousers == 1) $tousersstatus[]=1;
+		if($tomoderators == 1) $tousersstatus[]=2;
+		if($tomonitors == 1) $tousersstatus[]=3;
+		if($toadmins == 1) $tousersstatus[]=4;
 		
-		if(count($tousersstatus)==0){
+		if(count($tousersstatus) == 0){
 			$errmsg="انت لم اخترت أي مجموعة ليتم إرسال الرسالة اليهم<br>";
 		}
 		if(empty($subject)){
@@ -877,7 +877,7 @@ elseif($Template->adminType=='groupmessages'){
 			$count=0;
 			while($rs=$mysql->fetchRow($sql)){
 				mail("To: =?$charset?B?".base64_encode($rs[1])."?= <$rs[0]>",$subject,$message,$headers);
-				if($count==($length-1)){
+				if($count == ($length-1)){
 					$DF->goTo("admincp.php?type=groupmessages&method=changesendemailtousers&pg=".(pg+1));
 					$waitEnd=false;
 					break;
@@ -895,9 +895,9 @@ elseif($Template->adminType=='groupmessages'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='forums'){
-	if($Template->adminMethod=='sortcatforums'){
-		if(scope=='change'){
+elseif($Template->adminType == 'forums'){
+	if($Template->adminMethod == 'sortcatforums'){
+		if(scope == 'change'){
 			$catid=$_POST['catid'];
 			$csort=$_POST['csort'];
 			for($x=0;$x<count($catid);$x++){
@@ -910,7 +910,7 @@ elseif($Template->adminType=='forums'){
 			}
 			$DF->goTo("admincp.php?type=forums&method=sortcatforums&change=1");
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('تم حفظ تغيرات بنجاح','green',15,25,true,false);
 		}
 		$text="
@@ -942,7 +942,7 @@ elseif($Template->adminType=='forums'){
 		</table>";
 		$Template->adminBox("ترتيب فئات ومنتديات",$text,40,4);
 	}
-	elseif($Template->adminMethod=='monthlysort'){
+	elseif($Template->adminMethod == 'monthlysort'){
 		?>
 		<script type="text/javascript">
 		DF.goToDate=function(){
@@ -965,12 +965,12 @@ elseif($Template->adminType=='forums'){
 		$month=(int)$_GET['m'];
 		$month=(in_array($month,$months) ? $month : date("m",time));
 		$stime=strtotime("{$year}-{$month}-1");
-		$etime=strtotime("".($month<12 ? $year : $year+1)."-".($month==12 ? 1 : $month+1)."-1");
+		$etime=strtotime("".($month<12 ? $year : $year+1)."-".($month == 12 ? 1 : $month+1)."-1");
 		// Previous Month
 		$lyear=($month>1 ? $year : $year-1);
-		$lmonth=($month==1 ? 12 : $month-1);
+		$lmonth=($month == 1 ? 12 : $month-1);
 		$lstime=strtotime("{$lyear}-{$lmonth}-1");
-		$letime=strtotime("".($lmonth<12 ? $lyear : $lyear+1)."-".($lmonth==12 ? 1 : $lmonth+1)."-1");
+		$letime=strtotime("".($lmonth<12 ? $lyear : $lyear+1)."-".($lmonth == 12 ? 1 : $lmonth+1)."-1");
 		
 		$text="
 		<table width=\"100%\" cellSpacing=\"1\" cellPadding=\"4\" align=\"center\" border=\"0\">
@@ -1076,7 +1076,7 @@ elseif($Template->adminType=='forums'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='users'){
+elseif($Template->adminType == 'users'){
 	if($Template->adminMethod == 'allowusers'){
 		echo"<div align=\"center\">{$Template->paging("user WHERE status = 1", "admincp.php?type=users&method=allowusers&")}</div>";
 		$text = "
@@ -1134,17 +1134,17 @@ elseif($Template->adminType=='users'){
 		</table>";
 		$Template->adminBox("عضويات تمت موافقة عليها", $text, 70, 0);
 	}
-	elseif($Template->adminMethod=='waitusers'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'waitusers'){
+		if(scope == 'change'){
 			$status=(int)$_POST['status'];
 			$users=implode(",",$_POST['userid']);
-			if($status==1||$status==3){
+			if($status == 1||$status == 3){
 				$mysql->update("user SET status = $status WHERE id IN ($users)", __FILE__, __LINE__);
 				if($status == 1){
 					$mysql->update("userflag SET agree = ".uid." WHERE id IN ({$users})", __FILE__, __LINE__);
 				}
 			}
-			if($status==4){
+			if($status == 4){
 				$mysql->delete("user WHERE id IN ($users)", __FILE__, __LINE__);
 				$mysql->delete("userflag WHERE id IN ($users)", __FILE__, __LINE__);
 				$mysql->delete("userperm WHERE id IN ($users)", __FILE__, __LINE__); 
@@ -1164,7 +1164,7 @@ elseif($Template->adminType=='users'){
 		DF.userCmd=function(frm,status){
 			var el=frm.elements,msg=new Array();
 			for(var x=0,y=0;x<el.length;x++){
-				if(el[x].type=='checkbox'&&el[x].checked){
+				if(el[x].type == 'checkbox'&&el[x].checked){
 					y++;
 				}
 			}
@@ -1217,7 +1217,7 @@ elseif($Template->adminType=='users'){
 				<td class=\"statsText{$classNo}\" align=\"center\"><nobr>{$rs['id']}</nobr></td>
 				<td class=\"statsText{$classNo}\"><nobr>{$Template->userNormalLink($rs['id'],$rs['name'])}</nobr></td>
 				<td class=\"statsText{$classNo}\" align=\"center\"><nobr>{$rs['email']}</nobr></td>
-				<td class=\"statsText{$classNo}\" align=\"center\"><nobr>".($rs['active']==1 ? "<font color=\"green\">فعال</font>" : "<font color=\"red\">غير فعال</font>")."</nobr></td>
+				<td class=\"statsText{$classNo}\" align=\"center\"><nobr>".($rs['active'] == 1 ? "<font color=\"green\">فعال</font>" : "<font color=\"red\">غير فعال</font>")."</nobr></td>
 				<td class=\"statsText{$classNo}\" align=\"center\"><nobr><span dir=\"ltr\">$ip</span></nobr></td>
 				<td class=\"statsText{$classNo}\" align=\"center\"><nobr><img src=\"{$DF->getFlagByCode($details_code)}\" alt=\"{$details_name}\" width=\"18\" height=\"12\" hspace=\"3\" border=\"0\"></nobr></td>
 				<td class=\"statsText{$classNo}\" align=\"center\"><nobr>{$DF->date($rs['date'])}</nobr></td>
@@ -1225,7 +1225,7 @@ elseif($Template->adminType=='users'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"statsText2\" align=\"center\" colspan=\"9\"><br>لا توجد اي عضوية ينتظر الموافقة<br><br></td>
@@ -1243,18 +1243,18 @@ elseif($Template->adminType=='users'){
 		</table>";
 		$Template->adminBox("عضويات ينتظر الموافقة",$text,70,0);
 	}
-	elseif($Template->adminMethod=='refuseusers'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'refuseusers'){
+		if(scope == 'change'){
 			$status=(int)$_POST['status'];
 			$users=implode(",",$_POST['userid']);
 			$msg=array(
 				1=>"تمت موافقة على عضويات المختارة بنجاح",
 				4=>"تم حذف عضويات المختارة بنجاح"
 			);
-			if($status==1){
+			if($status == 1){
 				$mysql->update("user SET status = 1 WHERE id IN ($users)", __FILE__, __LINE__);
 			}
-			if($status==4){
+			if($status == 4){
 				$mysql->delete("user WHERE id IN ($users)", __FILE__, __LINE__);
 				$mysql->delete("userflag WHERE id IN ($users)", __FILE__, __LINE__);
 				$mysql->delete("userperm WHERE id IN ($users)", __FILE__, __LINE__); 
@@ -1273,7 +1273,7 @@ elseif($Template->adminType=='users'){
 		DF.userCmd=function(frm,status){
 			var el=frm.elements,msg=new Array();
 			for(var x=0,y=0;x<el.length;x++){
-				if(el[x].type=='checkbox'&&el[x].checked){
+				if(el[x].type == 'checkbox'&&el[x].checked){
 					y++;
 				}
 			}
@@ -1325,7 +1325,7 @@ elseif($Template->adminType=='users'){
 				<td class=\"statsText$classNo\" align=\"center\"><nobr>{$rs['id']}</nobr></td>
 				<td class=\"statsText$classNo\"><nobr>{$Template->userNormalLink($rs['id'],$rs['name'])}</nobr></td>
 				<td class=\"statsText$classNo\" align=\"center\"><nobr>{$rs['email']}</nobr></td>
-				<td class=\"statsText$classNo\" align=\"center\"><nobr>".($rs['active']==1 ? "<font color=\"green\">فعال</font>" : "<font color=\"red\">غير فعال</font>")."</nobr></td>
+				<td class=\"statsText$classNo\" align=\"center\"><nobr>".($rs['active'] == 1 ? "<font color=\"green\">فعال</font>" : "<font color=\"red\">غير فعال</font>")."</nobr></td>
 				<td class=\"statsText$classNo\" align=\"center\"><nobr><span dir=\"ltr\">$ip</span></nobr></td>
 				<td class=\"statsText$classNo\" align=\"center\"><nobr><img src=\"{$DF->getFlagByCode($details_code)}\" alt=\"{$details_name}\" width=\"18\" height=\"12\" hspace=\"3\" border=\"0\"></nobr></td>
 				<td class=\"statsText$classNo\" align=\"center\"><nobr>{$DF->date($rs['date'])}</nobr></td>
@@ -1333,7 +1333,7 @@ elseif($Template->adminType=='users'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"statsText2\" align=\"center\" colspan=\"9\"><br>لا توجد اي عضوية تمت رفضها<br><br></td>
@@ -1350,16 +1350,16 @@ elseif($Template->adminType=='users'){
 		</form>";
 		$Template->adminBox("عضويات تمت رقضها",$text,70,0);
 	}
-	elseif($Template->adminMethod=='activeusers'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'activeusers'){
+		if(scope == 'change'){
 			$status=(int)$_POST['status'];
 			$users=implode(",",$_POST['userid']);
-			if($status==1){
+			if($status == 1){
 				$mysql->update("user SET active = 1 WHERE id IN ($users)", __FILE__, __LINE__);
 			}
 			$DF->goTo("admincp.php?type=users&method=activeusers&change=1".(pg>1 ? "&pg=".pg : ""));
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('نم تفعيل عضويات المختارة بنجاح','green',15,25,true,false);
 		}
 		?>
@@ -1367,7 +1367,7 @@ elseif($Template->adminType=='users'){
 		DF.userCmd=function(frm,status){
 			var el=frm.elements;
 			for(var x=0,y=0;x<el.length;x++){
-				if(el[x].type=='checkbox'&&el[x].checked){
+				if(el[x].type == 'checkbox'&&el[x].checked){
 					y++;
 				}
 			}
@@ -1423,7 +1423,7 @@ elseif($Template->adminType=='users'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"statsText2\" align=\"center\" colspan=\"8\"><br>لا توجد اي عضوية غير مفعلة<br><br></td>
@@ -1439,13 +1439,13 @@ elseif($Template->adminType=='users'){
 		</form>";
 		$Template->adminBox("عضويات تمت موافقة عليها وغير مفعلة",$text,70,0);
 	}
-	elseif($Template->adminMethod=='changenamewait'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'changenamewait'){
+		if(scope == 'change'){
 			$type=$_POST['type'];
 			$id=$_POST['id'];
 			$userid=$_POST['userid'];
 			$ids=implode(",",$id);
-			if($type==1){
+			if($type == 1){
 				$subject="تم تغير اسم عضويتك بنجاح";
 				$message="الرسالة من ادارة ".forum_title." حول طلب تغيير اسم عضويتك<br><br>تمت موافقة على طلبك بتغير اسم العضوية الى اسم الذي انت اخترت<br>مع تحيات ادارة ".forum_title;
 				for($x=0;$x<count($userid);$x++){
@@ -1470,7 +1470,7 @@ elseif($Template->adminType=='users'){
 				}
 				$mysql->update("changename SET status = '1' WHERE id IN ($ids)", __FILE__, __LINE__);
 			}
-			elseif($type==2){
+			elseif($type == 2){
 				$subject="لم يتم تغير اسم عضويتك";
 				$message="الرسالة من ادارة ".forum_title." حول طلب تغيير اسم عضويتك<br><br>تم رفض طلب تغيير اسم عضويتك بسبب مخالفة قوانين المنتدى<br>لهذا مرجوا محاولة بإسم آخر وموافق عن قوانين المنتدى<br>مع تحيات ادارة ".forum_title;
 				for($x=0;$x<count($userid);$x++){
@@ -1487,7 +1487,7 @@ elseif($Template->adminType=='users'){
 				}
 				$mysql->update("changename SET status = '2' WHERE id IN ($ids)", __FILE__, __LINE__);
 			}
-			elseif($type==4){
+			elseif($type == 4){
 				$mysql->delete("changename WHERE id IN ($ids)", __FILE__, __LINE__);
 			}
 			$DF->goTo("admincp.php?type=users&method=changenamewait&change=$type".(pg>1 ? "&pg=".pg : ""));
@@ -1505,7 +1505,7 @@ elseif($Template->adminType=='users'){
 		DF.userCmd=function(frm,status){
 			var el=frm.elements,msg=new Array();
 			for(var x=0,y=0;x<el.length;x++){
-				if(el[x].type=='checkbox'&&el[x].checked){
+				if(el[x].type == 'checkbox'&&el[x].checked){
 					y++;
 				}
 			}
@@ -1549,7 +1549,7 @@ elseif($Template->adminType=='users'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"statsText2\" align=\"center\" colspan=\"4\"><br>لا توجد أي اسم تنتظر الموافقة<br><br></td>
@@ -1567,8 +1567,8 @@ elseif($Template->adminType=='users'){
 		</form>";
 		$Template->adminBox("أسماء ينتظر الموافقة",$text,50,0);
 	}
-	elseif($Template->adminMethod=='edituser'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'edituser'){
+		if(scope == 'change'){
 			$userid=(int)$_POST['userid'];
 			$name=$_POST['edUserName'];			$submonitor=$_POST['submonitor'];
 			$entername=$_POST['edEnterUserName'];
@@ -1619,7 +1619,7 @@ elseif($Template->adminType=='users'){
 				$DF->goTo("admincp.php?type=users&method=edituser&change=1&u=$userid");
 			}
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('تم حفظ التغيرات بنجاح','green',15,25,true,false);
 		}
 		$sql=$mysql->query("SELECT 
@@ -1759,8 +1759,8 @@ elseif($Template->adminType=='users'){
 			$Template->msgBox("رقم العضوية الذي اخترت هو خاطيء",'red',15,0,true,false,true);
 		}
 	}
-	elseif($Template->adminMethod=='userperm'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'userperm'){
+		if(scope == 'change'){
 			$userid=(int)$_POST['userid'];
 			$mysql->update("userperm SET
 			receiveemail = '{$_POST['receiveemail']}',
@@ -1793,7 +1793,7 @@ elseif($Template->adminType=='users'){
 			", __FILE__, __LINE__);
 			$DF->goTo("admincp.php?type=users&method=userperm&change=1&u=$userid");
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('تم حفظ التغيرات بنجاح','green',15,25,true,false);
 		}
 		$sql=$mysql->query("SELECT 
@@ -1869,8 +1869,8 @@ elseif($Template->adminType=='users'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='ip'){
-	if($Template->adminMethod=='checkip'){
+elseif($Template->adminType == 'ip'){
+	if($Template->adminMethod == 'checkip'){
 		$text="
 		<table width=\"100%\" cellSpacing=\"1\" cellPadding=\"4\" align=\"center\" border=\"0\">
 			<tr>
@@ -1885,7 +1885,7 @@ elseif($Template->adminType=='ip'){
 		</table>";
 		$Template->adminBox("أدخل عنوان الآي بي ليتم مطابقة",$text,50,0);
 	}
-	elseif($Template->adminMethod=='ipchecking'){
+	elseif($Template->adminMethod == 'ipchecking'){
 		$longip = (code != '' ? ip2long(code) : id);
 		$ip = long2ip($longip);
 		$text = "
@@ -1926,14 +1926,14 @@ elseif($Template->adminType=='ip'){
 		</table>";
 		$Template->adminBox("عضويات مطابقة للآي بي {$ip}", $text, 50, 0);
 	}
-	elseif($Template->adminMethod=='blockip'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'blockip'){
+		if(scope == 'change'){
 			$ip=ip2long(trim($_POST['ip']));
 			$cause=trim($_POST['cause']);
 			$datetype=(int)trim($_POST['datetype']);
 			$days=(int)trim($_POST['days']);
-			$todate=($datetype==1 ? 0 : time+($days*86400));
-			if($ip==0){
+			$todate=($datetype == 1 ? 0 : time+($days*86400));
+			if($ip == 0){
 				$Template->msgBox("يبدو انك لم كتبت عنوان الـ IP او عنوان الذي كتبت خاطيء",'red',15,0,true,false,true);
 			}
 			else{
@@ -1941,7 +1941,7 @@ elseif($Template->adminType=='ip'){
 				$DF->goTo("admincp.php?type=ip&method=blockip&change=1");
 			}
 		}
-		elseif(scope=='trash'){
+		elseif(scope == 'trash'){
 			$mysql->delete("ipban WHERE id = ".id."", __FILE__, __LINE__);
 			$DF->goTo("admincp.php?type=ip&method=blockip&change=2".(pg>1 ? "&pg=".pg : ""));
 		}
@@ -2001,7 +2001,7 @@ elseif($Template->adminType=='ip'){
 		$sql=$mysql->query("SELECT id,ip,cause,fromdate,todate FROM ".prefix."ipban ORDER BY id DESC LIMIT $pgLimit,".num_pages, __FILE__, __LINE__);
 		$count=0;
 		while($rs=$mysql->fetchAssoc($sql)){
-			$todate=($rs['todate']==0 ? 'للأبد' : $DF->date($rs['todate'],'date',true));
+			$todate=($rs['todate'] == 0 ? 'للأبد' : $DF->date($rs['todate'],'date',true));
 			$classNo=($count%2 ? 1 : 2);
 			$text.="
 			<tr id=\"getIpRow{$rs['id']}\">
@@ -2014,7 +2014,7 @@ elseif($Template->adminType=='ip'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"statsText\" align=\"center\" colspan=\"6\"><nobr><br>لا توجد أي IP محجوب<br><br></nobr></td>
@@ -2028,8 +2028,8 @@ elseif($Template->adminType=='ip'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='hacker'){
-	if($Template->adminMethod=='hackersetform'){
+elseif($Template->adminType == 'hacker'){
+	if($Template->adminMethod == 'hackersetform'){
 		echo"<div align=\"center\">{$Template->paging("hacker","admincp.php?type=hacker&method=hackersetform&")}</div>";
 		$text="
 		<table width=\"100%\" cellSpacing=\"1\" cellPadding=\"4\" align=\"center\" border=\"0\">
@@ -2070,7 +2070,7 @@ elseif($Template->adminType=='hacker'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"cellText\" align=\"center\" colspan=\"8\"><nobr><br>لا توجد أي محاولة<br><br></nobr></td>
@@ -2140,9 +2140,9 @@ elseif($Template->adminType=='hacker'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='block'){
-	if($Template->adminMethod=='convertwords'){
-		if(scope=='change'){
+elseif($Template->adminType == 'block'){
+	if($Template->adminMethod == 'convertwords'){
+		if(scope == 'change'){
 			$words=$_POST['words'];
 			$replace=$_POST['replace'];
 			for($x=0;$x<count($words);$x++){
@@ -2152,7 +2152,7 @@ elseif($Template->adminType=='block'){
 			}
 			$DF->goTo("admincp.php?type=block&method=convertwords&change=1");
 		}
-		elseif(scope=='trash'){
+		elseif(scope == 'trash'){
 			$mysql->delete("bad_words WHERE id = ".id."", __FILE__, __LINE__);
 			$DF->goTo("admincp.php?type=block&method=convertwords&change=2".(pg>1 ? "&pg=".pg : ""));
 		}
@@ -2235,7 +2235,7 @@ elseif($Template->adminType=='block'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			$text.="
 			<tr>
 				<td class=\"statsText\" align=\"center\" colspan=\"3\"><nobr><br>لا توجد أي كلمة<br><br></nobr></td>
@@ -2245,8 +2245,8 @@ elseif($Template->adminType=='block'){
 		</table>";
 		$Template->adminBox("إستبدال كلمات في جميع مواضيع وردود ورسائل خاصة وحقول بيانات شخصية وعامة",$text,50,0);
 	}
-	elseif($Template->adminMethod=='blockwords'){
-		if(scope=='change'){
+	elseif($Template->adminMethod == 'blockwords'){
+		if(scope == 'change'){
 			$blocked_tags=$DF->inlineText($_POST['blocked_tags']);
 			$blocked_tags=(!empty($blocked_tags) ? explode(",",$blocked_tags) : array());
 			$blocked_tags=$DF->deleteArrayBlanks($blocked_tags);
@@ -2267,7 +2267,7 @@ elseif($Template->adminType=='block'){
 			
 			$DF->goTo("admincp.php?type=block&method=blockwords&change=1");
 		}
-		if(change==1){
+		if(change == 1){
 			$Template->msgBox('تم حفظ تغيرات بنجاح','green',15,25,true,false);
 		}
 		$text="
@@ -2311,7 +2311,7 @@ elseif($Template->adminType=='block'){
 		$DF->goTo("admincp.php");
 	}
 }
-elseif($Template->adminType=='chat'){
+elseif($Template->adminType == 'chat'){
 	$mysql->delete("chat WHERE date < ".(time-(60*60*3))."", __FILE__, __LINE__);
 	?>
 	<script type="text/javascript">
@@ -2372,7 +2372,7 @@ elseif($Template->adminType=='chat'){
 			</table>
 			<table>
 				<tr>
-					<td><textarea style=\"width:530px;height:70px;font-weight:normal;font-family:tahoma;font-size:12px;color:#000000\" id=\"messageBox\" onkeypress=\"if(event.keyCode==13){DF.chatSendMsg();return false}\"></textarea></td>
+					<td><textarea style=\"width:530px;height:70px;font-weight:normal;font-family:tahoma;font-size:12px;color:#000000\" id=\"messageBox\" onkeypress=\"if(event.keyCode == 13){DF.chatSendMsg();return false}\"></textarea></td>
 					<td>
 					<table>";
 					$smiles=array(array('icon','cool','big'),array('angry','blackeye','dissapprove'),array('crying','eyebrows','hearteyes'));

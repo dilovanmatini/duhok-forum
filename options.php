@@ -39,7 +39,7 @@ if( type == "deleteuserlist" && u > 0 ){
 	$mysql->update("listsrows SET items = '".serialize($newArray)."' WHERE id = '$uid'", __FILE__, __LINE__);
 	$Template->msg("تم حذف العضوية من القائمة بنجاح");
 }
-elseif(type=="adduserlist"){
+elseif(type == "adduserlist"){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في إضافة عضو لقوائم الخاصة");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -48,7 +48,7 @@ elseif(type=="adduserlist"){
 	$u=(int)$_POST['userid'];
 	$auth=(int)$_POST['auth'];
 	$list=(int)$_POST['list'];
-	if($auth>0&&ulv==4){
+	if($auth>0&&ulv == 4){
 		$uid=$auth;
 	}
 	else{
@@ -62,7 +62,7 @@ elseif(type=="adduserlist"){
 		$mysql->insert("listsrows (id,items) VALUES ('$uid','".serialize($items)."')", __FILE__, __LINE__);
 	}
 	$keys=array_keys($items);
-	if(in_array($u,$keys)&&$items[$u]==$list){
+	if(in_array($u,$keys)&&$items[$u] == $list){
 		$Template->errMsg("لا يمكنك إضافة هذا العضو لقوائم خاصة بك<br>بسبب ان هذا العضو هو مضاف لقوائمك مسبقاً");
 	}
 	else{
@@ -71,7 +71,7 @@ elseif(type=="adduserlist"){
 		$Template->msg("تم إضافة عضو لقوائم خاصة بك بنجاح","profile.php?type=lists&l=$list".($auth>0?"&auth=$auth":""));
 	}
 }
-elseif(type=="edituserlists"){
+elseif(type == "edituserlists"){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في تعديل قوائم خاصة");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -84,7 +84,7 @@ elseif(type=="edituserlists"){
 	$list4=$DF->cleanText($_POST['list4']);
 	$list5=$DF->cleanText($_POST['list5']);
 	$lists=array(1=>$list1,2=>$list2,3=>$list3,4=>$list4,5=>$list5);
-	if($auth>0&&ulv==4){
+	if($auth>0&&ulv == 4){
 		$uid=$auth;
 	}
 	else{
@@ -109,7 +109,7 @@ elseif(type=="edituserlists"){
 	$mysql->update("userflag SET lists = '".serialize($lists)."' WHERE id = '$uid'", __FILE__, __LINE__);
 	$Template->msg("تم تعديل قوائم خاصة بك بنجاح");
 }
-elseif(type=="edituserfolders"){
+elseif(type == "edituserfolders"){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في تعديل مجلدات البريدية");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -127,7 +127,7 @@ elseif(type=="edituserfolders"){
 	if($fid<0&&$is_moderator){
 		$uid=$fid;
 	}
-	elseif($auth>0&&ulv==4){
+	elseif($auth>0&&ulv == 4){
 		$uid=$auth;
 	}
 	else{
@@ -144,7 +144,7 @@ elseif(type=="edituserfolders"){
 	$mysql->update("$checkTableName SET pmlists = '".serialize($lists)."' WHERE id = '".abs($uid)."'", __FILE__, __LINE__);
 	$Template->msg("تم تعديل مجلداتك البريدية بنجاح");
 }
-elseif(type=="movepms"){
+elseif(type == "movepms"){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في نقل مجموعة من الرسائل من مجلد الى مجلد آخر");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -160,10 +160,10 @@ elseif(type=="movepms"){
 			$id=$DF->hashToNum($val);
 			$ids.=",$id";
 		}
-		if($folder=='trash'){
+		if($folder == 'trash'){
 			$mysql->update("pm SET status = 0 WHERE id IN ($ids)", __FILE__, __LINE__);
 		}
-		elseif($folder=='restore'){
+		elseif($folder == 'restore'){
 			$mysql->update("pm SET status = 1, pmlist = 0 WHERE id IN ($ids)", __FILE__, __LINE__);
 		}
 		elseif($folder>=1&&$folder<=5){
@@ -172,7 +172,7 @@ elseif(type=="movepms"){
 		else{
 			$error=true;
 		}
-		if($folder=='restore'){
+		if($folder == 'restore'){
 			$Template->msg("تم إسترجاع رسائل المختارة الى مجلداتهم الأصلية بنجاح");
 		}
 		else{
@@ -186,11 +186,11 @@ elseif(type=="movepms"){
 		$Template->errMsg("لم يتم نقل رسائل المختارة لسبب فني<br>الرجاء إخبار الإدارة لتصحيح المشكلة");
 	}
 }
-elseif(type=="movepm"){
+elseif(type == "movepm"){
 	if(f<0&&$is_moderator){
 		$uid=f;
 	}
-	elseif(auth>0&&ulv==4){
+	elseif(auth>0&&ulv == 4){
 		$uid=auth;
 	}
 	else{
@@ -208,11 +208,11 @@ elseif(type=="movepm"){
 		$Template->errMsg("لا عندك تصريح لحذف هذه الرسالة");
 	}
 }
-elseif(type=="restorepm"){
+elseif(type == "restorepm"){
 	if(f<0&&$is_moderator){
 		$uid=f;
 	}
-	elseif(auth>0&&ulv==4){
+	elseif(auth>0&&ulv == 4){
 		$uid=auth;
 	}
 	else{
@@ -229,7 +229,7 @@ elseif(type=="restorepm"){
 		$Template->errMsg("لا عندك تصريح لإسترجاع هذه الرسالة");
 	}
 }
-elseif(type=="topicusers"){
+elseif(type == "topicusers"){
  	if(!$is_moderator){
 		$DF->goTo();
 		exit();
@@ -247,7 +247,7 @@ elseif(type=="topicusers"){
 		if(parseInt(frm.usersNum.value)>0){
 			alert("توجد أرقام عضويات الذي تريد فتح لهم هذا الموضوع في خانة رقم العضوية\nلذا يجب عليك إضافتها الى القائمة حتى لا تخسر منها\nاو امسحها اذا لا تريد فتح لهم هذا الموضوع");
 		}
-		else if(usersIds.length==0){
+		else if(usersIds.length == 0){
 			alert("أنت لم أضفت أي رقم للقائمة لفتح لهم هذا الموضوع");
 		}
 		else{
@@ -257,7 +257,7 @@ elseif(type=="topicusers"){
 	}
 	DF.findValueInArray=function(arr,val){
 		for(var x=0;x<arr.length;x++){
-			if(arr[x]==val){
+			if(arr[x] == val){
 				return true;
 			}
 		}
@@ -276,7 +276,7 @@ elseif(type=="topicusers"){
 		var tab=$I('#'+type+'Table'),tr=$I('#'+type+'Row'+id),index=tr.rowIndex,dbArr=eval("document.body."+type+"Id");
 		tab.deleteRow(index);
 		dbArr=this.deleteValInArray(dbArr,id);
-		if(tab.rows.length==1){
+		if(tab.rows.length == 1){
 			var tr=tab.insertRow(1);
 			var td=tr.insertCell(0);
 			td.innerHTML='<br>لم يتم إضافة أي رقم للقائمة.<br><br>';
@@ -287,7 +287,7 @@ elseif(type=="topicusers"){
 	};
 	DF.addRowsToList=function(id){
 		var type=document.body.opType,tab=$I('#'+type+'Table'),dbArr=eval("document.body."+type+"Id");
-		if(dbArr.length==0){
+		if(dbArr.length == 0){
 			tab.deleteRow(1);
 		}
 		var tr=tab.insertRow(tab.rows.length);
@@ -329,7 +329,7 @@ elseif(type=="topicusers"){
 		if(tab.rows.length>1){
 			tab.deleteRow(tr.rowIndex);
 		}
-		if(tab.rows.length==1){
+		if(tab.rows.length == 1){
 			var row=tab.insertRow(1);
 			var cell=row.insertCell(0);
 			cell.className='asNormalB asCenter';
@@ -342,12 +342,12 @@ elseif(type=="topicusers"){
 			'send':'type=deleteUserFromTopic&forumid=<?=$rs['forumid']?>&id='+id,
 			'func':function(){
 				var obj=DF.ajax.oName,ac=DF.ajax.ac;
-				if(obj.readyState==1||obj.readyState==2||obj.readyState==3){
+				if(obj.readyState == 1||obj.readyState == 2||obj.readyState == 3){
 					DF.loadingBox('<img src="'+progressUrl+'" border="0"><br><br>رجاً انتظر...',true);
 				}
-				else if(obj.readyState==4){
+				else if(obj.readyState == 4){
 					var get=obj.responseText.split(ac)[0]||false;
-					if(get==1){
+					if(get == 1){
 						DF.deleteUserRow(id);
 						DF.loadingBox('<img src="'+succeedUrl+'" border="0"><br><br>تم حذف العضو بنجاح.',true);
 					}
@@ -431,7 +431,7 @@ elseif(type=="topicusers"){
 				$addedUsers.=",{$urs['uid']}";
 				$count++;
 			}
-			if($count==0){
+			if($count == 0){
 				echo"
 				<tr>
 					<td class=\"asFixedB asCenter\" colspan=\"4\"><br>لا توجد أي عضو لرؤية هذا الموضوع<br><br></td>
@@ -445,7 +445,7 @@ elseif(type=="topicusers"){
 		</form>
 	</table>";
 }
-elseif(type=='insertusers'){
+elseif(type == 'insertusers'){
 	if(!$DF->isOurSite()){
 		$DFOutput->setHackerDetails("عملية املاء الفورم بطريق غير شرعي في إضافة أعضاء لرؤية موضوع");
 		$Template->errMsg("لا يمكنك من حفظ المعلومات بهذ الطريقة<br>لأن هذه الطريقة تحسب محاولة اختراق ولهذا السبب تم حفظ معلوماتك الشخصية عندنا.<br><br>تحذير هام: فإذا ان تقوم بتكرار هذه العملية مرة اخرى سنقوم بإجراءات اللازمة أمامك.");
@@ -459,10 +459,10 @@ elseif(type=='insertusers'){
 	
 	$checkSqlField="";
 	$checkSqlTable="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlField=",IF(ISNULL(m.id),0,1) AS ismod";
 		$checkSqlTable="LEFT JOIN ".prefix."moderator AS m ON(m.forumid = t.forumid AND m.userid = '".uid."')";
-		if(ulv==3){
+		if(ulv == 3){
 			$checkSqlField.=",IF(ISNULL(cc.id),0,1) AS ismon";
 			$checkSqlTable.="LEFT JOIN ".prefix."category AS cc ON(cc.id = t.catid AND cc.monitor = '".uid."')";
 		}
@@ -513,7 +513,7 @@ elseif(type=='insertusers'){
 	$Template->msg("تم إضافة أعضاء لرؤية موضوع بنجاح");
 
 }
-elseif(type=='topicstats'){
+elseif(type == 'topicstats'){
 	function optionLink($num,$url,$title='',$show=true){
 		if($num>0&&$show){
 			$title=(!empty($title) ? " title=\"$title\"" : "");
@@ -578,19 +578,19 @@ elseif(type=='topicstats'){
 				$arr[$u]['hold']=0;
 				$arr[$u]['count']=0;
 			}
-			if($rs['trash']==0&&$rs['hidden']==0&&$rs['moderate']==0){
+			if($rs['trash'] == 0&&$rs['hidden'] == 0&&$rs['moderate'] == 0){
 				$arr[$u]['normal']++;
 			}
-			if($rs['trash']==1){
+			if($rs['trash'] == 1){
 				$arr[$u]['trash']++;
 			}
-			if($rs['hidden']==1){
+			if($rs['hidden'] == 1){
 				$arr[$u]['hidden']++;
 			}
-			if($rs['moderate']==1){
+			if($rs['moderate'] == 1){
 				$arr[$u]['moderate']++;
 			}
-			if($rs['moderate']==2){
+			if($rs['moderate'] == 2){
 				$arr[$u]['hold']++;
 			}
 			$arr[$u]['count']++;
@@ -645,7 +645,7 @@ elseif(type=='topicstats'){
 		$DF->goTo();
 	}
 }
-elseif(type=='complain'){
+elseif(type == 'complain'){
 	$cinfo=array(
 		'findError'=>true,
 		'forumid'=>0,
@@ -664,13 +664,13 @@ elseif(type=='complain'){
 		3=>'تحتوي على كلام غير لائق',
 		4=>'تحتوي على شتم أو تهجم'
 	);
-	if(usendcomplain==0){
+	if(usendcomplain == 0){
 		$Template->errMsg("تم منعك من ارسال شكاوي على الاعضاء من قبل الإدارة");
 	}
 	if(u!=uid){
 		$user=$mysql->queryRow("SELECT name,status,level,submonitor FROM ".prefix."user WHERE id = '".u."' AND status = 1", __FILE__, __LINE__);
 		if($user){
-			if(method=='topic'){
+			if(method == 'topic'){
 				$topic=$mysql->queryRow("SELECT subject,forumid FROM ".prefix."topic WHERE id = '".t."' AND author = '".u."'", __FILE__, __LINE__);
 				if($topic){
 					$allow=$DF->allowTopic(t);
@@ -685,7 +685,7 @@ elseif(type=='complain'){
 					}
 				}
 			}
-			elseif(method=='post'){
+			elseif(method == 'post'){
 				$post=$mysql->queryRow("SELECT t.id,t.subject,t.forumid FROM ".prefix."post AS p LEFT JOIN ".prefix."topic AS t ON(t.id = p.topicid) WHERE p.id = '".p."' AND p.author = '".u."'", __FILE__, __LINE__);
 				if($post){
 					$allow=$DF->allowPost(p);
@@ -700,7 +700,7 @@ elseif(type=='complain'){
 					}
 				}
 			}
-			elseif(method=='pm'){
+			elseif(method == 'pm'){
 				$pmid=$DF->hashToNum(pm);
 				$pm=$mysql->queryRow("SELECT subject FROM ".prefix."pm  WHERE id = '$pmid' AND author = '".uid."'", __FILE__, __LINE__);
 				if($pm){
@@ -715,10 +715,10 @@ elseif(type=='complain'){
 			}
 		}
 	}
-	if($cinfo['findError']==true){
+	if($cinfo['findError'] == true){
 		$Template->errMsg("لا يمكنك انتباه مشرف عن هذه المشاركة<br>قد يكون هناك عدة إسباب لهذا منها:<br><br><table><tr><td>* رقم العضوية او الموضوع او الرد خاطيء.</td></tr><tr><td>* الموضوع او الرد مخفي او محذوف او مجمد او لم يتم موافقة عليه.</td></tr><tr><td>* عملت تغير عنوان وصلات بشكل يدوي وهذا ممنوع في منتدياتنا.</td></tr></table>");
 	}
-	if(scope=='yes'){
+	if(scope == 'yes'){
 		$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في ارسال شكوى على الاعضاء");
 		$forumid=(int)$_POST['forumid'];
 		$notetype=(int)$_POST['notetype'];
@@ -728,7 +728,7 @@ elseif(type=='complain'){
 		if($redeclare!=checkredeclare){
 			$Template->errMsg("كان هناك خلل أثناء تخزين العملية!<br>يبدو أنه تم محاولة إدخال البيانات عدة مرات لسبب فني أو لخلل في الشبكة.<br>الرجاء التأكد من أن العملية انتهت بنجاح... نأسف على هذا.");
 		}
-		elseif($forumid==$cinfo['forumid']&&$notetype>=0){
+		elseif($forumid == $cinfo['forumid']&&$notetype>=0){
 			$notetext=($notetype>0 ? '' : $notetext);
 			$mysql->insert("complain (forumid,userid,postid,posttype,notetype,notetext,sendby,senddate) VALUES (
 				'$forumid','".u."','{$cinfo['post']['id']}','{$posttype[$cinfo['post']['type']]}','$notetype','$notetext','".uid."','".time."'
@@ -745,7 +745,7 @@ elseif(type=='complain'){
 		<script type="text/javascript">
 		DF.chooseComplain=function(s){
 			var frm=s.form,option=frm.notetype.options[frm.notetype.selectedIndex].value;
-			if(option==0){
+			if(option == 0){
 				frm.notetext.style.visibility='visible';
 				frm.notetext.style.position='';
 			}
@@ -756,7 +756,7 @@ elseif(type=='complain'){
 		};
 		DF.checkSubmit=function(frm){
 			var option = frm.notetype.options[frm.notetype.selectedIndex].value, text = frm.notetext.value.replace(/^\s+/, '').replace(/\s+$/, '');
-			if(option==-1){
+			if(option == -1){
 				alert("يجب عليك اختيار نوع الانتباه");
 			}
 			else if(option == 0 && text.length < 10){
@@ -806,13 +806,13 @@ elseif(type=='complain'){
 		</table>";
 	}
 }
-elseif(type=='survey'){
+elseif(type == 'survey'){
 	$topic=$mysql->queryAssoc("SELECT t.forumid,f.subject AS fsubject,t.subject,t.survey
 	FROM ".prefix."topic AS t
 	LEFT JOIN ".prefix."forum AS f ON(f.id = t.forumid)
 	WHERE t.id = ".t."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($topic['forumid'],$forums)){
+	if(ulv == 4||in_array($topic['forumid'],$forums)){
 		echo"<br>
 		<table width=\"40%\" cellspacing=\"1\" cellpadding=\"4\" align=\"center\">
 		<form method=\"post\" action=\"options.php?type=setsurvey&t=".t."\">
@@ -853,14 +853,14 @@ elseif(type=='survey'){
 		$DF->goTo();
 	}
 }
-elseif(type=='checkedit'){
+elseif(type == 'checkedit'){
 	$topic=$mysql->queryAssoc("SELECT t.forumid,f.subject AS fsubject,t.subject
 	FROM ".prefix."topic AS t
 	LEFT JOIN ".prefix."forum AS f ON(f.id = t.forumid)
 	WHERE t.id = ".t."", __FILE__, __LINE__);
 	$f = $mysql->get("topic","forumid",t);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($f,$forums)){
+	if(ulv == 4||in_array($f,$forums)){
 		echo"<br>
 		<table width=\"76%\" cellspacing=\"1\" cellpadding=\"4\" align=\"center\">
 		<form method=\"post\" action=\"options.php?type=setsurvey&t=".t."\">
@@ -895,7 +895,7 @@ elseif(type=='checkedit'){
 					$xx++;
 					$count++;
 				}
-				if($count==0){
+				if($count == 0){
 					echo"
 					<tr>
 						<td class=\"asNormal asCenter\" colspan=\"4\"><br>لا توجد أي تغيرات على هذا الموضوع<br><br></td>
@@ -914,14 +914,14 @@ elseif(type=='checkedit'){
 	}
 }
 
-elseif(type=='showedit'){
+elseif(type == 'showedit'){
 	$t = $mysql->get("topicedit","topicid",id);
 	$topic=$mysql->queryAssoc("SELECT t.forumid,f.subject AS fsubject
 	FROM ".prefix."topic AS t
 	LEFT JOIN ".prefix."forum AS f ON(f.id = t.forumid)
 	WHERE t.id = ".$t."", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($topic['forumid'],$forums)){
+	if(ulv == 4||in_array($topic['forumid'],$forums)){
 		echo"<br>
 		<table width=\"76%\" cellspacing=\"1\" cellpadding=\"4\" align=\"center\">
 		<form method=\"post\" action=\"options.php?type=setsurvey&t=".t."\">
@@ -971,12 +971,12 @@ elseif(type=='showedit'){
 		$DF->goTo();
 	}
 }
-elseif(type=='setsurvey'){
+elseif(type == 'setsurvey'){
 	$topicid=(int)$_POST['topicid'];
 	$surveyid=(int)$_POST['surveyid'];
 	$rs=$mysql->queryRow("SELECT forumid FROM ".prefix."topic WHERE id = $topicid", __FILE__, __LINE__);
 	$forums=$DF->getAllowForumId();
-	if(ulv==4||in_array($rs[0],$forums)){
+	if(ulv == 4||in_array($rs[0],$forums)){
 		$mysql->update("topic SET survey = $surveyid WHERE id = $topicid", __FILE__, __LINE__);
 		$Template->msg("تم حفظ التغيرات بنجاح");
 	}

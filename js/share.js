@@ -85,7 +85,7 @@ DF.share={
 		var metas=head.getElementsByTagName("meta");
 		for(var i=0;i<metas.length;i++){
 			if(metas[i].name){
-				if(metas[i].name.toLowerCase()=="description"){
+				if(metas[i].name.toLowerCase() == "description"){
 					desc=metas[i].content;
 					break;
 				}
@@ -95,7 +95,7 @@ DF.share={
 	},
 	gotoSharingList:function(n){
 		var panel=$I('#sharePanel'+n);
-		if(panel&&panel.style.visibility=='hidden'){
+		if(panel&&panel.style.visibility == 'hidden'){
 			var text="<table cellpadding=\"4\" cellspacing=\"0\" align=\"center\"><tr>";
 			for(var x=0;x<this.list.length;x++){
 				text+="<td><a href=\"javascript:DF.share.gotoShare('"+this.list[x]+"');\"><img src=\"images/share/"+this.list[x]+".gif\" width=\"16\" height=\"16\" border=\"0\"></a></td>";

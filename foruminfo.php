@@ -18,7 +18,7 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv>0){
+if( ulv > 0 ){
 //*********************  Start Page  ****************************
 
 function forumModerators($f){
@@ -28,9 +28,9 @@ function forumModerators($f){
 		$text="<nobr>";
 		$x=0;
 		while($rs=$mysql->fetchRow($sql)){
-			$text.=($x==1||$x==2?"&nbsp;+&nbsp;":"").$Template->userNormalLink($rs[0],$rs[1]);
+			$text.=($x == 1||$x == 2?"&nbsp;+&nbsp;":"").$Template->userNormalLink($rs[0],$rs[1]);
 			$x++;
-			if($x==3){
+			if($x == 3){
 				$text.="<br />";
 				$x=0;
 			}
@@ -42,7 +42,7 @@ function forumModerators($f){
 
 $checkSqlField="";
 $checkSqlTable="";
-if(ulv<4&&!$is_moderator){
+if(ulv < 4&&!$is_moderator){
 	$checkSqlField=",IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum";
 	$checkSqlTable="LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = '".uid."')";
 }
@@ -58,7 +58,7 @@ LEFT JOIN ".prefix."category AS c ON(c.id = f.catid)
 LEFT JOIN ".prefix."user AS u ON(u.id = c.monitor) $checkSqlTable
 WHERE f.id = '".f."' GROUP BY f.id", __FILE__, __LINE__);
 $rs=$mysql->fetchAssoc($sql);
-if(!$rs||$rs['allowforum']==0){
+if(!$rs||$rs['allowforum'] == 0){
 	$DF->goTo();
 	exit();
 }
@@ -74,8 +74,8 @@ $count=0;
 $shownOnline=0;
 $hiddenOnline=0;
 while($uors=$mysql->fetchAssoc($sql)){
-	if($uors['hidebrowse']==0||ulv>1&&$uors['level']<3||ulv>2&&$uors['level']<4||ulv==4){
-		$onlineNames.=($shownOnline==0?"":" + ")."<nobr>{$Template->userNormalLink($uors['userid'],$uors['uoname'])}</nobr>";
+	if($uors['hidebrowse'] == 0||ulv > 1&&$uors['level']<3||ulv > 2&&$uors['level']<4||ulv == 4){
+		$onlineNames.=($shownOnline == 0?"":" + ")."<nobr>{$Template->userNormalLink($uors['userid'],$uors['uoname'])}</nobr>";
 		$shownOnline++;
 	}
 	else{
@@ -84,7 +84,7 @@ while($uors=$mysql->fetchAssoc($sql)){
 	$count++;
 }
 
-if($count==0){
+if($count == 0){
 	$onlineNames=0;
 }
 

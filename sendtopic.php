@@ -48,11 +48,11 @@ if(!$rs){
 	$DF->goTo();
 }
 
-if(type==''){
+if(type == ''){
 	?>
 	<script type="text/javascript">
 	DF.checkSubmit=function(frm){
-		if(frm.friendemail.value.length==0){
+		if(frm.friendemail.value.length == 0){
 			alert("يجب عليك ان تكتب عنوان بريد الالكتروني");
 		}
 		else if(!this.checkEmail(frm.friendemail.value)){
@@ -83,7 +83,7 @@ if(type==''){
 	</form>
 	</table>";
 }
-elseif(type=='send'){
+elseif(type == 'send'){
 	$friendemail=$_POST['friendemail'];
 	$subject="رسالة من ".forum_title."";
 	$message = "هذه رسالة لك من : ".uname."\nوهو عضو في ".forum_title." ويود ان يلفت انتابهك الى موضوع قد يثير اهتمامك على الوصلة التالية:\nhttp://".site_address."/topics.php?t=".t;

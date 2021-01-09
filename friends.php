@@ -76,11 +76,11 @@ if(type == ''){
 			DF.ajax2.play({
 				send:'type=checkFriends&method='+t+'&auth=<?=$uid?>&id='+id,
 				func:function(){
-					if(obj.readyState==4){
+					if(obj.readyState == 4){
 						var text=DF.friends.error("حدث خطأ أثناء "+types[t][0]);
-						if(obj.status==200){
+						if(obj.status == 200){
 							var rs=obj.responseText.split(DF.ajax2.ac);
-							if(rs&&rs[1]==1){
+							if(rs&&rs[1] == 1){
 								text="<nobr>"+types[t][1]+"</nobr>";
 								$I('#friendCell'+id).innerHTML="<img src=\"images/icons/succeed.gif\" border=\"0\">";
 							}
@@ -335,7 +335,7 @@ elseif(type == 'friends'){
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			echo"
 			<tr>
 				<td class=\"asNormalB asCenter\" colspan=\"3\"><br>&nbsp;&nbsp;&nbsp;&nbsp;-- لا توجد أي صديق --&nbsp;&nbsp;&nbsp;&nbsp;<br><br></td>

@@ -20,7 +20,7 @@ require_once _df_path."globals.php";
 $checkSqlField="";
 $checkSqlTable="";
 $checkSqlWhere="";
-if(ulv<4&&!$is_moderator){
+if(ulv < 4&&!$is_moderator){
 	$checkSqlWhere.="AND (f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id))";
 	$checkSqlTable.="LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = ".uid.")";
 }
@@ -142,7 +142,7 @@ if($is_moderator){
 			$optionsMessage="";
 	}
 }
-if(ulv>0){
+if( ulv > 0 ){
 	$sqlAuth=(auth>0 ? "AND t.author = ".auth."" : "");
 	$sqlDelete=($is_monitor ? "" : "AND t.trash = 0");
 	$sqlModerate=($is_moderator ? "" : "AND t.moderate < IF(t.author = ".uid.",3,1)");
@@ -168,20 +168,20 @@ echo"
 						<td class=\"asAS18\"><nobr>{$Template->forumLink($f,$rs['subject'],'','sec')}</nobr></td>
 					</tr>
 					<tr>";
-					if(auth==0){
+					if(auth == 0){
 						if(!empty($optionsMessage)){
 							echo"<td class=\"asS12 asC2\">-- $optionsMessage --</td>";
 						}
 						else{
-							if($rs['hidemodforum']==0){
+							if($rs['hidemodforum'] == 0){
 								echo"<td class=\"asAS12 asAC2 asC1\">{$Template->forumModerators()}</td>";
 							}
 						}
 					}
-					if(ulv>0&&auth>0&&auth==uid){
+					if(ulv > 0&&auth>0&&auth == uid){
 						echo"<td class=\"asS12 asC2\">-- مواضيعك فقط --</td>";
 					}
-					elseif(ulv>0&&auth>0&&auth!=uid){
+					elseif(ulv > 0&&auth>0&&auth!=uid){
 						echo"<td class=\"asS12 asC2\">مواضيع العضو : {$mysql->get("user","name",auth)}</td>";
 					}
 					echo"
@@ -190,15 +190,15 @@ echo"
 				</td>
 				<th class=\"asTHLink\"><nobr><a href=\"foruminfo.php?f={$f}\">متواجدون الآن<br>في هذا المنتدى<br>عدد أعضاء: <span class=\"asC2\">{$rs['fonline']}</span></a></nobr></td>
 				<th class=\"asTHLink\"><nobr><a href=\"editor.php?type=newtopic&f={$f}&src=".urlencode(self)."\"><img src=\"{$DFImage->f['folder']}\" border=\"0\"><br>موضوع جديد</a></nobr></td>";
-			if(ulv>0&&$rs['hidepm']==0||$is_moderator){	
+			if(ulv > 0&&$rs['hidepm'] == 0||$is_moderator){	
 				echo"
 				<th class=\"asTHLink\"><nobr><a href=\"editor.php?type=sendpm&u=-{$f}&src=".urlencode(self)."\">أرسل رسالة<br>لمشرفي<br>هذا المنتدى</a></nobr></td>";
 			}
-			if(ulv>0&&auth==0){
+			if(ulv > 0&&auth == 0){
 				echo"
 				<th class=\"asTHLink\"><nobr><a href=\"forums.php?f={$f}&auth=".uid."\">مواضيعك في<br>هذا المنتدى</a></nobr></td>";
 			}
-			elseif(ulv>0&&auth>0){
+			elseif(ulv > 0&&auth>0){
 				echo"
 				<th class=\"asTHLink\"><nobr><a href=\"forums.php?f={$f}\">جميع مواضيع<br>هذا المنتدى</a></nobr></td>";
 			}
@@ -328,13 +328,13 @@ else{
 		<td class=\"asDark asLeftBorder\" width=\"5%\">الردود</td>
 		<td class=\"asDark asLeftBorder\" width=\"5%\">قرأت</td>
 		<td class=\"asDark\" width=\"10%\"><nobr>آخر رد</nobr></td>";
-	if(ulv>0){
+	if( ulv > 0 ){
 		echo"
 		<td class=\"asDark asRightBorder\" width=\"10%\">الخيارات</td>";
 	}
 	echo"
 	</tr>";
-$sqlOrderBy=(topics_order_by=="topics" ? ",t.date DESC,t.lpdate DESC" : ",t.lpdate DESC,t.date DESC");
+$sqlOrderBy=(topics_order_by == "topics" ? ",t.date DESC,t.lpdate DESC" : ",t.lpdate DESC,t.date DESC");
 $pgLimit=$DF->pgLimit(num_pages);
 $sql=$mysql->query("SELECT t.id,t.hidden,t.sticky,t.moderate,t.status,t.trash,t.survey,t.archive,t.top,t.link,t.subject,t.author,
 	t.lpauthor,t.date,t.lpdate,t.posts,t.views,t.viewforusers,
@@ -350,15 +350,15 @@ while($topics=$mysql->fetchAssoc($sql)){
 	$authorTools = array($topics['authorname'], $topics['authorstatus'], $topics['authorlevel'], $topics['authorsubmonitor']);
 	$lpAuthorTools = array($topics['lpauthorname'], $topics['lpauthorstatus'], $topics['lpauthorlevel'], $topics['lpauthorsubmonitor']);
 	
-	if($topics['trash']==1){
+	if($topics['trash'] == 1){
 		$trClass="asDelete";
 	}
 	else{
-		if($topics['hidden']==1){
+		if($topics['hidden'] == 1){
 			$trClass="asHidden";
 		}
 		else{
-			if($topics['sticky']==1){
+			if($topics['sticky'] == 1){
 				$trClass="asFixed";
 			}
 			else{
@@ -367,23 +367,23 @@ while($topics=$mysql->fetchAssoc($sql)){
 		}
 	}
 	
-	if($topics['moderate']==1){
+	if($topics['moderate'] == 1){
 		$imgSrc=$DFImage->f['moderate'];
 		$imgAlt="موضوع تنتظر الموافقة";
 	}
-	elseif($topics['moderate']==2){
+	elseif($topics['moderate'] == 2){
 		$imgSrc=$DFImage->f['held'];
 		$imgAlt="موضوع مجمد";
 	}
-	elseif($topics['trash']==1){
+	elseif($topics['trash'] == 1){
 		$imgSrc=$DFImage->f['delete'];
 		$imgAlt="موضوع محذوف";
 	}
-	elseif($topics['status']==0){
+	elseif($topics['status'] == 0){
 		$imgSrc=$DFImage->f['lock'];
 		$imgAlt="موضوع مقفل";
 	}
-	elseif($topics['status']==1&&$topics['posts']>14){
+	elseif($topics['status'] == 1&&$topics['posts']>14){
 		$imgSrc=$DFImage->f['hot'];
 		$imgAlt="موضوع نشط";
 	}	
@@ -397,11 +397,11 @@ while($topics=$mysql->fetchAssoc($sql)){
 		$surveyLogo['alt']="موضوع يحتوي على استفتاء";
 	}
 	$topLogo=array('src'=>'','alt'=>'');
-	if($topics['top']==1){
+	if($topics['top'] == 1){
 		$topLogo['src']=$DFImage->i['star_red'];
 		$topLogo['alt']="هذا الموضوع متميز";
 	}
-	elseif($topics['top']==2){
+	elseif($topics['top'] == 2){
 		$topLogo['src']=$DFImage->i['top'];
 		$topLogo['alt']="هذا الموضوع متميز";
 	}
@@ -445,15 +445,15 @@ while($topics=$mysql->fetchAssoc($sql)){
 			echo"<nobr>{$DF->date($topics['lpdate'])}</nobr><br>{$Template->userColorLink($topics['lpauthor'],$lpAuthorTools)}";
 		}else{echo"&nbsp;";}
 		echo"</td>";
-	if(ulv>0){
+	if( ulv > 0 ){
 		echo"
 		<td class=\"$trClass asRightBorder asCenter\"><nobr>";
 	if($is_moderator){
-		if(option=='rmo'){
+		if(option == 'rmo'){
 			echo"
 			<a href=\"topics.php?t=$t&option=mo\"><img src=\"{$DFImage->i['approve']}\" alt=\"إذهب الى ردود ينتظر الموافقة وعددها {$topics['postwait']}\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if(option=='rho'){
+		if(option == 'rho'){
 			echo"
 			<a href=\"topics.php?t=$t&option=ho\"><img src=\"{$DFImage->i['hold']}\" alt=\"إذهب الى ردود مجمدة وعددها {$topics['posthold']}\" hspace=\"2\" border=\"0\"></a>";
 		}
@@ -461,54 +461,54 @@ while($topics=$mysql->fetchAssoc($sql)){
 			echo"
 			<a href=\"javascript:DF.command($t,'mo');\"><img src=\"{$DFImage->f['approve']}\" alt=\"موافقة على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['moderate']==1){
+		if($topics['moderate'] == 1){
 			echo"
 			<a href=\"javascript:DF.command($t,'ho');\"><img src=\"{$DFImage->f['hold']}\" alt=\"تجميد الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['status']==1){
+		if($topics['status'] == 1){
 			echo"
 			<a href=\"javascript:DF.command($t,'lk');\"><img src=\"{$DFImage->f['lock']}\" alt=\"قفل الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['status']==0){
+		if($topics['status'] == 0){
 			echo"
 			<a href=\"javascript:DF.command($t,'op');\"><img src=\"{$DFImage->f['unlock']}\" alt=\"فتح الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['sticky']==0){
+		if($topics['sticky'] == 0){
 			echo"
 			<a href=\"javascript:DF.command($t,'st');\"><img src=\"{$DFImage->f['sticky']}\" alt=\"تثبيت الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['sticky']==1){
+		if($topics['sticky'] == 1){
 			echo"
 			<a href=\"javascript:DF.command($t,'us');\"><img src=\"{$DFImage->f['unsticky']}\" alt=\"إلغاء تثبيت الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['hidden']==0){
+		if($topics['hidden'] == 0){
 			echo"
 			<a href=\"javascript:DF.command($t,'hd');\"><img src=\"{$DFImage->f['hidden']}\" alt=\"إخفاء الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($topics['hidden']==1){
+		if($topics['hidden'] == 1){
 			echo"
 			<a href=\"javascript:DF.command($t,'vs');\"><img src=\"{$DFImage->f['visible']}\" alt=\"إظهار الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
 	}
-		if($is_moderator||$topics['status']==1&&$topics['author']==uid){
+		if($is_moderator||$topics['status'] == 1&&$topics['author'] == uid){
 			echo"
 			<a href=\"editor.php?type=edittopic&t=$t&src=".urlencode(self)."\"><img src=\"{$DFImage->f['edit']}\" alt=\"تعديل الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($is_monitor&&$topics['trash']==0){
+		if($is_monitor&&$topics['trash'] == 0){
 			echo"
 			<a href=\"javascript:DF.command($t,'dl');\"><img src=\"{$DFImage->f['delete']}\" alt=\"حذف الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if($is_monitor&&$topics['trash']==1){
+		if($is_monitor&&$topics['trash'] == 1){
 			echo"
 			<a href=\"javascript:DF.command($t,'re');\"><img src=\"{$DFImage->f['restore_delete']}\" alt=\"إرجاع الموضوع من الحذف\" hspace=\"2\" border=\"0\"></a>";
 		}
-		if(ulv>0&&$topics['status']==1||$is_moderator){
+		if(ulv > 0&&$topics['status'] == 1||$is_moderator){
 			echo"
 			<a href=\"editor.php?type=newpost&t=$t&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
 		if(auth>0){
 			echo"
-			<a href=\"topics.php?t=$t&u=".auth."\"><img src=\"{$DFImage->i['users']}\" alt=\"".(auth==uid?"مشاركاتك فقط في هذا الموضوع":"مشاركات هذا العضو فقط في هذا الموضوع")."\" hspace=\"2\" border=\"0\"></a>";
+			<a href=\"topics.php?t=$t&u=".auth."\"><img src=\"{$DFImage->i['users']}\" alt=\"".(auth == uid?"مشاركاتك فقط في هذا الموضوع":"مشاركات هذا العضو فقط في هذا الموضوع")."\" hspace=\"2\" border=\"0\"></a>";
 		}
 		echo"&nbsp;
 		</td>";
@@ -517,7 +517,7 @@ while($topics=$mysql->fetchAssoc($sql)){
 	</tr>";
 	$count++;
 }
-if($count==0){
+if($count == 0){
 	$msg=(option!=''?'لا توجد أي موضوع يطابق خيارات الذي انت اخترت':'لا توجد أي موضوع في هذا المنتدى');
 	echo"
 	<tr>

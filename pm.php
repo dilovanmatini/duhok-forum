@@ -17,7 +17,7 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv > 0){
+if( ulv > 0 ){
 //***************** start page ***************************
 
 if(mail == 'read' && pm != '' && auth == 0){
@@ -60,8 +60,8 @@ elseif(auth > 0 && ulv > 2){
 }
 else{
 	$uid=uid;
-	$pmUserField=(mail=='u'&&u>0?",u.name":"");
-	$pmUserTable=(mail=='u'&&u>0?"LEFT JOIN ".prefix."user AS u ON(u.id = '".u."')":"");
+	$pmUserField=(mail == 'u'&&u>0?",u.name":"");
+	$pmUserTable=(mail == 'u'&&u>0?"LEFT JOIN ".prefix."user AS u ON(u.id = '".u."')":"");
 	$sql=$mysql->query("SELECT uf.pmlists,COUNT(pm.id) AS newpm $pmUserField
 	FROM ".prefix."userflag AS uf
 	LEFT JOIN ".prefix."pm AS pm ON(pm.author = '$uid' AND pm.pmto = '$uid' AND pm.status = '1' AND pm.pmout = '0' AND pm.pmread = '0' AND pm.pmlist = 0)
@@ -70,7 +70,7 @@ else{
 	$rs=$mysql->fetchAssoc($sql);
 	$userType='user';
 	$pageTitle="الرسائل الخاصة";
-	$pageTarget=(mail=='u'&&u>0?"&u=".u:"");
+	$pageTarget=(mail == 'u'&&u>0?"&u=".u:"");
 }
 
 $userLists=unserialize($rs['pmlists']);
@@ -79,23 +79,23 @@ if(!is_array($userLists)){
 	$mysql->update("{$userType}flag SET pmlists = '".serialize($userLists)."' WHERE id = '$uid'", __FILE__, __LINE__);
 }
 $sqlWhere="";
-if(mail=='new'){
+if(mail == 'new'){
 	$menuTitle="الرسائل الواردة الجديدة";
 	$sqlWhere="WHERE pm.author = '$uid' AND pm.pmto = '$uid' AND pm.status = '1' AND pm.pmout = '0' AND pm.pmread = '0' AND pm.pmlist = 0";
 }
-elseif(mail=='in'){
+elseif(mail == 'in'){
 	$menuTitle="البريد الوارد";
 	$sqlWhere="WHERE pm.author = '$uid' AND pm.pmto = '$uid' AND pm.status = '1' AND pm.pmout = '0' AND pm.pmlist = 0";
 }
-elseif(mail=='out'){
+elseif(mail == 'out'){
 	$menuTitle="البريد الصادر";
 	$sqlWhere="WHERE pm.author = '$uid' AND pm.pmfrom = '$uid' AND pm.status = '1' AND pm.pmout = '1' AND pm.pmlist = 0";
 }
-elseif(mail=='trash'){
+elseif(mail == 'trash'){
 	$menuTitle="مجلد المحذوفات";
 	$sqlWhere="WHERE pm.author = '$uid' AND pm.status = '0'";
 }
-elseif(mail=='read'){
+elseif(mail == 'read'){
 	$menuTitle="قراءة رسالة";
 	$sql=$mysql->query("SELECT
 		pm.author,pm.sender,pm.status,pm.pmout,pm.date,pm.subject,pm.pmfrom,pm.pmto,pmm.message,
@@ -173,16 +173,16 @@ echo"
 			<tr>
 				<td><a href=\"pm.php?mail=".mail."$pageTarget{$pmReadTarget}\"><img src=\"{$DFImage->h['messages']}\" border=\"0\"></a></td>
 				<td class=\"asC2\" width=\"1200\"><a class=\"sec\" href=\"pm.php?mail=".mail."$pageTarget{$pmReadTarget}\">$pageTitle</a><br>$menuTitle</td>";
-			if(mail=='read'){
-				if($pm['pmto']==$uid&&$pm['pmout']==0){
+			if(mail == 'read'){
+				if($pm['pmto'] == $uid&&$pm['pmout'] == 0){
 					echo"
 					<th class=\"asTHLink\"><nobr><a href=\"editor.php?type=replypm&pm=".pm."&src=".urlencode(self)."$pageTarget\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الرسالة\" border=\"0\"><br>رد على الرسالة</a></nobr></th>";
 				}
-				if($pm['status']==1){
+				if($pm['status'] == 1){
 					echo"
 					<th class=\"asTHLink\"><nobr><a href=\"options.php?type=movepm&pm=".pm."$pageTarget\"><img src=\"{$DFImage->i['post_delete']}\" alt=\"حذف الرسالة\" border=\"0\"><br>حذف الرسالة</a></nobr></th>";
 				}
-				if($pm['status']==0){
+				if($pm['status'] == 0){
 					echo"
 					<th class=\"asTHLink\"><nobr><a href=\"options.php?type=restorepm&pm=".pm."$pageTarget\"><img src=\"{$DFImage->i['post_up']}\" alt=\"إسترجاع الرسالة الى مجلدها الأصلي\" hspace=\"3\" border=\"0\"><br>إسترجاع الرسالة</a></nobr></th>";
 				}
@@ -205,16 +205,16 @@ echo"
 		<ul class=\"tabnav asAS12\">&nbsp;";
 		if($rs['newpm']>0){
 			echo"
-			<li".(mail=='new'?' class="selected"':'')."><a href=\"pm.php?mail=new$pageTarget\"><em>الرسائل الواردة الجديدة&nbsp;&nbsp;[{$rs['newpm']}]</em></a></li>";
+			<li".(mail == 'new'?' class="selected"':'')."><a href=\"pm.php?mail=new$pageTarget\"><em>الرسائل الواردة الجديدة&nbsp;&nbsp;[{$rs['newpm']}]</em></a></li>";
 		}
 			echo"
-			<li".(mail=='in'?' class="selected"':'')."><a href=\"pm.php?mail=in$pageTarget\"><em>البريد الوارد</em></a></li>
-			<li".(mail=='out'?' class="selected"':'')."><a href=\"pm.php?mail=out$pageTarget\"><em>البريد الصادر</em></a></li>
-			<li".(mail=='trash'?' class="selected"':'')."><a href=\"pm.php?mail=trash$pageTarget\"><em>مجلد المحذوفات</em></a></li>&nbsp;&nbsp;";
+			<li".(mail == 'in'?' class="selected"':'')."><a href=\"pm.php?mail=in$pageTarget\"><em>البريد الوارد</em></a></li>
+			<li".(mail == 'out'?' class="selected"':'')."><a href=\"pm.php?mail=out$pageTarget\"><em>البريد الصادر</em></a></li>
+			<li".(mail == 'trash'?' class="selected"':'')."><a href=\"pm.php?mail=trash$pageTarget\"><em>مجلد المحذوفات</em></a></li>&nbsp;&nbsp;";
  	foreach($userLists as $frmKey=>$frmVal){
 		if(!empty($frmVal)){
 			echo"
-			<li".(mail==$frmKey?' class="selected"':'')." dir=\"ltr\"><a href=\"pm.php?mail=$frmKey$pageTarget\"><em>$frmVal</em></a></li>";
+			<li".(mail == $frmKey?' class="selected"':'')." dir=\"ltr\"><a href=\"pm.php?mail=$frmKey$pageTarget\"><em>$frmVal</em></a></li>";
 			$selectLists.="
 			<option value=\"$frmKey\">$frmVal</option>";
 		}
@@ -226,8 +226,8 @@ echo"
 	}
 		echo"
 		</ul>";
-	if(mail=='read'){
-		if($pm['pmfrom']==0){
+	if(mail == 'read'){
+		if($pm['pmfrom'] == 0){
 			$pmFromName="إدارة منتديات";
 		}
 		else{
@@ -290,24 +290,24 @@ echo"
 			<td class=\"asFixedB\"><nobr>عنوان الرسالة</nobr></td>
 			<td class=\"asNormalB\"><a href=\"pm.php?mail=read&pm=".pm."$pageTarget\"><b>{$pm['subject']}</b></a></td>
 		</tr>";
-		if($pm['uhidepm']==1){
+		if($pm['uhidepm'] == 1){
 			echo"
 			<tr>
 				<td class=\"asErrorB asCenter\" colSpan=\"2\"><nobr>** تم إخفاء نص هذه الرسالة بواسطة الإدارة **</nobr></td>
 			</tr>";
 		}
-		if($pm['uhidepm']==0||ulv>2){
+		if($pm['uhidepm'] == 0||ulv > 2){
 			echo"
 			<tr>
 				<td class=\"asNormalB\" colSpan=\"2\">{$pm['message']}</td>
 			</tr>";
 		}
-		if($pm['pmto']==$uid&&$pm['pmout']==0){
+		if($pm['pmto'] == $uid&&$pm['pmout'] == 0){
 		?>
 		<script type="text/javascript">
 		DF.checkQuickPost=function(frm){
 			var post=frm.message.value;
-			while((post.substring(0,1)==' ') || (post.substring(0,1)=='\r') || (post.substring(0,1)=='\n') || (post.substring(0,1)=='\t')){
+			while((post.substring(0,1) == ' ') || (post.substring(0,1) == '\r') || (post.substring(0,1) == '\n') || (post.substring(0,1) == '\t')){
 				post=post.substring(1);
 			}
 			frm.message.value=post;
@@ -369,7 +369,7 @@ echo"
 						<td class=\"asDark asLeftBorder\" width=\"60%\"><nobr><b>عنوان الرسالة</b></nobr></td>
 						<td class=\"asDark asLeftBorder\"><nobr><b>التاريخ</b></nobr></td>
 						<td class=\"asDark asLeftBorder\"><nobr><b>الحجم</b></nobr></td>";
-					if(mail=='trash'||mail=='u'||mail>=1&&mail<=5){
+					if(mail == 'trash'||mail == 'u'||mail>=1&&mail<=5){
 						echo"
 						<td class=\"asDark asLeftBorder\"><nobr><b>المجلد</b></nobr></td>";
 					}
@@ -399,7 +399,7 @@ echo"
 			$pmFromName=$DF->catch['pmFromName']["".$pm['pmfrom'].""];
 			$pmToName=$DF->catch['pmToName']["".$pm['pmto'].""];
 			if(!$pmFromName){
-				if($pm['pmfrom']==0){
+				if($pm['pmfrom'] == 0){
 					$pmFromName="إدارة منتديات";
 				}
 				else{
@@ -410,14 +410,14 @@ echo"
 				$pmToName=$DF->catch['pmToName']["".$pm['pmto'].""]=($pm['pmto']>0 ? $Template->userColorLink($pm['pmto'], array($pm['toname'], $pm['tostatus'], $pm['tolevel'], $pm['tosubmonitor'])) : "إشراف {$pm['toname']}");
 			}
 			
-			$pmClass=($pm['pmread']==0 ? 'asFixed' : 'asNormal');
-			$replyIcon=($pm['reply']==1 ? "<img src=\"{$DFImage->i['reply']}\" alt=\"هذه الرسالة رد على رسالة السابقة\" align=\"absMiddle\" hspace=\"3\" border=\"0\">&nbsp;" : "");
+			$pmClass=($pm['pmread'] == 0 ? 'asFixed' : 'asNormal');
+			$replyIcon=($pm['reply'] == 1 ? "<img src=\"{$DFImage->i['reply']}\" alt=\"هذه الرسالة رد على رسالة السابقة\" align=\"absMiddle\" hspace=\"3\" border=\"0\">&nbsp;" : "");
 			
-			if(mail=='trash'||mail=='u'||mail>=1&&mail<=5){
-				if($pm['pmto']==$uid&&$pm['pmout']==0){
+			if(mail == 'trash'||mail == 'u'||mail>=1&&mail<=5){
+				if($pm['pmto'] == $uid&&$pm['pmout'] == 0){
 					$pmfolder="بريد الوارد";
 				}
-				elseif($pm['pmfrom']==$uid&&$pm['pmout']==1){
+				elseif($pm['pmfrom'] == $uid&&$pm['pmout'] == 1){
 					$pmfolder="بريد الصادر";
 				}
 				else{
@@ -427,13 +427,13 @@ echo"
 				<td class=\"$pmClass asLeftBorder asS12 asDate asCenter\"><nobr>$pmfolder</nobr></td>";
 			}
 			$optionsIcon="";
-			if($pm['pmto']==$uid&&$pm['pmout']==0){
+			if($pm['pmto'] == $uid&&$pm['pmout'] == 0){
 				$optionsIcon="<a href=\"editor.php?type=replypm&pm=$pmid&src=".urlencode(self)."$pageTarget\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الرسالة\" hspace=\"3\" border=\"0\"></a>";
 			}
-			if($pm['status']==1){
+			if($pm['status'] == 1){
 				$optionsIcon.="<a href=\"options.php?type=movepm&pm=$pmid$pageTarget\"><img src=\"{$DFImage->i['post_delete']}\" alt=\"حذف الرسالة\" hspace=\"3\" border=\"0\"></a>";
 			}
-			if($pm['status']==0){
+			if($pm['status'] == 0){
 				$optionsIcon.="<a href=\"options.php?type=restorepm&pm=$pmid$pageTarget\"><img src=\"{$DFImage->i['post_up']}\" alt=\"إسترجاع الرسالة الى مجلدها الأصلي\" hspace=\"3\" border=\"0\"></a>";
 			}
 			
@@ -458,7 +458,7 @@ echo"
 			</tr>";
 			$count++;
 		}
-		if($count==0){
+		if($count == 0){
 			echo"
 			<tr>
 				<td class=\"asNormal asCenter\" colspan=\"10\"><br>لا توجد اي رسالة في هذا المجلد<br><br></td>
@@ -470,7 +470,7 @@ echo"
 		</tr>
 		</table>";
 	}
-	if(mail=='lists'){
+	if(mail == 'lists'){
 		echo"
 		<table width=\"100%\" cellSpacing=\"0\" cellpadding=\"0\">
 			<tr>
@@ -514,7 +514,7 @@ if(mail!='read'&&mail!='lists'){
 			{$Template->button('أنقل الرسائل المختارة الى',' onClick="DF.checkMovePM(this.form)"')}
 			<select class=\"asGoTo\" name=\"folder\">$selectLists
 				<option value=\"trash\">مجلد المحذوفات</option>";
-			if(mail=='trash'||mail>=1&&mail<=5){
+			if(mail == 'trash'||mail>=1&&mail<=5){
 				echo"
 				<option value=\"restore\">مجلداتهم الأصلية</option>";
 			}

@@ -155,7 +155,7 @@ class DF{
 		$date=$this->time($date,$gmt);
 		$nowTime=$this->time(time,$gmt);
 		$time=date("H:i".($sec?":s":""),$date);
-		if($type=='time'){
+		if($type == 'time'){
 			return $time;
 		}
 		else{
@@ -166,18 +166,18 @@ class DF{
 			$mm=date("m",$nowTime);
 			$dd=date("d",$nowTime);
 			$yesterday=date("d",$nowTime-86400);
-			if($d==$dd&&$m==$mm&&$y==$yy&&!$num){
+			if($d == $dd&&$m == $mm&&$y == $yy&&!$num){
 				$date="اليوم";
 			}
-			elseif($d==$yesterday&&($dd==1||$m==$mm)&&$y==$yy&&!$num){
+			elseif($d == $yesterday&&($dd == 1||$m == $mm)&&$y == $yy&&!$num){
 				$date="يوم أمس";
 			}
 			else{
-				$year=($year||$type=="date"||$y!=$yy?$y.'/':"");
+				$year=($year||$type == "date"||$y!=$yy?$y.'/':"");
 				$date=$year.$m."/".$d;
 				$date="<span dir=\"ltr\">$date</span>";
 			}
-			if($type=="date"){
+			if($type == "date"){
 				return $date;
 			}
 			else{
@@ -186,15 +186,15 @@ class DF{
 		}
 	}
 	function getDays($from,$y,$m=0,$d=0){
-		$yy=((($y%4==0)&&($y%100!=0))||($y%400==0)); $mm=array(0,31,28,31,30,31,30,31,31,30,31,30,31); $days=0;
-		if($from=='m'){ //month's days
-			if($m==2&&$yy) $days=29;
+		$yy=((($y%4 == 0)&&($y%100!=0))||($y%400 == 0)); $mm=array(0,31,28,31,30,31,30,31,31,30,31,30,31); $days=0;
+		if($from == 'm'){ //month's days
+			if($m == 2&&$yy) $days=29;
 			else $days=(int)$mm[$m];
 		}
-		elseif($from=='yl'){ // day left in year
+		elseif($from == 'yl'){ // day left in year
 			for($x=1;$x<=$m;$x++){
-				if($x==$m) $days+=$d;
-				else $days+=($m==2&&$yy ? 29 : $mm[$x]);
+				if($x == $m) $days+=$d;
+				else $days+=($m == 2&&$yy ? 29 : $mm[$x]);
 			}
 		}
 		else{ // year's days
@@ -473,11 +473,11 @@ class DF{
 			if($this->indexOf($agent,'msie')>=0) return true;
 			else return false;
 		}
-		elseif($msg=='type'){
+		elseif($msg == 'type'){
 			if($this->indexOf($agent,'msie')>=0) return 'msie';
 			elseif($this->indexOf($agent,'chrome')>=0) return 'chrome';
-			elseif($this->indexOf($agent,'safari')>=0&&$this->indexOf($agent,'chrome')==-1) return 'safari';
-			elseif($this->indexOf($agent,'firefox')>=0&&$this->indexOf($agent,'navigator')==-1) return 'firefox';
+			elseif($this->indexOf($agent,'safari')>=0&&$this->indexOf($agent,'chrome') == -1) return 'safari';
+			elseif($this->indexOf($agent,'firefox')>=0&&$this->indexOf($agent,'navigator') == -1) return 'firefox';
 			elseif($this->indexOf($agent,'navigator')>=0) return 'navigator';
 			elseif($this->indexOf($agent,'opera')>=0) return 'opera';
 			elseif($this->indexOf($agent,'mac')>=0) return 'mac';
@@ -571,7 +571,7 @@ class DF{
 	}
 	function checkOperation(){
 		// Check User Country
-		if(ulv>1){
+		if(ulv > 1){
 			$code=($catchCode=$this->catch['countryCode']) ? $catchCode : ($this->catch['countryCode']=(local ? 'LH' : $this->getCountryByIP()));
 			$getCookie=explode(":",$this->getCookie('userCountryDetails'));
 			if($code!=$getCookie[0]){
@@ -649,19 +649,19 @@ class DF{
 	}
 	function cookies(){
 		$varList=array();
-		if(_df_script=='forums'){
+		if(_df_script == 'forums'){
 			$varList['topicsOrderBy']=array('define'=>'topics_order_by','default'=>'posts','link'=>self);
 		}
-		if(_df_script=='topics'){
+		if(_df_script == 'topics'){
 			$varList['topicsSignature']=array('define'=>'topics_signature','default'=>'hidden','link'=>self);
 		}
-		if(_df_script=='active'){
+		if(_df_script == 'active'){
 			$varList['activeType']=array('define'=>'active_type','default'=>'active','link'=>self);
 		}
-		if(_df_script=='editor'){
+		if(_df_script == 'editor'){
 			$varList['editorType']=array('define'=>'editor_type','default'=>'old','link'=>self);
 		}
-		if(_df_script=='yourposts'){
+		if(_df_script == 'yourposts'){
 			$varList['postsSortType']=array('define'=>'posts_sort_type','default'=>'posts','link'=>self);
 			$varList['postsSortLast']=array('define'=>'posts_sort_last','default'=>'post','link'=>self);
 			$varList['postsSortForum']=array('define'=>'posts_sort_forum','default'=>0,'link'=>self);
@@ -728,7 +728,7 @@ class DF{
 			);
 		}
 		foreach($varList as $key=>$val){
-			if($val['define']=='users_sort_type'&&type!=''){
+			if($val['define'] == 'users_sort_type'&&type!=''){
 				$this->setSession($key,type);
 				$this->quick("users.php".(search!='' ? "?search=".search : ""));
 			}
@@ -739,7 +739,7 @@ class DF{
 			define($val['define'], ($getVal=$this->getSession($key)) ? $getVal : $val['default']);
 		}
 		define('checkredeclare',(int)$_SESSION['checkredeclare']);
-		if(_df_script=='svc'||_df_script=='options') $_SESSION['checkredeclare']=rand;
+		if(_df_script == 'svc'||_df_script == 'options') $_SESSION['checkredeclare']=rand;
 	}
 	function iff($condition,$if,$else=''){
 		return ($condition ? $if : $else);
@@ -771,7 +771,7 @@ class DF{
 				$link.="&{$key}={$val}";
 			}
 		}
-		if($this->indexOf($file,"?")==-1&&!empty($link)){
+		if($this->indexOf($file,"?") == -1&&!empty($link)){
 			$file.="?";
 			$link=substr($link,1);
 		}
@@ -891,7 +891,7 @@ class DF{
 				}
 			}
 		}
-		if(ulv==3){
+		if(ulv == 3){
 			$sql=$mysql->query("SELECT f.id FROM ".prefix."category AS c
 			LEFT JOIN ".prefix."forum AS f ON(f.catid = c.id)
 			WHERE c.monitor = ".uid." GROUP BY f.id", __FILE__, __LINE__);
@@ -901,7 +901,7 @@ class DF{
 				}
 			}
 		}
-		if(ulv==2){
+		if(ulv == 2){
 			$sql=$mysql->query("SELECT f.id FROM ".prefix."category AS c
 			LEFT JOIN ".prefix."forum AS f ON(f.catid = c.id)
 			WHERE c.submonitor = ".uid." GROUP BY f.id", __FILE__, __LINE__);
@@ -911,7 +911,7 @@ class DF{
 				}
 			}
 		}
-		if($admin&&ulv==4){
+		if($admin&&ulv == 4){
 			$sql=$mysql->query("SELECT id FROM ".prefix."forum", __FILE__, __LINE__);
 			while($rs=$mysql->fetchRow($sql)){
 				if(!in_array($rs[0],$forums)){
@@ -919,37 +919,37 @@ class DF{
 				}
 			}
 		}
-		if($inSql&&count($forums)==0){
+		if($inSql&&count($forums) == 0){
 			$forums[]=0;
 		}
 		return $forums;
 	}
 	function showTools($f = f, $uid = uid){
 		if($f>0&&$uid>0){
-			$ulv=($uid==uid?ulv:$this->mysql->get("user","level",$uid));
-			if($ulv<2){
+			$ulv=($uid == uid?ulv:$this->mysql->get("user","level",$uid));
+			if($ulv < 2){
 				return 0;
 			}
-			elseif($ulv==4){
+			elseif($ulv == 4){
 				return 2;
 			}
-			elseif($ulv==3){
+			elseif($ulv == 3){
 				$rs=$this->mysql->queryRow("SELECT IF(ISNULL(c.monitor),0,c.monitor),IF(ISNULL(m.id),0,1)
 				FROM ".prefix."forum AS f
 				LEFT JOIN ".prefix."category AS c ON(c.id = f.catid)
 				LEFT JOIN ".prefix."moderator AS m ON(m.userid = $uid AND m.forumid = $f)
 				WHERE f.id = '$f'", __FILE__, __LINE__);
-				if($rs[0]==$uid){
+				if($rs[0] == $uid){
 					return 2;
 				}
-				elseif($rs[1]==1){
+				elseif($rs[1] == 1){
 					return 1;
 				}
 				else{
 					return 0;
 				}
-			}					elseif($ulv==2){				$rs=$this->mysql->queryRow("SELECT IF(ISNULL(c.submonitor),0,c.submonitor),IF(ISNULL(m.id),0,1)				FROM ".prefix."forum AS f				LEFT JOIN ".prefix."category AS c ON(c.id = f.catid)				LEFT JOIN ".prefix."moderator AS m ON(m.userid = $uid AND m.forumid = $f)				WHERE f.id = '$f'", __FILE__, __LINE__);				if($rs[0]==$uid){					return 1;				}				elseif($rs[1]==1){					return 1;				}				else{					return 0;				}			}
-			elseif($ulv==2){
+			}					elseif($ulv == 2){				$rs=$this->mysql->queryRow("SELECT IF(ISNULL(c.submonitor),0,c.submonitor),IF(ISNULL(m.id),0,1)				FROM ".prefix."forum AS f				LEFT JOIN ".prefix."category AS c ON(c.id = f.catid)				LEFT JOIN ".prefix."moderator AS m ON(m.userid = $uid AND m.forumid = $f)				WHERE f.id = '$f'", __FILE__, __LINE__);				if($rs[0] == $uid){					return 1;				}				elseif($rs[1] == 1){					return 1;				}				else{					return 0;				}			}
+			elseif($ulv == 2){
 				$count=$this->DFOutput->count("moderator WHERE userid = '$uid' AND forumid = '$f' and block = 0");
 				if($count>0){
 					return 1;
@@ -967,8 +967,8 @@ class DF{
 		}
 	}
 	function allowForum($f,$uid=uid){
-		$ulv=($uid==uid ? ulv : $this->mysql->get("user","level",$uid));
-		if($ulv==4){
+		$ulv=($uid == uid ? ulv : $this->mysql->get("user","level",$uid));
+		if($ulv == 4){
 			return true;
 		}
 		else{
@@ -990,8 +990,8 @@ class DF{
 		}
 	}
 	function allowTopic($t,$uid=uid){
-		$ulv=($uid==uid ? ulv : $this->mysql->get("user","level",$uid));
-		if($ulv==4){
+		$ulv=($uid == uid ? ulv : $this->mysql->get("user","level",$uid));
+		if($ulv == 4){
 			return true;
 		}
 		else{
@@ -1017,8 +1017,8 @@ class DF{
 		}
 	}
 	function allowPost($p,$uid=uid){
-		$ulv=($uid==uid ? ulv : $this->mysql->get("user","level",$uid));
-		if($ulv==4){
+		$ulv=($uid == uid ? ulv : $this->mysql->get("user","level",$uid));
+		if($ulv == 4){
 			return true;
 		}
 		else{
@@ -1311,7 +1311,7 @@ class DF{
 			$tag=$reg[1];
 			$close="</$reg[1]>";
 			$att=$reg[2];
-			if($tag==''||!preg_match("/".preg_quote($close, '/')."/",$text)){
+			if($tag == ''||!preg_match("/".preg_quote($close, '/')."/",$text)){
 				$i=strpos($text,$fullTag);
 				$text=substr($text,0,$i).substr($text,$i+strlen($fullTag));
 			}
@@ -1341,7 +1341,7 @@ class DF{
         while(preg_match("/<(\/?[[:alpha:]]*)[[:space:]]*([^>]*)>/",$text,$reg)){
                 $i=strpos($text,$reg[0]);
                 $l=strlen($reg[0]);
-                if($reg[1][0]=="/"){
+                if($reg[1][0] == "/"){
 					$tag=strtolower(substr($reg[1],1));
 				}
                 else{

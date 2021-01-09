@@ -17,14 +17,14 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv>0) $DF->quick();
+if( ulv > 0 ) $DF->quick();
 $Template->header();
 
-if(type==''){
+if(type == ''){
 	?>
 	<script type="text/javascript">
 	DF.checkSubmit=function(frm){
-		if(frm.username.value.length==0){
+		if(frm.username.value.length == 0){
 			alert("يجب عليك أن تدخل إسم العضوية");
 		}
 		else{
@@ -53,14 +53,14 @@ if(type==''){
 	</form>
 	</table>";
 }
-elseif(type=='send'){
+elseif(type == 'send'){
 	$username=$DF->cleanText($_POST['username']);
 	$rs=$mysql->queryAssoc("SELECT u.id,u.level,uf.email
 	FROM ".prefix."user AS u
 	LEFT JOIN ".prefix."userflag AS uf ON(uf.id = u.id)
 	WHERE name = '{$username}' AND status = 1", __FILE__, __LINE__);
 	if(isset($rs['id'])){
-		if($rs['level']==1){
+		if($rs['level'] == 1){
 			$randCode=md5(time.rand.$rs['id']);
 			$mysql->insert("fpass (userid,randcode,sendip,date) VALUES ({$rs['id']},'{$randCode}',".ip2.",".time.")", __FILE__, __LINE__);
 			$subject="طلب إسترجاع الكلمة السرية";
@@ -80,7 +80,7 @@ elseif(type=='send'){
 		$Template->errMsg("عفوا إسم العضوية المطلوب غير موجود بقائمة الأعضاء<br>للتثبت يرجى البحث عن إسم العضوية من <a href=\"users.php\">قائمة الأعضاء</a>");
 	}
 }
-elseif(type=="confirm"&&strlen(code)==32){
+elseif(type == "confirm"&&strlen(code) == 32){
 	$rs=$mysql->queryAssoc("SELECT fp.status,fp.userid,fp.date,uf.email
 	FROM ".prefix."fpass AS fp
 	LEFT JOIN ".prefix."userflag AS uf ON(uf.id = fp.userid)
@@ -90,7 +90,7 @@ elseif(type=="confirm"&&strlen(code)==32){
 		if(time>$expire){
 			$Template->errMsg("عفوا ، لقد تجاوزت فترة الـ 24 ساعة و تم إلغاء الطلب ، الرجاء إرسال طلب جديد لإسترجاع الكلمة السرية");
 		}
-		elseif($rs['status']==1){
+		elseif($rs['status'] == 1){
 			$Template->errMsg("لقد قمت بالتحقق من الرابط ، ستجد كلمة سرية ارسلت لك عبر البريد الإلكتروني");
 		}
 		else{

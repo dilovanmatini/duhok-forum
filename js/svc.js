@@ -18,13 +18,13 @@ DF.checkRowClass=function(s,id,cname){
 };
 DF.checkAllBox=function(s){
 	var el=s.form.elements,id=0;
-	if(typeof document.body.flag=='undefined'){
+	if(typeof document.body.flag == 'undefined'){
 		document.body.flag=false;
 	}
 	if(!document.body.flag){
 		for(var x=0,y=0;x<el.length;x++){
 			el[x].checked=true;
-			if(el[x].type=='checkbox'){
+			if(el[x].type == 'checkbox'){
 				y++;
 				id=parseInt(el[x].value);
 				this.checkRowClass(el[x],id);
@@ -38,7 +38,7 @@ DF.checkAllBox=function(s){
 	else{
 		for(var x=0;x<el.length;x++){
 			el[x].checked=false;
-			if(el[x].type=="checkbox"){
+			if(el[x].type == "checkbox"){
 				id=parseInt(el[x].value);
 				this.checkRowClass(el[x],id);
 			}

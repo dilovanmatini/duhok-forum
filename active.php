@@ -57,20 +57,20 @@ echo"
 		<td class=\"asDark\">الردود</td>
 		<td class=\"asDark\">قرأت</td>
 		<td class=\"asDark\" width=\"15%\">آخر رد</td>";
-	if(ulv>0){
+	if( ulv > 0 ){
 		echo"
 		<td class=\"asDark\" width=\"1%\">الخيارات</td>";
 	}
 	echo"
 	</tr>";
 	
-if(active_type=='hot'){
+if(active_type == 'hot'){
 	$activeSql="AND t.posts >= 10";
 }
-elseif(active_type=='read'){
+elseif(active_type == 'read'){
 	$activeSql="AND t.views >= 50";
 }
-elseif(active_type=='top'){
+elseif(active_type == 'top'){
 	$activeSql="AND t.top = 2";
 }
 else{
@@ -94,14 +94,14 @@ IF(
 $checkSqlField="";
 $checkSqlTable="";
 $checkSqlWhere="";
-if(ulv<4){
+if(ulv < 4){
 	$checkSqlField=",IF(ISNULL(m.id),0,1) AS ismod";
 	$checkSqlTable="
 		LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = '".uid."')
 		LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = '".uid."')
 	";
 	$checkSqlWhere="AND (f.hidden = 0 AND f.level <= '".ulv."' OR fu.id IS NOT NULL)";
-	if(ulv==3){
+	if(ulv == 3){
 		$checkSqlField.=",IF(ISNULL(c.id),0,1) AS ismon";
 		$checkSqlTable.="LEFT JOIN ".prefix."category AS c ON(c.id = f.catid AND c.monitor = '".uid."')";
 	}
@@ -145,10 +145,10 @@ while($rs=$mysql->fetchAssoc($sql)){
 		}
 		else{echo"&nbsp;";}
 		echo"</td>";
-	if(ulv>0){
+	if( ulv > 0 ){
 		echo"
 		<td class=\"asNormal asCenter\">";
-		if($rs['status']==1||$rs['ismod']==1||$rs['ismon']==1){
+		if($rs['status'] == 1||$rs['ismod'] == 1||$rs['ismon'] == 1){
 			echo"<a href=\"editor.php?type=newpost&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 		}
 		echo"</td>";

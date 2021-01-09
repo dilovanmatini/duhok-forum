@@ -23,7 +23,7 @@ $Template->header();
 <script type="text/javascript" src="js/index.js<?=x?>"></script>
 <script type="text/javascript">
 var homeView = '<?=home_view?>';
-<?php if(ulv==4){ ?>
+<?php if(ulv == 4){ ?>
 var catAdminName="catadmin.php";
 var forumAdminName="forumadmin.php";
 <?php } ?>
@@ -40,13 +40,13 @@ echo"
 		<table width=\"100%\" cellSpacing=\"1\" cellPadding=\"4\">";
 $checkSqlField="";
 $checkSqlTable="";
-if(ulv==4){
+if(ulv == 4){
 	$checkSqlField="
 		,IF(ISNULL(c.id),0,1) AS allowcat
 		,IF(ISNULL(f.id),0,1) AS allowforum
 	";
 }
-elseif(ulv==3){
+elseif(ulv == 3){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id) OR c.monitor = ".uid.",1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id) OR c.monitor = ".uid.",1,0) AS allowforum
@@ -56,7 +56,7 @@ elseif(ulv==3){
 		LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")
 	";
 }
-elseif(ulv==2){
+elseif(ulv == 2){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id),1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id),1,0) AS allowforum
@@ -66,14 +66,14 @@ elseif(ulv==2){
 		LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")
 	";
 }
-elseif(ulv==1){
+elseif(ulv == 1){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id),1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
 	";
 	$checkSqlTable.="LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = ".uid.")";
 }
-elseif(ulv==0){
+elseif(ulv == 0){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level,1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level,1,0) AS allowforum
@@ -87,13 +87,13 @@ $count=0;
 $catid=0;
 while($rs=$mysql->fetchAssoc($sql)){
 	if($rs['catid']!=$catid){
-		if($rs['allowcat']==1){
+		if($rs['allowcat'] == 1){
 			echo"
 			<tr>
 				<td class=\"asDarkB\" colspan=\"3\">{$rs['csubject']}</td>
 				<td class=\"asDarkB\">المواضيع</td>
 				<td class=\"asDarkB\">الردود</td>";
-			if(ulv==4){
+			if(ulv == 4){
 				echo"
 				<td class=\"asDarkB\">
 					<div class=\"forums-admenu\" tools=\"c|{$rs['catid']}|{$rs['cstatus']}\"><img src=\"images/icons/downopen.gif\"></div>
@@ -104,9 +104,9 @@ while($rs=$mysql->fetchAssoc($sql)){
 		}
 		$catid=$rs['catid'];
 	}
-	if($rs['allowforum']==1){
-		$folder=($rs['status']==0 ? "lock" : "folder");
-		$cname=($rs['hidden']==1 ? "asHiddenB" : "asNormalB");
+	if($rs['allowforum'] == 1){
+		$folder=($rs['status'] == 0 ? "lock" : "folder");
+		$cname=($rs['hidden'] == 1 ? "asHiddenB" : "asNormalB");
 		echo"
 		<tr>
 			<td class=\"{$cname} asCenter\" width=\"20\"><img src=\"{$DFImage->f[$folder]}\" border=\"0\"></td>
@@ -127,7 +127,7 @@ while($rs=$mysql->fetchAssoc($sql)){
 	}
 	$count++;
 }
-if($count==0){
+if($count == 0){
 	echo"
 	<tr>
 		<td class=\"asNormalB asCenter\" colspan=\"6\"><br>لا توجد أي منتدى مؤرشف<br><br></td>

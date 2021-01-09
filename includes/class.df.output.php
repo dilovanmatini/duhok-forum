@@ -23,7 +23,7 @@ class DFOutput{
 		return $rs[0];
 	}
 	function setCnf($var,$val,$type='no'){
-		$checkType=($type=='no' ? "" : ", type = '{$type}'");
+		$checkType=($type == 'no' ? "" : ", type = '{$type}'");
 		$this->mysql->update("config SET value = '$val' $checkType WHERE variable = '$var'", __FILE__, __LINE__);
 	}
 	function inCnf($var,$val,$type){
@@ -108,7 +108,7 @@ class DFOutput{
 		else{
 			$f = (_df_script == 'topics') ? intval($this->DF->catch['_this_forum']) : 0;
 		}
-		if(ulv > 0){
+		if( ulv > 0 ){
 			$url = basename( str_replace("'", "", self) );
 			$this->mysql->query("REPLACE INTO ".prefix."useronline(ip, userid, level, forumid, hidebrowse, url, date) VALUES({$longip}, ".uid.", ".ulv.", {$f}, ".uhidebrowse.", '{$url}', ".time.")", __FILE__, __LINE__);
 			$this->mysql->delete("useronline WHERE date < ".(time - 3600)."", __FILE__, __LINE__);
@@ -121,7 +121,7 @@ class DFOutput{
 	function setForumBrowse($f=f){
 		$d=explode("-",date("Y-m-d-H-i",gmttime));
 		$sess=ip.".{$d[0]}.{$d[1]}.{$d[2]}.{$d[3]}.{$d[4]}";
-		if($_SESSION['forumbrowse']==$sess){
+		if($_SESSION['forumbrowse'] == $sess){
 			$doInsert=false;
 		}
 		else{
@@ -185,28 +185,28 @@ class DFOutput{
 	}
 	function setUserActivity($type,$f=0,$uid=uid,$points=0){
 		if($uid>0){
-			$ulv=($uid==uid ? ulv : $this->mysql->get("user","level",$uid));
-			if($ulv<4){
+			$ulv=($uid == uid ? ulv : $this->mysql->get("user","level",$uid));
+			if($ulv < 4){
 				if(
-					($type=='profileview'||$type=='topicview'||$type=='topicprint'||$type=='topicfav'||$type=='topicsend')&&
+					($type == 'profileview'||$type == 'topicview'||$type == 'topicprint'||$type == 'topicfav'||$type == 'topicsend')&&
 					uid!=$uid&&!isset($_SESSION["user{$type}{$uid}"])
 				){
 					$points=1;
 					$_SESSION["user{$type}{$uid}"]=1;
 				}
-				elseif($type=='topicpost'&&uid!=$uid||$type=='complain'||$type=='vote'){
+				elseif($type == 'topicpost'&&uid!=$uid||$type == 'complain'||$type == 'vote'){
 					$points=1;
 				}
-				elseif($type=='post'){
+				elseif($type == 'post'){
 					$points=2;
 				}
-				elseif($type=='topic'){
+				elseif($type == 'topic'){
 					$points=3;
 				}
-				elseif($type=='medal'){
+				elseif($type == 'medal'){
 					$points=(int)$points;
 				}
-				elseif($type=='online'){
+				elseif($type == 'online'){
 					$sessName="useronline{$uid}";
 					if(!isset($_SESSION[$sessName])) $_SESSION[$sessName]=0;
 					$_SESSION[$sessName]+=0.1;
@@ -226,7 +226,7 @@ class DFOutput{
 					$id=(int)$rs[0];
 					$d=explode("-",date("Y-m-d",($id>0 ? $rs[1] : 0)));
 					$n=explode("-",date("Y-m-d",gmttime));
-					if($id>0&&$d[0]==$n[0]&&$d[1]==$n[1]&&$d[2]==$n[2]){
+					if($id>0&&$d[0] == $n[0]&&$d[1] == $n[1]&&$d[2] == $n[2]){
 						$this->mysql->update("useractivity SET points = points + {$points} WHERE id = {$id}", __FILE__, __LINE__);
 					}
 					else{
@@ -255,7 +255,7 @@ class DFOutput{
 		11 = his request was refused
 		*/
 		$status=0;
-		if($uid==uid) $status=2;
+		if($uid == uid) $status=2;
 		else{
 			$rs=$this->mysql->queryRow("SELECT u.id,
 			IF(u.status <> 1,3,
@@ -283,13 +283,13 @@ class DFOutput{
 			LEFT JOIN ".prefix."blocks AS b ON(b.blockid = ".uid." AND b.userid = u.id OR b.userid = ".uid." AND b.blockid = u.id)
 			WHERE u.id = {$uid} GROUP BY u.id LIMIT 1", __FILE__, __LINE__);
 			$u=(int)$rs[0];
-			if($u==0) $status=1;
+			if($u == 0) $status=1;
 			else $status=(int)$rs[1];
 		}
 		return $status;
 	}
 	function setNotification($type,$author,$postid=0,$topicid=0,$userid=uid){
-		if(strlen($type)==3&&$author>0) $this->mysql->insert("notification (author,userid,type,topicid,postid,date) VALUES ({$author},{$userid},'{$type}',{$topicid},{$postid},".time.")", __FILE__, __LINE__);
+		if(strlen($type) == 3&&$author>0) $this->mysql->insert("notification (author,userid,type,topicid,postid,date) VALUES ({$author},{$userid},'{$type}',{$topicid},{$postid},".time.")", __FILE__, __LINE__);
 	}
 }
 

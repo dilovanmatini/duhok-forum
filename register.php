@@ -18,13 +18,13 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv!=0){
+if(ulv != 0){
 	$DF->goTo();
 }
-if(register_status==0){
+if(register_status == 0){
 	$Template->errMsg("تم إيقاف تسجيل عضويات جديدة من قبل إدارة<br>سيتم فتح تسجيل قريباً");
 }
-if(type==''){
+if(type == ''){
 	echo"
 	<table width=\"80%\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">
 		<tr>
@@ -84,7 +84,7 @@ if(type==''){
 		</tr>
 	</table><br>";
 }
-elseif(type=='details'){
+elseif(type == 'details'){
 	echo"
 	<script type=\"text/javascript\" src=\"js/register.js".x."\"></script>
 	<table width=\"55%\" cellSpacing=\"0\" cellPadding=\"4\" align=\"center\">
@@ -230,7 +230,7 @@ elseif(type=='details'){
 	</form>
 	</table><br><br>";
 }
-elseif(type=='doregister'){
+elseif(type == 'doregister'){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في تسجيل العضوية");
 	$keyCode=$DF->cleanText($_POST['redeclare']);
 	$userName=$DF->cleanText($_POST['regUserName']);
@@ -307,14 +307,14 @@ elseif(type=='doregister'){
 	elseif($regUserBrithDayYear<=$fY||$regUserBrithDayYear>$lY){
 		$Template->errMsg("نرجوا أن تختار تاريخ ولادتك الصحيحة.");
 	}
-	elseif($userSex==0){
+	elseif($userSex == 0){
 		$Template->errMsg("يجب ان تختار الجنس");
 	}
 	elseif($findUserKeys>0){
 		$Template->errMsg("كان هناك خلل أثناء تسجيل العضوية!<br><br>يبدو أنه تم محاولة إدخال تسجيل العضوية عدة مرات لسبب فني أو لخلل في الشبكة.<br><br>الرجاء التأكد من أن العضوية تم تسجيلها بشكل صحيح في المنتدى... نأسف على هذا.");
 	}
 	else{
-		$userActive=(register_status==2 ? 0 : 1);
+		$userActive=(register_status == 2 ? 0 : 1);
 		$mysql->insert("user (status,active,name,entername,password,keycode,code,date) VALUES (
 			2,
 			$userActive,
@@ -338,7 +338,7 @@ elseif(type=='doregister'){
 			'$userCity',
 			'".ip2."'
 		)", __FILE__, __LINE__);
-		if(register_status==2){
+		if(register_status == 2){
 			$subject="طلب تفعيل العضوية في ".forum_title;
 			$activeUrl="http://".site_address."/register.php?type=active&u=$uid&code=$activeCode";
 			$message="مرحباً بك $userName
@@ -364,10 +364,10 @@ elseif(type=='doregister'){
 		}
 	}
 }
-elseif(type=='active'){
+elseif(type == 'active'){
 	$keyCode=$mysql->get("user","keycode",u);
 	$activeCode=substr($keyCode,8,8);
-	if(u>0&&code!=''&&code==$activeCode){
+	if(u>0&&code!=''&&code == $activeCode){
 		$Template->msgBox("تم تفعيل عضويتك بنجاح, لكن بحاجة الى موافقة الإدارة, وسيتم الموافقة عليها خلال 24 ساعة أو أقل.",'green',10,0,true,false);
 		$mysql->update("user SET active = 1 WHERE id = ".u."", __FILE__, __LINE__);
 	}

@@ -158,7 +158,7 @@
 					
 					if( settings.over[pos] )
 						// Scroll to a fraction of its width/height
-						attr[key] += targ[axis=='x'?'width':'height']() * settings.over[pos];
+						attr[key] += targ[axis == 'x'?'width':'height']() * settings.over[pos];
 				}else{ 
 					var val = targ[pos];
 					// Handle percentage values

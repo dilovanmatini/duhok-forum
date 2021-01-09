@@ -75,19 +75,19 @@ function postNumPageMenu(){
 }
 function topicFolder($trash,$moderate,$status){
 	global $DFImage;
-	if($trash==1){
+	if($trash == 1){
 		$imgSrc=$DFImage->f['delete'];
 		$imgAlt="موضوع محذوف";
 	}
-	elseif($moderate==1){
+	elseif($moderate == 1){
 		$imgSrc=$DFImage->f['moderate'];
 		$imgAlt="موضوع تنتظر الموافقة";
 	}
-	elseif($moderate==2){
+	elseif($moderate == 2){
 		$imgSrc=$DFImage->f['held'];
 		$imgAlt="موضوع مجمد";
 	}
-	elseif($status==0){
+	elseif($status == 0){
 		$imgSrc=$DFImage->f['lock'];
 		$imgAlt="موضوع مقفل";
 	}
@@ -159,7 +159,7 @@ if(vote>0){
 	LEFT JOIN ".prefix."surveyvotes AS svold ON(svold.surveyid = so.surveyid AND svold.userid = ".uid.")
 	WHERE so.id = $oid GROUP BY s.id", __FILE__, __LINE__);
 	
-	if($rs['findvote']==0&&$rs['status']==1&&ulv>0&&checkUserVote($rs['days'],$rs['posts'])==1){
+	if($rs['findvote'] == 0&&$rs['status'] == 1&&ulv > 0&&checkUserVote($rs['days'],$rs['posts']) == 1){
 		if($rs['oldvote']>0){
 			$mysql->delete("surveyvotes WHERE optionid = '{$rs['oldvote']}' AND userid = ".uid." AND surveyid = {$rs['id']}", __FILE__, __LINE__);
 			$mysql->update("surveyoptions SET votes = votes - 1 WHERE id = '{$rs['oldvote']}'", __FILE__, __LINE__);

@@ -22,8 +22,8 @@ if(ulv == 4){
 define('ac','[>:DT:<]');
 $id=$_POST['id'];
 $type=$_POST['type'];
-if($type=='modsDeleteUser'){
-	if(ulv==4){
+if($type == 'modsDeleteUser'){
+	if(ulv == 4){
 		$mysql->delete("moderator WHERE id = '$id'", __FILE__, __LINE__);
 		echo '1';
 	}
@@ -33,7 +33,7 @@ if($type=='modsDeleteUser'){
 	echo ac;
 }
 elseif($type == 'usersDeleteUser'){
-	if(ulv==4){
+	if(ulv == 4){
 		$mysql->delete("forumusers WHERE id = '$id'", __FILE__, __LINE__);
 		echo '1';
 	}
@@ -61,7 +61,7 @@ elseif($type == 'get_users_by_ip'){
 		echo "empty";
 	}
 }
-elseif($type=='sendGroupMessage'){
+elseif($type == 'sendGroupMessage'){
 	$length=(int)$_POST['length'];
 	$page=(int)$_POST['page'];
 	$levels=$_POST['levels'];
@@ -75,7 +75,7 @@ elseif($type=='sendGroupMessage'){
 		$mysql->insert("pm (author,redeclare,pmfrom,pmto,subject,date) VALUES ({$u},0,0,{$u},'{$subject}',".time.")", __FILE__, __LINE__);
 		$pmid=$mysql->queryRow("SELECT id FROM ".prefix."pm WHERE author = {$u} AND pmfrom = 0 AND date = ".time."", __FILE__, __LINE__);
 		$mysql->insert("pmmessage (id,message) VALUES ({$pmid[0]},'{$message}')", __FILE__, __LINE__);
-		if($y==$length){
+		if($y == $length){
 			?>
 			<script type="text/javascript">parent.DF.doSendGroupMessage(<?=($page+1)?>,false);</script>
 			<?php

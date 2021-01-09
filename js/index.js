@@ -17,8 +17,8 @@ DF.onlineInForums=function(){
 	DF.ajax2.play({
 		'send':'type=onlineinforums&forums='+onf,
 		'func':function(){
-			if(obj.readyState==4){
-				if(obj.responseText!=''&&obj.responseText.indexOf('e')==-1) DF.setOnlineToForums(obj.responseText);
+			if(obj.readyState == 4){
+				if(obj.responseText!=''&&obj.responseText.indexOf('e') == -1) DF.setOnlineToForums(obj.responseText);
 			}
 		}
 	},obj);

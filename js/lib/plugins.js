@@ -3683,7 +3683,7 @@ var jEscapeKeyFunctions = jEscapeKeyFunctions || [];
 			return obj.index === item.index
 		});
 		
-		if (controlled.length===0) 
+		if (controlled.length === 0) 
 		{
 			jEscapeKeyFunctions.push(obj);
 		}

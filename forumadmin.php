@@ -17,32 +17,32 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv!=4){
+if(ulv != 4){
 	$DF->quick();
 	exit();
 }
 $Template->header();
 
-if(type=="add"||type=="edit"){
+if(type == "add"||type == "edit"){
 	?>
 	<script type="text/javascript">
 	var deleteIconUrl="<?=$DFImage->i['delete']?>";
 	var allowImgType=new Array('gif','png','jpg');
 	function checkSubmit(frm){
 		var logoType=DF.getChoosedRadio(frm.logoType);
-		if(frm.subject.value==""){
+		if(frm.subject.value == ""){
 			alert("يجب عليك كتابة اسم المنتدى.");
 		}
-		else if(logoType=="url"&&frm.urlLogo.value==""){
+		else if(logoType == "url"&&frm.urlLogo.value == ""){
 			alert("يجب عليك ان تكتب عنوان شعار منتدى في خانة وصلية خارجية.");
 		}
-		else if(logoType=="up"&&frm.upLogo.value==""){
+		else if(logoType == "up"&&frm.upLogo.value == ""){
 			alert("يجب عليك ان تقوم بإختيار شعار منتدى من جهازك.");
 		}
-		else if(logoType=="up"&&!checkMime(frm.upLogo.value)){
+		else if(logoType == "up"&&!checkMime(frm.upLogo.value)){
 			alert("نوع الملف الذي اخترت غير مصرح بها\nيجب عليك ان تختار احد امتداد الآتية:- gif,jpg,png");
 		}
-		else if(frm.description.value==""){
+		else if(frm.description.value == ""){
 			alert("يجب عليك كتابة وصف المنتدى.");
 		}
 		else if(parseInt(frm.modsNum.value)>0){
@@ -68,12 +68,12 @@ if(type=="add"||type=="edit"){
 	}
 	function checkLogoType(frm){
 		var type=DF.getChoosedRadio(frm.logoType);
-		frm.urlLogo.disabled=(type=="url"?false:true);
-		frm.upLogo.disabled=(type=="url"?true:false);
+		frm.urlLogo.disabled=(type == "url"?false:true);
+		frm.upLogo.disabled=(type == "url"?true:false);
 	}
 	function findValueInArray(arr,val){
 		for(var x=0;x<arr.length;x++){
-			if(arr[x]==val){
+			if(arr[x] == val){
 				return true;
 			}
 		}
@@ -92,7 +92,7 @@ if(type=="add"||type=="edit"){
 		var tab=$I('#'+type+'Table'),tr=$I('#'+type+'Row'+id),index=tr.rowIndex,dbArr=eval("document.body."+type+"Id");
 		tab.deleteRow(index);
 		dbArr=deleteValInArray(dbArr,id);
-		if(tab.rows.length==1){
+		if(tab.rows.length == 1){
 			var tr=tab.insertRow(1);
 			var td=tr.insertCell(0);
 			td.innerHTML='<br><small>لم يتم إضافة أي رقم للقائمة.</small><br><br>';
@@ -104,7 +104,7 @@ if(type=="add"||type=="edit"){
 	}
 	function addRowsToList(id){
 		var type=document.body.opType,tab=$I('#'+type+'Table'),dbArr=eval("document.body."+type+"Id");
-		if(dbArr.length==0){
+		if(dbArr.length == 0){
 			tab.deleteRow(1);
 		}
 		var tr=tab.insertRow(tab.rows.length);
@@ -146,9 +146,9 @@ if(type=="add"||type=="edit"){
 	</script>
 	<?php
 }
-if(type=="add"){
+if(type == "add"){
 	$c=(int)$mysql->get('category','id',c);
-	if($c==0){
+	if($c == 0){
 		$Template->errMsg('لم يتم العثور على أي فئة ليتم إضافة منتدى اليه');
 	}
 	echo"
@@ -418,9 +418,9 @@ if(type=="add"){
 	</table>
 	</center>";
 }
-elseif(type=="edit"){
+elseif(type == "edit"){
 	$sql=$mysql->query("SELECT f.*,ff.* FROM ".prefix."forum AS f, ".prefix."forumflag AS ff WHERE f.id = '".f."' AND ff.id = f.id", __FILE__, __LINE__);
- 	if($mysql->numRows($sql)==0){
+ 	if($mysql->numRows($sql) == 0){
 		$Template->errMsg('لم يتم العثور على أي منتدى');
 	}
 	$rs=$mysql->fetchArray($sql);
@@ -432,7 +432,7 @@ elseif(type=="edit"){
 		if(tab.rows.length>1){
 			tab.deleteRow(tr.rowIndex);
 		}
-		if(tab.rows.length==1){
+		if(tab.rows.length == 1){
 			var text=new Array();
 			text['mods']='لا توجد أي مشرف لهذا المنتدى';
 			text['users']='لا توجد أي عضو له سماح لمشاهدة هذا المنتدى';
@@ -450,12 +450,12 @@ elseif(type=="edit"){
 			'send':'type='+type+'DeleteUser&id='+id,
 			'func':function(){
 				var obj=DF.ajax.oName,ac=DF.ajax.ac;
-				if(obj.readyState==1||obj.readyState==2||obj.readyState==3){
+				if(obj.readyState == 1||obj.readyState == 2||obj.readyState == 3){
 					DF.loadingBox('<img src="'+progressUrl+'" border="0"><br><br>رجاً انتظر...',true);
 				}
-				else if(obj.readyState==4){
+				else if(obj.readyState == 4){
 					var get=obj.responseText.split(ac)[0]||false;
-					if(get==1){
+					if(get == 1){
 						DF.deleteUserRow(id,type);
 						DF.loadingBox('<img src="'+succeedUrl+'" border="0"><br><br>تم حذف العضو بنجاح.',true);
 					}
@@ -818,7 +818,7 @@ elseif(type=="edit"){
 	</table>
 	</center>";
 }
-elseif(type=="insert"){
+elseif(type == "insert"){
 	$allowTypes=array('image/gif','image/x-png','image/pjpeg');
 	$subject=trim($_POST['subject']);
 	$logoType=$_POST['logoType'];
@@ -847,10 +847,10 @@ elseif(type=="insert"){
 	$hidden=(int)$_POST['hidden'];
 	$users=$_POST['users'];
 	$mods=$_POST['mods'];
-	if($logoType=="up"){
+	if($logoType == "up"){
 		$errType=true;
 		for($x=0;$x<count($allowTypes);$x++){
-			if($_FILES['upLogo']['type']==$allowTypes[$x]){
+			if($_FILES['upLogo']['type'] == $allowTypes[$x]){
 				$errType=false;
 			}
 		}
@@ -858,17 +858,17 @@ elseif(type=="insert"){
 		$name=str_replace(" ","_",$name);
 		$logoPath='images/forums-logo/'.$name;
 	}
-	elseif($logoType=="url"){
+	elseif($logoType == "url"){
 		$logoPath=$urlLogo;
 	}
-	if($logoType=="up"&&$errType){
+	if($logoType == "up"&&$errType){
 		$Template->errMsg('نوع الملف الذي اخترت غير مصرح بها<br>يجب عليك ان تختار ملف من احد انواع الآتية:- gif,png,jpg');
 	}
-	elseif($logoType=="up"&&file_exists($logoPath)){
+	elseif($logoType == "up"&&file_exists($logoPath)){
 		$Template->errMsg('ملف الذي اخترت موجود حالياً في مجلد شعارات<br>لذا يجب عليك ان تقوم بإعادة تسمية ملف ثم رفعها مرة اخرى.');
 	}
 	else{
-		if($logoType=="up"&&!move_uploaded_file($_FILES['upLogo']['tmp_name'],$logoPath)){
+		if($logoType == "up"&&!move_uploaded_file($_FILES['upLogo']['tmp_name'],$logoPath)){
 			$Template->errMsg('لم يتم اتمام العملية لأسباب فنية<br>نعتذر لهذا.');
 		}
 		$mysql->insert("forum (catid,subject,description,logo,level,hidden,sex,archive,hidemodhome,hidemodforum,topic_show,topic_appearance,moderateurl) VALUES (
@@ -884,7 +884,7 @@ elseif(type=="insert"){
 				$modId=(int)$mods[$x];
 				if($modId>0&&$mysql->get('user','id',$modId)>0){
 					$sql=$mysql->query("SELECT id FROM ".prefix."moderator WHERE catid = '$catid' AND forumid = '$f' AND userid = '$modId'", __FILE__, __LINE__);
-					if($mysql->numRows($sql)==0){
+					if($mysql->numRows($sql) == 0){
 						$mysql->insert("moderator (userid,forumid,catid) VALUES ('$modId','$f','$catid')", __FILE__, __LINE__);
 					}
 				}
@@ -896,7 +896,7 @@ elseif(type=="insert"){
 				$userId=(int)$users[$x];
 				if($userId>0&&$mysql->get('user','id',$userId)>0){
 					$sql=$mysql->query("SELECT id FROM ".prefix."forumusers WHERE catid = '$catid' AND forumid = '$f' AND userid = '$userId'", __FILE__, __LINE__);
-					if($mysql->numRows($sql)==0){
+					if($mysql->numRows($sql) == 0){
 						$mysql->insert("forumusers (userid,forumid,catid) VALUES ('$userId','$f','$catid')", __FILE__, __LINE__);
 					}
 				}
@@ -905,7 +905,7 @@ elseif(type=="insert"){
 		$Template->msg('تم إضافة منتدى جديد بنجاح');
 	}
 }
-elseif(type=="update"){
+elseif(type == "update"){
 	$allowTypes=array('image/gif','image/x-png','image/pjpeg');
 	$f=(int)$_POST['forumid'];
 	$subject=trim($_POST['subject']);
@@ -937,10 +937,10 @@ elseif(type=="update"){
 	$mods=$_POST['mods'];
 	$deletelogo=(int)$_POST['deletelogo'];
 	$oldlogo=trim($_POST['oldlogo']);
-	if($logoType=="up"){
+	if($logoType == "up"){
 		$errType=true;
 		for($x=0;$x<count($allowTypes);$x++){
-			if($_FILES['upLogo']['type']==$allowTypes[$x]){
+			if($_FILES['upLogo']['type'] == $allowTypes[$x]){
 				$errType=false;
 			}
 		}
@@ -948,13 +948,13 @@ elseif(type=="update"){
 		$name=str_replace(" ","_",$name);
 		$logoPath='images/forums-logo/'.$name;
 	}
-	elseif($logoType=="url"){
+	elseif($logoType == "url"){
 		$logoPath=$urlLogo;
 	}
-	if($logoType=="up"&&$errType){
+	if($logoType == "up"&&$errType){
 		$Template->errMsg('نوع الملف الذي اخترت غير مصرح بها<br>يجب عليك ان تختار ملف من احد انواع الآتية:- gif,png,jpg');
 	}
-	elseif($logoType=="up"&&file_exists($logoPath)){
+	elseif($logoType == "up"&&file_exists($logoPath)){
 		$Template->errMsg('ملف الذي اخترت موجود حالياً في مجلد شعارات<br>لذا يجب عليك ان تقوم بإعادة تسمية ملف ثم رفعها مرة اخرى.');
 	}
 	else{
@@ -992,7 +992,7 @@ elseif(type=="update"){
 		WHERE id = '$f'", __FILE__, __LINE__);
 
 		
-		if($deletelogo==1&&!empty($oldlogo)){
+		if($deletelogo == 1&&!empty($oldlogo)){
 			@unlink($oldlogo);
 		}
 		if(!empty($mods)){
@@ -1001,7 +1001,7 @@ elseif(type=="update"){
 				$modId=(int)$mods[$x];
 				if($modId>0&&$mysql->get('user','id',$modId)>0){
 					$sql=$mysql->query("SELECT id FROM ".prefix."moderator WHERE catid = '$catid' AND forumid = '$f' AND userid = '$modId'", __FILE__, __LINE__);
-					if($mysql->numRows($sql)==0){
+					if($mysql->numRows($sql) == 0){
 						$mysql->insert("moderator (userid,forumid,catid) VALUES ('$modId','$f','$catid')", __FILE__, __LINE__);
 					}
 				}
@@ -1013,7 +1013,7 @@ elseif(type=="update"){
 				$userId=(int)$users[$x];
 				if($userId>0&&$mysql->get('user','id',$userId)>0){
 					$sql=$mysql->query("SELECT id FROM ".prefix."forumusers WHERE catid = '$catid' AND forumid = '$f' AND userid = '$userId'", __FILE__, __LINE__);
-					if($mysql->numRows($sql)==0){
+					if($mysql->numRows($sql) == 0){
 						$mysql->insert("forumusers (userid,forumid,catid) VALUES ('$userId','$f','$catid')", __FILE__, __LINE__);
 					}
 				}
@@ -1022,7 +1022,7 @@ elseif(type=="update"){
 		$Template->msg('تم تعديل المنتدى بنجاح');
 	}
 }
-elseif(type=="hidden"){
+elseif(type == "hidden"){
 	$f=(int)$mysql->get('forum','id',f);
 	if($f>0){
 		$mysql->update("forum SET hidden = '1' WHERE id = '$f'", __FILE__, __LINE__);
@@ -1032,7 +1032,7 @@ elseif(type=="hidden"){
 		$Template->errMsg('لم يتم العثور على أي منتدى');
 	}
 }
-elseif(type=="visible"){
+elseif(type == "visible"){
 	$f=(int)$mysql->get('forum','id',f);
 	if($f>0){
 		$mysql->update("forum SET hidden = '0' WHERE id = '$f'", __FILE__, __LINE__);
@@ -1042,7 +1042,7 @@ elseif(type=="visible"){
 		$Template->errMsg('لم يتم العثور على أي منتدى');
 	}
 }
-elseif(type=="lock"){
+elseif(type == "lock"){
 	$f=(int)$mysql->get('forum','id',f);
 	if($f>0){
 		$mysql->update("forum SET status = '0' WHERE id = '$f'", __FILE__, __LINE__);
@@ -1052,7 +1052,7 @@ elseif(type=="lock"){
 		$Template->errMsg('لم يتم العثور على أي منتدى');
 	}
 }
-elseif(type=="open"){
+elseif(type == "open"){
 	$f=(int)$mysql->get('forum','id',f);
 	if($f>0){
 		$mysql->update("forum SET status = '1' WHERE id = '$f'", __FILE__, __LINE__);
@@ -1062,7 +1062,7 @@ elseif(type=="open"){
 		$Template->errMsg('لم يتم العثور على أي منتدى');
 	}
 }
-elseif(type=="delete"){
+elseif(type == "delete"){
 	$f=(int)$mysql->get('forum','id',f);
 	if($f>0){
 		$mysql->delete("forum WHERE id = '$f'", __FILE__, __LINE__);

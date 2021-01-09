@@ -4747,7 +4747,7 @@ jQuery.event = {
 		}
 
 		// Support: IE<9
-		// For mouse/key events, metaKey==false if it's undefined (#3368, #11328)
+		// For mouse/key events, metaKey == false if it's undefined (#3368, #11328)
 		event.metaKey = !!event.metaKey;
 
 		return fixHook.filter ? fixHook.filter( event, originalEvent ) : event;

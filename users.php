@@ -21,7 +21,7 @@ require_once _df_path."globals.php";
 $Template->header();
 //************************ Start Page ***************************
 
-if(uhideusers==1){
+if(uhideusers == 1){
 	$Template->errMsg("تم منعك من مشاهدة صفحة أعضاء من قبل الإدارة");
 }
 
@@ -39,19 +39,19 @@ else{
 	$searchLink = '';
 }
 
-if(users_sort_type=='online'&&ulv>0){
+if(users_sort_type == 'online'&&ulv > 0){
 	$menuTitle="الأعضاء في المنتديات حاليا";
 	$menuPaging="";
 	$pagingLink="";
 	$usersSortType='online';
 }
-elseif(users_sort_type=='points'){
+elseif(users_sort_type == 'points'){
 	$menuTitle="لائحة الشرف - <span class=\"asC2\">ترتيب الأعضاء حسب نقاط التميز</span>";
 	$menuPaging=$Template->basicPaging("userflag AS uf LEFT JOIN ".prefix."user AS u ON(u.id = uf.id) WHERE uf.points > 0 AND u.level IN (1,2,3) AND u.status = 1","u.id",true,100);
 	$pagingLink="users.php?";
 	$usersSortType='points';
 }
-elseif(users_sort_type=='posts'||users_sort_type=='online'&&ulv==0){
+elseif(users_sort_type == 'posts'||users_sort_type == 'online'&&ulv == 0){
 	$menuTitle="قائمة الأعضاء - <span class=\"asC2\">ترتيب الأعضاء حسب عدد مشاركات</span>";
 	$menuPaging=$Template->basicPaging("user AS u WHERE u.level IN (1,2,3) AND u.status = 1 {$searchSql}","u.id",true);
 	$pagingLink="users.php?{$searchLink}";
@@ -86,7 +86,7 @@ elseif(users_sort_type == 'country'){
 	$whereType="u.level IN (1,2,3) AND u.status = 1 {$searchSql}";
 	$usersSortType='country';
 }
-elseif(users_sort_type=='lpdate'){
+elseif(users_sort_type == 'lpdate'){
 	$menuTitle="قائمة الأعضاء - <span class=\"asC2\">ترتيب الأعضاء حسب آخر مشاركة</span>";
 	$menuPaging=$Template->basicPaging("user AS u WHERE u.level IN (1,2,3) AND u.status = 1 {$searchSql}","u.id",true);
 	$pagingLink="users.php?{$searchLink}";
@@ -96,7 +96,7 @@ elseif(users_sort_type=='lpdate'){
 	$whereType="u.level IN (1,2,3) AND u.status = 1 {$searchSql}";
 	$usersSortType='lpdate';
 }
-elseif(users_sort_type=='lhdate'){
+elseif(users_sort_type == 'lhdate'){
 	$menuTitle="قائمة الأعضاء - <span class=\"asC2\">ترتيب الأعضاء حسب آخر زيارة</span>";
 	$menuPaging=$Template->basicPaging("user AS u WHERE u.level IN (1,2,3) AND u.status = 1 {$searchSql}","u.id",true);
 	$pagingLink="users.php?{$searchLink}";
@@ -106,7 +106,7 @@ elseif(users_sort_type=='lhdate'){
 	$whereType="u.level IN (1,2,3) AND u.status = 1 {$searchSql}";
 	$usersSortType='lhdate';
 }
-elseif(users_sort_type=='date'){
+elseif(users_sort_type == 'date'){
 	$menuTitle="قائمة الأعضاء - <span class=\"asC2\">ترتيب الأعضاء حسب تاريخ التسجيل</span>";
 	$menuPaging=$Template->basicPaging("user AS u WHERE u.level IN (1,2,3) AND u.status = 1 {$searchSql}","u.id",true);
 	$pagingLink="users.php?{$searchLink}";
@@ -116,7 +116,7 @@ elseif(users_sort_type=='date'){
 	$whereType="u.level IN (1,2,3) AND u.status = 1 {$searchSql}";
 	$usersSortType='date';
 }
-elseif(users_sort_type=='mods'){
+elseif(users_sort_type == 'mods'){
 	$menuTitle="قائمة المشرفين";
 	$menuPaging=$Template->basicPaging("user AS u WHERE u.level = 2 AND u.submonitor = 0 AND u.status = 1 {$searchSql}","u.id",true);
 	$pagingLink="users.php?{$searchLink}";
@@ -136,7 +136,7 @@ elseif(users_sort_type == 'submons'){
 	$whereType = "u.level = 2 AND u.submonitor = 1 AND u.status = 1 {$searchSql}";
 	$usersSortType = 'submons';
 }
-elseif(users_sort_type=='mons'){
+elseif(users_sort_type == 'mons'){
 	$menuTitle="قائمة المراقبين";
 	$menuPaging=$Template->basicPaging("user AS u WHERE u.level = 3 AND u.status = 1 {$searchSql}","u.id",true);
 	$pagingLink="users.php?{$searchLink}";
@@ -174,7 +174,7 @@ echo"
 				<form method=\"post\" action=\"users.php\">
 				<td class=\"asText asCenter asTop\"><nobr>ترتيب حسب:</nobr>
 				<select class=\"asGoTo asS12\" style=\"width:130px\" name=\"usersSortType\" onChange=\"submit();\">";
-				if(ulv>0){
+				if( ulv > 0 ){
 					echo"
 					<option value=\"online\"{$DF->choose($usersSortType,'online','s')}>في المنتديات الآن</option>";
 				}
@@ -232,75 +232,75 @@ if(users_sort_type == 'online' and ulv > 0){
 	$adminCount=0;
 	$user_name_color = unserialize(user_name_color);
 	while($rs = $mysql->fetchRow($sql)){
-		$className=($rs[3]==1 ? 'asFixedDot' : 'asNormalDot');
-		if($rs[2]==4&&ulv==4){
-			if($adminTr==5){
+		$className=($rs[3] == 1 ? 'asFixedDot' : 'asNormalDot');
+		if($rs[2] == 4&&ulv == 4){
+			if($adminTr == 5){
 				$adminRows.="</tr><tr>";
 				$adminTr=0;
 			}
 			$userLink=$Template->userNormalLink($rs[0], $rs[1], $user_name_color[4][1]);
-			$rowContent=(ulv==4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
+			$rowContent=(ulv == 4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
  			$adminRows.="
 			<td class=\"$className asCenter\" width=\"20%\">$rowContent</td>";
 			$adminTr++;
 			$adminCount++;
 		}
-		elseif($rs[2]==3){
-			if($monsTr==5){
+		elseif($rs[2] == 3){
+			if($monsTr == 5){
 				$monsRows.="</tr><tr>";
 				$monsTr=0;
 			}
 			$userLink=$Template->userNormalLink($rs[0], $rs[1], $user_name_color[3][1]);
-			$rowContent=(ulv==4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
+			$rowContent=(ulv == 4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
  			$monsRows.="
 			<td class=\"$className asCenter\" width=\"20%\">$rowContent</td>";
 			$monsTr++;
 			$monsCount++;
 		}
 		elseif($rs[2] == 2 and $rs[6] == 1){
-			if($submonsTr==5){
+			if($submonsTr == 5){
 				$submonsRows.="</tr><tr>";
 				$submonsTr=0;
 			}
 			$userLink = $Template->userNormalLink($rs[0], $rs[1], $user_name_color[2][1]);
-			$rowContent=(ulv==4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
+			$rowContent=(ulv == 4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
  			$submonsRows.="
 			<td class=\"$className asCenter\" width=\"20%\">$rowContent</td>";
 			$submonsTr++;
 			$submonsCount++;
 		}
 		elseif($rs[2] == 2 and $rs[6] == 0){
-			if($modsTr==5){
+			if($modsTr == 5){
 				$modsRows.="</tr><tr>";
 				$modsTr=0;
 			}
 			$userLink=$Template->userNormalLink($rs[0], $rs[1], $user_name_color[2][0]);
-			$rowContent=(ulv==4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
+			$rowContent=(ulv == 4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
 			$modsRows.="
 			<td class=\"$className asCenter\" width=\"20%\">$rowContent</td>";
 			$modsTr++;
 			$modsCount++;
 		}
-		elseif($rs[2]==1){
-			if($usersTr==5){
+		elseif($rs[2] == 1){
+			if($usersTr == 5){
 				$usersRows.="</tr><tr>";
 				$usersTr=0;
 			}
 			$userLink=$Template->userNormalLink($rs[0], $rs[1], $user_name_color[1][1]);
-			$rowContent=(ulv==4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
+			$rowContent=(ulv == 4 ? "<table cellSpacing=\"0\" cellPadding=\"0\"><tr><td><nobr>$userLink</nobr></td><td><img src=\"{$DF->getCountryByIP(long2ip($rs[5]),'img')}\" width=\"18\" align=\"center\" hspace=\"4\" border=\"0\"></td><td class=\"asS12 asDate\"><nobr>({$DF->date($rs[4])})</nobr></td></tr></table>" : "<nobr>$userLink</nobr>");
 			$usersRows.="
 			<td class=\"$className asCenter\" width=\"20%\">$rowContent</td>";
 			$usersTr++;
 			$usersCount++;
 		}
 	}
-	if(ulv==4){
+	if(ulv == 4){
 		$sql=$mysql->query("SELECT ip,date FROM ".prefix."visitors ORDER BY date DESC", __FILE__, __LINE__);
 		$visitorRows="";
 		$visitorTr=0;
 		$visitorCount=0;
 		while($rs=$mysql->fetchRow($sql)){
-			if($visitorTr==5){
+			if($visitorTr == 5){
 				$visitorRows.="</tr><tr>";
 				$visitorTr=0;
 			}
@@ -316,7 +316,7 @@ if(users_sort_type == 'online' and ulv > 0){
  		<tr>
 			<td class=\"asHeader\">{$menuTitle}</td>
 		</tr>";
-	if(ulv==4){
+	if(ulv == 4){
 		echo"
  		<tr>
 			<td class=\"asDark\">المدراء ({$adminCount})</td>
@@ -326,7 +326,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			<table width=\"100%\" cellspacing=\"2\" cellpadding=\"4\" border=\"0\">
 				<tr>
 				$adminRows";
-				if($adminCount==0){
+				if($adminCount == 0){
 					echo"
 					<td class=\"asCenter asC1\" colSpan=\"5\"><nobr><br>لا توجد أي مدير موجود حالياً<br><br></nobr></td>";
 				}
@@ -349,7 +349,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			<table width=\"100%\" cellspacing=\"2\" cellpadding=\"4\" border=\"0\">
 				<tr>
 				$monsRows";
-				if($monsCount==0){
+				if($monsCount == 0){
 					echo"
 					<td class=\"asCenter asC1\" colSpan=\"5\"><nobr><br>يمكن لا توجد أي مراقب موجود حالياً أو تصفحهم مخفي للآخرين<br><br></nobr></td>";
 				}
@@ -391,7 +391,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			<table width=\"100%\" cellspacing=\"2\" cellpadding=\"4\" border=\"0\">
 				<tr>
 				$modsRows";
-				if($modsCount==0){
+				if($modsCount == 0){
 					echo"
 					<td class=\"asCenter asC1\" colSpan=\"5\"><nobr>يمكن لا توجد أي مشرف موجود حالياً أو تصفحهم مخفي للآخرين</nobr></td>";
 				}
@@ -412,7 +412,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			<table width=\"100%\" cellspacing=\"2\" cellpadding=\"4\" border=\"0\">
 				<tr>
 				$usersRows";
-				if($usersCount==0){
+				if($usersCount == 0){
 					echo"
 					<td class=\"asCenter asC1\" colSpan=\"5\"><nobr>يمكن لا توجد أي عضو موجود حالياً أو تصفحهم مخفي للآخرين</nobr></td>";
 				}
@@ -425,7 +425,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			</table>
 			</td>
 		</tr>";
-	if(ulv==4){
+	if(ulv == 4){
 		echo"
 		<tr>
 			<td class=\"asDark\">الزوار ({$visitorCount})</td>
@@ -435,7 +435,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			<table width=\"100%\" cellspacing=\"2\" cellpadding=\"4\" border=\"0\">
 				<tr>
 				$visitorRows";
-				if($visitorCount==0){
+				if($visitorCount == 0){
 					echo"
 					<td class=\"asCenter asC1\" colSpan=\"5\"><nobr>لا توجد أي زوار موجود حالياً</nobr></td>";
 				}
@@ -449,7 +449,7 @@ if(users_sort_type == 'online' and ulv > 0){
 			</td>
 		</tr>";
 	}
-	if(ulv>1){
+	if(ulv > 1){
 		echo"
 		<tr>
 			<td class=\"asBody\">
@@ -458,7 +458,7 @@ if(users_sort_type == 'online' and ulv > 0){
 					<td class=\"asTitle\">ملاحظة</td>
 					<td class=\"asText2\">الأعضاء الذي تصفحهم مخفي للأعضاء يظهر بلون</td>
 					<td class=\"asFixedDot\"><nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</nobr></td>";
-				if(ulv==4){
+				if(ulv == 4){
 					echo"
 					<td class=\"asText2\">تاريخ الذي بجانب اسم العضوية هو تاريخ آخر زيارة للعضوية</td>";
 				}					
@@ -471,7 +471,7 @@ if(users_sort_type == 'online' and ulv > 0){
 	echo"
 	</table>";
 }
-elseif(users_sort_type=='points'){
+elseif(users_sort_type == 'points'){
 	echo"<br>
 	<table width=\"30%\" cellSpacing=\"1\" cellPadding=\"4\" align=\"center\">
 		<tr>
@@ -507,7 +507,7 @@ elseif(users_sort_type=='points'){
 		$numaric++;
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"3\"><br>لا توجد أي عضو في هذه اللائحة<br><br></td>
@@ -552,8 +552,8 @@ elseif(
 	$count=0;
 	while($rs=$mysql->fetchAssoc($sql)){
 		$className=($count%2?"asFixed":"asNormal");
-		if(ulv>0){
-			$isOnline=($rs['isonline']==1 ? "<br><img src=\"{$DFImage->i['online']}\" alt=\"متصل الآن\" border=\"0\">" : "");
+		if( ulv > 0 ){
+			$isOnline=($rs['isonline'] == 1 ? "<br><img src=\"{$DFImage->i['online']}\" alt=\"متصل الآن\" border=\"0\">" : "");
 		}
 		$userTitle = $DF->userTitle($rs['id'], $rs['posts'], $rs['level'], $rs['title'], $rs['sex'], $rs['oldlevel'], $rs['submonitor']);
 		$userStars = $DF->userStars($rs['posts'], $rs['level'], $rs['submonitor']);
@@ -575,7 +575,7 @@ elseif(
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		if($search == ''){
 			$not_found_text = 'لا توجد أي عضوية';
 		}

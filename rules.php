@@ -18,7 +18,7 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(type==""){
+if(type == ""){
 	$forum_title=forum_title;
 	$forum_email=forum_email;
 	$Template->display("rules");

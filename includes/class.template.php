@@ -260,7 +260,7 @@ class Template{
 						<div class=\"as-sub-menu\">
 							<ul>
 								<li class=\"menu-item\"><a href=\"index.php\" main=\"1\">الصفحة الرئيسية</a></li>";
-							if(ulv>0){
+							if( ulv > 0 ){
 								echo"
 								<li class=\"menu-item\">
 									<a href=\"#\"><span>عضويتك</span></a>
@@ -308,11 +308,11 @@ class Template{
 								<li class=\"menu-item\"><a href=\"active.php\">مواضيع نشطة</a></li>
 								<li class=\"menu-item\"><a href=\"search.php\" main=\"1\">إبحث</a></li>
 								<li class=\"menu-item\"><a href=\"forums.php?f=".help_forum_id."\" main=\"1\">المساعدة</a></li>";
-							if(ulv==4){
+							if(ulv == 4){
 								echo"
 								<li class=\"menu-item\"><a href=\"admin_login.php\" main=\"1\">الإدارة</a></li>";
 							}
-							if(ulv>0){
+							if( ulv > 0 ){
 								echo"
 								<li class=\"menu-item\"><a href=\"index.php?type=logout&src=".urlencode(self)."\"{$this->DF->confirm('هل أنت متأكد بأن تريد تسجيل الخروج ؟')} main=\"1\">خروج</a></li>";
 							}
@@ -332,12 +332,12 @@ class Template{
 					$(function(){
 						$('#login_user_name').focus();
 						$('#login_user_name').keypress(function(e){
-							if(e.which==13){
+							if(e.which == 13){
 								DF.loginSubmit();
 							}
 						});
 						$('#login_user_pass').keypress(function(e){
-							if(e.which==13){
+							if(e.which == 13){
 								DF.loginSubmit();
 							}
 						});
@@ -561,7 +561,7 @@ class Template{
 										<td width=\"2%\"><nobr><img src=\"images/icons/twitter.gif\" border=\"0\">&nbsp;</nobr></td>
 										<td class=\"asACSilverLight asFoText2 asAFoText2\"><a class=\"dm-middle\" href=\"".( twitter_account != '' ? twitter_account : '#' )."\" target=\"_blank\"><nobr>تابعونا على Twitter</nobr></a></td>
 									</tr>";
-									if((_df_script=='forums'||_df_script=='topics')&&$this->DF->catch['_this_forum']>0&&!empty($this->DF->catch['forumSubject'])){
+									if((_df_script == 'forums'||_df_script == 'topics')&&$this->DF->catch['_this_forum']>0&&!empty($this->DF->catch['forumSubject'])){
 										$fid="?f={$this->DF->catch['_this_forum']}";
 										$fsubject=" ({$this->DF->catch['forumSubject']})";
 									}
@@ -576,7 +576,7 @@ class Template{
 						</table>
 						</td>
 					</tr>
-				</table>".(ulv>1 ? "{$this->moderatorsTools()}" :"")."";
+				</table>".(ulv > 1 ? "{$this->moderatorsTools()}" :"")."";
 				?>
 				<script type="text/javascript">
 				$(function(){
@@ -615,7 +615,7 @@ class Template{
 	}
 	function moderatorsTools(){
 		$mtRows="";
-		if(ulv==4){
+		if(ulv == 4){
 			$com=$this->DFOutput->count("complain WHERE status = 2 AND adminread = 0");
 			if($com>0){
 				$comUrl="&type=global&app=send";
@@ -629,8 +629,8 @@ class Template{
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=titles&type=lists\"><nobr>الأوصاف</nobr></a></td>";
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=surveys\"><nobr>استفتاءات</nobr></a></td>";
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=useractivity\"><nobr>نشاط أعضاء</nobr></a></td>";
-		if(ulv>2) $mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=modactivity\"><nobr>نشاط مشرفين</nobr></a></td>";
-		if($this->DF->catch['is_moderator']&&(_df_script=='forums'||_df_script=='topics')){
+		if(ulv > 2) $mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=modactivity\"><nobr>نشاط مشرفين</nobr></a></td>";
+		if($this->DF->catch['is_moderator']&&(_df_script == 'forums'||_df_script == 'topics')){
 			$f=$this->DF->catch['_this_forum'];
 			$forumPM=$this->DFOutput->count("pm WHERE author = '-{$f}' AND pmout = 0 AND pmread = 0 AND status = 1 AND pmlist = 0");
 			$forumPost=$this->DFOutput->count("post WHERE forumid = '{$f}' AND moderate = 1 ");
@@ -657,7 +657,7 @@ class Template{
 	}
 	function adminHeader(){
 		$rs=$this->mysql->queryRow("SELECT id,userid FROM ".prefix."cpvisit ORDER BY id DESC LIMIT 1", __FILE__, __LINE__);
-		if($rs[1]==uid){
+		if($rs[1] == uid){
 			$this->mysql->update("cpvisit SET date = ".time." WHERE id = ".((int)$rs[0])."", __FILE__, __LINE__);
 		}
 		else{
@@ -721,8 +721,8 @@ class Template{
 				'blockwords'=>array('منع كلمات','admincp.php?type=block&method=blockwords')
 			),
 		);
-		$this->adminType=(type=='' ? 'index' : type);
-		if(method==''){
+		$this->adminType=(type == '' ? 'index' : type);
+		if(method == ''){
 			if($subMenus["{$this->adminType}"]){
 				$getkey=array_keys($subMenus["{$this->adminType}"]);
 				$this->adminMethod=$getkey[0];
@@ -756,7 +756,7 @@ class Template{
 				</td>
 			</tr>
 			<tr>
-				<td ".(cplogin ? "valign=\"bottom\"" : "")." style=\"height:94px;background-image:url(images/admin/header_back.jpg);background-repeat:repeat-x\"><font color=\"white\" size=\"4\"><b>&nbsp;&nbsp;".forum_title." - لوحة التحكم".(shut_down_status==1 ? "<nobr>&nbsp;<font size=\"2\" color=\"#f4e568\">(المنتدى مقفول حاليا)</font></nobr>" : "")."</b></font>";
+				<td ".(cplogin ? "valign=\"bottom\"" : "")." style=\"height:94px;background-image:url(images/admin/header_back.jpg);background-repeat:repeat-x\"><font color=\"white\" size=\"4\"><b>&nbsp;&nbsp;".forum_title." - لوحة التحكم".(shut_down_status == 1 ? "<nobr>&nbsp;<font size=\"2\" color=\"#f4e568\">(المنتدى مقفول حاليا)</font></nobr>" : "")."</b></font>";
 			if(cplogin){
 				echo"<br><br>
 				<table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\">
@@ -786,7 +786,7 @@ class Template{
 					<tr>";
 					foreach($subMenus["{$this->adminType}"] as $key=>$cell){
 						echo"
-						<td class=\"".($key==$this->adminMethod ? 'over' : 'out')."\"><a href=\"{$cell[1]}\"><nobr>{$cell[0]}</nobr></a></td>";
+						<td class=\"".($key == $this->adminMethod ? 'over' : 'out')."\"><a href=\"{$cell[1]}\"><nobr>{$cell[0]}</nobr></a></td>";
 					}
 					echo"
 					</tr>
@@ -835,9 +835,9 @@ class Template{
 		$text="";
 		$x=0;
 		while($rs=$mysql->fetchRow($sql)){
-			$text.=($x==1||$x==2?"&nbsp;+&nbsp;":"").$Template->userNormalLink($rs[0],$rs[1]);
+			$text.=($x == 1||$x == 2?"&nbsp;+&nbsp;":"").$Template->userNormalLink($rs[0],$rs[1]);
 			$x++;
-			if($x==$limit){
+			if($x == $limit){
 				$text.="<br>";
 				$x=0;
 			}
@@ -858,13 +858,13 @@ class Template{
 
 		$checkSqlField="";
 		$checkSqlTable="";
-		if(ulv==4){
+		if(ulv == 4){
 			$checkSqlField="
 				,IF(ISNULL(c.id),0,1) AS allowcat
 				,IF(ISNULL(f.id),0,1) AS allowforum
 			";
 		}
-		elseif(ulv==3){
+		elseif(ulv == 3){
 			$checkSqlField.="
 				,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id) OR c.monitor = ".uid.",1,0) AS allowcat
 				,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id) OR c.monitor = ".uid.",1,0) AS allowforum
@@ -874,7 +874,7 @@ class Template{
 				LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")
 			";
 		}
-		elseif(ulv==2){
+		elseif(ulv == 2){
 			$checkSqlField.="
 				,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id),1,0) AS allowcat
 				,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id),1,0) AS allowforum
@@ -884,14 +884,14 @@ class Template{
 				LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")
 			";
 		}
-		elseif(ulv==1){
+		elseif(ulv == 1){
 			$checkSqlField.="
 				,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id),1,0) AS allowcat
 				,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
 			";
 			$checkSqlTable.="LEFT JOIN ".prefix."forumusers AS fu ON(fu.forumid = f.id AND fu.userid = ".uid.")";
 		}
-		elseif(ulv==0){
+		elseif(ulv == 0){
 			$checkSqlField.="
 				,IF(c.hidden = 0 AND c.level = 0,1,0) AS allowcat
 				,IF(f.hidden = 0 AND f.level = 0,1,0) AS allowforum
@@ -904,12 +904,12 @@ class Template{
 		GROUP BY f.id, c.id ORDER BY c.sort, f.sort ASC", __FILE__, __LINE__);
  		$lastcatid=0;
 		while($rs=$this->mysql->fetchAssoc($sql)){
-			if($rs['cid']!=$lastcatid&&$rs['allowcat']==1){
+			if($rs['cid']!=$lastcatid&&$rs['allowcat'] == 1){
 				$text.="
 				<option value=\"0\">------------------------------------------</option>";
 				$lastcatid=$rs['cid'];
 			}
-			if($rs['allowforum']==1){
+			if($rs['allowforum'] == 1){
 				$text.="
 				<option value=\"{$rs['fid']}\">{$rs['subject']}</option>";
 				$this->forumsList[$rs['fid']]=$rs['subject'];
@@ -999,7 +999,7 @@ class Template{
 		);
 		$backMsg=($back ? "<br><br><div align=\"center\"><a href=\"javascript:history.go(-1)\">-- انقر هنا للرجوع --</a></div>" : "");
 		if($logo){
-			if($color=='gray'){
+			if($color == 'gray'){
 				$textCode="
 				<td dir=\"rtl\" style=\"padding:{$mp}px;background-color:{$colorsCode[$color][1]}\">
 				<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">
@@ -1073,9 +1073,9 @@ class Template{
 	function basicPaging($sql,$id='id',$ret=false,$numPages=num_pages,$count=-1,$jsFunc='basic'){
 		$count=($count>=0 ? $count : $this->DFOutput->count($sql,$id));
 		$pages=ceil($count/$numPages);
-		$pages=($pages==0?1:$pages);
+		$pages=($pages == 0?1:$pages);
 		if($pages>1){
-			$funcName=($jsFunc=='basic' ? "DF.basicPagingGo(this)" : $jsFunc);
+			$funcName=($jsFunc == 'basic' ? "DF.basicPagingGo(this)" : $jsFunc);
 			$text="
 			<td class=\"asText asCenter asTop\"><nobr>الصفحة:</nobr>
 			<select class=\"asGoTo asS12\" onChange=\"$funcName\">";
@@ -1096,9 +1096,9 @@ class Template{
 	}
  	function paging($sql,$link,$id='id',$numPage=0,$count=0){
 		$count=($count>0 ? $count : $this->DFOutput->count($sql,$id));
-		$numPage=($numPage==0 ? num_pages : $numPage);
+		$numPage=($numPage == 0 ? num_pages : $numPage);
 		$pages=ceil($count/$numPage);
-		$pages=($pages==0?1:$pages);
+		$pages=($pages == 0?1:$pages);
 		$pg=(pg>0?pg:1);
 		if($pages>1){
 			if($pg>1){
@@ -1112,14 +1112,14 @@ class Template{
 			<td valign=\"top\"><a$first><div class=\"pgFirst$firstDis\"></div></a></td>
 			<td valign=\"top\"><a$prev><div class=\"pgPrev$firstDis\"></div></a></td>";
 			if($pg>1){
-				$equal=$pg-($pg==2?1:2);
+				$equal=$pg-($pg == 2?1:2);
 				for($x=$equal;$x<$pg;$x++){
 					$code.="<td align=\"center\" valign=\"top\"><a href=\"{$link}pg=$x\"><div valign=\"middle\" class=\"pgOut\">$x</div></a></td>";
 				}
 			}
 			$code.="<td align=\"center\" valign=\"top\"><a title=\"صفحة $pg من $pages صفحات\"><div class=\"pgIn\">$pg</div></a></td>";
 			if($pg<$pages){
-				$equal=$pg+($pg==($pages-1)?1:2);
+				$equal=$pg+($pg == ($pages-1)?1:2);
 				for($x=$pg+1;$x<=$equal;$x++){
 					$code.="<td align=\"center\" valign=\"top\"><a href=\"{$link}pg=$x\"><div class=\"pgOut\">$x</div></a></td>";
 				}
@@ -1149,7 +1149,7 @@ class Template{
 					$text.="
 					<td class=\"asTextLink2 asCenter\"><a href=\"topics.php?t=$t&pg=$x\">$x</a></td>";
 					$count++;
-					if($count==17){
+					if($count == 17){
 						$text.="</tr><tr>";
 						$count=0;
 					}
@@ -1266,7 +1266,7 @@ class Template{
 			$thumbWidth=$oldX*($newWidth/$oldY);
 			$thumbHeight=$newHeight;
 		}
-		elseif($oldX==$oldY){
+		elseif($oldX == $oldY){
 			$thumbWidth=$newWidth;
 			$thumbHeight=$newHeight;
 		}
@@ -1354,7 +1354,7 @@ class Template{
 		if(!empty($color)){
 			$name = "<font color=\"{$color}\">{$name}</font>";
 		}
-		$setId = (ulv > 0) ? " id=\"u{$uid}\"" : "";
+		$setId = ( ulv > 0 ) ? " id=\"u{$uid}\"" : "";
 		$link = "<a{$setId} href=\"profile.php?u={$uid}\">{$name}</a>";
 		return $link;
 	}
@@ -1378,7 +1378,7 @@ class Template{
 			$subject="<font color=\"$color\">$subject</font>";
 		}
 		$class=(!empty($class) ? " class=\"$class\"" : "");
-		$setId=(ulv>0 ? " id=\"t$tid\"" : "");
+		$setId=(ulv > 0 ? " id=\"t$tid\"" : "");
 		$link="<a{$setId}{$class} href=\"topics.php?t=$tid$get\">$subject</a>";
 		return $link;
 	}
@@ -1418,19 +1418,19 @@ class Template{
 		$type=getimagesize($src);
 		$type=strtolower($getMime["{$type['mime']}"]);
 		if(in_array($type,$allowMime)){
-			if($type=='jpg'||$type=='jpeg'){
+			if($type == 'jpg'||$type == 'jpeg'){
 				$imgSrc=@imagecreatefromjpeg($src);
 			}
-			if($type=='png'){
+			if($type == 'png'){
 				$imgSrc=@imagecreatefrompng($src);
 			}
-			if($type=='gif'){
+			if($type == 'gif'){
 				$imgSrc=@imagecreatefromgif($src);
 			}
 			$oldW=imagesx($imgSrc);
 			$oldH=imagesy($imgSrc);
 			if(!$basicSize){
-				if($newHeight>0||$oldW==$oldH){
+				if($newHeight>0||$oldW == $oldH){
 					$thumbWidth=$newWidth;
 					$thumbHeight=$newHeight;
 				}
@@ -1462,13 +1462,13 @@ class Template{
 			$imgNew=imagecreatetruecolor($thumbWidth,$thumbHeight);
 			imagecopyresampled($imgNew,$imgSrc,0,0,$x,$y,$thumbWidth,$thumbHeight,$oldW,$oldH);
 			$newSrc=strtolower($newSrc);
-			if($type=='jpg'||$type=='jpeg'){
+			if($type == 'jpg'||$type == 'jpeg'){
 				imagejpeg($imgNew,$newSrc);
 			}
-			if($type=='png'){
+			if($type == 'png'){
 				imagepng($imgNew,$newSrc);
 			}
-			if($type=='gif'){
+			if($type == 'gif'){
 				imagegif($imgNew,$newSrc);
 			}
 			imagedestroy($imgNew);
@@ -1511,7 +1511,7 @@ class Template{
 			if($html){
 				$value=htmlspecialchars($value);
 			}
-			if($count==0){
+			if($count == 0){
 				$sep='';
 				$first=(!$single ? $index : $value);
 			}
@@ -1519,9 +1519,9 @@ class Template{
 			$sep=($count>0 ? ',' : '');
 			if(!$single){
 				$oIndex.="{$sep}'{$index}'";
-				if($default==$index) $defValue=$index;
+				if($default == $index) $defValue=$index;
 			}
-			else if($default==$value) $defValue=$value;
+			else if($default == $value) $defValue=$value;
 			$oText.="{$sep}'{$value}'";
 			$count++;
 		}
@@ -1594,123 +1594,123 @@ class Template{
 	}
 	function getSubTitle($base=false){
 		$title="";
-		if(_df_script=='forums'){
+		if(_df_script == 'forums'){
 			$title=$this->DF->catch['forumSubject'];
 		}
-		elseif(_df_script=='topics'){
+		elseif(_df_script == 'topics'){
 			$title=$this->DF->catch['topicSubject'];
 		}
-		elseif(_df_script=='archive'){
+		elseif(_df_script == 'archive'){
 			$title="الأرشيف";
 		}
-		elseif(_df_script=='yourposts'){
+		elseif(_df_script == 'yourposts'){
 			$title="مشاركاتك";
 		}
-		elseif(_df_script=='yourtopics'){
+		elseif(_df_script == 'yourtopics'){
 			$title="مواضيعك";
 		}
-		elseif(_df_script=='users'){
+		elseif(_df_script == 'users'){
 			$title="الأعضاء";
 		}
-		elseif(_df_script=='favorite'){
+		elseif(_df_script == 'favorite'){
 			$title="المفضلة";
 		}
-		elseif(_df_script=='pm'){
+		elseif(_df_script == 'pm'){
 			$title=(empty($this->DF->catch['menuTitle']) ? "رسائل خاصة" : "رسائل خاصة - {$this->DF->catch['menuTitle']}");
 		}
-		elseif(_df_script=='active'){
+		elseif(_df_script == 'active'){
 			$title="مواضيع نشطة";
 		}
-		elseif(_df_script=='search'){
+		elseif(_df_script == 'search'){
 			$title="إبحث";
 		}
-		elseif(_df_script=='profile'){
-			if(type=='details'){
+		elseif(_df_script == 'profile'){
+			if(type == 'details'){
 				$title="بيانات العضويتك";
 			}
-			elseif(type=='editpass'){
+			elseif(type == 'editpass'){
 				$title="تغيير بيانات - بريد الالكتروني وكلمة السرية";
 			}
-			elseif(type=='editdetails'){
+			elseif(type == 'editdetails'){
 				$title="تغيير بيانات - خيارات العضوية وبيانات الشخصية";
 			}
-			elseif(type=='changename'){
+			elseif(type == 'changename'){
 				$title="طلب تغيير إسم العضوية";
 			}
-			elseif(type=='loginbar'){
+			elseif(type == 'loginbar'){
 				$title="سجل اتصال {$this->DF->catch['loginBarUserName']}";
 			}
-			elseif(type=='trylogin'){
+			elseif(type == 'trylogin'){
 				$title="سجل محاولات دخول {$this->DF->catch['tryloginUserName']}";
 			}
-			elseif(type=='lists'){
+			elseif(type == 'lists'){
 				$title="قوائم خاصة";
 			}
-			elseif(type=='medals'){
+			elseif(type == 'medals'){
 				$title="خدمات عضويتك";
 			}
-			elseif(type=='hiddentopics'){
-				$uid=(auth>0&&ulv==4?auth:uid);
-				$title="مواضيع مخفية ومفتوحة ".($uid==uid ? "لك" : "للعضو")."";
+			elseif(type == 'hiddentopics'){
+				$uid=(auth>0&&ulv == 4?auth:uid);
+				$title="مواضيع مخفية ومفتوحة ".($uid == uid ? "لك" : "للعضو")."";
 			}
-			elseif(type=='sendadmin'){
+			elseif(type == 'sendadmin'){
 				$title="مراسلة إدارة المنتديات";
 			}
 			else{
 				$title="تفاصيل العضوية";
 			}
 		}
-		elseif(_df_script=='editor'){
+		elseif(_df_script == 'editor'){
 			$title=$this->DF->catch['editorTypeTitle'];
 		}
-		elseif(_df_script=='svc'){
+		elseif(_df_script == 'svc'){
 			$title=$this->DF->catch['svcTypeTitle'];
 		}
-		elseif(_df_script=='admincp'){
+		elseif(_df_script == 'admincp'){
 			$title="لوحة التحكم";
 		}
-		elseif(_df_script=='admin_login'){
+		elseif(_df_script == 'admin_login'){
 			$title="دخول لوحة التحكم";
 		}
-		elseif(_df_script=='catadmin'){
+		elseif(_df_script == 'catadmin'){
 			$title="إدارة فئات";
 		}
-		elseif(_df_script=='forumadmin'){
+		elseif(_df_script == 'forumadmin'){
 			$title="إدارة أقسام";
 		}
-		elseif(_df_script=='foruminfo'){
+		elseif(_df_script == 'foruminfo'){
 			$title="معلومات واحصائيات عن منتديات";
 		}
-		elseif(_df_script=='options'){
-			if(type=='topicusers'){
+		elseif(_df_script == 'options'){
+			if(type == 'topicusers'){
 				$title="إضافة وحذف أعضاء مخولين لرؤية هذا الموضوع";
 			}
-			elseif(type=='topicstats'){
+			elseif(type == 'topicstats'){
 				$title="إحصائيات ردود الأعضاء في الموضوع";
 			}
-			elseif(type=='complain'){
+			elseif(type == 'complain'){
 				$title="لفت انتباهك للمشرف عن مشاركات";
 			}
-			elseif(type=='survey'){
+			elseif(type == 'survey'){
 				$title="إضافة أو إزالة إستفتاء للموضع";
 			}
 		}
-		elseif(_df_script=='ordercf'){
+		elseif(_df_script == 'ordercf'){
 			$title="ترتيب فئات ومنتديات";
 		}
-		elseif(_df_script=='print'){
+		elseif(_df_script == 'print'){
 			$title="طباعة موضوع";
 		}
-		elseif(_df_script=='register'){
+		elseif(_df_script == 'register'){
 			$title="تسجيل عضوية جديدة";
 		}
-		elseif(_df_script=='rules'){
+		elseif(_df_script == 'rules'){
 			$title="شروط المشاركة";
 		}
-		elseif(_df_script=='sendtopic'){
+		elseif(_df_script == 'sendtopic'){
 			$title="ارسل موضوع لصديقك";
 		}
-		elseif(_df_script==''){
+		elseif(_df_script == ''){
 			$title="";
 		}
 		if(!$base){

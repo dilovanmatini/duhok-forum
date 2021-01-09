@@ -18,19 +18,19 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv>0){
-	if(uhidefavorite==1){
+if( ulv > 0 ){
+	if(uhidefavorite == 1){
 		$Template->errMsg("تم أغلاق خاصية مواضيعك المفضلة لك من قبل الإدارة<br>لمعرفة سبب أغلاق هذه الميزة لك, اتصل بالإدارة");
 		exit();
 	}
 //*********************** Start Page **********************
-if(u>0&&ulv==4){
+if(u>0&&ulv == 4){
 	$uid=u;
 }
 else{
 	$uid=uid;
 }
-if(type==""){
+if(type == ""){
 echo"
 <table width=\"100%\" cellSpacing=\"0\" cellPadding=\"0\">
 	<tr>
@@ -60,7 +60,7 @@ echo"
 			<td class=\"asDark\">الردود</td>
 			<td class=\"asDark\">قرأت</td>
 			<td class=\"asDark\" width=\"15%\">آخر رد</td>";
-		if(ulv>0){
+		if( ulv > 0 ){
 			echo"
 			<td class=\"asDark\" width=\"1%\">الخيارات</td>";
 		}
@@ -83,10 +83,10 @@ echo"
 
 	$checkSqlField="";
 	$checkSqlTable="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlField=",IF(ISNULL(m.id),0,1) AS ismod";
 		$checkSqlTable="LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = '".uid."')";
-		if(ulv==3){
+		if(ulv == 3){
 			$checkSqlField.=",IF(ISNULL(c.id),0,1) AS ismon";
 			$checkSqlTable.="LEFT JOIN ".prefix."category AS c ON(c.id = f.catid AND c.monitor = '".uid."')";
 		}
@@ -133,7 +133,7 @@ echo"
 			else{echo"&nbsp;";}
 			echo"</td>
 			<td class=\"asNormal asCenter\"><nobr>";
-			if($rs['status']==1||$rs['ismod']==1||$rs['ismon']==1){
+			if($rs['status'] == 1||$rs['ismod'] == 1||$rs['ismon'] == 1){
 				echo"
 				<a href=\"editor.php?type=newpost&t={$rs['id']}&src=".urlencode(self)."\"><img src=\"{$DFImage->i['reply']}\" alt=\"رد على الموضوع\" hspace=\"2\" border=\"0\"></a>";
 			}
@@ -143,7 +143,7 @@ echo"
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormal asCenter\" colspan=\"8\"><br>لا توجد أي مواضيع في المفضلة<br><br></td>
@@ -155,7 +155,7 @@ echo"
 	</tr>
 	</table>";
 }
-elseif(type=='add'){
+elseif(type == 'add'){
 	$sql=$mysql->query("SELECT IF(ISNULL(f.id),0,1) AS isfound
 	FROM ".prefix."topic AS t
 	LEFT JOIN ".prefix."favorite AS f ON(f.topicid = t.id AND f.userid = '".uid."')
@@ -171,10 +171,10 @@ elseif(type=='add'){
 	if(!$isfound){
 		$Template->errMsg("لا تستطيع إضافة هذا الموضوع لأسباب أمنية");
 	}
-	elseif($isfound[0]==1){
+	elseif($isfound[0] == 1){
 		$Template->errMsg("لا تستطيع إضافة هذا الموضوع بسبب هو موجود حالياً في قائمة مواضيعك المفضلة");
 	}
-	elseif($count[0]>=50&&ulv<4){
+	elseif($count[0]>=50&&ulv < 4){
 		$Template->errMsg("لا تستطيع إضافة موضوع لقائمة مواضيعك المفضلة<br>بسبب انك تجاوزت حد المسموح بك وهو 50 موضوع<br>لهذا يجب عليك ان تقوم بحذف بعض مواضيع من قائمة مواضيعك المفضلة<br>لتستطيع إضافة هذا الموضوع");
 	}
 	else{
@@ -183,7 +183,7 @@ elseif(type=='add'){
 		$Template->msg("تم إضافة موضوع الى قائمة مواضيعك المفضلة بنجاح‌");
 	}
 }
-elseif(type=='delete'){
+elseif(type == 'delete'){
 	$sql=$mysql->query("SELECT id FROM ".prefix."favorite WHERE id = '".id."' AND userid = '$uid'", __FILE__, __LINE__);
 	$rs=$mysql->fetchRow($sql);
 	if(!$rs){

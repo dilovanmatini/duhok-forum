@@ -17,7 +17,7 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv>0){
+if( ulv > 0 ){
 	$s=unserialize($mysql->get("userflag","style",uid));
 	if(is_array($s)){
 		$content="body{font-weight:{$s['weight']};text-align:{$s['align']};font-family:{$s['family']};font-size:{$s['size']};color:{$s['color']}}";

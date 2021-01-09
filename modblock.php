@@ -14,7 +14,7 @@
 if( _df_script == 'svc' && this_svc == 'modblock' && ulv > 2 ){
 
 // ************ start page ****************
-if( type=='user' ){
+if( type == 'user' ){
 	$mod_bloc = $mysql->get("moderator", "block", u, "userid");
 	print $mod_bloc;
 	if($mod_bloc == 0){
@@ -33,7 +33,7 @@ if( type=='user' ){
 		<?php
 		$button_title ="تجميد الإشراف";
 	}
-	elseif($mod_bloc==1){
+	elseif($mod_bloc == 1){
 		$step=0;
 		?>
 		<script type="text/javascript">
@@ -67,14 +67,14 @@ if( type=='user' ){
 		echo"
 		<tr>
 			<td class=\"asNormalB asS12 asCenter\"><nobr>{$rs['id']}</nobr></td>
-			<td class=\"asNormalB asS12 asCenter\"><nobr>{$DF->iff($rs['type']==0,'<font color="green">إلغاء التجميد</font>','<font color="red">تجميد الإشراف </font>')}</nobr></td>
-			<td class=\"asNormalB asAS12 asCenter\"><nobr>{$DF->iff($rs['cause']=='','--',$rs['cause'])}</nobr></td>
+			<td class=\"asNormalB asS12 asCenter\"><nobr>{$DF->iff($rs['type'] == 0,'<font color="green">إلغاء التجميد</font>','<font color="red">تجميد الإشراف </font>')}</nobr></td>
+			<td class=\"asNormalB asAS12 asCenter\"><nobr>{$DF->iff($rs['cause'] == '','--',$rs['cause'])}</nobr></td>
 			<td class=\"asNormalB asCenter\"><nobr>{$Template->userColorLink($rs['block_id'])}</nobr></td>
 			<td class=\"asNormalB asCenter\"><nobr>{$DF->date($rs['date'])}</nobr></td>
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asS12 asCenter\" colspan=\"5\"><br>لا توجد بيانات في سجل هذا العضو<br><br></td>
@@ -94,7 +94,7 @@ if( $user_level == 2 ){
 		<tr>
 			<td class=\"asHeader\" colspan=\"4\"><nobr>خيارات</nobr></td>
 		</tr>";
-		if($mod_bloc==0){
+		if($mod_bloc == 0){
 		echo"
 		<tr>
 			<td class=\"asFixedB\"><nobr>السبب</nobr></td>
@@ -110,20 +110,20 @@ if( $user_level == 2 ){
 	</form>
 	</table>";
 }
-if(type=='update'){
+if(type == 'update'){
 	$userid = (int)$_POST['userid'];
 	$type = $_POST['step'];
 	$cause = $DF->cleanText($_POST['cause']);
 	$mysql->insert("moderator_block (userid,type,block_id,cause,date) VALUES ('".$userid."','".$type."','".uid."','".$cause."','".time."')", __FILE__, __LINE__);
 	$mysql->update("moderator SET block = '$type' WHERE userid = '".$userid."'", __FILE__, __LINE__);
-	if($type==0){
+	if($type == 0){
 	$mysql->update("moderator_block SET step = '0' WHERE userid = '".$userid."'", __FILE__, __LINE__);
 	}
 	$Template->msg("تم تحديث البيانات بنجاح");
 }
 
 
-if(type=='list'){
+if(type == 'list'){
 	echo"
 	<table cellspacing=\"1\" cellpadding=\"4\" align=\"center\">
 		<tr>
@@ -143,13 +143,13 @@ if(type=='list'){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\"><nobr>{$Template->userColorLink($rs['userid'])}</nobr></td>
-			<td class=\"asNormalB asAS12 asCenter\"><nobr>{$DF->iff($rs['cause']=='','--',$rs['cause'])}</nobr></td>
+			<td class=\"asNormalB asAS12 asCenter\"><nobr>{$DF->iff($rs['cause'] == '','--',$rs['cause'])}</nobr></td>
 			<td class=\"asNormalB asCenter\"><nobr>{$Template->userColorLink($rs['block_id'])}</nobr></td>
 			<td class=\"asNormalB asCenter\"><nobr><a href=\"svc.php?svc=modblock&type=user&u={$rs['userid']}\" title=\"التفاصيل\"><img src=\"{$DFImage->i['post']}\" alt=\"التفاصيل\" hspace=\"2\" border=\"0\"></a></nobr></td>
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asS12 asCenter\" colspan=\"5\"><br>لا يوجد حاليا أي مشرف مجمد<br><br></td>

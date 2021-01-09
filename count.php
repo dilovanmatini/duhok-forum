@@ -299,7 +299,7 @@ for($x=0;$x<count($codes);$x++){
 	$code=strtolower($codes[$x]);
 	echo'<img src="flags/'.$code.'.png" alt="'.$codes[$x].'" border="0">';
 	$y++;
-	if($y==10){
+	if($y == 10){
 		echo'<br>';
 		$y=0;
 	}

@@ -17,18 +17,18 @@ define('_df_path', dirname(__FILE__)."/");
 
 require_once _df_path."globals.php";
 
-if(ulv!=4){
+if(ulv != 4){
 	$DF->quick();
 	exit();
 }
 
 $Template->header();
 
-if(type=="add"){
+if(type == "add"){
 	?>
 	<script type="text/javascript">
 	function checkSubmit(frm){
-		if(frm.subject.value==""){
+		if(frm.subject.value == ""){
 			alert("يجب عليك كتابة اسم الفئة.");
 		}
 		else if(isNaN(parseInt(frm.monitor.value))){
@@ -118,7 +118,7 @@ if(type=="add"){
 	</table>
 	</center>";
 }
-elseif(type=="edit"){
+elseif(type == "edit"){
 	$sql=$mysql->query("SELECT * FROM ".prefix."category WHERE id = '".c."'", __FILE__, __LINE__);
 	$rs=$mysql->fetchAssoc($sql);
 	if(!$rs){
@@ -128,7 +128,7 @@ elseif(type=="edit"){
 	?>
 	<script type="text/javascript">
 	function checkSubmit(frm){
-		if(frm.subject.value==""){
+		if(frm.subject.value == ""){
 			alert("يجب عليك كتابة اسم الفئة.");
 		}
 		else if(isNaN(parseInt(frm.monitor.value))){
@@ -234,14 +234,14 @@ elseif(type=="edit"){
 	</table>
 	</center>";
 }
-elseif(type=="insert"){
+elseif(type == "insert"){
 	$monitor=(int)$_POST['monitor'];
 	$submonitor=(int)$_POST['submonitor'];
 	$mysql->insert("category (submonitor,subject,monitor,archive,level,hidden,hidemonhome,hidemoninfo,hidemonprofile) VALUES (
 	'$submonitor','{$_POST['subject']}','$monitor','{$_POST['archive']}','{$_POST['level']}','{$_POST['hidden']}','{$_POST['hidemonhome']}','{$_POST['hidemoninfo']}','{$_POST['hidemonprofile']}')", __FILE__, __LINE__);
 	$Template->msg('تم إضافة فئة جديدة بنجاح');
 }
-elseif(type=="update"){
+elseif(type == "update"){
 	$c=(int)$mysql->get('category','id',c);
 	if($c>0){
 		$monitor=(int)$_POST['monitor'];
@@ -264,7 +264,7 @@ elseif(type=="update"){
 		$Template->errMsg('لم يتم العثور على أي فئة');
 	}
 }
-elseif(type=="lock"){
+elseif(type == "lock"){
 	$c=(int)$mysql->get('category','id',c);
 	if($c>0){
 		$mysql->update("category SET status = '0' WHERE id = '$c'", __FILE__, __LINE__);
@@ -274,7 +274,7 @@ elseif(type=="lock"){
 		$Template->errMsg('لم يتم العثور على أي فئة');
 	}
 }
-elseif(type=="open"){
+elseif(type == "open"){
 	$c=(int)$mysql->get('category','id',c);
 	if($c>0){
 		$mysql->update("category SET status = '1' WHERE id = '$c'", __FILE__, __LINE__);
@@ -284,7 +284,7 @@ elseif(type=="open"){
 		$Template->errMsg('لم يتم العثور على أي فئة');
 	}
 }
-elseif(type=="delete"){
+elseif(type == "delete"){
 	$c=(int)$mysql->get('category','id',c);
 	if($c>0){
 		$mysql->delete("category WHERE id = '$c'", __FILE__, __LINE__);

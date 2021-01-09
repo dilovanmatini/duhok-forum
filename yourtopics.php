@@ -18,13 +18,13 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv>0){
+if( ulv > 0 ){
 //********************** Start Page *************************
 $uid=uid;
 $ulv=ulv;
 $uname=uname;
 if(auth>0){
-	$checkSql=(ulv>1 ? "IN (0,1)" : "= 1");
+	$checkSql=(ulv > 1 ? "IN (0,1)" : "= 1");
 	$urs=$mysql->queryRow("SELECT u.level,u.name,up.hideselftopics
 	FROM ".prefix."user AS u
 	LEFT JOIN ".prefix."userperm AS up ON(up.id = u.id)
@@ -37,16 +37,16 @@ if(auth>0){
 	}
 }
 
-if($uid!=uid&&$uhideselftopics==1&&ulv<2){
+if($uid!=uid&&$uhideselftopics == 1&&ulv < 2){
 	$Template->errMsg("لا يمكنك مشاهدة مواضيع هذا العضو لأسباب أمنية");
 	exit();
 }
-if($uid!=uid&&uhideuserstopics==1&&ulv<2){
+if($uid!=uid&&uhideuserstopics == 1&&ulv < 2){
 	$Template->errMsg("تم منعك من مشاهدة مواضيع الأعضاء من قبل الإدارة");
 	exit();
 }
 
-if($uid==uid){
+if($uid == uid){
 	$menuText="جميع مواضيعك";
 }
 else{
@@ -61,7 +61,7 @@ echo"
 	<tr>
 		<td class=\"asBody asCenter\">
 		<table width=\"100%\" cellSpacing=\"1\" cellPadding=\"4\">";
-if($uid==uid&&uhideselftopics==1||$uid!=uid&&$uhideselftopics==1){
+if($uid == uid&&uhideselftopics == 1||$uid!=uid&&$uhideselftopics == 1){
 	echo"
 	<tr>
 		<td class=\"asErrorB asCenter\" colSpan=\"3\">لا يمكن للأعضاء بمشاهدة هذه الصفحة بسبب تم إخفائها من قبل الإدارة</td>
@@ -69,13 +69,13 @@ if($uid==uid&&uhideselftopics==1||$uid!=uid&&$uhideselftopics==1){
 }
 $checkSqlField="";
 $checkSqlTable="";
-if(ulv==4){
+if(ulv == 4){
 	$checkSqlField="
 		,IF(ISNULL(c.id),0,1) AS allowcat
 		,IF(ISNULL(f.id),0,1) AS allowforum
 	";
 }
-elseif(ulv==3){
+elseif(ulv == 3){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id) OR c.monitor = ".uid.",1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id) OR c.monitor = ".uid.",1,0) AS allowforum
@@ -85,7 +85,7 @@ elseif(ulv==3){
 		LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")
 	";
 }
-elseif(ulv==2){
+elseif(ulv == 2){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id),1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id) OR NOT ISNULL(m.id),1,0) AS allowforum
@@ -95,7 +95,7 @@ elseif(ulv==2){
 		LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")
 	";
 }
-elseif(ulv==1){
+elseif(ulv == 1){
 	$checkSqlField.="
 		,IF(c.hidden = 0 AND ".ulv." >= c.level OR NOT ISNULL(fu.id),1,0) AS allowcat
 		,IF(f.hidden = 0 AND ".ulv." >= f.level OR NOT ISNULL(fu.id),1,0) AS allowforum
@@ -117,7 +117,7 @@ $lastcatid=0;
 
 while($rs=$mysql->fetchAssoc($sql)){
 	if($rs['catid']!=$lastcatid){
-		if($rs['allowcat']==1){
+		if($rs['allowcat'] == 1){
 			echo"
 			<tr>
 				<td class=\"asDarkB\">{$rs['csubject']}</td>
@@ -127,7 +127,7 @@ while($rs=$mysql->fetchAssoc($sql)){
 		}
 		$lastcatid=$rs['catid'];
 	}
-	if($rs['allowforum']==1){
+	if($rs['allowforum'] == 1){
 		echo"
 		<tr>
 			<td class=\"asFixedB\">{$Template->forumLink($rs['forumid'],$rs['subject'])}</td>
@@ -137,7 +137,7 @@ while($rs=$mysql->fetchAssoc($sql)){
 	}
 	$count++;
 }
-if($count==0){
+if($count == 0){
 	echo"
 	<tr>
 		<td class=\"asNormalB asCenter\" colspan=\"3\"><br>لا توجد أي مواضيع<br><br></td>

@@ -22,7 +22,7 @@ $Template->header();
 ?>
 <script type="text/javascript">
 var homeView = '<?=home_view?>';
-<?php if(ulv==4){ ?>
+<?php if(ulv == 4){ ?>
 var catAdminName = 'catadmin.php', forumAdminName = 'forumadmin.php';
 <?php } ?>
 </script>
@@ -50,7 +50,7 @@ echo"
 				<td class=\"asTitle\"><nobr>الزوار</nobr></td>
 				<td class=\"asText2\"><nobr>".($onlines[0])."</nobr></td>
 				<td width=\"100%\">&nbsp;&nbsp;&nbsp;&nbsp;</td>";
-			if(ulv > 0){
+			if( ulv > 0 ){
 				echo"
 				<th class=\"asTHLink\"><nobr><a href=\"javascript:DF.trashCookie();\" title=\"بالنقر هنا سيتم حذف كوكيز تابعة لدخولك للمنتدى وسيتم خروجك من المنتدى\">حذف كوكيز</a></nobr></th>";
 			}
@@ -210,7 +210,7 @@ foreach($catList as $cid => $c){
 							</tr>
 							<tr>
 								<td class=\"asNormalB asS12\" align=\"center\"><nobr>المتواجدون</td>
-								<td class=\"asNormalB asAS12 asDate\" height=\"60\" align=\"center\" colspan=\"3\" rowspan=\"2\">{$Template->nbsp($f['hidemodhome']==0 ? (($homeMods=$Template->forumModerators($fid,2)) ? $homeMods : "<span class=\"asC3 asS12\">لا توجد أي مشرف لهذا المنتدى</span>") : "<span class=\"asC3 asS12\">تم إخفاء مشرفي هذا المنتدى</span>")}</td>
+								<td class=\"asNormalB asAS12 asDate\" height=\"60\" align=\"center\" colspan=\"3\" rowspan=\"2\">{$Template->nbsp($f['hidemodhome'] == 0 ? (($homeMods=$Template->forumModerators($fid,2)) ? $homeMods : "<span class=\"asC3 asS12\">لا توجد أي مشرف لهذا المنتدى</span>") : "<span class=\"asC3 asS12\">تم إخفاء مشرفي هذا المنتدى</span>")}</td>
 							</tr>
 							<tr>
 								<td class=\"asNormalB asS12\" align=\"center\" id=\"onlinef{$fid}\"><nobr>--</nobr></td>
@@ -237,8 +237,8 @@ foreach($catList as $cid => $c){
 						<td class=\"asTitle\">مجموع ردود</td><td class=\"asText2\">{$cDetails['posts']}</td>
 						<td class=\"asTitle\">مجموع مواضيع في الأرشيف</td><td class=\"asText2\">{$cDetails['atopics']}</td>
 						<td class=\"asTitle\">مجموع ردود في الأرشيف</td><td class=\"asText2\">{$cDetails['aposts']}</td>
-						<td class=\"asTitle\">المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome']==0&&$c['monitor']>0 ? $Template->userNormalLink($c['monitor'],$c['monitorname']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
-						<td class=\"asTitle\">نائب المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome']==0&&$c['submonitor']>0 ? $Template->userNormalLink($c['submonitor']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
+						<td class=\"asTitle\">المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome'] == 0&&$c['monitor']>0 ? $Template->userNormalLink($c['monitor'],$c['monitorname']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
+						<td class=\"asTitle\">نائب المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome'] == 0&&$c['submonitor']>0 ? $Template->userNormalLink($c['submonitor']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
 					</tr>
 				</table>
 				</td>
@@ -340,8 +340,8 @@ foreach($catList as $cid => $c){
 						<td class=\"asTitle\">مجموع ردود</td><td class=\"asText2\">{$cDetails['posts']}</td>
 						<td class=\"asTitle\">مجموع مواضيع في الأرشيف</td><td class=\"asText2\">{$cDetails['atopics']}</td>
 						<td class=\"asTitle\">مجموع ردود في الأرشيف</td><td class=\"asText2\">{$cDetails['aposts']}</td>
-						<td class=\"asTitle\">المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome']==0&&$c['monitor']>0 ? $Template->userNormalLink($c['monitor'],$c['monitorname']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
-						<td class=\"asTitle\">نائب المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome']==0&&$c['submonitor']>0 ? $Template->userNormalLink($c['submonitor']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
+						<td class=\"asTitle\">المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome'] == 0&&$c['monitor']>0 ? $Template->userNormalLink($c['monitor'],$c['monitorname']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
+						<td class=\"asTitle\">نائب المراقب</td><td class=\"asText2 asAS12 asAC2\">".($c['hidemonhome'] == 0&&$c['submonitor']>0 ? $Template->userNormalLink($c['submonitor']) : "<i>&nbsp;&nbsp;لا توجد&nbsp;&nbsp;</i>")."</td>
 					</tr>
 				</table>
 				</td>

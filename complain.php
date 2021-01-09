@@ -10,7 +10,7 @@
  * @note		This program is distributed in the hope that it will be useful - WITHOUT ANY WARRANTY;
  * 
  */
-if(_df_script=='svc'&&this_svc=='complain'&&ulv>1){
+if(_df_script == 'svc'&&this_svc == 'complain'&&ulv > 1){
 // ************ start page ****************
 
 $notetype=array(
@@ -33,7 +33,7 @@ $complainstatus=array(
 	3=>'<font color="red">جديدة</font>'
 );
 
-if(type==''){
+if(type == ''){
 	function optionLink($num,$url){
 		if($num){
 			$link="<a href=\"$url\">$num</a>";
@@ -65,7 +65,7 @@ if(type==''){
 		</tr>";
 	$checkSqlTable="";
 	$checkSqlWhere="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlWhere=" AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")";
 		$checkSqlTable="LEFT JOIN ".prefix."moderator AS m ON(m.forumid = f.id AND m.userid = ".uid.")";
 	}
@@ -105,16 +105,16 @@ if(type==''){
 			$complain[$rs[0]]['send']=0;
 			$complain[$rs[0]]['new']=0;
 		}
-		if($rs[1]==3){
+		if($rs[1] == 3){
 			$complain[$rs[0]]['new']++;
 		}
-		if($rs[1]==1){
+		if($rs[1] == 1){
 			$complain[$rs[0]]['ok']++;
 		}
-		if($rs[1]==2){
+		if($rs[1] == 2){
 			$complain[$rs[0]]['send']++;
 		}
-		if($rs[1]==0){
+		if($rs[1] == 0){
 			$complain[$rs[0]]['lock']++;
 		}
 	}
@@ -156,7 +156,7 @@ if(type==''){
 	echo"
 	</table>";
 }
-elseif(type=='global'){
+elseif(type == 'global'){
 	$app=(app!=''?app:'ok');
 	$scope=(scope!=''?scope:'all');
 	$days=(days!=0?days:30);
@@ -171,22 +171,22 @@ elseif(type=='global'){
 	var link="<?=$thisLink?>";
 	DF.chooseForumId=function(s,app,days){
 		fid=s.options[s.selectedIndex].value;
-		if(fid==0) url="svc.php?svc=complain&type=global&app="+app+"&scope=mod&days="+days;
+		if(fid == 0) url="svc.php?svc=complain&type=global&app="+app+"&scope=mod&days="+days;
 		else url="svc.php?svc=complain&type=global&app="+app+"&scope=forum&days="+days+"&f="+fid;
 		document.location=url;
 	};
 	</script>
 	<?php
-	if($app=='new'){
+	if($app == 'new'){
 		$appTitle="شكاوي جديدة";
 	}
-	elseif($app=='ok'){
+	elseif($app == 'ok'){
 		$appTitle="شكاوي تم رد عليها";
 	}
-	elseif($app=='send'){
+	elseif($app == 'send'){
 		$appTitle="شكاوي المرسلة للمدير";
 	}
-	elseif($app=='lock'){
+	elseif($app == 'lock'){
 		$appTitle="شكاوي مقفولة";
 	}
 	else{
@@ -198,7 +198,7 @@ elseif(type=='global'){
 		<tr>
 			<td class=\"asTopHeader asCenter\" colspan=\"11\">
 	<ul class=\"svcbar asAS12\">
-		<li><em class=\"".($scope=='forum'?'selectedone':'one')."\">
+		<li><em class=\"".($scope == 'forum'?'selectedone':'one')."\">
 		<select class=\"asGoTo\" style=\"width:150px\" onChange=\"DF.chooseForumId(this,'$app',$days)\">
 			<option value=\"0\">&nbsp;&nbsp;-- عرض شكاوي منتدى --</option>";
 		foreach($allowforums as $key){
@@ -208,21 +208,21 @@ elseif(type=='global'){
 		echo"
 		</select>
 		</em></li>
-		<li".($scope=='all'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=all&app=$app&days=$days\"><em>جميع شكاوي</em></a></li>
+		<li".($scope == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=all&app=$app&days=$days\"><em>جميع شكاوي</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($app=='new'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=new&days=$days$furl\"><em>شكاوي جديدة</em></a></li>
-		<li".($app=='ok'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=ok&days=$days$furl\"><em>شكاوي تم رد عليها</em></a></li>
-		<li".($app=='send'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=send&days=$days$furl\"><em>شكاوي المرسلة للمدير</em></a></li>
-		<li".($app=='lock'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=lock&days=$days$furl\"><em>شكاوي مقفولة</em></a></li>
-		<li".($app=='all'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=all&days=$days$furl\"><em>جميع شكاوي</em></a></li>
+		<li".($app == 'new'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=new&days=$days$furl\"><em>شكاوي جديدة</em></a></li>
+		<li".($app == 'ok'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=ok&days=$days$furl\"><em>شكاوي تم رد عليها</em></a></li>
+		<li".($app == 'send'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=send&days=$days$furl\"><em>شكاوي المرسلة للمدير</em></a></li>
+		<li".($app == 'lock'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=lock&days=$days$furl\"><em>شكاوي مقفولة</em></a></li>
+		<li".($app == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=all&days=$days$furl\"><em>جميع شكاوي</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($days==30?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=30$furl\"><em>آخر 30 يوم</em></a></li>
-		<li".($days==60?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=60$furl\"><em>آخر 60 يوم</em></a></li>
-		<li".($days==180?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=180$furl\"><em>آخر 6 أشهر</em></a></li>
-		<li".($days==365?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=365$furl\"><em>آخر سنة</em></a></li>
-		<li".($days==-1?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=-1$furl\"><em>جميع شكاوي</em></a></li>
+		<li".($days == 30?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=30$furl\"><em>آخر 30 يوم</em></a></li>
+		<li".($days == 60?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=60$furl\"><em>آخر 60 يوم</em></a></li>
+		<li".($days == 180?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=180$furl\"><em>آخر 6 أشهر</em></a></li>
+		<li".($days == 365?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=365$furl\"><em>آخر سنة</em></a></li>
+		<li".($days == -1?' class="selected"':'')."><a href=\"svc.php?svc=complain&type=global&scope=$scope&app=$app&days=-1$furl\"><em>جميع شكاوي</em></a></li>
 	</ul>
 	</tr>
 	<form method=\"post\" action=\"svc.php?svc=mons&type=appglobal\">
@@ -232,7 +232,7 @@ elseif(type=='global'){
 		<tr>
 			<td class=\"asHeader\" colspan=\"7\">$appTitle</td>
 		</tr>";
-	if($scope=='forum'){
+	if($scope == 'forum'){
 		echo"
 		<tr>
 			<td class=\"asHiddenB asS12 asAS12 asAC5 asCenter\" colspan=\"11\">تعرض حاليا شكاوي منتدى ( {$Template->forumLink(f,$Template->forumsList[f])} ) لعرض جميع شكاوي المنتديات التي تحت إشرافك <a href=\"svc.php?svc=complain&type=global&scope=all&app=$app&days=$days\">إضغط هنا</a></td>
@@ -242,7 +242,7 @@ elseif(type=='global'){
 		<tr>
 			<td class=\"asDarkB\"><b>عنوان الشكوى</b></td>
 			<td class=\"asDarkB\"><b>نوع<br>المشاركة</b></td>";
-		if($scope=='all'){
+		if($scope == 'all'){
 			echo"
 			<td class=\"asDarkB\"><b>المنتدى</b></td>
 			<td class=\"asDarkB\"><b>حالة<br>الشكوى</b></td>";
@@ -279,7 +279,7 @@ elseif(type=='global'){
 			'replyby'=>'',
 			'replydate'=>''
 		);
-		if($rs['status']==2&&$rs['adminread']==0){
+		if($rs['status'] == 2&&$rs['adminread'] == 0){
 			$com['classname']='asFixedB';
 		}
 		$com['posttype']=$posttype[$rs['posttype']];
@@ -289,13 +289,13 @@ elseif(type=='global'){
 		if($rs['forumid']>0){
 			$com['forumsubject']=$Template->forumLink($rs['forumid'],$rs['fsubject']);
 		}
-		if($rs['posttype']==1){
+		if($rs['posttype'] == 1){
 			$com['posturl']="topics.php?t={$rs['postid']}";
 		}
-		elseif($rs['posttype']==2){
+		elseif($rs['posttype'] == 2){
 			$com['posturl']="topics.php?t={$rs['topicid']}&p={$rs['postid']}";
 		}
-		elseif($rs['posttype']==3){
+		elseif($rs['posttype'] == 3){
 			$com['posturl']="pm.php?mail=read&pm={$DF->numToHash($rs['postid'])}";
 		}
 		$com['sendby']=$Template->userColorLink($rs['sendby'], array($rs['sendname'], $rs['sendstatus'], $rs['sendlevel'], $rs['sendsubmonitor']));
@@ -309,7 +309,7 @@ elseif(type=='global'){
 		<tr>
 			<td class=\"{$com['classname']} asAS12 asCenter\"><nobr><a href=\"svc.php?svc=complain&type=read&c={$rs['id']}\">{$com['notetype']}</a></nobr></td>
 			<td class=\"{$com['classname']} asAS12 asCenter\"><nobr><a href=\"{$com['posturl']}\" title=\"انقر هنا للذهاب الى المشاركة\">{$com['posttype']}</a></nobr></td>";
-		if($scope=='all'){
+		if($scope == 'all'){
 			echo"
 			<td class=\"{$com['classname']} asAS12 asCenter\"><nobr>{$com['forumsubject']}</nobr></td>
 			<td class=\"{$com['classname']} asS12 asCenter\"><nobr>{$complainstatus[$rs['status']]}</nobr></td>";
@@ -321,13 +321,13 @@ elseif(type=='global'){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"7\"><br>-- لا توجد أي شكاوي بهذه المواصفات --<br><br></td>
 		</tr>";
 	}
-	if($app=='all'||$app=='send'){
+	if($app == 'all'||$app == 'send'){
 		echo"
 		<tr>
 			<td class=\"asBody asCenter\" colspan=\"13\">
@@ -345,8 +345,8 @@ elseif(type=='global'){
 	</table>
 	</form><br>";
 }
-elseif(type=='read'){
-	$allow=(ulv==4 ? "" : "AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")");
+elseif(type == 'read'){
+	$allow=(ulv == 4 ? "" : "AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")");
 	$rs=$mysql->queryAssoc("SELECT com.id,com.status,com.forumid,com.userid,com.postid,com.posttype,com.notetype,
 		com.sendby,com.senddate,com.replyby,com.replydate,com.adminread,com.admintext,f.subject AS fsubject,
 		com.notetext,com.replytext,post.topicid AS topicid,
@@ -378,13 +378,13 @@ elseif(type=='read'){
 		if($rs['notetype']>0){
 			$com['notetype']=$com['posttype']." ".$notetype[$rs['notetype']];
 		}
-		if($rs['posttype']==1){
+		if($rs['posttype'] == 1){
 			$com['posturl']="topics.php?t={$rs['postid']}";
 		}
-		elseif($rs['posttype']==2){
+		elseif($rs['posttype'] == 2){
 			$com['posturl']="topics.php?t={$rs['topicid']}&p={$rs['postid']}";
 		}
-		elseif($rs['posttype']==3){
+		elseif($rs['posttype'] == 3){
 			$com['posturl']="pm.php?mail=read&pm={$DF->numToHash($rs['postid'])}";
 		}
 		$com['sendby']=$Template->userColorLink($rs['sendby'], array($rs['sendname'], $rs['sendstatus'], $rs['sendlevel'], $rs['sendsubmonitor']));
@@ -449,7 +449,7 @@ elseif(type=='read'){
 				<td class=\"asFixedB\"><nobr>مرسل الشكوى</nobr></td>
 				<td class=\"asNormalB asAS12 asS12 asDate\"><nobr>{$com['sendby']} - {$com['senddate']}</nobr></td>
 			</tr>";
-		if($rs['notetype']==0){
+		if($rs['notetype'] == 0){
 			echo"
 			<tr>
 				<td class=\"asFixedB\"><nobr>نص الشكوى</nobr></td>
@@ -501,7 +501,7 @@ elseif(type=='read'){
 		echo"
 		</form>
 		</table>";
-		if(ulv==4){
+		if(ulv == 4){
 			$mysql->update("complain SET adminread = 1 WHERE id = ".c."", __FILE__, __LINE__);
 		}
 	}
@@ -509,7 +509,7 @@ elseif(type=='read'){
 		$DF->goTo();
 	}
 }
-elseif(type=='reply'){
+elseif(type == 'reply'){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في الرد على الشكوى");
 	$c=(int)$_POST['cid'];
 	$redeclare=$_POST['redeclare'];
@@ -519,7 +519,7 @@ elseif(type=='reply'){
 	if($redeclare!=checkredeclare){
 		$Template->errMsg("كان هناك خلل أثناء تخزين العملية!<br>يبدو أنه تم محاولة إدخال البيانات عدة مرات لسبب فني أو لخلل في الشبكة.<br>الرجاء التأكد من أن العملية انتهت بنجاح... نأسف على هذا.");
 	}
-	$allow=(ulv==4 ? "" : "AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")");
+	$allow=(ulv == 4 ? "" : "AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")");
 	$rs=$mysql->queryAssoc("SELECT com.id,com.forumid,com.sendby,com.posttype,com.notetype,com.notetext,f.subject AS fsubject
 	FROM ".prefix."complain AS com
 	LEFT JOIN ".prefix."forum AS f ON(f.id = com.forumid)
@@ -544,10 +544,10 @@ elseif(type=='reply'){
 		$DF->goTo();
 	}
 }
-elseif(type=='lock'){
+elseif(type == 'lock'){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في الرد على الشكوى");
 	$c=(int)$_POST['cid'];
-	$allow=(ulv==4 ? "" : "AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")");
+	$allow=(ulv == 4 ? "" : "AND (".ulv." > 1 AND NOT ISNULL(m.id) OR ".ulv." = 3 AND c.monitor = ".uid.")");
 	$rs=$mysql->queryAssoc("SELECT com.id
 	FROM ".prefix."complain AS com
 	LEFT JOIN ".prefix."forum AS f ON(f.id = com.forumid)

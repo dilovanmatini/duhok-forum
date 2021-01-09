@@ -21,7 +21,7 @@ $Template->header();
 if(ulv == 4){
 //*********** start page ****************************************
 
-if(type==""){
+if(type == ""){
 echo'
 	
 	<table class="border" width="40%" cellSpacing="1" cellPadding="2" align="center" border="0">
@@ -65,7 +65,7 @@ echo'
 		
 		</table>';
 }
-elseif(type=="edit_pass"){
+elseif(type == "edit_pass"){
 	$sql=$mysql->query("SELECT 
 	name FROM ".prefix."user  WHERE id = '".u."'", __FILE__, __LINE__);
 	$rs=$mysql->fetchAssoc($sql);
@@ -92,7 +92,7 @@ echo"
 		$Template->errMsg("رقم العضوية الذي اخترت هو خاطيء");
 	}
 	}
-elseif(type=="edit_status"){
+elseif(type == "edit_status"){
 	$sql=$mysql->query("SELECT 
 	name,status FROM ".prefix."user  WHERE id = '".u."'", __FILE__, __LINE__);
 	$rs=$mysql->fetchAssoc($sql);
@@ -123,12 +123,12 @@ elseif(type=="edit_status"){
 		$Template->errMsg("رقم العضوية الذي اخترت هو خاطيء");
 	}
 }
-elseif(type=="updateuser"){
+elseif(type == "updateuser"){
 	$status=$_POST['status'];
 	$mysql->update("user SET status = '$status' WHERE id = '".u."'", __FILE__, __LINE__);
 		$Template->msg("تم حفظ التغيرات بنجاح","profile.php?u=".u);
 	}
-elseif(type=="updatepass"){
+elseif(type == "updatepass"){
 	$pass=$_POST['pass'];
 	if(empty($pass)){
 		$Template->errMsg("يجب ان تكتب الكلمة السرية");
@@ -143,7 +143,7 @@ elseif(type=="updatepass"){
 
 //*********** end page ****************************************
 
-elseif(type=="search"){
+elseif(type == "search"){
 $search=$_POST['search'];
 	if(empty($search)){
 		$Template->errMsg("لم تقم بكتابة كلمة البحث");

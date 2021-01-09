@@ -11,7 +11,7 @@
  * 
  */
 
-if(_df_script=='svc'&&this_svc=='mons'&&ulv>1){
+if(_df_script == 'svc'&&this_svc == 'mons'&&ulv > 1){
 // ************ start page ****************
 
 $montype=array(
@@ -58,7 +58,7 @@ $userpermfields=array(
 	8=>'hideselfprofile'
 );
 
-if(type=='global'||type=='addmon'){
+if(type == 'global'||type == 'addmon'){
 ?>
 <script type="text/javascript">
 DF.hideMonDetails=function(id){
@@ -77,7 +77,7 @@ DF.getMonDetails=function(id){
 		'send':'type=getMonDetails&id='+id,
 		'func':function(){
 			var obj=DF.ajax.oName,ac=DF.ajax.ac;
-			if(obj.readyState==1){
+			if(obj.readyState == 1){
 				var row=tab.insertRow(thisRow.rowIndex+1),cell=row.insertCell(0);
 				cell.id='moncell'+id;
 				cell.className='asNormalB asCenter';
@@ -90,12 +90,12 @@ DF.getMonDetails=function(id){
 				conImg.style.visibility='visible';
 				conImg.style.position='';
 			}
-			else if(obj.readyState==4){
+			else if(obj.readyState == 4){
 				var get=obj.responseText.split(ac),cell=$I('#moncell'+id),text,targetLink;
 				if(get&&get.length>2){
-					if(get[1]==1) targetLink="topics.php?t="+get[4]+"&p="+get[0];
-					else if(get[1]==2) targetLink="topics.php?t="+get[0];
-					else if(get[1]==3) targetLink="pm.php?mail=read&pm="+get[0];
+					if(get[1] == 1) targetLink="topics.php?t="+get[4]+"&p="+get[0];
+					else if(get[1] == 2) targetLink="topics.php?t="+get[0];
+					else if(get[1] == 3) targetLink="pm.php?mail=read&pm="+get[0];
 					text="<br><table width=\"95%\" cellspacing=\"1\" cellpadding=\"4\" align=\"center\">"+
 					"<tr>"+
 					"<td class=\"asDarkB\">السبب (تم إرسال هذه الرسالة للعضو)</td>"+
@@ -125,7 +125,7 @@ DF.getMonDetails=function(id){
 <?php
 }
 
-if(type=='global'){
+if(type == 'global'){
 	$app=(app!=''?app:'ok');
 	$scope=(scope!=''?scope:'mod');
 	$days=(days!=0?days:30);
@@ -143,11 +143,11 @@ if(type=='global'){
 	DF.medalCmd=function(s,type){
 		var frm=s.form,el=frm.elements,msg=new Array();
 		for(x=0,y=0;x<el.length;x++){
-			if(el[x].type=='checkbox'&&el[x].checked){
+			if(el[x].type == 'checkbox'&&el[x].checked){
 				y++;
 			}
 		}
-		if(y==0){
+		if(y == 0){
 			alert("يجب عليك ان تختار على الأقل عقوبة واحدة");
 		}
 		else{
@@ -162,28 +162,28 @@ if(type=='global'){
 	};
 	DF.chooseForumId=function(s,app,days){
 		fid=s.options[s.selectedIndex].value;
-		if(fid==0) url="svc.php?svc=mons&type=global&app="+app+"&scope=mod&days="+days+"<?=$murl.$uurl?>";
+		if(fid == 0) url="svc.php?svc=mons&type=global&app="+app+"&scope=mod&days="+days+"<?=$murl.$uurl?>";
 		else url="svc.php?svc=mons&type=global&app="+app+"&scope=forum&days="+days+"&f="+fid+"<?=$murl.$uurl?>";
 		document.location=url;
 	};
 	DF.chooseMonId=function(s,app,days){
 		mid=s.options[s.selectedIndex].value;
-		if(mid==0) url="svc.php?svc=mons&type=global&app="+app+"&scope=mod&days="+days+"<?=$furl.$uurl?>";
+		if(mid == 0) url="svc.php?svc=mons&type=global&app="+app+"&scope=mod&days="+days+"<?=$furl.$uurl?>";
 		else url="svc.php?svc=mons&type=global&app="+app+"&scope=montype&days="+days+"&m="+mid+"<?=$furl.$uurl?>";
 		document.location=url;
 	};
 	</script>
 	<?php
-	if($app=='wait'){
+	if($app == 'wait'){
 		$appTitle="عقوبات تنتظر الموافقة";
 	}
-	elseif($app=='ok'){
+	elseif($app == 'ok'){
 		$appTitle="عقوبات موجودة حالياً";
 	}
-	elseif($app=='up'){
+	elseif($app == 'up'){
 		$appTitle="عقوبات تم رفعها";
 	}
-	elseif($app=='ref'){
+	elseif($app == 'ref'){
 		$appTitle="عقوبات تم رفضها";
 	}
 	else{
@@ -195,7 +195,7 @@ if(type=='global'){
 		<tr>
 			<td class=\"asTopHeader asCenter\" colspan=\"11\">
 	<ul class=\"svcbar asAS12\">
-		<li><em class=\"".($scope=='montype'?'selectedone':'one')."\">
+		<li><em class=\"".($scope == 'montype'?'selectedone':'one')."\">
 		<select class=\"asGoTo\" style=\"width:145px\" onChange=\"DF.chooseMonId(this,'$app',$days)\">
 			<option value=\"0\">&nbsp;&nbsp;-- عرض عقوبة معينة --</option>";
 		$arrindex=0;
@@ -207,7 +207,7 @@ if(type=='global'){
 		echo"
 		</select>
 		</em></li>
-		<li><em class=\"".($scope=='forum'?'selectedone':'one')."\">
+		<li><em class=\"".($scope == 'forum'?'selectedone':'one')."\">
 		<select class=\"asGoTo\" style=\"width:150px\" onChange=\"DF.chooseForumId(this,'$app',$days)\">
 			<option value=\"0\">&nbsp;&nbsp;-- عرض عقوبات منتدى --</option>";
 		foreach($Template->forumsList as $key=>$val){
@@ -217,23 +217,23 @@ if(type=='global'){
 		echo"
 		</select>
 		</em></li>
-		<li".($scope=='mod'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=mod&app=$app&days=$days$querystring\"><em>المنتديات التي تشرف عليها</em></a></li>
-		<li".($scope=='own'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=own&app=$app&days=$days$querystring\"><em>عقوبات التي طبقتها أنت</em></a></li>
-		<li".($scope=='all'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=all&app=$app&days=$days$querystring\"><em>جميع عقوبات</em></a></li>
+		<li".($scope == 'mod'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=mod&app=$app&days=$days$querystring\"><em>المنتديات التي تشرف عليها</em></a></li>
+		<li".($scope == 'own'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=own&app=$app&days=$days$querystring\"><em>عقوبات التي طبقتها أنت</em></a></li>
+		<li".($scope == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=all&app=$app&days=$days$querystring\"><em>جميع عقوبات</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($app=='wait'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=wait&days=$days$querystring\"><em>عقوبات تنتظر الموافقة</em></a></li>
-		<li".($app=='ok'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=ok&days=$days$querystring\"><em>عقوبات موجودة حالياً</em></a></li>
-		<li".($app=='up'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=up&days=$days$querystring\"><em>عقوبات تم رفعها</em></a></li>
-		<li".($app=='ref'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=ref&days=$days$querystring\"><em>عقوبات تم رفضها</em></a></li>
-		<li".($app=='all'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=all&days=$days$querystring\"><em>جميع عقوبات</em></a></li>
+		<li".($app == 'wait'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=wait&days=$days$querystring\"><em>عقوبات تنتظر الموافقة</em></a></li>
+		<li".($app == 'ok'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=ok&days=$days$querystring\"><em>عقوبات موجودة حالياً</em></a></li>
+		<li".($app == 'up'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=up&days=$days$querystring\"><em>عقوبات تم رفعها</em></a></li>
+		<li".($app == 'ref'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=ref&days=$days$querystring\"><em>عقوبات تم رفضها</em></a></li>
+		<li".($app == 'all'?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=all&days=$days$querystring\"><em>جميع عقوبات</em></a></li>
 	</ul>
 	<ul class=\"svcbar asAS12\">
-		<li".($days==30?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=30$querystring\"><em>آخر 30 يوم</em></a></li>
-		<li".($days==60?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=60$querystring\"><em>آخر 60 يوم</em></a></li>
-		<li".($days==180?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=180$querystring\"><em>آخر 6 أشهر</em></a></li>
-		<li".($days==365?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=365$querystring\"><em>آخر سنة</em></a></li>
-		<li".($days==-1?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=-1$querystring\"><em>جميع عقوبات</em></a></li>
+		<li".($days == 30?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=30$querystring\"><em>آخر 30 يوم</em></a></li>
+		<li".($days == 60?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=60$querystring\"><em>آخر 60 يوم</em></a></li>
+		<li".($days == 180?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=180$querystring\"><em>آخر 6 أشهر</em></a></li>
+		<li".($days == 365?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=365$querystring\"><em>آخر سنة</em></a></li>
+		<li".($days == -1?' class="selected"':'')."><a href=\"svc.php?svc=mons&type=global&scope=$scope&app=$app&days=-1$querystring\"><em>جميع عقوبات</em></a></li>
 	</ul>
 	</tr>
 	<form method=\"post\" action=\"svc.php?svc=mons&type=appglobal\">
@@ -262,14 +262,14 @@ if(u>0){
 	}
 		echo"
 		<tr>";
-		if(ulv>2&&$app!='all'&&$app!='up'&&$app!='ref'){
+		if(ulv > 2&&$app!='all'&&$app!='up'&&$app!='ref'){
 			echo"
 			<td class=\"asDarkB\"><nobr>&nbsp;</nobr></td>";
 		}
 			echo"
 			<td class=\"asDarkB\"><b>العضو</b></td>
 			<td class=\"asDarkB\"><b>العقوبة</b></td>";
-		if($app=='all'){
+		if($app == 'all'){
 			echo"
 			<td class=\"asDarkB\"><b>حالة<br>العقوبة</b></td>";
 		}
@@ -285,7 +285,7 @@ if(u>0){
 		
 	$checkSqlField="";
 	$checkSqlTable="";
-	if(ulv<4){
+	if(ulv < 4){
 		$checkSqlField="
 			,IF( NOT ISNULL(f.id) AND (".ulv." > 1 AND NOT ISNULL(mm.id) OR ".ulv." = 3 AND NOT ISNULL(c.id)) ,1,0) AS ismod
 			,IF( NOT ISNULL(f.id) AND (".ulv." = 3 AND NOT ISNULL(c.id)) ,1,0) AS ismon
@@ -330,7 +330,7 @@ if(u>0){
 			'refdate'=>'',
 			'days'=>''
 		);
-		if( ($app=='wait'||$app=='ok') && (($rs['montype']!=1&&$rs['montype']!=3&&ulv>2) || $rs['ismon']==1) ){
+		if( ($app == 'wait'||$app == 'ok') && (($rs['montype']!=1&&$rs['montype']!=3&&ulv > 2) || $rs['ismon'] == 1) ){
 			$mon['checkbox']="<input onClick=\"DF.checkRowClass(this,{$rs['id']},'normal');\" type=\"checkbox\" class=\"none\" name=\"mons[]\" value=\"{$rs['id']}|{$rs['userid']}|{$rs['forumid']}|{$rs['montype']}\">";
 			$checkCount++;
 		}
@@ -352,14 +352,14 @@ if(u>0){
 		}
 		echo"
 		<tr id=\"row{$rs['id']}\">";
-		if(ulv>2&&$app!='all'&&$app!='up'&&$app!='ref'){
+		if(ulv > 2&&$app!='all'&&$app!='up'&&$app!='ref'){
 			echo"
 			<td class=\"asNormalB asCenter\">{$mon['checkbox']}</td>";
 		}
 			echo"
 			<td class=\"asNormalB asAS12 asCenter\"><nobr>{$Template->userColorLink($rs['userid'], array($rs['uname'], $rs['ustatus'], $rs['ulevel'], $rs['usubmonitor']))}</nobr></td>
 			<td class=\"asNormalB asS12\"><nobr>{$mon['usermontypestr']}</nobr></td>";
-		if($app=='all'){
+		if($app == 'all'){
 			echo"
 			<td class=\"asNormalB asS12 asCenter\"><nobr>{$monstatusstr[$rs['status']]}</nobr></td>";
 		}
@@ -379,26 +379,26 @@ if(u>0){
 		</tr>";
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"11\"><br>-- لا توجد أي عقوبات بهذه المواصفات --<br><br></td>
 		</tr>";
 	}
-	if($checkCount>0&&($app=='wait'||$app=='ok')){
+	if($checkCount>0&&($app == 'wait'||$app == 'ok')){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"11\">
 			{$Template->button('تحديد الكل',' onClick="DF.checkAllBox(this)"')}&nbsp;&nbsp;";
-		if($app=='wait'){
+		if($app == 'wait'){
 			echo"
 			{$Template->button('موافقة على عقوبات المختارة'," onClick=\"DF.medalCmd(this,'app')\"")}&nbsp;&nbsp;";
 		}
-		if($app=='ok'){
+		if($app == 'ok'){
 			echo"
 			{$Template->button('رفع عقوبات المختارة'," onClick=\"DF.medalCmd(this,'up')\"")}&nbsp;&nbsp;";
 		}
-		if($app=='wait'||$app=='ok'){
+		if($app == 'wait'||$app == 'ok'){
 			echo"
 			{$Template->button('رفض عقوبات المختارة'," onClick=\"DF.medalCmd(this,'ref')\"")}";
 		}
@@ -410,7 +410,7 @@ if(u>0){
 	</form>
 	</table><br>";
 }
-elseif(type=='appglobal'&&ulv>2){
+elseif(type == 'appglobal'&&ulv > 2){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في موافقة ورفع ورفض عقوبات");
 	$app=$_POST['app'];
 	$type=$_POST['type'];
@@ -421,23 +421,23 @@ elseif(type=='appglobal'&&ulv>2){
 		if($redeclare!=checkredeclare){
 			$Template->errMsg("كان هناك خلل أثناء تخزين العملية!<br>يبدو أنه تم محاولة إدخال البيانات عدة مرات لسبب فني أو لخلل في الشبكة.<br>الرجاء التأكد من أن العملية انتهت بنجاح... نأسف على هذا.");
 		}
-		elseif($type=='app'){
+		elseif($type == 'app'){
 			for($x=0;$x<count($mons);$x++){
 				$exp=explode("|",$mons[$x]);
 				$monid=(int)$exp[0];
 				$userid=(int)$exp[1];
 				$forumid=(int)$exp[2];
 				$montype=(int)$exp[3];
-				if(ulv==4||($montype!=1&&$montype!=3)||in_array($forumid,$allowforums)){
+				if(ulv == 4||($montype!=1&&$montype!=3)||in_array($forumid,$allowforums)){
 					$mysql->update("mon SET status = 1 WHERE id = '$monid'", __FILE__, __LINE__);
 					$mysql->update("monflag SET agreeby = '".uid."', agreedate = '".time."' WHERE id = '$monid'", __FILE__, __LINE__);
 					if(in_array($montype,$userpermnums)){
 						$mysql->update("userperm SET $userpermfields[$montype] = 1 WHERE id = '$userid'", __FILE__, __LINE__);
 					}
-					if($montype==9){
+					if($montype == 9){
 						$mysql->update("user SET status = 0 WHERE id = '$userid'", __FILE__, __LINE__);
 					}
-					if($montype==1||$montype==3){
+					if($montype == 1||$montype == 3){
 						$from=(-$forumid);
 						$subject="الرسالة من {$mysql->get("forum","subject",$forumid)} الى {$mysql->get("user","name",$userid)}";
 					}
@@ -451,23 +451,23 @@ elseif(type=='appglobal'&&ulv>2){
 			}
 			$Template->msg("تمت موافقة على عقوبات المختارة بنجاح");
 		}
-		elseif($type=='up'){
+		elseif($type == 'up'){
 			for($x=0;$x<count($mons);$x++){
 				$exp=explode("|",$mons[$x]);
 				$monid=(int)$exp[0];
 				$userid=(int)$exp[1];
 				$forumid=(int)$exp[2];
 				$montype=(int)$exp[3];
-				if(ulv==4||($montype!=1&&$montype!=3)||in_array($forumid,$allowforums)){
+				if(ulv == 4||($montype!=1&&$montype!=3)||in_array($forumid,$allowforums)){
 					$mysql->update("mon SET status = 2 WHERE id = '$monid'", __FILE__, __LINE__);
 					$mysql->update("monflag SET upby = '".uid."', upmdate = '".time."' WHERE id = '$monid'", __FILE__, __LINE__);
 					if(in_array($montype,$userpermnums)){
 						$mysql->update("userperm SET $userpermfields[$montype] = 0 WHERE id = '$userid'", __FILE__, __LINE__);
 					}
-					if($montype==9){
+					if($montype == 9){
 						$mysql->update("user SET status = 1 WHERE id = '$userid'", __FILE__, __LINE__);
 					}
-					if($montype==1||$montype==3){
+					if($montype == 1||$montype == 3){
 						$from=(-$forumid);
 						$subject="الرسالة من {$mysql->get("forum","subject",$forumid)} الى {$mysql->get("user","name",$userid)}";
 					}
@@ -481,20 +481,20 @@ elseif(type=='appglobal'&&ulv>2){
 			}
 			$Template->msg("تم رفع عقوبات المختارة بنجاح");
 		}
-		elseif($type=='ref'){
+		elseif($type == 'ref'){
 			for($x=0;$x<count($mons);$x++){
 				$exp=explode("|",$mons[$x]);
 				$monid=(int)$exp[0];
 				$userid=(int)$exp[1];
 				$forumid=(int)$exp[2];
 				$montype=(int)$exp[3];
-				if(ulv==4||($montype!=1&&$montype!=3)||in_array($forumid,$allowforums)){
+				if(ulv == 4||($montype!=1&&$montype!=3)||in_array($forumid,$allowforums)){
 					$mysql->update("mon SET status = 3 WHERE id = '$monid'", __FILE__, __LINE__);
 					$mysql->update("monflag SET refby = '".uid."', refdate = '".time."' WHERE id = '$monid'", __FILE__, __LINE__);
 					if(in_array($montype,$userpermnums)){
 						$mysql->update("userperm SET $userpermfields[$montype] = 0 WHERE id = '$userid'", __FILE__, __LINE__);
 					}
-					if($montype==9){
+					if($montype == 9){
 						$mysql->update("user SET status = 1 WHERE id = '$userid'", __FILE__, __LINE__);
 					}
 				}
@@ -509,11 +509,11 @@ elseif(type=='appglobal'&&ulv>2){
 		$Template->errMsg("لم يتم تخزين العملية لسبب فني.<br><br>الرجاء إخبار الإدارة لتصحيح المشكلة.");
 	}
 }
-elseif(type=='addmon'){
+elseif(type == 'addmon'){
 	?>
 	<script type="text/javascript">
 	DF.checkSubmit=function(frm){
-		if(frm.montype.selectedIndex==0){
+		if(frm.montype.selectedIndex == 0){
 			alert("يجب عليك ان تختار نوع العقوبة من القائمة.");
 		}
 		else if(frm.usernote.value.length<10){
@@ -540,12 +540,12 @@ elseif(type=='addmon'){
 		'posttype'=>'other',
 		'postid'=>0
 	);
-	if(u==uid){
+	if(u == uid){
 		$moninfo['findError']=true;
 	}
 	else{
 		$user=$mysql->queryRow("SELECT level,name,status,submonitor FROM ".prefix."user WHERE id = '".u."' AND status = 1", __FILE__, __LINE__);
-		if(!$user||$user[0]>ulv||$user[0]==4){
+		if(!$user||$user[0]>ulv||$user[0] == 4){
 			$moninfo['findError']=true;
 		}
 		else{
@@ -553,14 +553,14 @@ elseif(type=='addmon'){
 			$moninfo['userinfo']['status'] = $user[2];
 			$moninfo['userinfo']['level'] = $user[0];
 			$moninfo['userinfo']['submonitor'] = $user[3];
-			if(method=='topic'){
+			if(method == 'topic'){
 				$topic=$mysql->queryRow("SELECT forumid,subject FROM ".prefix."topic WHERE id = '".t."' AND author = '".u."'", __FILE__, __LINE__);
 				if(!$topic){
 					$moninfo['findError']=true;
 				}
 				else{
 					$allow=$DF->showTools($topic[0]);
-					if($allow==0){
+					if($allow == 0){
 						$moninfo['modError']=true;
 					}
 					else{
@@ -573,14 +573,14 @@ elseif(type=='addmon'){
 					}
 				}
 			}
-			elseif(method=='post'){
+			elseif(method == 'post'){
 				$post=$mysql->queryRow("SELECT forumid,topicid FROM ".prefix."post WHERE id = '".p."' AND author = '".u."'", __FILE__, __LINE__);
 				if(!$post){
 					$moninfo['findError']=true;
 				}
 				else{
 					$allow=$DF->showTools($post[0]);
-					if($allow==0){
+					if($allow == 0){
 						$moninfo['modError']=true;
 					}
 					else{
@@ -593,7 +593,7 @@ elseif(type=='addmon'){
 					}
 				}
 			}
-			elseif(method=='pm'){
+			elseif(method == 'pm'){
 				$pmid=$DF->hashToNum(pm);
 				$pm=$mysql->queryRow("SELECT id FROM ".prefix."pm WHERE id = '$pmid' AND (author = ".u." OR pmfrom = ".u." OR pmto = ".u.")", __FILE__, __LINE__);
 				if(!$pm){
@@ -607,16 +607,16 @@ elseif(type=='addmon'){
 					$moninfo['targetmsg']="<a href=\"pm.php?mail=read&pm=".pm."\">انقر هنا للذهاب الى الرسالة</a>";
 				}
 			}
-			if($moninfo['findError']==false&&$moninfo['modError']==false&&(method=='topic'||method=='post')){
+			if($moninfo['findError'] == false&&$moninfo['modError'] == false&&(method == 'topic'||method == 'post')){
 				$moninfo['forumsubject']=$Template->forumLink($moninfo['forumid'],$mysql->get("forum","subject",$moninfo['forumid']));
 			}
 		}
 	}
 
-	if($moninfo['findError']==true){
+	if($moninfo['findError'] == true){
 		$Template->errMsg("لا يمكنك عقوبة هذه العضوية<br>قد يكون هناك عدة إسباب لهذا منها:<br><br><table><tr><td>* رقم العضوية التي تقوم بتطبيق عقوبة عليها هو خاطيء.</td></tr><tr><td>* لا عندك تصريح لتطبيق العقوبة على هذه العضوية.</td></tr><tr><td>* عملت تغير عنوان وصلات بشكل يدوي وهذا ممنوع في تطبيق عقوبات.</td></tr></table>");
 	}
-	if($moninfo['modError']==true){
+	if($moninfo['modError'] == true){
 		$Template->errMsg("لا يمكنك عقوبة هذه العضوية<br>بسبب انت لست مشرفاً للمنتدى الذي تعاقب العضو فيه");
 	}
 	
@@ -681,7 +681,7 @@ elseif(type=='addmon'){
 			$mon['refby']=$Template->userColorLink($rs['refby'], array($rs['rname'], $rs['rstatus'], $rs['rlevel'], $rs['rsubmonitor']));
 			$mon['refdate']=$DF->date($rs['refdate'],'date',true);
 		}
-		$className=($rs['status']==0 ? "asFixedB" : "asNormalB");
+		$className=($rs['status'] == 0 ? "asFixedB" : "asNormalB");
 		echo"
 		<tr id=\"row{$rs['id']}\">
 			<td class=\"$className asAS12 asCenter\"><nobr>{$Template->userColorLink($rs['userid'], array($rs['uname'], $rs['ustatus'], $rs['ulevel'], $rs['usubmonitor']))}</nobr></td>
@@ -700,12 +700,12 @@ elseif(type=='addmon'){
 				</nobr>
 			</td>
 		</tr>";
-		if($rs['status']==0){
+		if($rs['status'] == 0){
 			$waitmon++;
 		}
 		$count++;
 	}
-	if($count==0){
+	if($count == 0){
 		echo"
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"13\"><br>-- لا توجد أي عقوبات على العضو --<br><br></td>
@@ -766,13 +766,13 @@ elseif(type=='addmon'){
 			<td class=\"asNormalB\">
 			<select class=\"asGoTo\" style=\"width:300px\" name=\"montype\">
 				<option value=\"0\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- اختر نوع العقوبة --</option>";
-			if($moninfo['alloptions']==true){
+			if($moninfo['alloptions'] == true){
 				echo"
 				<option value=\"1\">وضع رقابة على مشاركات العضو في منتدى معين</option>";
 			}
 				echo"
 				<option value=\"2\">وضع رقابة على مشاركات العضو في جميع منتديات</option>";
-			if($moninfo['alloptions']==true){
+			if($moninfo['alloptions'] == true){
 				echo"
 				<option value=\"3\">منع العضو من مشاركة في منتدى معين</option>";
 			}
@@ -800,7 +800,7 @@ elseif(type=='addmon'){
 	</form>
 	</table>";
 }
-elseif(type=='insertmon'){
+elseif(type == 'insertmon'){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في إضافة عقوبة للعضو");
 	$redeclare=(int)$_POST['redeclare'];
 	$userid=(int)$_POST['userid'];
@@ -816,12 +816,12 @@ elseif(type=='insertmon'){
 	}
 	
 	$findError=false;
-	if($userid==uid){
+	if($userid == uid){
 		$findError=true;
 	}
 	else{
 		$user=$mysql->queryRow("SELECT level,name FROM ".prefix."user WHERE id = '$userid' AND status = 1", __FILE__, __LINE__);
-		if(!$user||$user[0]>ulv||$user[0]==4){
+		if(!$user||$user[0]>ulv||$user[0] == 4){
 			$findError=true;
 		}
 		else{
@@ -830,7 +830,7 @@ elseif(type=='insertmon'){
 			$agreedate=0;
 			$msg="تم إدخال العقوبة بنجاح لكن بحاجة الى موافقة مراقب ليتم تطبيقها.";
 			$allow=$DF->showTools($forumid);
-			if($allow==2||$montype!=1&&$montype!=3&&ulv>2){
+			if($allow == 2||$montype!=1&&$montype!=3&&ulv > 2){
 				$status=1;
 				$agreeby=uid;
 				$agreedate=time;
@@ -838,10 +838,10 @@ elseif(type=='insertmon'){
 				if(in_array($montype,$userpermnums)){
 					$mysql->update("userperm SET $userpermfields[$montype] = 1 WHERE id = '$userid'", __FILE__, __LINE__);
 				}
-				if($montype==9){
+				if($montype == 9){
 					$mysql->update("user SET status = 0 WHERE id = '$userid'", __FILE__, __LINE__);
 				}
-				if($montype==1||$montype==3){
+				if($montype == 1||$montype == 3){
 					$from=(-$forumid);
 					$subject="الرسالة من {$mysql->get("forum","subject",$forumid)} الى {$mysql->get("user","name",$userid)}";
 				}

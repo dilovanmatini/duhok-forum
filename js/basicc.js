@@ -127,7 +127,7 @@ var snowStorm = (function(window, document) {
   }
 
   function plusMinus(n) {
-    return (parseInt(rnd(2),10)===1?n*-1:n);
+    return (parseInt(rnd(2),10) === 1?n*-1:n);
   }
 
   this.randomizeWind = function() {
@@ -336,7 +336,7 @@ var snowStorm = (function(window, document) {
             }
           } else {
             s.twinkleFrame--;
-            s.o.style.visibility = (s.twinkleFrame && s.twinkleFrame%2===0?'hidden':'visible');
+            s.o.style.visibility = (s.twinkleFrame && s.twinkleFrame%2 === 0?'hidden':'visible');
           }
         }
       }
