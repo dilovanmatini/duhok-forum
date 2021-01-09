@@ -82,5 +82,5 @@ This script is distributed in the hope that it will be useful, but WITHOUT ANY W
 df@lelav.com
 
 ## Support - دعم
-Is Duhok Forum fits your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)\
-&#x202b;هل نسخة منتديات دهوك يناسب متطلباتك؟  [اشتري لي فنجان قهوة ☕](https://www.paypal.me/DilovanMatini)
+Does Duhok Forum fit your requirements?  [Buy Me a Coffee ☕](https://www.paypal.me/DilovanMatini)\
+&#x202b;هل نسخة منتديات دهوك يلائم متطلباتك؟  [اشتري لي فنجان قهوة ☕](https://www.paypal.me/DilovanMatini)
