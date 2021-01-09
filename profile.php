@@ -1214,7 +1214,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 	</form>
 	</table>";
 }
-elseif(type == 'updatedetails'&&ulv > 0){
+elseif( type == 'updatedetails' && ulv > 0 ){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في تعديل خيارات العضوية");
 	$proCountry=$DF->cleanText($_POST['proCountry']);
 	$proReceivePM=(int)$_POST['proReceivePM'];
@@ -1225,7 +1225,7 @@ elseif(type == 'updatedetails'&&ulv > 0){
 	$proBirthdayDay=(int)$_POST['proBirthdayDay'];
 	$proBirthdayMonth=(int)$_POST['proBirthdayMonth'];
 	$proBirthdayYear=(int)$_POST['proBirthdayYear'];
-	$proBirthday="{$proBirthdayYear}-{$proBirthdayMonth}-{$proBirthdayDay}";
+	$proBirthday = $DF->change_date("{$proBirthdayYear}-{$proBirthdayMonth}-{$proBirthdayDay}", "Y-m-d", "Y-m-d");
 	$proShowFriends=(int)$_POST['proShowFriends'];
 	$proShowBirthday=(int)$_POST['proShowBirthday'];
 	$proMarstatus=$DF->cleanText($_POST['proMarstatus']);
@@ -1237,13 +1237,13 @@ elseif(type == 'updatedetails'&&ulv > 0){
 	$ufArr[]="country = '{$proCountry}'";
 	$ufArr[]="city = '{$proCity}'";
 	$ufArr[]="state = '{$proState}'";
-	$ufArr[]="brithday = '{$proBirthday}'";
+	if( $DF->is_date( $proBirthday, 'Y-m-d' ) ) $ufArr[]="brithday = '{$proBirthday}'";
 	$ufArr[]="marstatus = '{$proMarstatus}'";
 	$ufArr[]="sex = {$proSex}";
 	$ufArr[]="occupation = '{$proOccupation}'";
-	if(ulv > 1) $ufArr[]="title = '{$proTitle}'";
+	if( ulv > 1 ) $ufArr[]="title = '{$proTitle}'";
 	$ufArr[]="biography = '{$proBiography}'";
-	$mysql->update("userflag SET ".implode(",",$ufArr)." WHERE id = ".uid."", __FILE__, __LINE__);
+	$mysql->update("userflag SET ".implode( ", ", $ufArr )." WHERE id = ".uid."", __FILE__, __LINE__);
 	$upArr=array();
 	$upArr[]="receivepm = {$proReceivePM}";
 	$upArr[]="hidebrowse = {$proHideBrowse}";

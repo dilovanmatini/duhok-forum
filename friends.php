@@ -18,48 +18,49 @@ define('_df_path', dirname(__FILE__)."/");
 require_once _df_path."globals.php";
 
 $Template->header();
-if(ulv == 0){
+
+if( ulv == 0 ){
 	$DF->goTo();
 	exit();
 }
 
 $uid = uid;
-if(ulv == 4 and auth > 0 and auth != uid){
-	$uname = $mysql->get("user", "name", auth);
-	if(!empty($uname)){
+if( ulv == 4 and auth > 0 and auth != uid ){
+	$uname = $mysql->get( "user", "name", auth );
+	if( !empty($uname) ){
 		$uid = auth;
 	}
 }
 
 /*
-status = 0 // wait request
-status = 1 // the friend is active
-status = 2 // refuse request
+status = 0 // request is waiting
+status = 1 // friend is active
+status = 2 // refusing request
 */
-if(type == ''){
-	$numPages = 20;
-	$scopeArr = array('wait', 'inref', 'friends', 'request', 'outref', 'block');
-	$scope = (in_array(scope, $scopeArr)) ? scope : 'friends';
+if( type == '' ){
+	$per_page = 20;
+	$scope_types = array('wait', 'inref', 'friends', 'request', 'outref', 'block');
+	$scope = in_array(scope, $scope_types) ? scope : 'friends';
 	$auth = auth;
 	$u = u;
-	$linkArr = array(
+	$link_arr = array(
 		'scope' => $scope,
 		'auth' 	=> $auth,
 		'u' 	=> $u
 	);
 	
-	$jsLinkArr = "";
-	foreach($linkArr as $key => $val){
-		$jsLinkArr .= ",'{$key}','{$val}'";
+	$js_link_arr = "";
+	foreach( $link_arr as $key => $val ){
+		$js_link_arr .= ",'{$key}','{$val}'";
 	}
-	if(!empty($jsLinkArr)){
-		$jsLinkArr = substr($jsLinkArr,1);
+	if( !empty($js_link_arr) ){
+		$js_link_arr = substr( $js_link_arr, 1 );
 	}
 	?>
 	<script type="text/javascript">
-	var linkArr=new Array(<?=$jsLinkArr?>);
+	var link_arr = new [<?=$js_link_arr?>];
 	DF.goToLink=function(arr){
-		document.location=DF.checkLink("friends.php",linkArr,arr);
+		document.location=DF.checkLink("friends.php",link_arr,arr);
 	};
 	DF.friends.check = function(t,id){
 		var types=new Array();
@@ -169,17 +170,17 @@ if(type == ''){
 		<tr>
 			<td class=\"asTopHeader asCenter\" colspan=\"4\"><nobr>
 			<ul class=\"svcbar asAS12\">
-				<li".(($scope == 'wait') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $linkArr, array('scope' => 'wait'))}\"><em>{$friends['wait']['button']}</em></a></li>
-				<li".(($scope == 'inref') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $linkArr, array('scope' => 'inref'))}\"><em>{$friends['inref']['button']}</em></a></li>
-				<li".(($scope == 'friends') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $linkArr, array('scope' => 'friends'))}\"><em>{$friends['friends']['button']}</em></a></li>
-				<li".(($scope == 'request') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $linkArr, array('scope' => 'request'))}\"><em>{$friends['request']['button']}</em></a></li>
-				<li".(($scope == 'outref') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $linkArr, array('scope' => 'outref'))}\"><em>{$friends['outref']['button']}</em></a></li>
-				<li".(($scope == 'block') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $linkArr, array('scope' => 'block'))}\"><em>{$friends['block']['button']}</em></a></li>
+				<li".(($scope == 'wait') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $link_arr, array('scope' => 'wait'))}\"><em>{$friends['wait']['button']}</em></a></li>
+				<li".(($scope == 'inref') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $link_arr, array('scope' => 'inref'))}\"><em>{$friends['inref']['button']}</em></a></li>
+				<li".(($scope == 'friends') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $link_arr, array('scope' => 'friends'))}\"><em>{$friends['friends']['button']}</em></a></li>
+				<li".(($scope == 'request') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $link_arr, array('scope' => 'request'))}\"><em>{$friends['request']['button']}</em></a></li>
+				<li".(($scope == 'outref') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $link_arr, array('scope' => 'outref'))}\"><em>{$friends['outref']['button']}</em></a></li>
+				<li".(($scope == 'block') ? ' class="selected"' : '')."><a href=\"{$DF->checkLink('friends.php', $link_arr, array('scope' => 'block'))}\"><em>{$friends['block']['button']}</em></a></li>
 			</ul></nobr>
 			</td>
 		</tr>
 		<tr>
-			<td class=\"asHeader\" colspan=\"4\">الأصدقاء - <span class=\"asC2\">{$friends[scope]['title']}</span></td>
+			<td class=\"asHeader\" colspan=\"4\">الأصدقاء - <span class=\"asC2\">".$friends["{$scope}"]['title']."</span></td>
 		</tr>
 		<tr>
 			<td class=\"asDarkB\"><nobr>عضو</nobr></td>
@@ -194,16 +195,16 @@ if(type == ''){
 	function nullid($name){
 		return "IF(ISNULL(u1.id), u2.{$name}, u1.{$name})";
 	}
-	$pgLimit=$DF->pgLimit($numPages);
+	$pgLimit=$DF->pgLimit($per_page);
   	$sql=$mysql->query("SELECT fb.id, ".nullid('id')." AS userid, ".nullid('name')." AS uname, ".nullid('status')." AS ustatus, ".nullid('level')." AS ulevel,
 		".nullid('submonitor')." AS usubmonitor,uf.picture, uf.posts, uf.title, uf.sex, uf.oldlevel,
-		IF(ISNULL(c.name), '--', c.name) AS country {$friends[scope]['sqlField']}
-	FROM ".prefix."{$friends[scope]['sqlTable']} AS fb
-	LEFT JOIN ".prefix."user AS u1 ON({$friends[scope]['sqlON1']})
-	LEFT JOIN ".prefix."user AS u2 ON({$friends[scope]['sqlON2']})
+		IF(ISNULL(c.name), '--', c.name) AS country ".$friends["{$scope}"]['sqlField']."
+	FROM ".prefix."".$friends["{$scope}"]['sqlTable']." AS fb
+	LEFT JOIN ".prefix."user AS u1 ON(".$friends["{$scope}"]['sqlON1'].")
+	LEFT JOIN ".prefix."user AS u2 ON(".$friends["{$scope}"]['sqlON2'].")
 	LEFT JOIN ".prefix."userflag AS uf ON(uf.id = IF(ISNULL(u1.id), u2.id, u1.id))
 	LEFT JOIN ".prefix."country AS c ON(c.code = IF(ISNULL(uf.id), '', uf.country))
-	{$friends[scope]['sqlWhere']} GROUP BY fb.id ORDER BY fb.date DESC LIMIT {$pgLimit},{$numPages}", __FILE__, __LINE__);
+	".$friends["{$scope}"]['sqlWhere']." GROUP BY fb.id ORDER BY fb.date DESC LIMIT {$pgLimit},{$per_page}", __FILE__, __LINE__);
 	$count=0;
 	while($rs = $mysql->fetchAssoc($sql)){
 		$user = $Template->userColorLink($rs['userid'], array($rs['uname'], $rs['ustatus'], $rs['ulevel'], $rs['usubmonitor']));
@@ -257,10 +258,15 @@ if(type == ''){
 	if($count == 0){
 		echo"
 		<tr>
-			<td class=\"asNormalB asCenter\" colspan=\"4\"><br>-- {$friends[scope]['error']} --<br><br></td>
+			<td class=\"asNormalB asCenter\" colspan=\"4\"><br>-- ".$friends["{$scope}"]['error']." --<br><br></td>
 		</tr>";
 	}
-	$pageing = $Template->paging("{$friends[scope]['sqlTable']} AS fb LEFT JOIN ".prefix."user AS u1 ON({$friends[scope]['sqlON1']}) LEFT JOIN ".prefix."user AS u2 ON({$friends[scope]['sqlON2']}) {$friends[scope]['sqlWhere']}", "friends.php?scope={$scope}&auth={$uid}&", "fb.id", $numPages);
+	$pageing = $Template->paging("".$friends["{$scope}"]['sqlTable']." AS fb
+		LEFT JOIN ".prefix."user AS u1 ON(".$friends["{$scope}"]['sqlON1'].")
+		LEFT JOIN ".prefix."user AS u2 ON(".$friends["{$scope}"]['sqlON2'].")
+		".$friends["{$scope}"]['sqlWhere']."",
+		"friends.php?scope={$scope}&auth={$uid}&", "fb.id", $per_page
+	);
 	if(!empty($pageing)){
 		echo"
 		<tr>
@@ -276,7 +282,7 @@ elseif(type == 'friends'){
 	showfriends = 2 // show for all friends and up levels
 	showfriends = 3 // just show for you and up levels
 	*/
-	$numPages = 20;//IF(ISNULL(f1.id) AND ISNULL(f2.id), 0, IF(ISNULL(f1.id), f1.id, f1.id))
+	$per_page = 20;//IF(ISNULL(f1.id) AND ISNULL(f2.id), 0, IF(ISNULL(f1.id), f1.id, f1.id))
  	$rs = $mysql->queryRow("SELECT u.id, u.name, u.status, u.level, IF(ISNULL(f1.id), 0, 1), IF(ISNULL(f2.id), 0, 1), up.showfriends
 	FROM ".prefix."user AS u
 	LEFT JOIN ".prefix."userperm AS up ON(up.id = u.id)
@@ -305,7 +311,7 @@ elseif(type == 'friends'){
 		function nullid($name){
 			return "IF(ISNULL(u1.id), u2.{$name}, u1.{$name})";
 		}
-		$pgLimit = $DF->pgLimit($numPages);
+		$pgLimit = $DF->pgLimit($per_page);
 		$sql=$mysql->query("SELECT
 			f.id, ".nullid('id')." AS userid, ".nullid('name')." AS uname, ".nullid('status')." AS ustatus, ".nullid('level')." AS ulevel,
 			".nullid('submonitor')." AS usubmonitor, uf.picture, uf.posts, uf.title, uf.sex, uf.oldlevel,
@@ -315,7 +321,7 @@ elseif(type == 'friends'){
 		LEFT JOIN ".prefix."user AS u2 ON(u2.id = f.friendid AND f.userid = {$u})
 		LEFT JOIN ".prefix."userflag AS uf ON(uf.id = IF(ISNULL(u1.id), u2.id, u1.id))
 		LEFT JOIN ".prefix."country AS c ON(c.code = uf.country)
-		WHERE f.status = 1 AND (f.userid = {$u} OR f.friendid = {$u}) GROUP BY f.id ORDER BY f.date DESC LIMIT {$pgLimit},{$numPages}", __FILE__, __LINE__);
+		WHERE f.status = 1 AND (f.userid = {$u} OR f.friendid = {$u}) GROUP BY f.id ORDER BY f.date DESC LIMIT {$pgLimit},{$per_page}", __FILE__, __LINE__);
 		$count=0;
 		while($rs=$mysql->fetchAssoc($sql)){
 			$user=$Template->userColorLink($rs['userid'], array($rs['uname'], $rs['ustatus'], $rs['ulevel'], $rs['usubmonitor']));
@@ -341,7 +347,7 @@ elseif(type == 'friends'){
 				<td class=\"asNormalB asCenter\" colspan=\"3\"><br>&nbsp;&nbsp;&nbsp;&nbsp;-- لا توجد أي صديق --&nbsp;&nbsp;&nbsp;&nbsp;<br><br></td>
 			</tr>";
 		}
-		$pageing=$Template->paging("friends AS f LEFT JOIN ".prefix."user AS u ON((u.id = f.userid AND f.friendid = {$u}) OR (u.id = f.friendid AND f.userid = {$u})) WHERE f.status = 1 AND (f.userid = {$u} OR f.friendid = {$u})","friends.php?type=friends&u={$u}&","f.id",$numPages);
+		$pageing=$Template->paging("friends AS f LEFT JOIN ".prefix."user AS u ON((u.id = f.userid AND f.friendid = {$u}) OR (u.id = f.friendid AND f.userid = {$u})) WHERE f.status = 1 AND (f.userid = {$u} OR f.friendid = {$u})","friends.php?type=friends&u={$u}&","f.id",$per_page);
 		if(!empty($pageing)){
 			echo"
 			<tr>

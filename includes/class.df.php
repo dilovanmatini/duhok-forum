@@ -234,6 +234,56 @@ class DF{
 		$l=(6-$f);
 		return $l;
 	}
+	function change_date( $date, $from_format, $to_format = 'Y-m-d' ){
+		$date_obj = DateTime::createFromFormat( $from_format, $date );
+		if( $date_obj ){
+			$date = $date_obj->format( $to_format );
+		}
+		else{
+			$date = '';
+		}
+		
+		return $date;
+	}
+	function is_date( $date, $format = 'Y-m-d', $year_range = '1800-2099' ){
+		if( empty($date) || strlen($date) < 8 || strlen($date) > 10 || strlen($format) != 5 ){
+			return false;
+		}
+		
+		$sep = substr( $format, 1, 1 );
+		$format_vars = explode( $sep, $format );
+		$date_vars = explode( $sep, $date );
+
+		$year = 0;
+		$month = 0;
+		$day = 0;
+		$x = 0;
+		foreach( $format_vars as $var ){
+			if( $var == 'Y' ){
+				$year = intval($date_vars[$x]);
+			}
+			elseif( $var == 'm' ){
+				$month = intval($date_vars[$x]);
+			}
+			elseif( $var == 'd' ){
+				$day = intval($date_vars[$x]);
+			}
+			else{
+				return false;
+			}
+			$x++;
+		}
+		
+		$year_range = explode( '-', $year_range );
+		$year_start = intval($year_range[0]);
+		$year_end = intval($year_range[1]);
+		
+		if( $year < $year_start || $year > $year_end ){
+			return false;
+		}
+		
+		return checkdate( $month, $day, $year );
+	}
 	function picError( $size = 100, $type = '' ){
 		$sizes = [ 1, 32, 64, 100 ];
 		if( !in_array($size, $sizes) ){
@@ -652,7 +702,7 @@ class DF{
 		if(_df_script == 'forums'){
 			$varList['topicsOrderBy']=array('define'=>'topics_order_by','default'=>'posts','link'=>self);
 		}
-		if(_df_script == 'topics'){
+		if(_df_script == 'topics'||_df_script == 'wait'){
 			$varList['topicsSignature']=array('define'=>'topics_signature','default'=>'hidden','link'=>self);
 		}
 		if(_df_script == 'active'){

@@ -264,6 +264,9 @@ switch( _df_script ){
 	case 'topics':
 		$_this_forum = (int)$mysql->get( "topic", "forumid", t );
 	break;
+	case 'wait':
+		$_this_forum = f;
+	break;
 	case 'print':
 	case 'sendtopic':
 		$_this_forum = (int)$mysql->get( "topic", "forumid", t );

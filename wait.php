@@ -316,7 +316,7 @@ while($post=$mysql->fetchAssoc($sql)){
 				if($post['ahideposts'] == 0||$post['author'] == uid||$is_moderator){
 					echo str_replace("\\\"","",$post['message'])."<br>";
 				}
-				if(topics_signature == 'visible'&&!empty($post['signature'])){
+				if( topics_signature == 'visible' && !empty($post['signature']) ){
 					echo"
 					<fieldset class=\"gray\">
 						<legend>&nbsp;التوقيع</legend>";

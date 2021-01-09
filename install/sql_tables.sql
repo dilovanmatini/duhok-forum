@@ -598,7 +598,7 @@ CREATE TABLE _prfx_userflag (
   picture varchar(255) NOT NULL,
   photo varchar(255) NOT NULL,
   sex tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  brithday char(10) NOT NULL DEFAULT '1900-01-01',
+  brithday DATE NULL DEFAULT NULL,
   age tinyint(3) UNSIGNED NOT NULL,
   country char(2) NOT NULL,
   best_player varchar(255) NOT NULL,

@@ -630,7 +630,7 @@ class Template{
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=surveys\"><nobr>استفتاءات</nobr></a></td>";
 		$mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=useractivity\"><nobr>نشاط أعضاء</nobr></a></td>";
 		if(ulv > 2) $mtRows.="<td class=\"asTitle asAC1 asAS12\"><a href=\"svc.php?svc=modactivity\"><nobr>نشاط مشرفين</nobr></a></td>";
-		if($this->DF->catch['is_moderator']&&(_df_script == 'forums'||_df_script == 'topics')){
+		if( $this->DF->catch['is_moderator'] && ( _df_script == 'forums' || _df_script == 'topics' || _df_script == 'wait' )){
 			$f=$this->DF->catch['_this_forum'];
 			$forumPM=$this->DFOutput->count("pm WHERE author = '-{$f}' AND pmout = 0 AND pmread = 0 AND status = 1 AND pmlist = 0");
 			$forumPost=$this->DFOutput->count("post WHERE forumid = '{$f}' AND moderate = 1 ");
