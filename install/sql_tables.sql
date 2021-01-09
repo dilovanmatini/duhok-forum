@@ -10,19 +10,19 @@ CREATE TABLE _prfx_blocks (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
   blockid int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_category;
 CREATE TABLE _prfx_category (
   id int(10) UNSIGNED NOT NULL,
-  subject varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
   sort tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   monitor int(10) UNSIGNED NOT NULL DEFAULT '0',
   archive tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  level tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  status tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
-  hidden tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `level` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `hidden` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   hidemonhome tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   hidemoninfo tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   hidemonprofile tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
@@ -32,25 +32,25 @@ CREATE TABLE _prfx_category (
 DROP TABLE IF EXISTS _prfx_changename;
 CREATE TABLE _prfx_changename (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   userid int(10) UNSIGNED NOT NULL,
-  newname varchar(50) NOT NULL,
+  `newname` varchar(50) NOT NULL,
   oldname varchar(50) NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_chat;
 CREATE TABLE _prfx_chat (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  message text NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `message` text NOT NULL,
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_complain;
 CREATE TABLE _prfx_complain (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '3',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '3',
   forumid smallint(5) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
   postid int(10) UNSIGNED NOT NULL,
@@ -69,23 +69,23 @@ CREATE TABLE _prfx_complain (
 DROP TABLE IF EXISTS _prfx_config;
 CREATE TABLE _prfx_config (
   id int(10) UNSIGNED NOT NULL,
-  type tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   variable varchar(255) DEFAULT NULL,
-  value text
+  `value` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_country;
 CREATE TABLE _prfx_country (
   id int(10) UNSIGNED NOT NULL,
   code char(2) NOT NULL,
-  name char(25) NOT NULL
+  `name` char(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_cpvisit;
 CREATE TABLE _prfx_cpvisit (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_favorite;
@@ -99,17 +99,17 @@ DROP TABLE IF EXISTS _prfx_forum;
 CREATE TABLE _prfx_forum (
   id int(10) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
-  subject varchar(255) NOT NULL,
-  description mediumtext NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
   logo varchar(255) NOT NULL,
   sort tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  level tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `level` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   topics int(10) UNSIGNED NOT NULL DEFAULT '0',
   posts int(10) UNSIGNED NOT NULL DEFAULT '0',
   lpauthor int(10) UNSIGNED NOT NULL DEFAULT '0',
   lpdate int(10) UNSIGNED NOT NULL DEFAULT '0',
-  status tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
-  hidden tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `hidden` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   sex tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   archive tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
   hidemodhome tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
@@ -124,9 +124,9 @@ CREATE TABLE _prfx_forumbrowse (
   id int(10) UNSIGNED NOT NULL,
   forumid smallint(5) UNSIGNED NOT NULL,
   visit int(10) UNSIGNED NOT NULL DEFAULT '1',
-  year smallint(4) UNSIGNED ZEROFILL NOT NULL,
-  month tinyint(2) UNSIGNED ZEROFILL NOT NULL,
-  day tinyint(2) UNSIGNED ZEROFILL NOT NULL,
+  `year` smallint(4) UNSIGNED ZEROFILL NOT NULL,
+  `month` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
+  `day` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   hour tinyint(2) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -159,22 +159,22 @@ CREATE TABLE _prfx_forumusers (
 DROP TABLE IF EXISTS _prfx_fpass;
 CREATE TABLE _prfx_fpass (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   userid int(10) UNSIGNED NOT NULL,
   randcode char(32) NOT NULL,
   sendip int(11) NOT NULL,
   confirmip int(11) NOT NULL,
   confirmdate int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_friends;
 CREATE TABLE _prfx_friends (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   userid int(11) NOT NULL,
   friendid int(11) NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_hacker;
@@ -182,11 +182,11 @@ CREATE TABLE _prfx_hacker (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL DEFAULT '0',
   ip int(11) NOT NULL,
-  url varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
   referer varchar(255) NOT NULL,
-  subject varchar(255) NOT NULL,
-  count int(10) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `subject` varchar(255) NOT NULL,
+  `count` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_ipban;
@@ -201,8 +201,8 @@ CREATE TABLE _prfx_ipban (
 DROP TABLE IF EXISTS _prfx_language;
 CREATE TABLE _prfx_language (
   id int(10) UNSIGNED NOT NULL,
-  subject varchar(100) NOT NULL,
-  filename varchar(100) NOT NULL
+  `subject` varchar(100) NOT NULL,
+  `filename` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_listsrows;
@@ -216,19 +216,19 @@ CREATE TABLE _prfx_loginip (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
   ip int(11) NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_loginsession;
 CREATE TABLE _prfx_loginsession (
   id int(11) UNSIGNED NOT NULL,
-  hash char(32) NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `hash` char(32) NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   userid int(11) UNSIGNED NOT NULL,
   ip char(11) NOT NULL,
   useragent text NOT NULL,
   lastdate int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_medal;
@@ -236,32 +236,32 @@ CREATE TABLE _prfx_medal (
   id int(10) UNSIGNED NOT NULL,
   listid int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   added int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_medallists;
 CREATE TABLE _prfx_medallists (
   id int(10) UNSIGNED NOT NULL,
   forumid mediumint(8) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  subject varchar(255) NOT NULL,
-  days smallint(5) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `subject` varchar(255) NOT NULL,
+  `days` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   points tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  filename varchar(50) NOT NULL,
-  close tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `filename` varchar(50) NOT NULL,
+  `close` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   added int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_medalphotos;
 CREATE TABLE _prfx_medalphotos (
   id int(10) UNSIGNED NOT NULL,
   forumid mediumint(8) UNSIGNED NOT NULL,
-  filename varchar(50) NOT NULL,
+  `filename` varchar(50) NOT NULL,
   added int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_modactivity;
@@ -271,7 +271,7 @@ CREATE TABLE _prfx_modactivity (
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   points smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_moderator;
@@ -280,7 +280,7 @@ CREATE TABLE _prfx_moderator (
   userid int(10) UNSIGNED NOT NULL,
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
-  block tinyint(1) NOT NULL DEFAULT '0'
+  `block` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_moderator_block;
@@ -289,15 +289,15 @@ CREATE TABLE _prfx_moderator_block (
   userid int(10) UNSIGNED NOT NULL,
   block_id int(10) UNSIGNED NOT NULL,
   cause varchar(255) NOT NULL,
-  type tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   step tinyint(4) NOT NULL DEFAULT '1',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_mon;
 CREATE TABLE _prfx_mon (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   userid int(10) UNSIGNED NOT NULL,
   forumid mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   montype tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
@@ -323,13 +323,13 @@ CREATE TABLE _prfx_monflag (
 DROP TABLE IF EXISTS _prfx_notification;
 CREATE TABLE _prfx_notification (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   author int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  type char(3) NOT NULL,
+  `type` char(3) NOT NULL,
   topicid int(10) UNSIGNED NOT NULL DEFAULT '0',
   postid int(10) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_online;
@@ -337,29 +337,29 @@ CREATE TABLE _prfx_online (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
   forumid smallint(5) UNSIGNED NOT NULL,
-  level tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `level` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   hidebrowse tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   ip int(11) NOT NULL,
-  url varchar(100) NOT NULL,
-  date int(10) UNSIGNED NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `date` int(10) UNSIGNED NOT NULL,
   lastdate int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_photos;
 CREATE TABLE _prfx_photos (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  filename varchar(100) NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `filename` varchar(100) NOT NULL,
   filetype varchar(100) NOT NULL,
   filesize int(10) UNSIGNED NOT NULL DEFAULT '0',
   filetitle varchar(255) NOT NULL,
   phototype varchar(20) NOT NULL,
   targettype varchar(30) NOT NULL,
   targetid int(10) UNSIGNED NOT NULL DEFAULT '0',
-  description text NOT NULL,
+  `description` text NOT NULL,
   sdescription varchar(255) NOT NULL,
   addby int(10) UNSIGNED NOT NULL DEFAULT '0',
-  datetime datetime NOT NULL
+  `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_pm;
@@ -367,7 +367,7 @@ CREATE TABLE _prfx_pm (
   id int(10) UNSIGNED NOT NULL,
   author int(10) NOT NULL,
   sender int(10) UNSIGNED NOT NULL DEFAULT '0',
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   redeclare int(10) UNSIGNED NOT NULL DEFAULT '0',
   pmlist tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   pmfrom int(10) NOT NULL,
@@ -375,14 +375,14 @@ CREATE TABLE _prfx_pm (
   pmread tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   pmout tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   reply tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  subject varchar(255) NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `subject` varchar(255) NOT NULL,
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_pmmessage;
 CREATE TABLE _prfx_pmmessage (
   id int(10) UNSIGNED NOT NULL,
-  message text NOT NULL
+  `message` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_post;
@@ -392,14 +392,14 @@ CREATE TABLE _prfx_post (
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   redeclare int(10) UNSIGNED NOT NULL DEFAULT '0',
-  hidden tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `hidden` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   moderate tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   trash tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   author int(10) UNSIGNED NOT NULL,
   editby int(10) UNSIGNED NOT NULL,
   editdate int(10) UNSIGNED NOT NULL,
   editnum smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_postmessage;
@@ -409,14 +409,14 @@ CREATE TABLE _prfx_postmessage (
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   operations text NOT NULL,
-  message text NOT NULL
+  `message` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_style;
 CREATE TABLE _prfx_style (
   id int(10) UNSIGNED NOT NULL,
-  subject varchar(100) NOT NULL,
-  filename varchar(100) NOT NULL
+  `subject` varchar(100) NOT NULL,
+  `filename` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_survey;
@@ -424,13 +424,13 @@ CREATE TABLE _prfx_survey (
   id int(10) UNSIGNED NOT NULL,
   forumid int(10) UNSIGNED NOT NULL,
   question varchar(255) NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  secret tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  days int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `secret` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `days` int(10) UNSIGNED NOT NULL DEFAULT '0',
   posts int(10) UNSIGNED NOT NULL DEFAULT '0',
   added int(10) UNSIGNED NOT NULL,
-  start int(10) UNSIGNED NOT NULL,
-  end int(10) UNSIGNED NOT NULL
+  `start` int(10) UNSIGNED NOT NULL,
+  `end` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_surveyoptions;
@@ -438,7 +438,7 @@ CREATE TABLE _prfx_surveyoptions (
   id int(10) UNSIGNED NOT NULL,
   surveyid int(10) UNSIGNED NOT NULL,
   votes int(10) UNSIGNED NOT NULL DEFAULT '0',
-  value varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
   other varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -449,14 +449,14 @@ CREATE TABLE _prfx_surveyvotes (
   optionid int(10) UNSIGNED NOT NULL,
   topicid int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_template;
 CREATE TABLE _prfx_template (
   id int(10) UNSIGNED NOT NULL,
-  name varchar(100) NOT NULL,
-  text mediumtext
+  `name` varchar(100) NOT NULL,
+  `text` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_title;
@@ -464,18 +464,18 @@ CREATE TABLE _prfx_title (
   id int(10) UNSIGNED NOT NULL,
   listid int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_titlelists;
 CREATE TABLE _prfx_titlelists (
   id int(10) UNSIGNED NOT NULL,
   forumid mediumint(8) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  global tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  subject varchar(255) NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `global` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `subject` varchar(255) NOT NULL,
   added int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_titleuse;
@@ -483,9 +483,9 @@ CREATE TABLE _prfx_titleuse (
   id int(10) UNSIGNED NOT NULL,
   listid int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  status tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   added int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_topic;
@@ -494,16 +494,16 @@ CREATE TABLE _prfx_topic (
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   redeclare int(10) UNSIGNED NOT NULL DEFAULT '0',
-  status tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
-  hidden tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `hidden` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   sticky tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   moderate tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   trash tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   archive tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
   survey int(10) UNSIGNED NOT NULL DEFAULT '0',
-  top tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `top` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   link tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  subject varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
   author int(10) UNSIGNED NOT NULL,
   posts smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   views int(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -514,7 +514,7 @@ CREATE TABLE _prfx_topic (
   editnum smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   allownotify text NOT NULL,
   viewforusers tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_topicarchive;
@@ -523,7 +523,7 @@ CREATE TABLE _prfx_topicarchive (
   forumid mediumint(8) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   author int(10) UNSIGNED NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_topicedit;
@@ -531,9 +531,9 @@ CREATE TABLE _prfx_topicedit (
   id int(10) UNSIGNED NOT NULL,
   topicid int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
-  subject varchar(255) NOT NULL,
-  message text NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `subject` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_topicmessage;
@@ -542,7 +542,7 @@ CREATE TABLE _prfx_topicmessage (
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   operations text NOT NULL,
-  message text NOT NULL
+  `message` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_topicusers;
@@ -561,22 +561,22 @@ CREATE TABLE _prfx_trylogin (
   id int(10) UNSIGNED NOT NULL,
   userid int(10) UNSIGNED NOT NULL,
   ip int(11) NOT NULL,
-  count int(10) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `count` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_user;
 CREATE TABLE _prfx_user (
   id int(10) UNSIGNED NOT NULL,
-  status tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
   active tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  name varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   entername varchar(100) NOT NULL,
-  password char(32) NOT NULL,
+  `password` char(32) NOT NULL,
   keycode char(32) NOT NULL,
   code char(3) NOT NULL,
-  level tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
-  date int(10) UNSIGNED NOT NULL,
+  `level` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `date` int(10) UNSIGNED NOT NULL,
   submonitor int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -587,7 +587,7 @@ CREATE TABLE _prfx_useractivity (
   forumid smallint(5) UNSIGNED NOT NULL,
   catid smallint(5) UNSIGNED NOT NULL,
   points smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_userflag;
@@ -604,7 +604,7 @@ CREATE TABLE _prfx_userflag (
   best_player varchar(255) NOT NULL,
   best_club varchar(255) NOT NULL,
   best_team varchar(255) NOT NULL,
-  state varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
   city varchar(255) NOT NULL,
   ip int(11) NOT NULL,
   allip text NOT NULL,
@@ -612,7 +612,7 @@ CREATE TABLE _prfx_userflag (
   marstatus varchar(255) NOT NULL,
   biography mediumtext NOT NULL,
   occupation varchar(255) NOT NULL,
-  signature mediumtext NOT NULL,
+  `signature` mediumtext NOT NULL,
   style varchar(255) NOT NULL,
   lists mediumtext NOT NULL,
   pmlists mediumtext NOT NULL,
@@ -642,11 +642,11 @@ DROP TABLE IF EXISTS _prfx_useronline;
 CREATE TABLE _prfx_useronline (
   ip int(11) NOT NULL,
   userid int(11) NOT NULL,
-  level tinyint(1) NOT NULL DEFAULT '0',
+  `level` tinyint(1) NOT NULL DEFAULT '0',
   forumid smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   hidebrowse tinyint(1) NOT NULL DEFAULT '0',
-  url varchar(255) NOT NULL,
-  date int(10) UNSIGNED NOT NULL
+  `url` varchar(255) NOT NULL,
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS _prfx_userperm;
@@ -687,7 +687,7 @@ DROP TABLE IF EXISTS _prfx_visitors;
 CREATE TABLE _prfx_visitors (
   ip int(11) NOT NULL,
   forumid smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  date int(10) UNSIGNED NOT NULL
+  `date` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -706,9 +706,9 @@ ALTER TABLE _prfx_category
   ADD KEY sort (sort),
   ADD KEY monitor (monitor),
   ADD KEY archive (archive),
-  ADD KEY level (level),
-  ADD KEY status (status),
-  ADD KEY hidden (hidden),
+  ADD KEY `level` (`level`),
+  ADD KEY `status` (`status`),
+  ADD KEY `hidden` (`hidden`),
   ADD KEY hidemonhome (hidemonhome),
   ADD KEY hidemoninfo (hidemoninfo),
   ADD KEY hidemonprofile (hidemonprofile),
@@ -716,7 +716,7 @@ ALTER TABLE _prfx_category
 
 ALTER TABLE _prfx_changename
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY userid (userid);
 
 ALTER TABLE _prfx_chat
@@ -725,7 +725,7 @@ ALTER TABLE _prfx_chat
 
 ALTER TABLE _prfx_complain
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY forumid (forumid),
   ADD KEY userid (userid),
   ADD KEY postid (postid),
@@ -737,7 +737,7 @@ ALTER TABLE _prfx_complain
 
 ALTER TABLE _prfx_config
   ADD PRIMARY KEY (id),
-  ADD KEY type (type),
+  ADD KEY `type` (`type`),
   ADD KEY variable (variable);
 
 ALTER TABLE _prfx_country
@@ -757,9 +757,9 @@ ALTER TABLE _prfx_forum
   ADD PRIMARY KEY (id),
   ADD KEY catid (catid),
   ADD KEY sort (sort),
-  ADD KEY level (level),
-  ADD KEY status (status),
-  ADD KEY hidden (hidden),
+  ADD KEY `level` (`level`),
+  ADD KEY `status` (`status`),
+  ADD KEY `hidden` (`hidden`),
   ADD KEY sex (sex),
   ADD KEY archive (archive),
   ADD KEY hidemodhome (hidemodhome),
@@ -771,9 +771,9 @@ ALTER TABLE _prfx_forum
 ALTER TABLE _prfx_forumbrowse
   ADD PRIMARY KEY (id),
   ADD KEY forumid (forumid),
-  ADD KEY year (year),
-  ADD KEY month (month),
-  ADD KEY day (day),
+  ADD KEY `year` (`year`),
+  ADD KEY `month` (`month`),
+  ADD KEY `day` (`day`),
   ADD KEY hour (hour);
 
 ALTER TABLE _prfx_forumflag
@@ -799,12 +799,12 @@ ALTER TABLE _prfx_forumusers
 
 ALTER TABLE _prfx_fpass
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY userid (userid);
 
 ALTER TABLE _prfx_friends
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY userid (userid),
   ADD KEY friendid (friendid);
 
@@ -828,22 +828,22 @@ ALTER TABLE _prfx_loginip
 ALTER TABLE _prfx_loginsession
   ADD PRIMARY KEY (id),
   ADD KEY userid (userid),
-  ADD KEY status (status);
+  ADD KEY `status` (`status`);
 
 ALTER TABLE _prfx_medal
   ADD PRIMARY KEY (id),
   ADD KEY listid (listid),
   ADD KEY userid (userid),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY added (added);
 
 ALTER TABLE _prfx_medallists
   ADD PRIMARY KEY (id),
   ADD KEY forumid (forumid),
-  ADD KEY status (status),
-  ADD KEY days (days),
+  ADD KEY `status` (`status`),
+  ADD KEY `days` (`days`),
   ADD KEY points (points),
-  ADD KEY close (close),
+  ADD KEY `close` (`close`),
   ADD KEY added (added);
 
 ALTER TABLE _prfx_medalphotos
@@ -862,18 +862,18 @@ ALTER TABLE _prfx_moderator
   ADD KEY userid (userid),
   ADD KEY forumid (forumid),
   ADD KEY catid (catid),
-  ADD KEY block (block);
+  ADD KEY `block` (`block`);
 
 ALTER TABLE _prfx_moderator_block
   ADD PRIMARY KEY (id),
   ADD KEY userid (userid),
   ADD KEY block_id (block_id),
-  ADD KEY type (type),
+  ADD KEY `type` (`type`),
   ADD KEY step (step);
 
 ALTER TABLE _prfx_mon
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY userid (userid),
   ADD KEY forumid (forumid),
   ADD KEY montype (montype),
@@ -889,10 +889,10 @@ ALTER TABLE _prfx_monflag
 
 ALTER TABLE _prfx_notification
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY author (author),
   ADD KEY userid (userid),
-  ADD KEY type (type),
+  ADD KEY `type` (`type`),
   ADD KEY topicid (topicid),
   ADD KEY postid (postid);
 
@@ -900,25 +900,25 @@ ALTER TABLE _prfx_online
   ADD PRIMARY KEY (id),
   ADD KEY userid (userid),
   ADD KEY forumid (forumid),
-  ADD KEY level (level),
+  ADD KEY `level` (`level`),
   ADD KEY hidebrowse (hidebrowse);
 
 ALTER TABLE _prfx_photos
   ADD PRIMARY KEY (id),
-  ADD KEY position (status),
-  ADD KEY filename (filename),
+  ADD KEY `status` (`status`),
+  ADD KEY `filename` (`filename`),
   ADD KEY phototype (phototype),
   ADD KEY targettype (targettype),
   ADD KEY targetid (targetid),
   ADD KEY addby (addby),
-  ADD KEY recordts (datetime),
+  ADD KEY `datetime` (`datetime`),
   ADD KEY sdescription (sdescription(30));
 
 ALTER TABLE _prfx_pm
   ADD PRIMARY KEY (id),
   ADD KEY author (author),
   ADD KEY sender (sender),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY redeclare (redeclare),
   ADD KEY pmlist (pmlist),
   ADD KEY pmfrom (pmfrom),
@@ -936,7 +936,7 @@ ALTER TABLE _prfx_post
   ADD KEY forumid (forumid),
   ADD KEY catid (catid),
   ADD KEY redeclare (redeclare),
-  ADD KEY hidden (hidden),
+  ADD KEY `hidden` (`hidden`),
   ADD KEY moderate (moderate),
   ADD KEY trash (trash),
   ADD KEY author (author),
@@ -955,9 +955,9 @@ ALTER TABLE _prfx_style
 ALTER TABLE _prfx_survey
   ADD PRIMARY KEY (id),
   ADD KEY forumid (forumid),
-  ADD KEY status (status),
-  ADD KEY secret (secret),
-  ADD KEY days (days),
+  ADD KEY `status` (`status`),
+  ADD KEY `secret` (`secret`),
+  ADD KEY `days` (`days`),
   ADD KEY posts (posts),
   ADD KEY added (added);
 
@@ -975,42 +975,42 @@ ALTER TABLE _prfx_surveyvotes
 
 ALTER TABLE _prfx_template
   ADD PRIMARY KEY (id),
-  ADD KEY name (name);
+  ADD KEY `name` (`name`);
 
 ALTER TABLE _prfx_title
   ADD PRIMARY KEY (id),
   ADD KEY listid (listid),
   ADD KEY userid (userid),
-  ADD KEY status (status);
+  ADD KEY `status` (`status`);
 
 ALTER TABLE _prfx_titlelists
   ADD PRIMARY KEY (id),
   ADD KEY forumid (forumid),
-  ADD KEY status (status),
-  ADD KEY global (global),
+  ADD KEY `status` (`status`),
+  ADD KEY `global` (`global`),
   ADD KEY added (added);
 
 ALTER TABLE _prfx_titleuse
   ADD PRIMARY KEY (id),
   ADD KEY listid (listid),
   ADD KEY userid (userid),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY added (added);
 
 ALTER TABLE _prfx_topic
   ADD PRIMARY KEY (id),
-  ADD KEY date (date),
+  ADD KEY `date` (`date`),
   ADD KEY sticky (sticky),
   ADD KEY forumid (forumid),
   ADD KEY catid (catid),
   ADD KEY redeclare (redeclare),
-  ADD KEY status (status),
-  ADD KEY hidden (hidden),
+  ADD KEY `status` (`status`),
+  ADD KEY `hidden` (`hidden`),
   ADD KEY moderate (moderate),
   ADD KEY trash (trash),
   ADD KEY archive (archive),
   ADD KEY survey (survey),
-  ADD KEY top (top),
+  ADD KEY `top` (`top`),
   ADD KEY link (link),
   ADD KEY author (author),
   ADD KEY posts (posts),
@@ -1049,11 +1049,11 @@ ALTER TABLE _prfx_trylogin
 
 ALTER TABLE _prfx_user
   ADD PRIMARY KEY (id),
-  ADD KEY status (status),
+  ADD KEY `status` (`status`),
   ADD KEY active (active),
   ADD KEY entername (entername(10)) USING BTREE,
-  ADD KEY name (name(10)) USING BTREE,
-  ADD KEY level (level),
+  ADD KEY `name` (`name`(10)) USING BTREE,
+  ADD KEY `level` (`level`),
   ADD KEY submonitor (submonitor);
 
 ALTER TABLE _prfx_useractivity
@@ -1082,7 +1082,7 @@ ALTER TABLE _prfx_userlock
 ALTER TABLE _prfx_useronline
   ADD PRIMARY KEY (ip),
   ADD KEY userid (userid),
-  ADD KEY level (level),
+  ADD KEY `level` (`level`),
   ADD KEY forumid (forumid),
   ADD KEY hidebrowse (hidebrowse);
 

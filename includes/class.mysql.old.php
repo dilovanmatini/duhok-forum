@@ -115,12 +115,11 @@ class DBOld{
 			$this->error( $e->getMessage(), $this->file, $this->line, $this->display_error );
 		}
 	}
-	function get($table, $field, $id, $where='id', $other=''){
-		$sql=$this->query("SELECT $field FROM ".prefix."$table WHERE $where = '$id' $other", __FILE__, __LINE__);
-		if($this->numRows($sql)>0){
-			$rs=$this->fetchRow($sql);
-			return $rs[0];
-		}
+	function get( $table, $field, $id, $where = 'id', $other = '' ){
+		$result = $this->execute("SELECT {$field} FROM ".prefix."{$table} WHERE {$where} = :id {$other}", [
+			'id' => $id
+		], __FILE__, __LINE__)->fetch(PDO::FETCH_NUM);
+		return $result[0];
 	}
 	function get_lastid(){
 		$result = $this->queryRow("SELECT LAST_INSERT_ID()", $this->file, $this->line);

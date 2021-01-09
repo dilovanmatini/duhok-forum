@@ -1305,40 +1305,43 @@ class Template{
 			'$pm[0]','$message'
 		)", __FILE__, __LINE__);
 	}
-	function userColorLink($uid, $user = array(), $catch = true, $title = '', $notlink = false){
-		if($uid > 0){
-			if($catch and isset($this->DF->catch['userColorLink'][$uid])){
-				return $this->DF->catch['userColorLink'][$uid];
+	function userColorLink( $uid, $user = [], $catch = true, $title = '', $notlink = false ){
+		if( $uid <= 0 ){
+			return;
+		}
+		if( $catch && isset($this->DF->catch['userColorLink'][$uid]) ){
+			return $this->DF->catch['userColorLink'][$uid];
+		}
+		else{
+			if( count($user) == 0 ){
+				$user = $this->mysql->execute("SELECT name, status, level, submonitor FROM ".prefix."user WHERE id = :uid", [
+					'uid' => $uid
+				], __FILE__, __LINE__)->fetch(PDO::FETCH_NUM);
 			}
-			else{
-				if(count($user) == 0){
-					$user = $this->mysql->queryRow("SELECT name, status, level, submonitor FROM ".prefix."user WHERE id = {$uid}", __FILE__, __LINE__);
-				}
-				$name = $user[0];
-				$status = intval($user[1]);
-				$level = intval($user[2]);
-				$submonitor = intval($user[3]);
-				$colors = unserialize(user_name_color);
-				$user_name = '';
-				if($status == 1){
-					if($level == 2){
-						$color = $colors[2][$submonitor];
-					}
-					else{
-						$color = $colors[$level][1];
-					}
+			$name = $user[0];
+			$status = intval($user[1]);
+			$level = intval($user[2]);
+			$submonitor = intval($user[3]);
+			$colors = unserialize(user_name_color);
+			$user_name = '';
+			if( $status == 1 ){
+				if( $level == 2 ){
+					$color = $colors[2][$submonitor];
 				}
 				else{
-					$color = $colors[1][$status];
+					$color = $colors[$level][1];
 				}
-				$user_name = (!empty($color)) ? "<font color=\"{$color}\">{$name}</font>" : $name;
-				if(!$notlink){
-					$title = (!empty($title)) ? " title=\"{$title}\"" : "";
-					$setId = (ulv > 0) ? " id=\"u{$uid}\"" : "";
-					$user_name = "<a{$setId} href=\"profile.php?u={$uid}\"{$title}>{$user_name}</a>";
-				}
-				return $user_name;
 			}
+			else{
+				$color = $colors[1][$status];
+			}
+			$user_name = !empty($color) ? "<font color=\"{$color}\">{$name}</font>" : $name;
+			if( !$notlink ){
+				$title = !empty($title) ? " title=\"{$title}\"" : "";
+				$setId = ulv > 0 ? " id=\"u{$uid}\"" : "";
+				$user_name = "<a{$setId} href=\"profile.php?u={$uid}\"{$title}>{$user_name}</a>";
+			}
+			return $user_name;
 		}
 	}	
 	function userNormalLink($uid, $uname = '', $color = ''){
@@ -1355,16 +1358,16 @@ class Template{
 		$link = "<a{$setId} href=\"profile.php?u={$uid}\">{$name}</a>";
 		return $link;
 	}
-	function forumLink($fid,$subject='',$color='',$class='',$get=''){
-		if(empty($subject)){
-			$subject=$this->mysql->get('forum','subject',$fid);
+	function forumLink( $fid,$subject = '',$color = '', $class = '', $get = '' ){
+		if( empty($subject) ){
+			$subject = $this->mysql->get( 'forum', 'subject', $fid );
 		}
-		if(!empty($color)){
-			$subject="<font color=\"$color\">$subject</font>";
+		if( !empty($color) ){
+			$subject = "<font color=\"{$color}\">$subject</font>";
 		}
-		$class=(!empty($class) ? " class=\"$class\"" : "");
-		$setId=(ulv>0 ? " id=\"f$fid\"" : "");
-		$link="<a{$setId}{$class} href=\"forums.php?f=$fid$get\">$subject</a>";
+		$class = !empty($class) ? " class=\"$class\"" : "";
+		$setId = ulv > 0 ? " id=\"f{$fid}\"" : "";
+		$link = "<a{$setId}{$class} href=\"forums.php?f={$fid}{$get}\">{$subject}</a>";
 		return $link;
 	}
 	function topicLink($tid,$subject='',$color='',$class='',$get=''){
