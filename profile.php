@@ -1041,7 +1041,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 				if($defCountry == $code) $cites=$val['city'];
 			}
 			$Template->selectMenu(array(
-				'name'=>'proCountry',
+				'name'=>'pro_country',
 				'options'=>$countries,
 				'default'=>$defCountry,
 				'width'=>'200'
@@ -1053,7 +1053,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 			<td class=\"asNormalB\">";
 			$receivePM=array(0=>'لا يسمح للأعضاء أن يرسلوا رسائل خاصة',1=>'يسمح بالأعضاء أن يرسلوا رسائل خاصة');
 			$Template->selectMenu(array(
-				'name'=>'proReceivePM',
+				'name'=>'pro_receive_pm',
 				'options'=>$receivePM,
 				'default'=>$rs['receivepm'],
 				'width'=>'250'
@@ -1065,7 +1065,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 			<td class=\"asFixedB\"><nobr>المدينة</nobr></td>
 			<td class=\"asNormalB\">";
 			$Template->selectMenu(array(
-				'name'=>'proCity',
+				'name'=>'pro_city',
 				'options'=>$cites,
 				'default'=>$rs['city'],
 				'width'=>'200',
@@ -1078,7 +1078,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 			<td class=\"asNormalB\">";
 			$hideBrowse=array(0=>'تصفحك يظهر للأعضاء',1=>'تصفحك مخفي عن الأعضاء');
 			$Template->selectMenu(array(
-				'name'=>'proHideBrowse',
+				'name'=>'pro_hide_browse',
 				'options'=>$hideBrowse,
 				'default'=>$rs['hidebrowse'],
 				'width'=>'250'
@@ -1088,12 +1088,12 @@ elseif(type == 'editdetails'&&ulv > 0){
 		</tr>
 		<tr>
 			<td class=\"asFixedB\"><nobr>المنطقة</nobr></td>
-			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:194px\" name=\"proState\" value=\"{$rs['state']}\"></td>
+			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:194px\" name=\"pro_state\" value=\"{$rs['state']}\"></td>
 			<td class=\"asFixedB\"><nobr>طلبات الصداقة</nobr></td>
 			<td class=\"asNormalB\">";
 			$allowFriendship=array(0=>'عدم إستقبال طلبات الصداقة',1=>'إستقبال طلبات الصداقة');
 			$Template->selectMenu(array(
-				'name'=>'proAllowFriendShip',
+				'name'=>'pro_allow_friendship',
 				'options'=>$allowFriendship,
 				'default'=>$rs['allowfriendship'],
 				'width'=>'250'
@@ -1112,7 +1112,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 						$days[]=$x;
 					}
 					$Template->selectMenu(array(
-						'name'=>'proBirthdayDay',
+						'name'=>'pro_birthday_day',
 						'options'=>$days,
 						'default'=>$brithday[2],
 						'single'=>true,
@@ -1126,7 +1126,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 						$months[]=$x;
 					}
 					$Template->selectMenu(array(
-						'name'=>'proBirthdayMonth',
+						'name'=>'pro_birthday_month',
 						'options'=>$months,
 						'default'=>$brithday[1],
 						'single'=>true,
@@ -1143,7 +1143,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 						$years[]=$x;
 					}
 					$Template->selectMenu(array(
-						'name'=>'proBirthdayYear',
+						'name'=>'pro_birthday_year',
 						'options'=>$years,
 						'default'=>$brithday[0],
 						'single'=>true,
@@ -1158,7 +1158,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 			<td class=\"asNormalB\">";
 			$showFriends=array(1=>'يظهر للجميع',2=>'فقط يظهر للأصدقاء',3=>'عدم إظهار لأي شخص');
 			$Template->selectMenu(array(
-				'name'=>'proShowFriends',
+				'name'=>'pro_show_friends',
 				'options'=>$showFriends,
 				'default'=>$rs['showfriends'],
 				'width'=>'250'
@@ -1171,7 +1171,7 @@ elseif(type == 'editdetails'&&ulv > 0){
 			<td class=\"asNormalB\">";
 			$showBirthday=array(0=>'عدم إظهار',1=>'يظهر يوم وشهر فقط',2=>'يظهر تاريخ كامل');
 			$Template->selectMenu(array(
-				'name'=>'proShowBirthday',
+				'name'=>'pro_show_birthday',
 				'options'=>$showBirthday,
 				'default'=>$rs['showbirthday'],
 				'width'=>'200'
@@ -1179,14 +1179,14 @@ elseif(type == 'editdetails'&&ulv > 0){
 			echo"
 			</td>
 			<td class=\"asFixedB\"><nobr>الحالة الإجتماعية</nobr></td>
-			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:350px\" name=\"proMarstatus\" value=\"{$rs['marstatus']}\"></td>
+			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:350px\" name=\"pro_marstatus\" value=\"{$rs['marstatus']}\"></td>
 		</tr>
 		<tr>
 			<td class=\"asFixedB\"><nobr>الجنس</nobr></td>
 			<td class=\"asNormalB\">";
 			$sexes=array(1=>'ذكر',2=>'أنثى');
 			$Template->selectMenu(array(
-				'name'=>'proSex',
+				'name'=>'pro_sex',
 				'options'=>$sexes,
 				'default'=>$rs['sex'],
 				'width'=>'200'
@@ -1194,19 +1194,19 @@ elseif(type == 'editdetails'&&ulv > 0){
 			echo"
 			</td>
 			<td class=\"asFixedB\"><nobr>المهنة</nobr></td>
-			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:350px\" name=\"proOccupation\" value=\"{$rs['occupation']}\"></td>
+			<td class=\"asNormalB\"><input type=\"text\" class=\"input\" style=\"width:350px\" name=\"pro_occupation\" value=\"{$rs['occupation']}\"></td>
 		</tr>";
 	if(ulv > 1){
 		echo"
 		<tr>
 			<td class=\"asFixedB\"><nobr>وصفك</nobr></td>
-			<td class=\"asNormalB\" colspan=\"3\"><input type=\"text\" class=\"input\" style=\"width:99%\" name=\"proTitle\" value=\"{$rs['title']}\"></td>
+			<td class=\"asNormalB\" colspan=\"3\"><input type=\"text\" class=\"input\" style=\"width:99%\" name=\"pro_title\" value=\"{$rs['title']}\"></td>
 		</tr>";
 	}
 		echo"
 		<tr>
 			<td class=\"asFixedB\"><nobr>سيرتك الذاتية</nobr></td>
-			<td class=\"asNormalB\" colspan=\"3\"><textarea style=\"width:99%;height:100px\" name=\"proBiography\">{$rs['biography']}</textarea></td>
+			<td class=\"asNormalB\" colspan=\"3\"><textarea style=\"width:99%;height:100px\" name=\"pro_biography\">{$rs['biography']}</textarea></td>
 		</tr>
 		<tr>
 			<td class=\"asNormalB asCenter\" colspan=\"4\">{$Template->button("حفظ التغيرات"," onClick=\"DF.chkSubmitDetails(this.form);\"")}</td>
@@ -1216,41 +1216,64 @@ elseif(type == 'editdetails'&&ulv > 0){
 }
 elseif( type == 'updatedetails' && ulv > 0 ){
 	$Template->checkHackerTry("عملية املاء الفورم بطريق غير شرعي في تعديل خيارات العضوية");
-	$proCountry=$DF->cleanText($_POST['proCountry']);
-	$proReceivePM=(int)$_POST['proReceivePM'];
-	$proCity=$DF->cleanText($_POST['proCity']);
-	$proHideBrowse=(int)$_POST['proHideBrowse'];
-	$proState=$DF->cleanText($_POST['proState']);
-	$proAllowFriendShip=(int)$_POST['proAllowFriendShip'];
-	$proBirthdayDay=(int)$_POST['proBirthdayDay'];
-	$proBirthdayMonth=(int)$_POST['proBirthdayMonth'];
-	$proBirthdayYear=(int)$_POST['proBirthdayYear'];
-	$proBirthday = $DF->change_date("{$proBirthdayYear}-{$proBirthdayMonth}-{$proBirthdayDay}", "Y-m-d", "Y-m-d");
-	$proShowFriends=(int)$_POST['proShowFriends'];
-	$proShowBirthday=(int)$_POST['proShowBirthday'];
-	$proMarstatus=$DF->cleanText($_POST['proMarstatus']);
-	$proSex=(int)$_POST['proSex'];
-	$proOccupation=$DF->cleanText($_POST['proOccupation']);
-	$proTitle=$DF->cleanText($_POST['proTitle']);
-	$proBiography=$DF->cleanText($_POST['proBiography']);
-	$ufArr=array();
-	$ufArr[]="country = '{$proCountry}'";
-	$ufArr[]="city = '{$proCity}'";
-	$ufArr[]="state = '{$proState}'";
-	if( $DF->is_date( $proBirthday, 'Y-m-d' ) ) $ufArr[]="brithday = '{$proBirthday}'";
-	$ufArr[]="marstatus = '{$proMarstatus}'";
-	$ufArr[]="sex = {$proSex}";
-	$ufArr[]="occupation = '{$proOccupation}'";
-	if( ulv > 1 ) $ufArr[]="title = '{$proTitle}'";
-	$ufArr[]="biography = '{$proBiography}'";
-	$mysql->update("userflag SET ".implode( ", ", $ufArr )." WHERE id = ".uid."", __FILE__, __LINE__);
-	$upArr=array();
-	$upArr[]="receivepm = {$proReceivePM}";
-	$upArr[]="hidebrowse = {$proHideBrowse}";
-	$upArr[]="allowfriendship = {$proAllowFriendShip}";
-	$upArr[]="showfriends = {$proShowFriends}";
-	$upArr[]="showbirthday = {$proShowBirthday}";
-	$mysql->update("userperm SET ".implode(",",$upArr)." WHERE id = ".uid."", __FILE__, __LINE__);
+	$country = addslashes($DF->cleanText($_POST['pro_country']));
+	$receive_pm = intval($_POST['pro_receive_pm']);
+	$city = addslashes($DF->cleanText($_POST['pro_city']));
+	$hide_browse = intval($_POST['pro_hide_browse']);
+	$state = addslashes($DF->cleanText($_POST['pro_state']));
+	$allow_friendship = intval($_POST['pro_allow_friendship']);
+	$birthday_day = intval($_POST['pro_birthday_day']);
+	$birthday_month = intval($_POST['pro_birthday_month']);
+	$birthday_year = intval($_POST['pro_birthday_year']);
+	$birthday = $DF->change_date("{$birthday_year}-{$birthday_month}-{$birthday_day}", "Y-m-d", "Y-m-d");
+	$show_friends = intval($_POST['pro_show_friends']);
+	$show_birthday = intval($_POST['pro_show_birthday']);
+	$marstatus = addslashes($DF->cleanText($_POST['pro_marstatus']));
+	$sex = intval($_POST['pro_sex']);
+	$occupation = addslashes($DF->cleanText($_POST['pro_occupation']));
+	$title = addslashes($DF->cleanText($_POST['pro_title']));
+	$biography = addslashes($DF->cleanText($_POST['pro_biography']));
+
+	$uf_params = [
+		'country' => $country,
+		'city' => $city,
+		'state' => $state,
+		'marstatus' => $marstatus,
+		'sex' => $sex,
+		'occupation' => $occupation,
+		'biography' => $biography
+	];
+	$uf_fields = [];
+	$uf_fields[] = "country = :country";
+	$uf_fields[] = "city = :city";
+	$uf_fields[] = "state = :state";
+	if( $DF->is_date( $birthday, 'Y-m-d' ) ){
+		$uf_fields[] = "brithday = :birthday";
+		$uf_params['birthday'] = $birthday;
+	}
+	$uf_fields[] = "marstatus = :marstatus";
+	$uf_fields[] = "sex = :sex";
+	$uf_fields[] = "occupation = :occupation";
+	if( ulv > 1 ){
+		$uf_fields[] = "title = :title";
+		$uf_params['title'] = $title;
+	}
+	$uf_fields[] = "biography = :biography";
+	$mysql->execute("UPDATE ".prefix."userflag SET ".implode( ", ", $uf_fields )." WHERE id = ".uid."", $uf_params, __FILE__, __LINE__);
+
+	$up_fields = [];
+	$up_fields[] = "receivepm = :receive_pm";
+	$up_fields[] = "hidebrowse = :hide_browse";
+	$up_fields[] = "allowfriendship = :allow_friendship";
+	$up_fields[] = "showfriends = :show_friends";
+	$up_fields[] = "showbirthday = :show_birthday";
+	$mysql->execute("UPDATE ".prefix."userperm SET ".implode( ", ", $up_fields )." WHERE id = ".uid."", [
+		'receive_pm' => $receive_pm,
+		'hide_browse' => $hide_browse,
+		'allow_friendship' => $allow_friendship,
+		'show_friends' => $show_friends,
+		'show_birthday' => $show_birthday
+	], __FILE__, __LINE__);
 	$Template->msg("تم حفظ التغيرات بنجاح");
 }
 elseif(type == 'changename'&&ulv > 0){
