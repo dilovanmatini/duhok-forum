@@ -102,18 +102,20 @@ elseif( $_type == 'setting_up' ){
                             $password = md5($code.$password1);
                             $sql = mysql_execute("INSERT INTO {$db['prefix']}user
                             (
-                                active, name, entername, password, code, level, date
+                                active, name, entername, password, keycode,code, level, date
                             ) VALUES (
                                 1,
                                 :name,
                                 :name,
                                 :password,
+                                :keycode,
                                 :code,
                                 4,
                                 ".time()."
                             )", [
                                 'name' => $username,
                                 'password' => $password,
+                                'keycode' => "",
                                 'code' => $code
                             ]);
                             $admin_id = mysql_execute("SELECT LAST_INSERT_ID()")->fetch(PDO::FETCH_NUM);
@@ -123,7 +125,7 @@ elseif( $_type == 'setting_up' ){
                             }
                             else{
                                 mysql_execute("INSERT INTO {$db['prefix']}userperm ( id ) VALUES ( {$admin_id} )");
-                                mysql_execute("INSERT INTO {$db['prefix']}userflag ( id ) VALUES ( {$admin_id} )");
+                                mysql_execute("INSERT INTO {$db['prefix']}userflag ( id, email,title,picture,photo,age,country,best_player,best_club,best_team,state,city,ip,allip,ips,marstatus,biography,occupation,signature,style,lists,pmlists,lpid,lpdate,lhdate ) VALUES ( {$admin_id},'{$forum_email}','','','',18,'A1','','','','','',127001,'','','','','','','','','',1611074580,1611074580,1611074580 )");
 
                                 // adding config data
                                 $sql = "INSERT INTO {$db['prefix']}config (type, variable, value) VALUES
@@ -440,7 +442,7 @@ elseif( $_type == 'setting_up' ){
                                 mysql_execute($sql);
                                 $forum_id = mysql_execute("SELECT LAST_INSERT_ID()")->fetch(PDO::FETCH_NUM);
                                 $forum_id = intval($forum_id[0]);
-                                mysql_execute("INSERT INTO {$db['prefix']}forumflag ( id ) VALUES ( {$forum_id} )");
+                                mysql_execute("INSERT INTO {$db['prefix']}forumflag ( id, catid, pmlists ) VALUES ( {$forum_id},{$cat_id}, '' )");
 
                                 $json['status'] = 'success';
                             }
