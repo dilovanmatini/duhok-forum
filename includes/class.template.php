@@ -451,6 +451,7 @@ class Template{
 				</td>
 			</tr>
 		</table>";
+		$this->display("navbar");
 	}
 	function footer($status = true, $admin = false, $xfooter = false){
 		if($status){
@@ -510,6 +511,7 @@ class Template{
 						</tr>
 					</table>";
 				}
+				$code .= $this->display("footer", true);
 				$code.="
 				<table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" align=\"center\">
 					<tr>
