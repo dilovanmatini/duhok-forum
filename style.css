@@ -1,0 +1,147 @@
+@import url(assets/fonts/fonts.css);
+/* Above font called Quicksand is downloaded from google fonts library as a open source font: fonts.google.com */
+
+/* Reseting all tags */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* Giving properties to the main elements */
+header{
+    background-color: #08679f;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+header > nav{
+    width: 1000px;
+    display: inline-block;
+}
+header > nav > div{
+    float: left;
+}
+header > nav > div > img{
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+header > nav > div > div{
+    display: inline-block;
+    line-height: 36px;
+    vertical-align: middle;
+    font: 700 24px 'Quicksand', sans-serif;
+}
+header > nav > menu{
+    float: right;
+}
+header > nav > menu > a{
+    margin: 0 6px;
+    color: #fff;
+    line-height: 36px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font: 500 15px/36px 'Quicksand', sans-serif;
+}
+header > nav > menu > a:hover{
+    text-decoration: underline;
+}
+main{
+    background-color: #fff;
+    color: #192933;
+    text-align: center;
+    padding: 8px;
+    min-height: 400px;
+}
+main > section{
+    width: 1000px;
+    display: inline-block;
+    text-align: left;
+}
+footer{
+    background-color: #192933;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+}
+footer > section{
+    width: 1000px;
+    height: 160px;
+    display: inline-block;
+}
+footer > section > aside{
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
+footer > section > aside > p{
+    color: #5db2ce;
+    text-transform: uppercase;
+    font: 700 15px/36px 'Quicksand', sans-serif;
+}
+footer > section > aside.name{
+    width: 300px;
+    padding-top: 28px;
+    text-align: center;
+}
+footer > section > aside.name > img{
+    width: 100px;
+}
+footer > section > aside.name > div{
+    text-transform: uppercase;
+    font: 700 36px 'Quicksand', sans-serif;
+    color: #5db2ce;
+}
+footer > section > aside.contact{
+    width: 540px;
+    padding-top: 14px;
+}
+footer > section > aside.contact > div{
+    margin: 3px 0;
+}
+footer > section > aside.contact > div,
+footer > section > aside.contact > div > a,
+footer > section > aside.contact > div > a:focus,
+footer > section > aside.contact > div > a:visited{
+    font: 300 15px 'Quicksand', sans-serif;
+    color: #dfdfdf;
+    text-decoration: none;
+}
+footer > section > aside.contact > div > span{
+    display: inline-block;
+    font: 500 15px 'Quicksand', sans-serif;
+    color: #dfdfdf;
+    width: 70px;
+}
+footer > section > aside.contact > div > a:hover{
+    color: #fff;
+}
+footer > section > aside.links{
+    width: 150px;
+    padding-top: 10px;
+}
+footer > section > aside.links > a,
+footer > section > aside.links > div > a:focus,
+footer > section > aside.links > div > a:visited{
+    display: block;
+    font: 500 15px 'Quicksand', sans-serif;
+    color: #dfdfdf;
+    text-decoration: none;
+}
